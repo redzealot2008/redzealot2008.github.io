@@ -1,4 +1,4 @@
-# Hexo Configuration
+﻿# Hexo Configuration
 ## Docs: http://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
@@ -95,7 +95,7 @@
   deploy:
     type: git
     # 之前在Github上创建的仓库地址
-    repo: https://redzealot2008@github.com/redzealot2008/redzealot2008.github.io.git
+    repo: git@github.com:redzealot2008/redzealot2008.github.io.git
     branch: master
 
   sitemap:
