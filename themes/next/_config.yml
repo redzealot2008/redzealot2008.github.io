@@ -6,7 +6,7 @@
 favicon: http://onmer39jj.bkt.clouddn.com/image/favicon.ico
 
 # Set default keywords (Use a comma to separate)
-keywords: "Hexo, NexT"
+keywords: "前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,android,ios,unity3d"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -14,13 +14,13 @@ keywords: "Hexo, NexT"
 rss:
 
 # Specify the date when the site was setup
-#since: 2015
+since: 2017
 
 # icon between year and author @Footer
-authoricon: heart
+authoricon: android
 
 # Footer `powered-by` and `theme-info` copyright
-copyright: true
+copyright: false
 
 
 # Canonical, set a canonical link tag in your hexo, you could use it for your SEO of blog.
@@ -29,7 +29,7 @@ copyright: true
 canonical: true
 
 # Change headers hierarchy on site-subtitle (will be main site description) and on all post/pages titles for better SEO-optimization.
-seo: false
+seo: true
 
 # ---------------------------------------------------------------
 # Menu Settings
@@ -74,7 +74,6 @@ menu_icons:
 #scheme: Muse
 #scheme: Mist
 scheme: Pisces
-
 
 # ---------------------------------------------------------------
 # Font Settings
@@ -201,7 +200,7 @@ sidebar:
 
 # Blog rolls  友情链接
 links_title: 友情链接
-#links_layout: block
+links_layout: block
 #links_layout: inline
 links:
   Litten的博客: http://litten.me/
@@ -241,7 +240,6 @@ post_meta:
   created_at: true
   updated_at: true
   categories: true
-  tags: true
 
 # Post wordcount display settings
 # Dependencies: https://github.com/willin/hexo-wordcount
@@ -282,7 +280,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night bright
 
 
 # ---------------------------------------------------------------
@@ -300,7 +298,7 @@ mathjax:
 #swiftype_key:
 
 # Baidu Analytics ID 百度统计
-baidu_analytics: 060d20d46b1a55477431cb279c92e60d
+#baidu_analytics: 060d20d46b1a55477431cb279c92e60d
 
 # Duoshuo ShortName
 #duoshuo_shortname:
@@ -405,7 +403,7 @@ vkontakte_api:
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
-  enable: true
+  enable: false
   app_id: z4SEvYV76mSXmj7bsyITs6pK-gzGzoHsz
   app_key: 5GhMkhy37c1Vtq4DsqmQlG2K
 
@@ -413,19 +411,19 @@ leancloud_visitors:
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
   # count values only if the other configs are false
-  enable: false
-  # custom uv span for the whole site
+  enable: true
+  # custom uv span for the whole site 效果：本站访客数12345人次
   site_uv: true
-  site_uv_header: <i class="fa fa-user"></i>
-  site_uv_footer:
-  # custom pv span for the whole site
+  site_uv_header: 本站访客数
+  site_uv_footer: 人次
+  # custom pv span for the whole site 效果：本站总访问量12345次
   site_pv: true
-  site_pv_header: <i class="fa fa-eye"></i>
-  site_pv_footer:
-  # custom pv span for one page only
+  site_pv_header: 本站总访问量
+  site_pv_footer: 次
+  # custom pv span for one page only 效果：本文总阅读量12345次
   page_pv: true
-  page_pv_header: <i class="fa fa-file-o"></i>
-  page_pv_footer:
+  page_pv_header: 本文总阅读量
+  page_pv_footer: 次
 
 
 # Tencent analytics ID
@@ -436,7 +434,7 @@ busuanzi_count:
 
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
-baidu_push: false
+baidu_push: true
 
 # Google Calendar
 # Share your recent schedule to others via calendar page
@@ -455,20 +453,20 @@ calendar:
   singleEvents: true
   maxResults: 250
 
-# Algolia Search
+# aa Search
 algolia_search:
-  enable: true
+  enable: false
   hits:
     per_page: 10
   labels:
-    input_placeholder: Search for Posts
-    hits_empty: "We didn't find any results for the search: ${query}"
-    hits_stats: "${hits} results found in ${time} ms"
+    input_placeholder: 在此输入搜索关键字
+    hits_empty: "没找到与【${query}】相关的内容。"
+    hits_stats: "找到 ${hits} 条相关内容。"
 
 
 # Local search
 local_search:
-  enable: false
+  enable: true
 
 # External URL with BASE64 encrypt & decrypt
 # Usage: {% exturl text url "title" %}
@@ -487,15 +485,15 @@ alipay: http://onmer39jj.bkt.clouddn.com/image/Alipay.png?imageView2/1/w/400/h/4
 #! UNLESS YOU KNOW WHAT YOU ARE DOING
 #! ---------------------------------------------------------------
 
-# Motion
-use_motion: true
+# Motion 动画效果
+use_motion: false
 
 # Fancybox
 fancybox: true
 
+# 背景动画
 # Canvas-nest
-canvas_nest: false
-
+canvas_nest: true
 #three_waves
 three_waves: false
 
