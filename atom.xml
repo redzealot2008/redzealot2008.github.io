@@ -35,4 +35,145 @@
     
   </entry>
   
+  <entry>
+    <title>[原]主叫号码信息识别及传送</title>
+    <link href="https://redzealot2008.github.io/2017/04/14/%E5%8E%9F-%E4%B8%BB%E5%8F%AB%E5%8F%B7%E7%A0%81%E4%BF%A1%E6%81%AF%E8%AF%86%E5%88%AB%E5%8F%8A%E4%BC%A0%E9%80%81/"/>
+    <id>https://redzealot2008.github.io/2017/04/14/原-主叫号码信息识别及传送/</id>
+    <published>2017-04-14T09:42:21.000Z</published>
+    <updated>2017-04-16T05:50:49.475Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;主叫号码信息识别及传送（CID，Calling Identity Delivery），是指在被叫用户终端设备上显示
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[原]java获取路径</title>
+    <link href="https://redzealot2008.github.io/2017/04/13/%E5%8E%9F-java%E8%8E%B7%E5%8F%96%E8%B7%AF%E5%BE%84/"/>
+    <id>https://redzealot2008.github.io/2017/04/13/原-java获取路径/</id>
+    <published>2017-04-12T16:15:28.000Z</published>
+    <updated>2017-04-16T05:50:49.477Z</updated>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;//获取当前类生成目录
+System&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.out&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;g
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[转]android:exported 属性详解</title>
+    <link href="https://redzealot2008.github.io/2017/04/11/%E8%BD%AC-android-exported-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/"/>
+    <id>https://redzealot2008.github.io/2017/04/11/转-android-exported-属性详解/</id>
+    <published>2017-04-11T03:27:11.000Z</published>
+    <updated>2017-04-16T05:50:49.477Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;[转载出处：&lt;a href=&quot;http://blog.csdn.net/watermusicyes/article/details/46460347&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/watermusi
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[转]Android中Preference的使用以及监听事件分析</title>
+    <link href="https://redzealot2008.github.io/2017/04/09/%E8%BD%AC-Android%E4%B8%ADPreference%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/"/>
+    <id>https://redzealot2008.github.io/2017/04/09/转-Android中Preference的使用以及监听事件分析/</id>
+    <published>2017-04-09T06:49:47.000Z</published>
+    <updated>2017-04-16T05:50:49.477Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;span style=&quot;font-family:SimSun; font-size:16px&quot;&gt;[转载出处：&lt;a href=&quot;http://blog.csdn.net/watermusicyes/article/details/46460347&quot; target=&quot;_bla
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[原]阿里巴巴Weex对移动应用的理解</title>
+    <link href="https://redzealot2008.github.io/2017/04/06/%E5%8E%9F-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Weex%E5%AF%B9%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <id>https://redzealot2008.github.io/2017/04/06/原-阿里巴巴Weex对移动应用的理解/</id>
+    <published>2017-04-06T08:29:08.000Z</published>
+    <updated>2017-04-16T05:50:49.478Z</updated>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;移动应用需要支撑并行研发&lt;br&gt;如今移动应用的开发需要并行研发的能力，当一个移动应用发展到一定规模的时候，能否支撑大规模的并行研发就成为了一件非常关键而又重要的事情。否则很容易变成工程瓶颈。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;移动应用需要动态性&lt;br&gt;如今
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[原]JVM垃圾收集器</title>
+    <link href="https://redzealot2008.github.io/2017/04/02/%E5%8E%9F-JVM%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/"/>
+    <id>https://redzealot2008.github.io/2017/04/02/原-JVM垃圾收集器/</id>
+    <published>2017-04-02T07:26:54.000Z</published>
+    <updated>2017-04-16T05:50:49.477Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;[牛客网]下列哪项不属于jdk1.6垃圾收集器？ &lt;/p&gt;
+&lt;p&gt;  A.Serail收集器 &lt;/p&gt;
+&lt;p&gt;  B.parNew收集器 &lt;/p&gt;
+&lt;p&gt;  C.CMS收集器 &lt;/p&gt;
+&lt;p&gt;  D.G1收集器&lt;/p&gt;
+&lt;/blockquote&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[原]一脸懵逼也能使用hexo搭建github博客</title>
+    <link href="https://redzealot2008.github.io/2017/03/29/%E5%8E%9F-%E4%B8%80%E8%84%B8%E6%87%B5%E9%80%BC%E4%B9%9F%E8%83%BD%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://redzealot2008.github.io/2017/03/29/原-一脸懵逼也能使用hexo搭建github博客/</id>
+    <published>2017-03-29T06:10:26.000Z</published>
+    <updated>2017-04-16T05:50:49.477Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这两天在网上浏览程序猿技术相关的资讯以及一些大神的技术博客文章，hexo这个词数次进入我的视线，于是我到网上查找了hexo相关的信息。&lt;/p&gt;
+&lt;h2 id=&quot;hexo是什么？&quot;&gt;&lt;a href=&quot;#hexo是什么？&quot; class=&quot;headerlink&quot; title=&quot;h
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[原]新的开始，回归自我</title>
+    <link href="https://redzealot2008.github.io/2017/03/29/%E5%8E%9F-%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B%EF%BC%8C%E5%9B%9E%E5%BD%92%E8%87%AA%E6%88%91/"/>
+    <id>https://redzealot2008.github.io/2017/03/29/原-新的开始，回归自我/</id>
+    <published>2017-03-29T05:36:26.000Z</published>
+    <updated>2017-04-16T05:50:49.477Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为某些原因，荒废了两年半的时间，没有接触程序猿方面的东西，这两天才重新捡起来，在网上看了很多软件开发类的资讯，发现两年半的时间真的让自己都要不认识这个行业了，当年流行的技术现如今不再流行，新的更实用的技术层出不穷，感觉自己已经奥特了，重新回归觉得真的是个不小的挑战。&lt;/p
+    
+    </summary>
+    
+    
+  </entry>
+  
 </feed>

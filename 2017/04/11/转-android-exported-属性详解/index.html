@@ -69,12 +69,10 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="随笔," />
+  <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,android,ios,unity3d" />
 
 
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="剑若成风的成长日志" type="application/atom+xml" />
@@ -89,17 +87,24 @@
 
 
 
-<meta name="description" content="因为某些原因，荒废了两年半的时间，没有接触程序猿方面的东西，这两天才重新捡起来">
-<meta name="keywords" content="随笔">
+<meta name="description" content="[转载出处：http://blog.csdn.net/watermusicyes/article/details/46460347] 昨天在用360扫描应用漏洞时，扫描结果，出来一个Android:exported属性，其实之前根本不知道这个属性，更不知道这个属性用来干嘛的，详情见下图：&amp;nbsp; &amp;nbsp;  因此，查了官方API，学习了一下这个属性!  android:exported 是">
+<meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="欢迎来到我的个人技术博客">
-<meta property="og:url" content="https://redzealot2008.github.io/2017/04/15/1/index.html">
+<meta property="og:title" content="[转]android:exported 属性详解">
+<meta property="og:url" content="https://redzealot2008.github.io/2017/04/11/转-android-exported-属性详解/index.html">
 <meta property="og:site_name" content="剑若成风的成长日志">
-<meta property="og:description" content="因为某些原因，荒废了两年半的时间，没有接触程序猿方面的东西，这两天才重新捡起来">
-<meta property="og:updated_time" content="2017-04-15T15:02:42.617Z">
+<meta property="og:description" content="[转载出处：http://blog.csdn.net/watermusicyes/article/details/46460347] 昨天在用360扫描应用漏洞时，扫描结果，出来一个Android:exported属性，其实之前根本不知道这个属性，更不知道这个属性用来干嘛的，详情见下图：&amp;nbsp; &amp;nbsp;  因此，查了官方API，学习了一下这个属性!  android:exported 是">
+<meta property="og:image" content="http://img.blog.csdn.net/20150611173912982">
+<meta property="og:image" content="http://img.blog.csdn.net/20150611173929264">
+<meta property="og:image" content="http://img.blog.csdn.net/20150611174107183">
+<meta property="og:image" content="http://img.blog.csdn.net/20150611174223699">
+<meta property="og:image" content="http://img.blog.csdn.net/20150611174327415">
+<meta property="og:image" content="http://img.blog.csdn.net/20150611174415484">
+<meta property="og:updated_time" content="2017-04-16T05:50:49.477Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="欢迎来到我的个人技术博客">
-<meta name="twitter:description" content="因为某些原因，荒废了两年半的时间，没有接触程序猿方面的东西，这两天才重新捡起来">
+<meta name="twitter:title" content="[转]android:exported 属性详解">
+<meta name="twitter:description" content="[转载出处：http://blog.csdn.net/watermusicyes/article/details/46460347] 昨天在用360扫描应用漏洞时，扫描结果，出来一个Android:exported属性，其实之前根本不知道这个属性，更不知道这个属性用来干嘛的，详情见下图：&amp;nbsp; &amp;nbsp;  因此，查了官方API，学习了一下这个属性!  android:exported 是">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20150611173912982">
 
 
 
@@ -127,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://redzealot2008.github.io/2017/04/15/1/"/>
+  <link rel="canonical" href="https://redzealot2008.github.io/2017/04/11/转-android-exported-属性详解/"/>
 
 
 
 
 
-  <title> 欢迎来到我的个人技术博客 | 剑若成风的成长日志 </title>
+  <title> [转]android:exported 属性详解 | 剑若成风的成长日志 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -310,7 +315,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://redzealot2008.github.io/2017/04/15/1/">
+    <link itemprop="mainEntityOfPage" href="https://redzealot2008.github.io/2017/04/11/转-android-exported-属性详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="剑若成风">
@@ -331,7 +336,7 @@
             
             
               
-                欢迎来到我的个人技术博客
+                [转]android:exported 属性详解
               
             
           </h2>
@@ -346,8 +351,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T18:47:00+08:00">
-                2017-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-11T11:27:11+08:00">
+                2017-04-11
               </time>
             
 
@@ -362,34 +367,12 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-04-15T23:02:42+08:00">
-                2017-04-15
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-16T13:50:49+08:00">
+                2017-04-16
               </time>
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -399,7 +382,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/04/15/1/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/04/11/转-android-exported-属性详解/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -431,7 +414,188 @@
       
 
       
-        <h2 id="因为某些原因，荒废了两年半的时间，没有接触程序猿方面的东西，这两天才重新捡起来，在网上看了很多软件开发类的资讯，发现两年半的时间真的让自己都要不认识这个行业了，当年流行的技术现如今不再流行，新的更实用的技术层出不穷，感觉自己已经奥特了，重新回归觉得真的是个不小的挑战。"><a href="#因为某些原因，荒废了两年半的时间，没有接触程序猿方面的东西，这两天才重新捡起来，在网上看了很多软件开发类的资讯，发现两年半的时间真的让自己都要不认识这个行业了，当年流行的技术现如今不再流行，新的更实用的技术层出不穷，感觉自己已经奥特了，重新回归觉得真的是个不小的挑战。" class="headerlink" title="因为某些原因，荒废了两年半的时间，没有接触程序猿方面的东西，这两天才重新捡起来，在网上看了很多软件开发类的资讯，发现两年半的时间真的让自己都要不认识这个行业了，当年流行的技术现如今不再流行，新的更实用的技术层出不穷，感觉自己已经奥特了，重新回归觉得真的是个不小的挑战。"></a>因为某些原因，荒废了两年半的时间，没有接触程序猿方面的东西，这两天才重新捡起来<a id="more"></a>，在网上看了很多软件开发类的资讯，发现两年半的时间真的让自己都要不认识这个行业了，当年流行的技术现如今不再流行，新的更实用的技术层出不穷，感觉自己已经奥特了，重新回归觉得真的是个不小的挑战。</h2>
+        <p>[转载出处：<a href="http://blog.csdn.net/watermusicyes/article/details/46460347" target="_blank" rel="external">http://blog.csdn.net/watermusicyes/article/details/46460347</a>]</p>
+<p>昨天在用360扫描应用漏洞时，扫描结果，出来一个<a href="http://lib.csdn.net/base/android" title="Android知识库" target="_blank" rel="external">Android</a>:exported属性，其实之前根本不知道这个属性，更不知道这个属性用来干嘛的，详情见下图：&nbsp;</p>
+<p><img src="http://img.blog.csdn.net/20150611173912982" alt="这里写图片描述">&nbsp;</p>
+<p><img src="http://img.blog.csdn.net/20150611173929264" alt="这里写图片描述"></p>
+<p>因此，查了官方API，学习了一下这个属性!</p>
+<hr>
+<p>android:exported 是Android中的四大组件 Activity，Service，Provider，Receiver 四大组件中都会有的一个属性。</p>
+<p>总体来说它的主要作用是：是否支持其它应用调用当前组件。&nbsp;</p>
+<p>默认&#20540;：如果包含有intent-filter 默认&#20540;为true; 没有intent-filter默认&#20540;为false。</p>
+<p>下面来详细的了解一下四大组件中的这个属性：</p>
+<p>1、先来看：Activity中的：</p>
+<pre class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: 'Source Code Pro', monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); border: 0px solid rgb(136, 136, 136); border-radius: 0px; background-color: rgba(128, 128, 128, 0.0470588);">`&lt;activity
+          ……
+          android:exported=[<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;true&quot;</span> <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">| &quot;</span>false<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;]</span>
+          ……
+/&gt;
+`
+
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6</pre>
+
+<p><img src="http://img.blog.csdn.net/20150611174107183" alt="这里写图片描述"></p>
+<p>意思如下：</p>
+<p>在Activity中该属性用来标示：当前Activity是否可以被另一个Application的组件启动：true允许被启动；false不允许被启动。</p>
+<p>如果被设置为了false，那么这个Activity将只会被当前Application或者拥有同样user ID的Application的组件调用。</p>
+<p>exported 的默认&#20540;根据Activity中是否有intent filter 来定。没有任何的filter意味着这个Activity只有在详细的描述了他的class name后才能被唤醒 .这意味着这个Activity只能在应用内部使用，因为其它application并不知道这个class的存在。所以在这种情况下，它的默认&#20540;是false。从另一方面讲，如果Activity里面至少有一个filter的话，意味着这个Activity可以被其它应用从外部唤起，这个时候它的默认&#20540;是true。</p>
+<p>其实，不只有这个属性可以指定Activity是否暴露给其它应用，也可以使用permission来限制外部实体唤醒当前Activity（详情见permission属性）</p>
+<p>2、Service中的：</p>
+<pre class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: 'Source Code Pro', monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); border: 0px solid rgb(136, 136, 136); border-radius: 0px; background-color: rgba(128, 128, 128, 0.0470588);">`&lt;service android:enabled=[<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;true&quot;</span> <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">| &quot;</span>false<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;]</span>
+         android:exported=[<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;true&quot;</span> <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">| &quot;</span>false<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;]</span>
+         android:icon=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;drawable resource&quot;</span>
+         android:isolatedProcess=[<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;true&quot;</span> <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">| &quot;</span>false<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;]</span>
+         android:label=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string resource&quot;</span>
+         android:name=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string&quot;</span>
+         android:permission=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string&quot;</span>
+         android:process=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string&quot;</span> &gt;
+    . . .
+&lt;/service&gt;
+`
+
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+*   9
+*   10
+*   11
+
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+*   9
+*   10
+*   11</pre>
+
+<p><img src="http://img.blog.csdn.net/20150611174223699" alt="这里写图片描述"></p>
+<p>意思如下：&nbsp;</p>
+<p>该属性用来标示，其它应用的组件是否可以唤醒service或者和这个service进行交互：true可以，false不可以。如果为false，只有同一个应用的组件或者有着同样user ID的应用可以启动这个service或者绑定这个service。</p>
+<p>默认&#20540;根据当前service是否有intent filter来定。如果没有任何filter意味着当前service只有在被详细的描述class name后才会被唤醒。这意味这当前service只能在应用内部使用（因为其它应用不知道这个class name）.所以在这种情况下它的默认&#20540;为 false.从另一方面讲，如果至少有一个filter的话那么就意味着这个service可以被外部应用使用，这种情况下默认&#20540;为true。</p>
+<p>其实，不只有这个属性可以指定service是否暴露给其它应用。你也可以使用permission来限制外部实体唤醒当前service（详情见permission属性）</p>
+<p>3、Provider中的：</p>
+<pre class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: 'Source Code Pro', monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); border: 0px solid rgb(136, 136, 136); border-radius: 0px; background-color: rgba(128, 128, 128, 0.0470588);">`&lt;provider android:authorities=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;list&quot;</span>
+          android:enabled=[<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;true&quot;</span> <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">| &quot;</span>false<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;]</span>
+          android:exported=[<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;true&quot;</span> <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">| &quot;</span>false<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;]</span>
+          android:grantUriPermissions=[<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;true&quot;</span> <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">| &quot;</span>false<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;]</span>
+          android:icon=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;drawable resource&quot;</span>
+          android:initOrder=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;integer&quot;</span>
+          android:label=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string resource&quot;</span>
+          android:multiprocess=[<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;true&quot;</span> <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">| &quot;</span>false<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;]</span>
+          android:name=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string&quot;</span>
+          android:permission=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string&quot;</span>
+         android:writePermission=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string&quot;</span> &gt;
+    . . .
+&lt;/provider&gt;
+`
+
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+*   9
+*   10
+*   11
+*   12
+*   13
+*   14
+
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+*   9
+*   10
+*   11
+*   12
+*   13
+*   14</pre>
+
+<p><img src="http://img.blog.csdn.net/20150611174327415" alt="这里写图片描述"></p>
+<p>意思如下：&nbsp;</p>
+<p>当前内容提供者是否会被其它应用使用：&nbsp;</p>
+<p>true: 当前提供者可以被其它应用使用。任何应用可以使用Provider通过URI 来获得它，也可以通过相应的权限来使用Provider。</p>
+<p>false:当前提供者不能被其它应用使用。设置Android：exported=“false”来限制其它应用获得你应用的Provider。只有拥有同样的user ID 的应用可以获得当前应用的Provider。</p>
+<p>当Android sdk 的最小版本为16或者更低时他的默认&#20540;是true。如果是17和以上的版本默认&#20540;是false。</p>
+<p>可以通过Android：exported=“fasle” 和 permission来限制当前应用Provider是否会被其它应用获取。</p>
+<p>4、receiver中的：</p>
+<pre class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: 'Source Code Pro', monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); border: 0px solid rgb(136, 136, 136); border-radius: 0px; background-color: rgba(128, 128, 128, 0.0470588);">`&lt;receiver android:enabled=[<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;true&quot;</span> <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">| &quot;</span>false<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;]</span>
+          android:exported=[<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;true&quot;</span> <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">| &quot;</span>false<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;]</span>
+          android:icon=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;drawable resource&quot;</span>
+          android:label=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string resource&quot;</span>
+          android:name=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string&quot;</span>
+          android:permission=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string&quot;</span>
+          android:process=<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;string&quot;</span> &gt;
+    . . .
+&lt;/receiver&gt;
+`
+
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+*   9
+*   10
+
+*   1
+*   2
+*   3
+*   4
+*   5
+*   6
+*   7
+*   8
+*   9
+*   10</pre>
+
+<p><img src="http://img.blog.csdn.net/20150611174415484" alt="这里写图片描述"></p>
+<p>意思如下：&nbsp;</p>
+<p>当前broadcast Receiver 是否可以从当前应用外部获取Receiver message 。true，可以；false 不可以。如果为false ,当前broadcast Receiver 只能收到同一个应用或者拥有同一 user ID 应用发出广播。</p>
+<p>默认&#20540;根据当前 broadcast Receiver 是否包含intent filter来定。如果没有任何的filter的话意味着只有在被详细的描述了class name的情况下才会被唤起。这意味着当前Receiver只能在应用内部被使用（因为其它应用不知道这个类的存在。）在这种情况下，默认&#20540;是false。如果至少包含一个filter意味着当前broadcast Receiver 将会收到来自系统或者其它应用的广播，所以这个时候默认&#20540;是true。</p>
+<p>不只有这个属性可以指定broadcast Receiver 是否暴露给其它应用。你也可以使用permission来限制外部应用给他发送消息。</p>
+<p>在上文中提到的两个概念：user ID 和 permission 在网上找见了两篇不错的文章：&nbsp;</p>
+<p>1、<a href="http://yelinsen.iteye.com/blog/977683" target="_blank" rel="external">Android中startActivity中的permission检测与UID机制</a>&nbsp;</p>
+<p>2、<a href="http://yelinsen.iteye.com/blog/977548" target="_blank" rel="external">Android Permission 机制</a></p>
+<pre><code>&lt;div&gt;
+    作者：redzealot2007 发表于2017/4/11 11:27:11 [原文链接](http://blog.csdn.net/redzealot2007/article/details/70049535)
+&lt;/div&gt;
+&lt;div&gt;
+阅读：23 评论：0 [查看评论](http://blog.csdn.net/redzealot2007/article/details/70049535#comments)
+&lt;/div&gt;
+</code></pre>
       
     </div>
 
@@ -480,7 +644,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://redzealot2008.github.io/2017/04/15/1/" title="欢迎来到我的个人技术博客">https://redzealot2008.github.io/2017/04/15/1/</a>
+      <a href="https://redzealot2008.github.io/2017/04/11/转-android-exported-属性详解/" title="[转]android:exported 属性详解">https://redzealot2008.github.io/2017/04/11/转-android-exported-属性详解/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -494,12 +658,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/随笔/" rel="tag"># 随笔</a>
-          
-        </div>
-      
 
       
         
@@ -509,14 +667,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/04/13/原-java获取路径/" rel="next" title="[原]java获取路径">
+                <i class="fa fa-chevron-left"></i> [原]java获取路径
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/14/原-主叫号码信息识别及传送/" rel="prev" title="[原]主叫号码信息识别及传送">
-                [原]主叫号码信息识别及传送 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/09/转-Android中Preference的使用以及监听事件分析/" rel="prev" title="[转]Android中Preference的使用以及监听事件分析">
+                [转]Android中Preference的使用以及监听事件分析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -589,17 +751,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://onmer39jj.bkt.clouddn.com/image/Avatar.jpg?imageView2/1/w/400/h/400/format/webp/interlace/1/q/75|imageslim"
@@ -750,22 +903,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#因为某些原因，荒废了两年半的时间，没有接触程序猿方面的东西，这两天才重新捡起来，在网上看了很多软件开发类的资讯，发现两年半的时间真的让自己都要不认识这个行业了，当年流行的技术现如今不再流行，新的更实用的技术层出不穷，感觉自己已经奥特了，重新回归觉得真的是个不小的挑战。"><span class="nav-number">1.</span> <span class="nav-text">因为某些原因，荒废了两年半的时间，没有接触程序猿方面的东西，这两天才重新捡起来，在网上看了很多软件开发类的资讯，发现两年半的时间真的让自己都要不认识这个行业了，当年流行的技术现如今不再流行，新的更实用的技术层出不穷，感觉自己已经奥特了，重新回归觉得真的是个不小的挑战。</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

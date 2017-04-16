@@ -1,0 +1,1371 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,android,ios,unity3d" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="剑若成风的成长日志" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://onmer39jj.bkt.clouddn.com/image/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="[转载出处：http://blog.csdn.net/qinjuning/article/details/6710003/]   在Android系统源码中，绝大多数应用程序的UI布局采用了Preference的布局结构，而不是我们平时在模拟器中构建应用程序时使用的View布局结构，例如，Setting模块中布局。当然，凡事都有例外，FMRadio应用程序中则使用了View布局结构(可能是该应用程">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[转]Android中Preference的使用以及监听事件分析">
+<meta property="og:url" content="https://redzealot2008.github.io/2017/04/09/转-Android中Preference的使用以及监听事件分析/index.html">
+<meta property="og:site_name" content="剑若成风的成长日志">
+<meta property="og:description" content="[转载出处：http://blog.csdn.net/qinjuning/article/details/6710003/]   在Android系统源码中，绝大多数应用程序的UI布局采用了Preference的布局结构，而不是我们平时在模拟器中构建应用程序时使用的View布局结构，例如，Setting模块中布局。当然，凡事都有例外，FMRadio应用程序中则使用了View布局结构(可能是该应用程">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201108/23/0_1314060587Jojs.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201108/23/0_1314060956TNJC.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201108/23/0_13140610877ozV.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201108/23/0_1314061164i0xG.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201108/23/0_1314061911lzu7.gif">
+<meta property="og:updated_time" content="2017-04-16T05:50:49.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[转]Android中Preference的使用以及监听事件分析">
+<meta name="twitter:description" content="[转载出处：http://blog.csdn.net/qinjuning/article/details/6710003/]   在Android系统源码中，绝大多数应用程序的UI布局采用了Preference的布局结构，而不是我们平时在模拟器中构建应用程序时使用的View布局结构，例如，Setting模块中布局。当然，凡事都有例外，FMRadio应用程序中则使用了View布局结构(可能是该应用程">
+<meta name="twitter:image" content="http://hi.csdn.net/attachment/201108/23/0_1314060587Jojs.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'VBP479477P',
+      apiKey: '1ed7be6b7fa450fe51cf93dedcbc4aa0',
+      indexName: 'index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"在此输入搜索关键字","hits_empty":"没找到与【${query}】相关的内容。","hits_stats":"找到 ${hits} 条相关内容。"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://redzealot2008.github.io/2017/04/09/转-Android中Preference的使用以及监听事件分析/"/>
+
+
+
+
+
+  <title> [转]Android中Preference的使用以及监听事件分析 | 剑若成风的成长日志 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">剑若成风的成长日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">新的开始，回归自我</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://redzealot2008.github.io/2017/04/09/转-Android中Preference的使用以及监听事件分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="剑若成风">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://onmer39jj.bkt.clouddn.com/image/Avatar.jpg?imageView2/1/w/400/h/400/format/webp/interlace/1/q/75|imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="剑若成风的成长日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                [转]Android中Preference的使用以及监听事件分析
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-09T14:49:47+08:00">
+                2017-04-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-16T13:50:49+08:00">
+                2017-04-16
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/04/09/转-Android中Preference的使用以及监听事件分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><span style="font-family:SimSun; font-size:16px">[转载出处：<a href="http://blog.csdn.net/watermusicyes/article/details/46460347" target="_blank" rel="external">http://blog.csdn.net/qinjuning/article/details/6710003/</a>]</span></p>
+<p><span style="font-family:SimSun; font-size:16px"></span></p>
+<p></p>
+<p><span style="font-family:SimSun; font-size:16px">在<a href="http://lib.csdn.net/base/android" title="Android知识库" target="_blank" rel="external">Android</a>系统源码中，绝大多数应用程序的UI布局采用了Preference的布局结构，而不是我们平时在模拟器中构建应用程序时使用的View布局结构，例如，Setting模块中布局。当然，凡事都有例外，FMRadio应用程序中则使用了View布局结构(可能是该应用程序是marvel公司提供的，如果由google公司做，那可说不准)。归根到底，Preference布局结构和View的布局结构本质上还是大同小异，Preference的优点在于布局界面的可控性和高效率以及可存储&#20540;的简洁性(每个PreferenPreferencece存储在相对应下的SharedPreference文件夹下)。<br> 下面，我们对比Preference和View下得各个子控件，对他们的家庭元素在宏观上有个更好的把握性。</span></p>
+<p>##<br><a target="_blank" name="t0" style="color:rgb(202,0,0)"></a>&nbsp;&nbsp;&nbsp;&nbsp; 单一控件：</p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Preference 控件家庭&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; View控件家庭&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 控件含义</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Preference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TextView&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 文本框</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CheckPreference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CheckBox&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 单选框</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EditTextPreference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EditText&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 输入文本框&nbsp;</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ListPreference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ListView&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 列表框</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RingtonePreference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ——&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 铃声</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其实在Android源码系统中还有很多的”未完工”的Preference, 没有为它们提供PI接口，例如SeekBarPreference，</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 有兴趣的同学可以参考源码，具体路径为：frameworks/base/core/<a href="http://lib.csdn.net/base/javase" title="Java SE知识库" target="_blank" rel="external">Java</a>/preference。</span></p>
+<p><span style="font-family:Simsun; font-size:16px"></span>&nbsp;</p>
+<p><span style="font-family:Simsun; font-size:16px"></span>&nbsp;</p>
+<h2 id="nbsp-nbsp-nbsp-组合控件："><a href="#nbsp-nbsp-nbsp-组合控件：" class="headerlink" title="&nbsp;&nbsp;&nbsp; 组合控件："></a><a target="_blank" name="t1" style="color:rgb(202,0,0)"></a>&nbsp;&nbsp;&nbsp; 组合控件：</h2><p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PreferenceCategory :类&#20284;于LinearLayou、RelativeLayout，用于组合一组Preference，使布局更具备层次感 。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PreferenceScreen&nbsp; : 所有Preference元素的根节点。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;</span></p>
+<h2 id="nbsp-nbsp-显示Preference布局结构的方法为："><a href="#nbsp-nbsp-显示Preference布局结构的方法为：" class="headerlink" title="&nbsp;&nbsp; 显示Preference布局结构的方法为："></a><a target="_blank" name="t2" style="color:rgb(202,0,0)"></a>&nbsp;&nbsp; 显示Preference布局结构的方法为：</h2><p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 使我们的Activity继承PreferenceActivity，然后在onCreate()方法中通过&nbsp;&nbsp;&nbsp;</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addPreferencesFromResource(R.xml.custom_preference) (我们自定义的Preference 布局)。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;怎么样，是不是&#20284;曾相识？稍后会用一个Demo来为您详述。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;</span></p>
+<p>##<br><a target="_blank" name="t3" style="color:rgb(202,0,0)"></a>&nbsp;&nbsp;&nbsp;Preference元素的通用XML Attributes说明：&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p><strong><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></strong><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/Preference.html#attr_android:key" target="_blank" rel="external"><span style="font-family:SimHei; font-size:16px; color:rgb(204,0,0)">android:key</span></a><span style="font-family:SimSun; font-size:16px">&nbsp;：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> 每个Preference控件独一无二的”ID”,唯一表示此Preference。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(255,0,0)"></span></span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/Preference.html#attr_android:defaultValue" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(255,0,0)">android:defaultValue</span></a><span style="font-family:SimSun; font-size:16px">&nbsp;：<br> 默认&#20540;。 例如，CheckPreference的默认&#20540;可为”true”，默认为选中状态；</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EditTextPreference的默认&#20540;可为”110” 。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(255,0,0)"></span></span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/Preference.html#attr_android:enabled" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(255,0,0)">android:enabled</span></a><span style="font-family:SimSun; font-size:16px">&nbsp;：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> 表示该Preference是否可用状态。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(255,0,0)"></span></span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/Preference.html#attr_android:title" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(255,0,0)">android:title</span></a><span style="font-family:SimSun; font-size:16px">&nbsp;：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> 每个Preference在PreferenceScreen布局上显示的标题——大标题</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(255,0,0)"></span></span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/Preference.html#attr_android:summary" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(255,0,0)">android:summary</span></a><span style="font-family:SimSun; font-size:16px">&nbsp;：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> 每个Preference在PreferenceScreen布局上显示的标题——小标题(可以没有)</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(255,0,0)"></span></span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/Preference.html#attr_android:persistent" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(255,0,0)">android:persistent</span></a><span style="font-family:SimSun; font-size:16px">：&nbsp;&nbsp;&nbsp;<br> 表示Preference元素所对应的&#20540;是否写入sharedPreferen文件中，如果是true，则表示写</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 入；否则，则表示不写入该Preference元素的&#20540;。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(255,0,0)"></span></span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/Preference.html#attr_android:dependency" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(255,0,0)">android:dependency</span></a><span style="font-family:SimSun; font-size:16px">：&nbsp;&nbsp;&nbsp;<br> 表示一个Preference(用A表示)的可用状态依赖另外一个Preference(用B表示)。B可用，</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 则A可用；B不可用，则A不可用。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(255,0,0)"><u>android:disableDependentsState</u></span>：&nbsp; 与</span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/Preference.html#attr_android:dependency" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px">android:dependency</span></a><span style="font-family:SimSun; font-size:16px">相反。B可用，则A不可用；B不可用，则A可用。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp; &nbsp;<strong>常用的方法则包括：</strong></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span style="font-size:18px">getKey()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setKey()</span></strong></span></p>
+<p><span style="font-family:SimSun; font-size:18px"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; getSummary()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setSummary()</strong></span></p>
+<p><span style="font-family:SimSun; font-size:18px"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; getText()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setText()</strong></span></p>
+<p><span style="font-family:SimSun; font-size:18px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; getXXX()代表取得xxx属性的&#20540;。</span></p>
+<p><span style="font-family:SimSun; font-size:16px"></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp; 一个简易的效果图如下：</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="http://hi.csdn.net/attachment/201108/23/0_1314060587Jojs.gif" alt=""></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;</span></p>
+<p>##<br><a target="_blank" name="t4" style="color:rgb(202,0,0)"></a>&nbsp;Preference的跳转：</p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方法一：在配置每个Preference元素节点时，我们可以显示为点击它时所跳转的Intent。点击该Preference，跳转至目标Intent。除非在onPreferenceTreeClick()方法中进行抉择。在xml中配置如下：</span><span style="font-family:Simsun; font-size:16px"></span></p>
+<div class="dp-highlighter bg_java" style="font-family:Consolas,'Courier New',Courier,mono,serif; width:936.531px; overflow-y:hidden; overflow-x:auto; padding-top:1px; position:relative; line-height:26px; margin:18px 0px!important; background-color:rgb(231,229,220)"><br><div class="bar" style="padding-left:45px"><br><div class="tools" style="padding:3px 8px 10px 10px; font-size:9px; line-height:normal; font-family:Verdana,Geneva,Arial,Helvetica,sans-serif; color:silver; border-left-width:3px; border-left-style:solid; border-left-color:rgb(153,153,153); background-color:rgb(248,248,248)"><br><strong>[java]</strong>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="view plain" target="_blank" rel="external">view<br> plain</a><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="copy" target="_blank" rel="external">copy</a></span><br><div style="position:absolute; left:604px; top:2319px; width:29px; height:14px; z-index:99"><br></div><br><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="print" target="_blank" rel="external">print</a></span><a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="?" target="_blank" rel="external">?</a></div><br></div>
+
+<ol>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;Preference&nbsp;android:key=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;wifi_setting&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:title=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;Wi-Fi设置&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;android:summary=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;设置和管理无线接入点&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:dependency=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_wifi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;!–&nbsp;点击时&nbsp;自定义一个默认跳转Intent&nbsp;&nbsp;action指定隐式Intent&nbsp;–&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;!–&nbsp;action指定隐式Intent&nbsp;;&nbsp;targetPackage和targetClass指定显示Intent–&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;intent&nbsp;android:action=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;com.feixun.action.seemAction&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:targetPackage=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;com.feixun.qin&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:targetClass=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;com.feixun.qin.MainActivity&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;/Preference&gt;&nbsp;&nbsp;</span><br></li></ol></div>
+
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp; 方法二：可以在onPreferenceTreeClick()创建新的intent显示的进行跳转。</span></p>
+<p><span style="font-family:Simsun; font-size:16px"></span>&nbsp;</p>
+<p><span style="font-size:16px"><span style="font-family:SimSun">&nbsp;&nbsp;</span></span><span style="font-size:16px"><span style="font-family:SimSun">接下来，对<strong>每个Preference</strong>的的独有<strong>XML Attributes和方法</strong>进行一下总结，使大家有更好的深入理解。</span></span></p>
+<p><span style="font-size:16px"><span style="font-family:SimSun"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(0,204,204)">&nbsp;&nbsp;</span><span style="color:rgb(255,102,0)">1、EditPreference</span></strong><span style="color:rgb(255,102,0)">&nbsp;</span></span></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 方法：</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; getEditText()&nbsp; 返回的是我们在该控件中输入的文本框&#20540;</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; getText()&nbsp;&nbsp;&nbsp;&nbsp; 返回的是我们之前sharedPreferen文件保存的&#20540;</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 效果图：</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<img src="http://hi.csdn.net/attachment/201108/23/0_1314060956TNJC.gif" alt=""></span></p>
+<p><span style="font-family:SimSun; font-size:16px"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(255,102,0)">&nbsp;2、ListPreference</span></strong></span></p>
+<p><span style="font-family:SimSun; font-size:16px"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>XML Attributes：</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(153,0,0)">android:dialogTitle</span>：弹出控件对话框时显示的标题</span></p>
+<p><span style="font-family:SimSun"><span style="font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(153,0,0)"></span></span></span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/ListPreference.html#attr_android:entries" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(153,0,0)">android:entries</span></a><span style="font-family:SimSun; font-size:16px">：类型为array，控件欲显示的文本</span></p>
+<p><span style="font-family:SimSun"><span style="font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(153,0,0)"></span></span></span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/ListPreference.html#attr_android:entryValues" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(153,0,0)">android:entryValues</span></a><span style="font-family:SimSun; font-size:16px">：类型为array，与文本相对应的key-value键&#20540;对，value保存至sharedPreference文件</span></p>
+<p><span style="font-family:SimSun"><span style="font-size:16px"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 说明：</strong>entries和entryValue属性使用的数组为定义在资源文件arrays.xml的数组名：</span></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 方法：</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(51,51,51)">&nbsp; &nbsp;</span></span><a href="file:///F:/android-sdk-windows/docs/reference/java/lang/CharSequence.html" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(0,0,0)">CharSequence[]</span></a><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/ListPreference.html#getEntries(" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(0,0,0)">getEntries</span></a>)<span style="font-family:SimSun; font-size:16px">()：<br> 返回的是控件显示文本的一个”key”数组，对应于属性<a href="file:///F:/android-sdk-windows/docs/reference/android/preference/ListPreference.html#attr_android:entries" target="_blank" rel="external"><span style="color:rgb(0,0,0)">android:entries</span></a></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="file:///F:/android-sdk-windows/docs/reference/java/lang/CharSequence.html" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(0,0,0)">CharSequence[]</span></a><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/ListPreference.html#getEntryValues(" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(0,0,0)">getEntryValues</span></a>)<span style="font-family:SimSun; font-size:16px">()：返回的一个”value”数组，对应于属性</span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/ListPreference.html#attr_android:entries" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(0,0,0)">android:<br> entryValues</span></a></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="file:///F:/android-sdk-windows/docs/reference/java/lang/CharSequence.html" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(0,0,0)">CharSequence</span></a><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/ListPreference.html#getEntry(" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(0,0,0)">getEntry</span></a>)<span style="font-family:SimSun; font-size:16px">():<br> 返回当前选择文本</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="file:///F:/android-sdk-windows/docs/reference/java/lang/String.html" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px">String</span></a><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> getValue() :返回当前选中文本选中的value 。</span></p>
+<p><span style="font-size:16px"><span style="font-family:SimSun">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 与之对应的还有它们所对应的setXXX()方法，可以参考SDK进行分析。</span>效果图：</span></p>
+<p><span style="font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="http://hi.csdn.net/attachment/201108/23/0_13140610877ozV.gif" alt=""></span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:16px">&nbsp;采用的数组为：<span style="font-family:Simsun">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></p>
+<div class="dp-highlighter bg_java" style="font-family:Consolas,'Courier New',Courier,mono,serif; width:936.531px; overflow-y:hidden; overflow-x:auto; padding-top:1px; position:relative; line-height:26px; margin:18px 0px!important; background-color:rgb(231,229,220)"><br><div class="bar" style="padding-left:45px"><br><div class="tools" style="padding:3px 8px 10px 10px; font-size:9px; line-height:normal; font-family:Verdana,Geneva,Arial,Helvetica,sans-serif; color:silver; border-left-width:3px; border-left-style:solid; border-left-color:rgb(153,153,153); background-color:rgb(248,248,248)"><br><strong>[java]</strong>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="view plain" target="_blank" rel="external">view<br> plain</a><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="copy" target="_blank" rel="external">copy</a></span><br><div style="position:absolute; left:604px; top:3493px; width:29px; height:14px; z-index:99"><br></div><br><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="print" target="_blank" rel="external">print</a></span><a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="?" target="_blank" rel="external">?</a></div><br></div>
+
+<ol>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;?xml&nbsp;version=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;1.0&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;encoding=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;utf-8&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">?&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;resources&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;string-array&nbsp;name=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;department&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;IT&lt;/item&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;Commerce&lt;/item&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;HR&lt;/item&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/string-array&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;string-array&nbsp;name=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;department_value&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;<span class="number" style="margin:0px; padding:0px; border:none; color:rgb(192,0,0); background-color:inherit">001</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;/item&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;<span class="number" style="margin:0px; padding:0px; border:none; color:rgb(192,0,0); background-color:inherit">002</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;/item&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;<span class="number" style="margin:0px; padding:0px; border:none; color:rgb(192,0,0); background-color:inherit">003</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;/item&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/string-array&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;/resources&gt;&nbsp;&nbsp;</span><br></li></ol></div>
+
+<p>&nbsp;</p>
+<p><span style="font-size:16px"></span>&nbsp;</p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>3、</strong></span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/RingtonePreference.html" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px; color:rgb(0,0,0)"><strong>RingtonePreference</strong></span></a><span style="font-family:SimSun; font-size:16px"></span></p>
+<p><span style="font-size:16px"><span style="font-family:SimSun">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; XML Attributes：</span></span></p>
+<p><strong><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></strong><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/RingtonePreference.html#attr_android:ringtoneType" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px">android:ringtoneType</span></a><span style="font-family:SimSun; font-size:16px">：响铃的铃声类型，主要有：ringtone(音乐)、notification(通知)、alarm(闹铃)</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 、all(所有可用声 音类型)。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/RingtonePreference.html#attr_android:showDefault" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px">android:showDefault</span></a><span style="font-family:SimSun; font-size:16px">&nbsp;：默认铃声，可以使用系统(布尔&#20540;—true,false)的或者自定义的铃声</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="file:///F:/android-sdk-windows/docs/reference/android/preference/RingtonePreference.html#attr_android:showSilent" target="_blank" rel="external"><span style="font-family:SimSun; font-size:16px">android:showSilent</span></a><span style="font-family:SimSun; font-size:16px">&nbsp;<br> ：指定铃声是否为静音。指定铃声包括系统默认铃声或者自定义的铃声</span></p>
+<p><span style="font-family:Simsun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效果图：</span></p>
+<p><span style="font-family:Simsun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<img src="http://hi.csdn.net/attachment/201108/23/0_1314061164i0xG.gif" alt=""></span></p>
+<p><span style="font-size:16px"><span style="font-family:SimSun"><strong>&nbsp;</strong></span></span></p>
+<p><span style="font-size:16px"><strong><span style="font-family:宋体">&nbsp;</span></strong><span style="color:rgb(255,0,0)">重点：分析Preference事件</span></span></p>
+<p>&nbsp;</p>
+<p><span style="font-family:Simsun"><span style="font-size:16px"><strong>&nbsp;&nbsp; ★</strong>在PreferenceActivity方法中，一个比较重要的监听点击事件方法为：</span></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:rgb(192,192,192)">&nbsp;&nbsp;<span style="background-color:rgb(102,102,102)">&nbsp; public booleanonPreferenceTreeClick (PreferenceScreen preferenceScreen, Preference preference)</span></span></span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:16px">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;说 明 ：&nbsp;<span style="font-family:SimSun">当Preference控件被点击时，触发该方法。</span></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 参数说明： preference&nbsp;&nbsp; 点击的对象。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 返回&#20540;：&nbsp;&nbsp; true&nbsp; 代表点击事件已成功捕捉，无须执行默认动作或者返回上层调用链。 例如，不跳转至默认Intent。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false 代表执行默认动作并且返回上层调用链。例如，跳转至默认Intent。</span></p>
+<p><span style="font-family:宋体; font-size:16px"></span>&nbsp;</p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><span style="font-family:SimSun; font-size:16px">在我们继承PreferenceActivity的Activity可以重写该方法，来完成我们对</span><span style="font-family:SimSun; font-size:16px">Preference事件的捕捉。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp; 相信通过前面的介绍，你一定知道了如何使用了Preference家族并且对其触发方法。下面我们抛出另外两枚炸弹——</span></p>
+<p><span style="font-family:SimSun; font-size:16px">Preference相关的两个重要监听接口。</span></p>
+<p><span style="font-family:Simsun; font-size:16px"></span>&nbsp;</p>
+<p><span style="font-family:SimSun; font-size:16px"><strong>&nbsp;&nbsp; ★&nbsp;&nbsp;</strong><span style="color:rgb(255,102,0)">Preference.OnPreferenceChangeListener</span>&nbsp;&nbsp;&nbsp;&nbsp; 该监听器的一个重要方法如下：</span></p>
+<p><span style="font-size:16px"><span style="font-family:SimSun">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:rgb(51,51,51)">&nbsp;</span><span style="background-color:rgb(102,102,102)">boolean onPreferenceChange(</span></span><a href="http://blog.csdn.net/qinjuning/article/details/6710003/" target="_blank" rel="external"><span style="font-size:16px; color:rgb(0,0,0); background-color:rgb(102,102,102)">Preference</span></a><span style="font-size:16px; background-color:rgb(102,102,102)">&nbsp;preference,</span><a href="http://blog.csdn.net/qinjuning/article/details/6710003/" target="_blank" rel="external"><span style="font-size:16px; color:rgb(0,0,0); background-color:rgb(102,102,102)">Object</span></a><span style="font-size:16px; color:rgb(51,51,51)"><span style="background-color:rgb(102,102,102)"><span style="color:rgb(0,0,0)">&nbsp;objValue</span>)</span></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 说明：&nbsp; 当Preference的元素&#20540;发送改变时，触发该事件。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 返回&#20540;：true&nbsp; 代表将新&#20540;写入sharedPreference文件中。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; false 则不将新&#20540;写入sharedPreference文件</span></p>
+<p><span style="font-family:Simsun; font-size:16px"></span>&nbsp;</p>
+<p><span style="font-size:16px"><span style="font-family:Simsun">&nbsp;&nbsp;<strong>★</strong>&nbsp;&nbsp;&nbsp;</span><span style="font-family:SimSun"><span style="color:rgb(255,102,0)">Preference.OnPreferenceClickListener</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 该监听器的一个重要方法如下：</span></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color:rgb(102,102,102)">&nbsp;public booleanonPreferenceClick(Preference preference)</span></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 说明：当点击控件时触发发生，可以做相应操作。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp; 那么当一个Preference控件实现这两个接口时，当被点击或者&#20540;发生改变时，触发方法是如何执行的呢?事实上，</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;它的<strong><span style="color:rgb(255,0,0)">触发规则</span></strong>如下：</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;<span style="color:rgb(255,0,0)">&nbsp;<strong>&nbsp; 1&nbsp;先调用onPreferenceClick()方法，如果该方法返回true，则不再调用onPreferenceTreeClick方法 ；</strong></span></span></p>
+<p><strong><span style="color:rgb(255,0,0)"><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果</span><span style="font-family:SimSun; font-size:16px">onPreferenceClick方法返回false，则继续调用</span><span style="font-family:SimSun; font-size:16px">onPreferenceTreeClick方法。</span></span></strong></p>
+<p><span style="font-family:SimSun; font-size:16px; color:rgb(255,0,0)"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;onPreferenceChange的方法独立与其他两种方法的运行。也就是说，它总是会运行。</strong></span></p>
+<p><span style="font-family:SimSun; font-size:16px; color:rgb(255,0,0)">**</span></p>
+<p>**</p>
+<p><span style="font-family:SimSun; font-size:16px"><span style="color:rgb(255,0,0)"><strong>&nbsp; &nbsp; &nbsp;&nbsp;</strong></span><strong>补充：点击某个Preference控件后，会先回调onPreferenceChange()方法，即是否保存&#20540;，然后再回&nbsp;</strong></span><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;调</span><span style="font-family:SimSun; font-size:16px"><strong>onPreferenceClick以及onPreferenceTreeClick()方法，因此在onPreferenceClick/onPreferenceTreeClick</strong></span></p>
+<p><span style="font-family:SimSun; font-size:16px"><strong>&nbsp;方法中我们得到的控件&#20540;就是最新的Preference控件&#20540;。</strong></span></p>
+<p><span style="font-family:Simsun; font-size:16px"></span>&nbsp;</p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp; 那么，开始我们的实战之旅吧！ 下面给您最火热的战场。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp; 1，新建我们的preference.xml文件。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;① 在res文件夹下，新建xml文件夹。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;② 在新建的xml文件夹下，新建Android XML File。命名为mypeference.xml 。类型选择为Preference。</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③&nbsp;打开我们的mypeference.xml，视图选择Structure。可以手动配置我们的布局文件。可选的Preference空间如下：</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="http://hi.csdn.net/attachment/201108/23/0_1314061911lzu7.gif" alt=""></span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp;Demo中mypeference.xml的布局文件如下：</span><span style="font-family:SimSun; font-size:16px">&nbsp;</span></p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;</span></p>
+<div class="dp-highlighter bg_java" style="font-family:Consolas,'Courier New',Courier,mono,serif; width:936.531px; overflow-y:hidden; overflow-x:auto; padding-top:1px; position:relative; line-height:26px; margin:18px 0px!important; background-color:rgb(231,229,220)"><br><div class="bar" style="padding-left:45px"><br><div class="tools" style="padding:3px 8px 10px 10px; font-size:9px; line-height:normal; font-family:Verdana,Geneva,Arial,Helvetica,sans-serif; color:silver; border-left-width:3px; border-left-style:solid; border-left-color:rgb(153,153,153); background-color:rgb(248,248,248)"><br><strong>[java]</strong>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="view plain" target="_blank" rel="external">view<br> plain</a><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="copy" target="_blank" rel="external">copy</a></span><br><div style="position:absolute; left:604px; top:5674px; width:29px; height:14px; z-index:99"><br></div><br><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="print" target="_blank" rel="external">print</a></span><a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="?" target="_blank" rel="external">?</a></div><br></div>
+
+<ol>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;?xml&nbsp;version=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;1.0&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;encoding=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;utf-8&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">?&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;PreferenceScreen&nbsp;xmlns:android=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;<a href="http://schemas.android.com/apk/res/android&amp;quot" target="_blank" rel="external">http://schemas.android.com/apk/res/android&amp;quot</a>;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;PreferenceCategory&nbsp;android:title=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;我的位置&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;set_local&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;CheckBoxPreference&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_wireless&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:title=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;使用无线网络&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:summary=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;使用无线网络在应用程序（例如Google地图）中查看位置&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:defaultValue=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/CheckBoxPreference&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;CheckBoxPreference&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_gps&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:title=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;使用GPS&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:summary=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;定位到街道级别（需要消耗更多的电量以及天气允许）&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/CheckBoxPreference&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;PreferenceCategory&nbsp;android:title=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;无线和网络设置&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&lt;/PreferenceCategory&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;CheckBoxPreference&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_fly&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:title=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;飞行模式&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:summary=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;禁用所有无线连接&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/CheckBoxPreference&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;CheckBoxPreference&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_internet&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:title=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;Internet共享&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:summary=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;禁用通过USB共享Internet连接&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/CheckBoxPreference&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;CheckBoxPreference&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_wifi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:title=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;Wi-Fi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:summary=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;打开Wi-Fi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/CheckBoxPreference&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;Preference&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;wifi_setting&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:title=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;Wi-Fi设置&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:summary=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;设置和管理无线接入点&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:dependency=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_wifi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!–&nbsp;点击时&nbsp;自定义一个默认跳转Intent&nbsp;&nbsp;action指定隐式Intent&nbsp;–&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!–&nbsp;action指定隐式Intent&nbsp;;&nbsp;targetPackage和targetClass指定显示Intent–&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;intent&nbsp;android:action=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;com.feixun.action.seemAction&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:targetPackage=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;com.feixun.qin&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:targetClass=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;com.feixun.qin.MainActivity&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Preference&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;CheckBoxPreference&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_bluetooth&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:title=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;蓝牙&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:summary=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;启用蓝牙&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/CheckBoxPreference&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;Preference&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;bluetooth_setting&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:title=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;蓝牙设置&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:summary=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;管理连接、设备设备名称和可检测性&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:dependency=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_bluetooth&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Preference&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;EditTextPreference&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;number_edit&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:title=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;输入电话号码&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:defaultValue=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;123&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/EditTextPreference&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;ListPreference&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;depart_value&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:title=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;部门设置&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:dialogTitle=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;选择部门&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:entries=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;@array/department&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:entryValues=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;@array/department_value&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ListPreference&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;RingtonePreference&nbsp;android:key=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;ring_key&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:title=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;铃声&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:ringtoneType=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;all&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android:showDefault=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:showSilent=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/RingtonePreference&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;/PreferenceScreen&gt;&nbsp;&nbsp;</span><br></li></ol></div>
+
+<p><span style="font-family:SimSun; font-size:16px"></span>&nbsp;</p>
+<p><span style="font-family:SimSun; font-size:16px">&nbsp;&nbsp;&nbsp; 2，新建一个<strong>HelloActivity</strong>继承PreferenceActivity，代码如下：</span>&nbsp;&nbsp;&nbsp;</p>
+<div class="dp-highlighter bg_java" style="font-family:Consolas,'Courier New',Courier,mono,serif; width:936.531px; overflow-y:hidden; overflow-x:auto; padding-top:1px; position:relative; line-height:26px; margin:18px 0px!important; background-color:rgb(231,229,220)"><br><div class="bar" style="padding-left:45px"><br><div class="tools" style="padding:3px 8px 10px 10px; font-size:9px; line-height:normal; font-family:Verdana,Geneva,Arial,Helvetica,sans-serif; color:silver; border-left-width:3px; border-left-style:solid; border-left-color:rgb(153,153,153); background-color:rgb(248,248,248)"><br><strong>[java]</strong>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="view plain" target="_blank" rel="external">view<br> plain</a><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="copy" target="_blank" rel="external">copy</a></span><br><div style="position:absolute; left:604px; top:6710px; width:29px; height:14px; z-index:99"><br></div><br><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="print" target="_blank" rel="external">print</a></span><a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="?" target="_blank" rel="external">?</a></div><br></div>
+
+<ol>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">package</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;com.feixun.qin;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.content.Intent;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.content.SharedPreferences;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.os.Bundle;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.preference.CheckBoxPreference;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.preference.EditTextPreference;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.preference.ListPreference;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.preference.Preference;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.preference.PreferenceActivity;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.preference.PreferenceManager;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.preference.PreferenceScreen;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.preference.Preference.OnPreferenceClickListener;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">import</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;android.util.Log;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">public</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">class</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;HelloPreference&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">extends</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;PreferenceActivity&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">implements</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preference.OnPreferenceClickListener,&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preference.OnPreferenceChangeListener&nbsp;{&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">private</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">static</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;String&nbsp;TAG&nbsp;=&nbsp;</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;HelloPreference&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">private</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;CheckBoxPreference&nbsp;mapply_wifiPreference;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//打开wifi</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">private</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;CheckBoxPreference&nbsp;mapply_internetPreference;&nbsp;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//Internet共享</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">private</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;ListPreference&nbsp;depart_valuePreference;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//部门设置</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">private</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;EditTextPreference&nbsp;number_editPreference;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//输入电话号码</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">private</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;Preference&nbsp;mwifi_settingPreference;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//wifi设置</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">private</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;String&nbsp;oldDeptId;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;旧部门的名称</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">public</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">void</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;onCreate(Bundle&nbsp;savedInstanceState)&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">super</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">.onCreate(savedInstanceState);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addPreferencesFromResource(R.xml.mypreference);&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//根据key&#20540;找到控件</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mapply_wifiPreference&nbsp;=&nbsp;(CheckBoxPreference)&nbsp;findPreference(<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_wifi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mapply_internetPreference&nbsp;=&nbsp;(CheckBoxPreference)&nbsp;findPreference(<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_internet&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;depart_valuePreference&nbsp;=&nbsp;(ListPreference)&nbsp;findPreference(<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;depart_value&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_editPreference&nbsp;=&nbsp;(EditTextPreference)&nbsp;findPreference(<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;number_edit&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mwifi_settingPreference&nbsp;=&nbsp;(Preference)&nbsp;findPreference(<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;wifi_setting&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;设置监听器</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mapply_internetPreference.setOnPreferenceClickListener(<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">this</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mapply_internetPreference.setOnPreferenceChangeListener(<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">this</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;depart_valuePreference.setOnPreferenceClickListener(<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">this</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;depart_valuePreference.setOnPreferenceChangeListener(<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">this</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_editPreference.setOnPreferenceClickListener(<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">this</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_editPreference.setOnPreferenceChangeListener(<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">this</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mwifi_settingPreference.setOnPreferenceClickListener(<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">this</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;得到我们的存储Preferences&#20540;的对象，然后对其进行相应操作</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SharedPreferences&nbsp;shp&nbsp;=&nbsp;PreferenceManager.getDefaultSharedPreferences(<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">this</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;apply_wifiChecked&nbsp;=&nbsp;shp.getBoolean(</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_wifi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">,&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">false</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;对控件进行的一些操作</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">private</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">void</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;operatePreference(Preference&nbsp;preference)&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">if</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;(preference&nbsp;==&nbsp;mapply_wifiPreference){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//点击了&nbsp;&nbsp;&nbsp;&nbsp;&quot;打开wifi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;&nbsp;Wifi&nbsp;CB,&nbsp;and&nbsp;isCheckd&nbsp;=&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;&nbsp;mapply_wifiPreference.isChecked());&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">else</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">if</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;(preference.getKey().equals(</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_internet&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">)){&nbsp;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//点击了&quot;Internet共享&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;&nbsp;internet&nbsp;CB,&nbsp;and&nbsp;isCheckd&nbsp;=&nbsp;&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;mapply_internetPreference.isChecked());&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">else</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">if</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;(preference&nbsp;==&nbsp;depart_valuePreference){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//点击了&nbsp;&quot;部门设置&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;&nbsp;department&nbsp;CB,and&nbsp;selectValue&nbsp;=&nbsp;&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;&nbsp;depart_valuePreference.getValue()&nbsp;&#43;&nbsp;</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;,&nbsp;Text=&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;&nbsp;depart_valuePreference.getEntry());&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">else</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">if</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;(preference.getKey().equals(</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;wifi_setting&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">))&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//点击了&quot;wifi设置&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mwifi_settingPreference.setTitle(<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;its&nbsp;turn&nbsp;me.&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">else</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">if</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;(preference&nbsp;==&nbsp;number_editPreference)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//点击了&quot;输入电话号码&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;Old&nbsp;Value=&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;&nbsp;number_editPreference.getText()&nbsp;&#43;&nbsp;</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;,&nbsp;New&nbsp;Value=&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;&nbsp;number_editPreference.getEditText().toString());&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;点击事件触发</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation" style="margin:0px; padding:0px; border:none; color:rgb(100,100,100); background-color:inherit">@Override</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">public</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;onPreferenceClick(Preference&nbsp;preference)&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;onPreferenceClick—–&gt;&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;String.valueOf(preference.getKey()));&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;对控件进行操作</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operatePreference(preference);&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">return</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">false</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//点击事件触发</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">public</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;onPreferenceTreeClick(PreferenceScreen&nbsp;preferenceScreen,&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preference&nbsp;preference)&nbsp;{&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;onPreferenceTreeClick—–&gt;&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;preference.getKey());&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;对控件进行操作</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operatePreference(preference);&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">if</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;(preference.getKey().equals(</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;wifi_setting&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">))&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;创建一个新的Intent，</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;函数如果返回true，&nbsp;则跳转至该自定义的新的Intent&nbsp;;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;函数如果返回false，则跳转至xml文件中配置的Intent&nbsp;;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intent&nbsp;i&nbsp;=&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">new</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;Intent(HelloPreference.</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">this</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">,&nbsp;OtherActivity.</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">class</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//OtherActivity只是一个简单的Activity</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.putExtra(<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;type&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">,&nbsp;</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;wifi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startActivity(i);&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">return</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">true</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">return</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">false</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;当Preference的&#20540;发生改变时触发该事件，true则以新&#20540;更新控件的状态，false则do&nbsp;noting</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">public</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;onPreferenceChange(Preference&nbsp;preference,&nbsp;Object&nbsp;objValue)&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;onPreferenceChange—–&gt;&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;String.valueOf(preference.getKey()));&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">if</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;(preference&nbsp;==&nbsp;mapply_wifiPreference){&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;Wifi&nbsp;CB,&nbsp;and&nbsp;isCheckd&nbsp;=&nbsp;&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&#43;&nbsp;String.valueOf(objValue));&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">else</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">if</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;(preference.getKey().equals(</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_internet&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">))&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;internet&nbsp;CB,&nbsp;and&nbsp;isCheckd&nbsp;=&nbsp;&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;&nbsp;String.valueOf(objValue));&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">return</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">false</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//不保存该新&#20540;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">else</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">if</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;(preference&nbsp;==&nbsp;depart_valuePreference){&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;&nbsp;&nbsp;Old&nbsp;Value&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;&nbsp;depart_valuePreference.getValue()&#43;</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;&nbsp;NewDeptName&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&#43;objValue);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">else</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">if</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;(preference.getKey().equals(</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;wifi_setting&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">))&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;change&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&#43;&nbsp;String.valueOf(objValue));&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mwifi_settingPreference.setTitle(<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;its&nbsp;turn&nbsp;me.&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//重新设置title</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">else</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">if</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;(preference&nbsp;==&nbsp;number_editPreference)&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.i(TAG,&nbsp;<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;Old&nbsp;Value&nbsp;=&nbsp;&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&#43;&nbsp;String.valueOf(objValue));&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">return</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">false</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;不保存更新&#20540;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">return</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">true</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">;&nbsp;&nbsp;</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//保存更新后的&#20540;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">}&nbsp;&nbsp;</span><br></li></ol></div>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:16px">3，AndroidManifest 文件如下：</span></p>
+<div class="dp-highlighter bg_java" style="font-family:Consolas,'Courier New',Courier,mono,serif; width:936.531px; overflow-y:hidden; overflow-x:auto; padding-top:1px; position:relative; line-height:26px; margin:18px 0px!important; background-color:rgb(231,229,220)"><br><div class="bar" style="padding-left:45px"><br><div class="tools" style="padding:3px 8px 10px 10px; font-size:9px; line-height:normal; font-family:Verdana,Geneva,Arial,Helvetica,sans-serif; color:silver; border-left-width:3px; border-left-style:solid; border-left-color:rgb(153,153,153); background-color:rgb(248,248,248)"><br><strong>[java]</strong>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="view plain" target="_blank" rel="external">view<br> plain</a><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="copy" target="_blank" rel="external">copy</a></span><br><div style="position:absolute; left:604px; top:8825px; width:29px; height:14px; z-index:99"><br></div><br><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="print" target="_blank" rel="external">print</a></span><a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="?" target="_blank" rel="external">?</a></div><br></div>
+
+<ol>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;?xml&nbsp;version=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">‘1.0’</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;encoding=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">‘utf-8’</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;standalone=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">‘yes’</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;?&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;map&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_wifi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_internet&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;string&nbsp;name=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;number_edit&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;</span><span class="number" style="margin:0px; padding:0px; border:none; color:rgb(192,0,0); background-color:inherit">45677</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;/string&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;string&nbsp;name=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;ring_key&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;content:</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//settings/system/ringtone&lt;/string&gt;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_bluetooth&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_fly&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;string&nbsp;name=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;depart_value&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;</span><span class="number" style="margin:0px; padding:0px; border:none; color:rgb(192,0,0); background-color:inherit">001</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;/string&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_gps&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_wireless&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;false&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;/map&gt;&nbsp;&nbsp;</span><br></li></ol></div>
+
+<p><span style="font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp; 程序运行后，效果如上所示，是不是很给力呀！</strong></span>&nbsp;</p>
+<p>##<br><a target="_blank" name="t5" style="color:rgb(202,0,0)"></a>sharedPreference文件</p>
+<p><span style="font-family:Arial; line-height:26px; font-size:16px"></span><span style="font-family:Arial; font-size:14px; line-height:26px"></span></p>
+<p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:16px">前面我们说过，Android系统会将Preference元素的&#20540;存储在sharedPreference文件中。该文件存放路径位于</span></p>
+<p><span style="font-size:16px">DDMS视图下的</span><span style="font-size:16px">data/data/[packgename]/shared_prefs/文件下，命名约定为：packagename_preferencse.xml。</span></p>
+<p><span style="font-size:16px">&nbsp;我们的</span><span style="font-size:16px">com.feixun.qin_preferences.xm保存的&#20540;为：</span></p>
+<div class="dp-highlighter bg_java" style="font-family:Consolas,'Courier New',Courier,mono,serif; width:936.531px; overflow-y:hidden; overflow-x:auto; padding-top:1px; position:relative; line-height:26px; margin:18px 0px!important; background-color:rgb(231,229,220)"><br><div class="bar" style="padding-left:45px"><br><div class="tools" style="padding:3px 8px 10px 10px; font-size:9px; line-height:normal; font-family:Verdana,Geneva,Arial,Helvetica,sans-serif; color:silver; border-left-width:3px; border-left-style:solid; border-left-color:rgb(153,153,153); background-color:rgb(248,248,248)"><br><strong>[java]</strong>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="view plain" target="_blank" rel="external">view<br> plain</a><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="copy" target="_blank" rel="external">copy</a></span><br><div style="position:absolute; left:604px; top:9444px; width:29px; height:14px; z-index:99"><br></div><br><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="print" target="_blank" rel="external">print</a></span><a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="?" target="_blank" rel="external">?</a></div><br></div>
+
+<ol>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;?xml&nbsp;version=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">‘1.0’</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;encoding=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">‘utf-8’</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;standalone=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">‘yes’</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;?&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;map&gt;&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_wifi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_internet&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;string&nbsp;name=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;number_edit&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;</span><span class="number" style="margin:0px; padding:0px; border:none; color:rgb(192,0,0); background-color:inherit">45677</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;/string&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;string&nbsp;name=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;ring_key&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;content:</span><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//settings/system/ringtone&lt;/string&gt;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_bluetooth&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_fly&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;string&nbsp;name=<span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;depart_value&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&gt;</span><span class="number" style="margin:0px; padding:0px; border:none; color:rgb(192,0,0); background-color:inherit">001</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&lt;/string&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_gps&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;true&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;name=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_wireless&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;value=</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;false&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;/&gt;&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&nbsp;&nbsp;</span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">&lt;/map&gt;&nbsp;&nbsp;</span><br></li></ol></div>
+
+<p><span style="font-size:16px"></span>&nbsp;</p>
+<p><span style="font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;<strong>已一个键&#20540;对的形式保存，name为Preference的key&#20540;，value为Preference的value&#20540;。</strong></span></p>
+<p><span style="font-size:16px"><strong>&nbsp;&nbsp;</strong></span></p>
+<p><span style="font-size:16px">&nbsp;在应用程序中，我们可以通过<strong>代码的方式来访问该sharedPreference文件</strong>，继而可以对其进行读取甚至任何操作。</span></p>
+<p><span style="font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 代码如下：&nbsp;</span><span style="font-size:16px"></span></p>
+<div class="dp-highlighter bg_java" style="font-family:Consolas,'Courier New',Courier,mono,serif; width:936.531px; overflow-y:hidden; overflow-x:auto; padding-top:1px; position:relative; line-height:26px; margin:18px 0px!important; background-color:rgb(231,229,220)"><br><div class="bar" style="padding-left:45px"><br><div class="tools" style="padding:3px 8px 10px 10px; font-size:9px; line-height:normal; font-family:Verdana,Geneva,Arial,Helvetica,sans-serif; color:silver; border-left-width:3px; border-left-style:solid; border-left-color:rgb(153,153,153); background-color:rgb(248,248,248)"><br><strong>[java]</strong>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="view plain" target="_blank" rel="external">view<br> plain</a><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="copy" target="_blank" rel="external">copy</a></span><br><div style="position:absolute; left:604px; top:10037px; width:29px; height:14px; z-index:99"><br></div><br><span>&nbsp;<a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="print" target="_blank" rel="external">print</a></span><a href="http://blog.csdn.net/qinjuning/article/details/6710003/#" title="?" target="_blank" rel="external">?</a></div><br></div>
+
+<ol>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="comment" style="margin:0px; padding:0px; border:none; color:rgb(0,130,0); background-color:inherit">//&nbsp;得到我们的存储Preferences&#20540;的对象，然后对其进行相应操作</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit">SharedPreferences&nbsp;shp&nbsp;=&nbsp;PreferenceManager.getDefaultSharedPreferences(<span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">this</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span></li>
+<li><span style="margin:0px; padding:0px; border:none; color:black; background-color:inherit"><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">boolean</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">&nbsp;apply_wifiChecked&nbsp;=&nbsp;shp.getBoolean(</span><span class="string" style="margin:0px; padding:0px; border:none; color:red; background-color:inherit">&quot;apply_wifi&quot;</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">,&nbsp;</span><span class="keyword" style="margin:0px; padding:0px; border:none; color:blue; font-weight:bold; background-color:inherit">false</span><span style="margin:0px; padding:0px; border:none; background-color:inherit">);&nbsp;&nbsp;</span></span><br></li></ol></div>
+
+<p><span style="font-size:16px">&nbsp;&nbsp;&nbsp;</span></p>
+<p><span style="font-size:16px">&nbsp;&nbsp;</span></p>
+<p><span style="font-size:16px">&nbsp;&nbsp; &nbsp;就介绍到这儿了 。</span></p>
+<p><span style="font-size:16px">&nbsp;</span></p>
+<p><span style="font-size:16px">&nbsp;&nbsp;<span style="color:rgb(0,0,153)"><strong>&nbsp;&nbsp;&nbsp;&nbsp; 代码下载地址：</strong></span><a href="http://download.csdn.net/detail/qinjuning/3807077" target="_blank" rel="external"><span style="color:rgb(0,0,153)"><strong>http://download.csdn.net/detail/qinjuning/3807077</strong></span></a></span></p>
+<pre><code>&lt;div&gt;
+    作者：redzealot2007 发表于2017/4/9 14:49:47 [原文链接](http://blog.csdn.net/redzealot2007/article/details/69815648)
+&lt;/div&gt;
+&lt;div&gt;
+阅读：25 评论：0 [查看评论](http://blog.csdn.net/redzealot2007/article/details/69815648#comments)
+&lt;/div&gt;
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://onmer39jj.bkt.clouddn.com/image/WechatPay.png?imageView2/1/w/400/h/400/format/webp/interlace/1/q/75|imageslim" alt="剑若成风 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://onmer39jj.bkt.clouddn.com/image/Alipay.png?imageView2/1/w/400/h/400/format/webp/interlace/1/q/75|imageslim" alt="剑若成风 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      剑若成风
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://redzealot2008.github.io/2017/04/09/转-Android中Preference的使用以及监听事件分析/" title="[转]Android中Preference的使用以及监听事件分析">https://redzealot2008.github.io/2017/04/09/转-Android中Preference的使用以及监听事件分析/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/11/转-android-exported-属性详解/" rel="next" title="[转]android:exported 属性详解">
+                <i class="fa fa-chevron-left"></i> [转]android:exported 属性详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/06/原-阿里巴巴Weex对移动应用的理解/" rel="prev" title="[原]阿里巴巴Weex对移动应用的理解">
+                [原]阿里巴巴Weex对移动应用的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://onmer39jj.bkt.clouddn.com/image/Avatar.jpg?imageView2/1/w/400/h/400/format/webp/interlace/1/q/75|imageslim"
+               alt="剑若成风" />
+          <p class="site-author-name" itemprop="name">剑若成风</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/redzealot2008" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/redzealot2008" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://litten.me/" title="Litten的博客" target="_blank">Litten的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.trinea.cn/" title="Trinea" target="_blank">Trinea</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gank.io/" title="干货集中营" target="_blank">干货集中营</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://droidyue.com/" title="技术小黑屋" target="_blank">技术小黑屋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.piasy.com/" title="Piasy的博客" target="_blank">Piasy的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gityuan.com/" title="Gityuan的博客" target="_blank">Gityuan的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://stormzhang.com/" title="StormZhang" target="_blank">StormZhang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.diycode.cc/" title="DiyCode" target="_blank">DiyCode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.liaohuqiu.net/cn/" title="秋百万" target="_blank">秋百万</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hukai.me/" title="腾讯胡凯" target="_blank">腾讯胡凯</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://drakeet.me/" title="Drakeet的博客" target="_blank">Drakeet的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://androiddevtools.cn/" title="AndroidDevTools" target="_blank">AndroidDevTools</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lcode.org/" title="江清清的技术专栏" target="_blank">江清清的技术专栏</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#nbsp-nbsp-nbsp-组合控件："><span class="nav-number">1.</span> <span class="nav-text">    组合控件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nbsp-nbsp-显示Preference布局结构的方法为："><span class="nav-number">2.</span> <span class="nav-text">   显示Preference布局结构的方法为：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-android"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">剑若成风</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "3a837d34feaa48cabc6025d12607802a",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

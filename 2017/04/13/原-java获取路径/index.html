@@ -1,0 +1,1019 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,android,ios,unity3d" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="剑若成风的成长日志" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://onmer39jj.bkt.clouddn.com/image/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="//获取当前类生成目录 System&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.out&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.println&amp;lt;/span&amp;gt;(Main&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[原]java获取路径">
+<meta property="og:url" content="https://redzealot2008.github.io/2017/04/13/原-java获取路径/index.html">
+<meta property="og:site_name" content="剑若成风的成长日志">
+<meta property="og:description" content="//获取当前类生成目录 System&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.out&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.println&amp;lt;/span&amp;gt;(Main&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot">
+<meta property="og:updated_time" content="2017-04-16T05:50:49.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[原]java获取路径">
+<meta name="twitter:description" content="//获取当前类生成目录 System&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.out&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.println&amp;lt;/span&amp;gt;(Main&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'VBP479477P',
+      apiKey: '1ed7be6b7fa450fe51cf93dedcbc4aa0',
+      indexName: 'index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"在此输入搜索关键字","hits_empty":"没找到与【${query}】相关的内容。","hits_stats":"找到 ${hits} 条相关内容。"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://redzealot2008.github.io/2017/04/13/原-java获取路径/"/>
+
+
+
+
+
+  <title> [原]java获取路径 | 剑若成风的成长日志 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">剑若成风的成长日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">新的开始，回归自我</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://redzealot2008.github.io/2017/04/13/原-java获取路径/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="剑若成风">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://onmer39jj.bkt.clouddn.com/image/Avatar.jpg?imageView2/1/w/400/h/400/format/webp/interlace/1/q/75|imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="剑若成风的成长日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                [原]java获取路径
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-13T00:15:28+08:00">
+                2017-04-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-16T13:50:49+08:00">
+                2017-04-16
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/04/13/原-java获取路径/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>//获取当前类生成目录
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Main&lt;span class=&quot;hljs-preprocessor&quot;&gt;.class&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Main&lt;span class=&quot;hljs-preprocessor&quot;&gt;.class&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;.&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Main&lt;span class=&quot;hljs-preprocessor&quot;&gt;.class&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;./&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+
+//获取当前类生成目录的上一级目录
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Main&lt;span class=&quot;hljs-preprocessor&quot;&gt;.class&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;..&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getFile&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Main&lt;span class=&quot;hljs-preprocessor&quot;&gt;.class&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;../&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+
+//获取类生成根目录
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Main&lt;span class=&quot;hljs-preprocessor&quot;&gt;.class&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;/&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Main&lt;span class=&quot;hljs-preprocessor&quot;&gt;.class&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getClassLoader&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Main&lt;span class=&quot;hljs-preprocessor&quot;&gt;.class&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getClassLoader&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;.&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Main&lt;span class=&quot;hljs-preprocessor&quot;&gt;.class&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getClassLoader&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;./&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(ClassLoader&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getSystemResources&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.nextElement&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(ClassLoader&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getSystemResources&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;.&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.nextElement&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(ClassLoader&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getSystemResources&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;./&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.nextElement&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Thread&lt;span class=&quot;hljs-preprocessor&quot;&gt;.currentThread&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getContextClassLoader&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Thread&lt;span class=&quot;hljs-preprocessor&quot;&gt;.currentThread&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getContextClassLoader&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;.&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(Thread&lt;span class=&quot;hljs-preprocessor&quot;&gt;.currentThread&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getContextClassLoader&lt;/span&gt;()&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getResource&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;./&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+
+//获取项目根目录
+File file = new File(&lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(file&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getCanonicalPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(file&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getAbsolutePath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+//获取系统根目录
+File file1 = new File(&lt;span class=&quot;hljs-string&quot;&gt;&quot;/&quot;&lt;/span&gt;)&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(file1&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getCanonicalPath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(file1&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getAbsolutePath&lt;/span&gt;())&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+
+//获取项目根目录
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getProperty&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;user.dir&quot;&lt;/span&gt;))&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+//获取用户主目录
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getProperty&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;user.home&quot;&lt;/span&gt;))&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+//获取java主目录
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getProperty&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;java.home&quot;&lt;/span&gt;))&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+//获取加载类时搜索的路径列表
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getProperty&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;java.class.path&quot;&lt;/span&gt;))&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+//获取加载库时搜索的路径列表
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getProperty&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;java.library.path&quot;&lt;/span&gt;))&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+//获取默认的临时文件路径
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getProperty&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;java.io.tmpdir&quot;&lt;/span&gt;))&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;
+//获取java扩展目录
+System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.out&lt;/span&gt;&lt;span class=&quot;hljs-preprocessor&quot;&gt;.println&lt;/span&gt;(System&lt;span class=&quot;hljs-preprocessor&quot;&gt;.getProperty&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;java.ext.dirs&quot;&lt;/span&gt;))&lt;span class=&quot;hljs-comment&quot;&gt;;&lt;/span&gt;`&lt;/pre&gt;
+
+输出结果：
+
+&lt;pre class=&quot;prettyprint&quot;&gt;`/C:/develop/repository/test/out/production/test/me/jeff/
+/C:/develop/repository/test/out/production/test/me/jeff/
+/C:/develop/repository/test/out/production/test/me/jeff/
+/C:/develop/repository/test/out/production/test/me/
+/C:/develop/repository/test/out/production/test/me/
+/C:/develop/repository/test/out/production/test/
+/C:/develop/repository/test/out/production/test/
+/C:/develop/repository/test/out/production/test/
+/C:/develop/repository/test/out/production/test/
+/C:/develop/repository/test/out/production/test/
+/C:/develop/repository/test/out/production/test/
+/C:/develop/repository/test/out/production/test/
+/C:/develop/repository/test/out/production/test/
+/C:/develop/repository/test/out/production/test/
+/C:/develop/repository/test/out/production/test/
+C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\repository&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\test&lt;/span&gt;
+C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\repository&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\test&lt;/span&gt;
+C:&lt;span class=&quot;hljs-command&quot;&gt;\
+&lt;/span&gt;C:&lt;span class=&quot;hljs-command&quot;&gt;\
+&lt;/span&gt;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\repository&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\test&lt;/span&gt;
+C:&lt;span class=&quot;hljs-command&quot;&gt;\Users&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Jeff&lt;/span&gt; Chou
+C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;
+C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\charsets&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\deploy&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\access&lt;/span&gt;-bridge-64.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\cldrdata&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\dnsns&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jaccess&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jfxrt&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\localedata&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\nashorn&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\sunec&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\sunjce&lt;/span&gt;_provider.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\sunmscapi&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\sunpkcs&lt;/span&gt;11.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\zipfs&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\javaws&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jce&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jfr&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jfxswt&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jsse&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\management&lt;/span&gt;-agent.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\plugin&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\resources&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\rt&lt;/span&gt;.jar;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\repository&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\test&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\out&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\production&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\test&lt;/span&gt;;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\IntelliJ&lt;/span&gt; IDEA&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\idea&lt;/span&gt;_rt.jar
+C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\bin&lt;/span&gt;;C:&lt;span class=&quot;hljs-command&quot;&gt;\Windows&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Sun&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\bin&lt;/span&gt;;C:&lt;span class=&quot;hljs-command&quot;&gt;\Windows&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\system&lt;/span&gt;32;C:&lt;span class=&quot;hljs-command&quot;&gt;\Windows&lt;/span&gt;;C:&lt;span class=&quot;hljs-command&quot;&gt;\ProgramData&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Oracle&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\javapath&lt;/span&gt;;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\bin&lt;/span&gt;;C:&lt;span class=&quot;hljs-command&quot;&gt;\Windows&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\system&lt;/span&gt;32;C:&lt;span class=&quot;hljs-command&quot;&gt;\Windows&lt;/span&gt;;C:&lt;span class=&quot;hljs-command&quot;&gt;\Windows&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\System&lt;/span&gt;32&lt;span class=&quot;hljs-command&quot;&gt;\Wbem&lt;/span&gt;;C:&lt;span class=&quot;hljs-command&quot;&gt;\Windows&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\System&lt;/span&gt;32&lt;span class=&quot;hljs-command&quot;&gt;\WindowsPowerShell&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\v&lt;/span&gt;1.0&lt;span class=&quot;hljs-command&quot;&gt;\;&lt;/span&gt;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Git&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\cmd&lt;/span&gt;;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\IntelliJ&lt;/span&gt; IDEA&lt;span class=&quot;hljs-command&quot;&gt;\plugins&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\maven&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\maven&lt;/span&gt;3&lt;span class=&quot;hljs-command&quot;&gt;\bin&lt;/span&gt;;.
+C:&lt;span class=&quot;hljs-command&quot;&gt;\Users&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\JEFFCH&lt;/span&gt;&lt;span class=&quot;hljs-special&quot;&gt;~&lt;/span&gt;1&lt;span class=&quot;hljs-command&quot;&gt;\AppData&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Local&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Temp&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\
+&lt;/span&gt;C:&lt;span class=&quot;hljs-command&quot;&gt;\develop&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\jdk&lt;/span&gt;1.8.0_121&lt;span class=&quot;hljs-command&quot;&gt;\jre&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;;C:&lt;span class=&quot;hljs-command&quot;&gt;\Windows&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Sun&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\Java&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\lib&lt;/span&gt;&lt;span class=&quot;hljs-command&quot;&gt;\ext&lt;/span&gt;
+
+        &lt;div&gt;
+            作者：redzealot2007 发表于2017/4/13 0:15:28 [原文链接](http://blog.csdn.net/redzealot2007/article/details/70149549)
+        &lt;/div&gt;
+        &lt;div&gt;
+        阅读：6 评论：0 [查看评论](http://blog.csdn.net/redzealot2007/article/details/70149549#comments)
+        &lt;/div&gt;
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://onmer39jj.bkt.clouddn.com/image/WechatPay.png?imageView2/1/w/400/h/400/format/webp/interlace/1/q/75|imageslim" alt="剑若成风 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://onmer39jj.bkt.clouddn.com/image/Alipay.png?imageView2/1/w/400/h/400/format/webp/interlace/1/q/75|imageslim" alt="剑若成风 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      剑若成风
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://redzealot2008.github.io/2017/04/13/原-java获取路径/" title="[原]java获取路径">https://redzealot2008.github.io/2017/04/13/原-java获取路径/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/14/原-主叫号码信息识别及传送/" rel="next" title="[原]主叫号码信息识别及传送">
+                <i class="fa fa-chevron-left"></i> [原]主叫号码信息识别及传送
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/11/转-android-exported-属性详解/" rel="prev" title="[转]android:exported 属性详解">
+                [转]android:exported 属性详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://onmer39jj.bkt.clouddn.com/image/Avatar.jpg?imageView2/1/w/400/h/400/format/webp/interlace/1/q/75|imageslim"
+               alt="剑若成风" />
+          <p class="site-author-name" itemprop="name">剑若成风</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/redzealot2008" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/redzealot2008" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://litten.me/" title="Litten的博客" target="_blank">Litten的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.trinea.cn/" title="Trinea" target="_blank">Trinea</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gank.io/" title="干货集中营" target="_blank">干货集中营</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://droidyue.com/" title="技术小黑屋" target="_blank">技术小黑屋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.piasy.com/" title="Piasy的博客" target="_blank">Piasy的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gityuan.com/" title="Gityuan的博客" target="_blank">Gityuan的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://stormzhang.com/" title="StormZhang" target="_blank">StormZhang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.diycode.cc/" title="DiyCode" target="_blank">DiyCode</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.liaohuqiu.net/cn/" title="秋百万" target="_blank">秋百万</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hukai.me/" title="腾讯胡凯" target="_blank">腾讯胡凯</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://drakeet.me/" title="Drakeet的博客" target="_blank">Drakeet的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://androiddevtools.cn/" title="AndroidDevTools" target="_blank">AndroidDevTools</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lcode.org/" title="江清清的技术专栏" target="_blank">江清清的技术专栏</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-android"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">剑若成风</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "3a837d34feaa48cabc6025d12607802a",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
