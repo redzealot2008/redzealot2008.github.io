@@ -313,7 +313,7 @@ disqus:
 #hypercomments_id:
 
 # Gentie productKey 网易云跟帖
-gentie_productKey: 3a837d34feaa48cabc6025d12607802a
+# gentie_productKey: 3a837d34feaa48cabc6025d12607802a
 
 # changyan 搜狐畅言
 changyan:
@@ -333,11 +333,11 @@ changyan:
 # Available value:
 #    button | slide
 # Warning: Baidu Share does not support https.
-#baidushare:
+baidushare: true
 ##  type: button
 
 # Share
-jiathis: true
+#jiathis: true
 # Warning: JiaThis does not support https.
 #add_this_id:
 
