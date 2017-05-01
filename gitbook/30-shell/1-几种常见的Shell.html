@@ -1,0 +1,576 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>1-几种常见的Shell · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="2-Shell与编译型语言的差异.html" />
+    
+    
+    <link rel="prev" href="0-Shell简介.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    关于本教程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="0-Shell简介.html">
+            
+                <a href="0-Shell简介.html">
+            
+                    
+                    0-Shell简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="1-几种常见的Shell.html">
+            
+                <a href="1-几种常见的Shell.html">
+            
+                    
+                    1-几种常见的Shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="2-Shell与编译型语言的差异.html">
+            
+                <a href="2-Shell与编译型语言的差异.html">
+            
+                    
+                    2-Shell与编译型语言的差异
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="3-什么时候使用Shell.html">
+            
+                <a href="3-什么时候使用Shell.html">
+            
+                    
+                    3-什么时候使用Shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="4-第一个Shell脚本.html">
+            
+                <a href="4-第一个Shell脚本.html">
+            
+                    
+                    4-第一个Shell脚本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="5-Shell变量.html">
+            
+                <a href="5-Shell变量.html">
+            
+                    
+                    5-Shell变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="6-Shell特殊变量.html">
+            
+                <a href="6-Shell特殊变量.html">
+            
+                    
+                    6-Shell特殊变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="7-Shell替换.html">
+            
+                <a href="7-Shell替换.html">
+            
+                    
+                    7-Shell替换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="8-Shell运算符.html">
+            
+                <a href="8-Shell运算符.html">
+            
+                    
+                    8-Shell运算符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="9-Shell注释.html">
+            
+                <a href="9-Shell注释.html">
+            
+                    
+                    9-Shell注释
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="10-Shell字符串.html">
+            
+                <a href="10-Shell字符串.html">
+            
+                    
+                    10-Shell字符串
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="11-Shell数组.html">
+            
+                <a href="11-Shell数组.html">
+            
+                    
+                    11-Shell数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="12-Shell echo命令.html">
+            
+                <a href="12-Shell echo命令.html">
+            
+                    
+                    12-Shell echo命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="13-Shell printf命令.html">
+            
+                <a href="13-Shell printf命令.html">
+            
+                    
+                    13-Shell printf命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="14-Shell if else语句.html">
+            
+                <a href="14-Shell if else语句.html">
+            
+                    
+                    14-Shell if else语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="15-Shell test命令.html">
+            
+                <a href="15-Shell test命令.html">
+            
+                    
+                    15-Shell test命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="16-Shell case esac语句.html">
+            
+                <a href="16-Shell case esac语句.html">
+            
+                    
+                    16-Shell case esac语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="17-Shell for循环.html">
+            
+                <a href="17-Shell for循环.html">
+            
+                    
+                    17-Shell for循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="18-Shell while循环.html">
+            
+                <a href="18-Shell while循环.html">
+            
+                    
+                    18-Shell while循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="19-Shell until循环.html">
+            
+                <a href="19-Shell until循环.html">
+            
+                    
+                    19-Shell until循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="20-Shell跳出循环.html">
+            
+                <a href="20-Shell跳出循环.html">
+            
+                    
+                    20-Shell跳出循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="21-Shell函数.html">
+            
+                <a href="21-Shell函数.html">
+            
+                    
+                    21-Shell函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.24" data-path="22-Shell函数参数.html">
+            
+                <a href="22-Shell函数参数.html">
+            
+                    
+                    22-Shell函数参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25" data-path="23-Shell输入输出重定向.html">
+            
+                <a href="23-Shell输入输出重定向.html">
+            
+                    
+                    23-Shell输入输出重定向
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.26" data-path="24-Shell文件包含.html">
+            
+                <a href="24-Shell文件包含.html">
+            
+                    
+                    24-Shell文件包含
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >1-几种常见的Shell</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x51E0;&#x79CD;&#x5E38;&#x89C1;&#x7684;shell">&#x51E0;&#x79CD;&#x5E38;&#x89C1;&#x7684;Shell</h1>
+<p>&#x524D;&#x9762;&#x63D0;&#x5230;&#x8FC7;&#xFF0C;Shell&#x662F;&#x4E00;&#x79CD;&#x811A;&#x672C;&#x8BED;&#x8A00;&#xFF0C;&#x90A3;&#x4E48;&#xFF0C;&#x5C31;&#x5FC5;&#x987B;&#x6709;&#x89E3;&#x91CA;&#x5668;&#x6765;&#x6267;&#x884C;&#x8FD9;&#x4E9B;&#x811A;&#x672C;&#x3002;</p>
+<p>Unix/Linux&#x4E0A;&#x5E38;&#x89C1;&#x7684;Shell&#x811A;&#x672C;&#x89E3;&#x91CA;&#x5668;&#x6709;bash&#x3001;sh&#x3001;csh&#x3001;ksh&#x7B49;&#xFF0C;&#x4E60;&#x60EF;&#x4E0A;&#x628A;&#x5B83;&#x4EEC;&#x79F0;&#x4F5C;&#x4E00;&#x79CD;Shell&#x3002;&#x6211;&#x4EEC;&#x5E38;&#x8BF4;&#x6709;&#x591A;&#x5C11;&#x79CD;Shell&#xFF0C;&#x5176;&#x5B9E;&#x8BF4;&#x7684;&#x662F;Shell&#x811A;&#x672C;&#x89E3;&#x91CA;&#x5668;&#x3002;</p>
+<h2 id="bash">bash</h2>
+<p><font color="darkred">bash&#x662F;Linux&#x6807;&#x51C6;&#x9ED8;&#x8BA4;&#x7684;shell&#xFF0C;&#x672C;&#x6559;&#x7A0B;&#x4E5F;&#x57FA;&#x4E8E;bash&#x8BB2;&#x89E3;&#x3002;</font>bash&#x7531;Brian Fox&#x548C;Chet Ramey&#x5171;&#x540C;&#x5B8C;&#x6210;&#xFF0C;&#x662F;BourneAgain Shell&#x7684;&#x7F29;&#x5199;&#xFF0C;&#x5185;&#x90E8;&#x547D;&#x4EE4;&#x4E00;&#x5171;&#x6709;40&#x4E2A;&#x3002;</p>
+<p>Linux&#x4F7F;&#x7528;&#x5B83;&#x4F5C;&#x4E3A;&#x9ED8;&#x8BA4;&#x7684;shell&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x6709;&#x8BF8;&#x5982;&#x4EE5;&#x4E0B;&#x7684;&#x7279;&#x8272;&#xFF1A;
+&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7C7B;&#x4F3C;DOS&#x4E0B;&#x9762;&#x7684;doskey&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x7528;&#x65B9;&#x5411;&#x952E;&#x67E5;&#x9605;&#x548C;&#x5FEB;&#x901F;&#x8F93;&#x5165;&#x5E76;&#x4FEE;&#x6539;&#x547D;&#x4EE4;&#x3002;
+&#x81EA;&#x52A8;&#x901A;&#x8FC7;&#x67E5;&#x627E;&#x5339;&#x914D;&#x7684;&#x65B9;&#x5F0F;&#x7ED9;&#x51FA;&#x4EE5;&#x67D0;&#x5B57;&#x7B26;&#x4E32;&#x5F00;&#x5934;&#x7684;&#x547D;&#x4EE4;&#x3002;
+&#x5305;&#x542B;&#x4E86;&#x81EA;&#x8EAB;&#x7684;&#x5E2E;&#x52A9;&#x529F;&#x80FD;&#xFF0C;&#x4F60;&#x53EA;&#x8981;&#x5728;&#x63D0;&#x793A;&#x7B26;&#x4E0B;&#x9762;&#x952E;&#x5165;help&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x76F8;&#x5173;&#x7684;&#x5E2E;&#x52A9;&#x3002;</p>
+<h2 id="sh">sh</h2>
+<p>sh &#x7531;Steve Bourne&#x5F00;&#x53D1;&#xFF0C;&#x662F;Bourne Shell&#x7684;&#x7F29;&#x5199;&#xFF0C;sh &#x662F;Unix &#x6807;&#x51C6;&#x9ED8;&#x8BA4;&#x7684;shell&#x3002;</p>
+<h2 id="ash">ash</h2>
+<p>ash shell &#x662F;&#x7531;Kenneth Almquist&#x7F16;&#x5199;&#x7684;&#xFF0C;Linux&#x4E2D;&#x5360;&#x7528;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x6700;&#x5C11;&#x7684;&#x4E00;&#x4E2A;&#x5C0F;shell&#xFF0C;&#x5B83;&#x53EA;&#x5305;&#x542B;24&#x4E2A;&#x5185;&#x90E8;&#x547D;&#x4EE4;&#xFF0C;&#x56E0;&#x800C;&#x4F7F;&#x7528;&#x8D77;&#x6765;&#x5F88;&#x4E0D;&#x65B9;&#x4FBF;&#x3002;</p>
+<h2 id="csh">csh</h2>
+<p>csh &#x662F;Linux&#x6BD4;&#x8F83;&#x5927;&#x7684;&#x5185;&#x6838;&#xFF0C;&#x5B83;&#x7531;&#x4EE5;William Joy&#x4E3A;&#x4EE3;&#x8868;&#x7684;&#x5171;&#x8BA1;47&#x4F4D;&#x4F5C;&#x8005;&#x7F16;&#x6210;&#xFF0C;&#x5171;&#x6709;52&#x4E2A;&#x5185;&#x90E8;&#x547D;&#x4EE4;&#x3002;&#x8BE5;shell&#x5176;&#x5B9E;&#x662F;&#x6307;&#x5411;/bin/tcsh&#x8FD9;&#x6837;&#x7684;&#x4E00;&#x4E2A;shell&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;csh&#x5176;&#x5B9E;&#x5C31;&#x662F;tcsh&#x3002;</p>
+<h2 id="ksh">ksh</h2>
+<p>ksh &#x662F;Korn shell&#x7684;&#x7F29;&#x5199;&#xFF0C;&#x7531;Eric Gisin&#x7F16;&#x5199;&#xFF0C;&#x5171;&#x6709;42&#x6761;&#x5185;&#x90E8;&#x547D;&#x4EE4;&#x3002;&#x8BE5;shell&#x6700;&#x5927;&#x7684;&#x4F18;&#x70B9;&#x662F;&#x51E0;&#x4E4E;&#x548C;&#x5546;&#x4E1A;&#x53D1;&#x884C;&#x7248;&#x7684;ksh&#x5B8C;&#x5168;&#x517C;&#x5BB9;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x4E0D;&#x7528;&#x82B1;&#x94B1;&#x8D2D;&#x4E70;&#x5546;&#x4E1A;&#x7248;&#x672C;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x5C1D;&#x8BD5;&#x5546;&#x4E1A;&#x7248;&#x672C;&#x7684;&#x6027;&#x80FD;&#x4E86;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;bash&#x662F; Bourne Again Shell &#x7684;&#x7F29;&#x5199;&#xFF0C;&#x662F;linux&#x6807;&#x51C6;&#x7684;&#x9ED8;&#x8BA4;shell &#xFF0C;&#x5B83;&#x57FA;&#x4E8E;Bourne shell&#xFF0C;&#x5438;&#x6536;&#x4E86;C shell&#x548C;Korn shell&#x7684;&#x4E00;&#x4E9B;&#x7279;&#x6027;&#x3002;bash&#x5B8C;&#x5168;&#x517C;&#x5BB9;sh&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x7528;sh&#x5199;&#x7684;&#x811A;&#x672C;&#x53EF;&#x4EE5;&#x4E0D;&#x52A0;&#x4FEE;&#x6539;&#x7684;&#x5728;bash&#x4E2D;&#x6267;&#x884C;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="0-Shell简介.html" class="navigation navigation-prev " aria-label="Previous page: 0-Shell简介">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="2-Shell与编译型语言的差异.html" class="navigation navigation-next " aria-label="Next page: 2-Shell与编译型语言的差异">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1-几种常见的Shell","level":"1.3","depth":1,"next":{"title":"2-Shell与编译型语言的差异","level":"1.4","depth":1,"path":"2-Shell与编译型语言的差异.md","ref":"2-Shell与编译型语言的差异.md","articles":[]},"previous":{"title":"0-Shell简介","level":"1.2","depth":1,"path":"0-Shell简介.md","ref":"0-Shell简介.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"1-几种常见的Shell.md","mtime":"2017-05-01T08:43:02.406Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-01T14:56:59.302Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

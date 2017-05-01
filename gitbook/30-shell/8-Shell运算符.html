@@ -1,0 +1,1056 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>8-Shell运算符 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="9-Shell注释.html" />
+    
+    
+    <link rel="prev" href="7-Shell替换.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    关于本教程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="0-Shell简介.html">
+            
+                <a href="0-Shell简介.html">
+            
+                    
+                    0-Shell简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="1-几种常见的Shell.html">
+            
+                <a href="1-几种常见的Shell.html">
+            
+                    
+                    1-几种常见的Shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="2-Shell与编译型语言的差异.html">
+            
+                <a href="2-Shell与编译型语言的差异.html">
+            
+                    
+                    2-Shell与编译型语言的差异
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="3-什么时候使用Shell.html">
+            
+                <a href="3-什么时候使用Shell.html">
+            
+                    
+                    3-什么时候使用Shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="4-第一个Shell脚本.html">
+            
+                <a href="4-第一个Shell脚本.html">
+            
+                    
+                    4-第一个Shell脚本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="5-Shell变量.html">
+            
+                <a href="5-Shell变量.html">
+            
+                    
+                    5-Shell变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="6-Shell特殊变量.html">
+            
+                <a href="6-Shell特殊变量.html">
+            
+                    
+                    6-Shell特殊变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="7-Shell替换.html">
+            
+                <a href="7-Shell替换.html">
+            
+                    
+                    7-Shell替换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.10" data-path="8-Shell运算符.html">
+            
+                <a href="8-Shell运算符.html">
+            
+                    
+                    8-Shell运算符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="9-Shell注释.html">
+            
+                <a href="9-Shell注释.html">
+            
+                    
+                    9-Shell注释
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="10-Shell字符串.html">
+            
+                <a href="10-Shell字符串.html">
+            
+                    
+                    10-Shell字符串
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="11-Shell数组.html">
+            
+                <a href="11-Shell数组.html">
+            
+                    
+                    11-Shell数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="12-Shell echo命令.html">
+            
+                <a href="12-Shell echo命令.html">
+            
+                    
+                    12-Shell echo命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="13-Shell printf命令.html">
+            
+                <a href="13-Shell printf命令.html">
+            
+                    
+                    13-Shell printf命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="14-Shell if else语句.html">
+            
+                <a href="14-Shell if else语句.html">
+            
+                    
+                    14-Shell if else语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="15-Shell test命令.html">
+            
+                <a href="15-Shell test命令.html">
+            
+                    
+                    15-Shell test命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="16-Shell case esac语句.html">
+            
+                <a href="16-Shell case esac语句.html">
+            
+                    
+                    16-Shell case esac语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="17-Shell for循环.html">
+            
+                <a href="17-Shell for循环.html">
+            
+                    
+                    17-Shell for循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="18-Shell while循环.html">
+            
+                <a href="18-Shell while循环.html">
+            
+                    
+                    18-Shell while循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="19-Shell until循环.html">
+            
+                <a href="19-Shell until循环.html">
+            
+                    
+                    19-Shell until循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="20-Shell跳出循环.html">
+            
+                <a href="20-Shell跳出循环.html">
+            
+                    
+                    20-Shell跳出循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="21-Shell函数.html">
+            
+                <a href="21-Shell函数.html">
+            
+                    
+                    21-Shell函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.24" data-path="22-Shell函数参数.html">
+            
+                <a href="22-Shell函数参数.html">
+            
+                    
+                    22-Shell函数参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25" data-path="23-Shell输入输出重定向.html">
+            
+                <a href="23-Shell输入输出重定向.html">
+            
+                    
+                    23-Shell输入输出重定向
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.26" data-path="24-Shell文件包含.html">
+            
+                <a href="24-Shell文件包含.html">
+            
+                    
+                    24-Shell文件包含
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >8-Shell运算符</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="shell&#x8FD0;&#x7B97;&#x7B26;">Shell&#x8FD0;&#x7B97;&#x7B26;</h1>
+<p>Bash &#x652F;&#x6301;&#x5F88;&#x591A;&#x8FD0;&#x7B97;&#x7B26;&#xFF0C;&#x5305;&#x62EC;&#x7B97;&#x6570;&#x8FD0;&#x7B97;&#x7B26;&#x3001;&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;&#x3001;&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;&#x3001;&#x5B57;&#x7B26;&#x4E32;&#x8FD0;&#x7B97;&#x7B26;&#x548C;&#x6587;&#x4EF6;&#x6D4B;&#x8BD5;&#x8FD0;&#x7B97;&#x7B26;&#x3002;</p>
+<p>&#x539F;&#x751F;bash&#x4E0D;&#x652F;&#x6301;&#x7B80;&#x5355;&#x7684;&#x6570;&#x5B66;&#x8FD0;&#x7B97;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5176;&#x4ED6;&#x547D;&#x4EE4;&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x4F8B;&#x5982; awk &#x548C; expr&#xFF0C;expr &#x6700;&#x5E38;&#x7528;&#x3002;</p>
+<p>expr &#x662F;&#x4E00;&#x6B3E;&#x8868;&#x8FBE;&#x5F0F;&#x8BA1;&#x7B97;&#x5DE5;&#x5177;&#xFF0C;&#x4F7F;&#x7528;&#x5B83;&#x80FD;&#x5B8C;&#x6210;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x6C42;&#x503C;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x4E24;&#x4E2A;&#x6570;&#x76F8;&#x52A0;&#xFF1A;</p>
+<pre><code>#!/bin/bash
+
+val=`expr 2 + 2`
+echo &quot;Total value : $val&quot;
+</code></pre><p>&#x8FD0;&#x884C;&#x811A;&#x672C;&#x8F93;&#x51FA;&#xFF1A;</p>
+<pre><code>Total value : 4
+</code></pre><p>&#x4E24;&#x70B9;&#x6CE8;&#x610F;&#xFF1A;</p>
+<ul>
+<li>&#x8868;&#x8FBE;&#x5F0F;&#x548C;&#x8FD0;&#x7B97;&#x7B26;&#x4E4B;&#x95F4;&#x8981;&#x6709;&#x7A7A;&#x683C;&#xFF0C;&#x4F8B;&#x5982; 2+2 &#x662F;&#x4E0D;&#x5BF9;&#x7684;&#xFF0C;&#x5FC5;&#x987B;&#x5199;&#x6210; 2 + 2&#xFF0C;&#x8FD9;&#x4E0E;&#x6211;&#x4EEC;&#x719F;&#x6089;&#x7684;&#x5927;&#x591A;&#x6570;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x4E0D;&#x4E00;&#x6837;&#x3002;</li>
+<li>&#x5B8C;&#x6574;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x8981;&#x88AB; <code> </code> &#x5305;&#x542B;&#xFF0C;&#x6CE8;&#x610F;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E0D;&#x662F;&#x5E38;&#x7528;&#x7684;&#x5355;&#x5F15;&#x53F7;&#xFF0C;&#x5728; Esc &#x952E;&#x4E0B;&#x8FB9;&#x3002;</li>
+</ul>
+<h2 id="&#x7B97;&#x672F;&#x8FD0;&#x7B97;&#x7B26;">&#x7B97;&#x672F;&#x8FD0;&#x7B97;&#x7B26;</h2>
+<p>&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E2A;&#x4F7F;&#x7528;&#x7B97;&#x672F;&#x8FD0;&#x7B97;&#x7B26;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code>#!/bin/sh
+
+a=10
+b=20
+val=`expr $a + $b`
+echo &quot;a + b : $val&quot;
+
+val=`expr $a - $b`
+echo &quot;a - b : $val&quot;
+
+val=`expr $a \* $b`
+echo &quot;a * b : $val&quot;
+
+val=`expr $b / $a`
+echo &quot;b / a : $val&quot;
+
+val=`expr $b % $a`
+echo &quot;b % a : $val&quot;
+
+if [ $a == $b ]
+then
+   echo &quot;a is equal to b&quot;
+fi
+
+if [ $a != $b ]
+then
+   echo &quot;a is not equal to b&quot;
+fi
+</code></pre><p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>a + b : 30
+a - b : -10
+a * b : 200
+b / a : 2
+b % a : 0
+a is not equal to b
+</code></pre><p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<ul>
+<li>&#x4E58;&#x53F7;(*)&#x524D;&#x8FB9;&#x5FC5;&#x987B;&#x52A0;&#x53CD;&#x659C;&#x6760;()&#x624D;&#x80FD;&#x5B9E;&#x73B0;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;&#xFF1B;</li>
+<li>if...then...fi &#x662F;&#x6761;&#x4EF6;&#x8BED;&#x53E5;&#xFF0C;&#x540E;&#x7EED;&#x5C06;&#x4F1A;&#x8BB2;&#x89E3;&#x3002;</li>
+</ul>
+<p>&#x7B97;&#x672F;&#x8FD0;&#x7B97;&#x7B26;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8FD0;&#x7B97;&#x7B26;</th>
+<th>&#x8BF4;&#x660E;</th>
+<th>&#x4E3E;&#x4F8B;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>&#x52A0;&#x6CD5;</td>
+<td><code>expr $a + $b</code> &#x7ED3;&#x679C;&#x4E3A; 30&#x3002;</td>
+</tr>
+<tr>
+<td>-</td>
+<td>&#x51CF;&#x6CD5;</td>
+<td><code>expr $a - $b</code> &#x7ED3;&#x679C;&#x4E3A; 10&#x3002;</td>
+</tr>
+<tr>
+<td>*</td>
+<td>&#x4E58;&#x6CD5;</td>
+<td><code>expr $a \* $b</code> &#x7ED3;&#x679C;&#x4E3A;  200&#x3002;</td>
+</tr>
+<tr>
+<td>/</td>
+<td>&#x9664;&#x6CD5;</td>
+<td><code>expr $b / $a</code> &#x7ED3;&#x679C;&#x4E3A; 2&#x3002;</td>
+</tr>
+<tr>
+<td>%</td>
+<td>&#x53D6;&#x4F59;</td>
+<td><code>expr $b % $a</code> &#x7ED3;&#x679C;&#x4E3A; 0&#x3002;</td>
+</tr>
+<tr>
+<td>=</td>
+<td>&#x8D4B;&#x503C;</td>
+<td>a=$b &#x5C06;&#x628A;&#x53D8;&#x91CF; b &#x7684;&#x503C;&#x8D4B;&#x7ED9; a&#x3002;</td>
+</tr>
+<tr>
+<td>==</td>
+<td>&#x76F8;&#x7B49;&#x3002;&#x7528;&#x4E8E;&#x6BD4;&#x8F83;&#x4E24;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x76F8;&#x540C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a == $b ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>&#x4E0D;&#x76F8;&#x7B49;&#x3002;&#x7528;&#x4E8E;&#x6BD4;&#x8F83;&#x4E24;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x4E0D;&#x76F8;&#x540C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a != $b ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x6761;&#x4EF6;&#x8868;&#x8FBE;&#x5F0F;&#x8981;&#x653E;&#x5728;&#x65B9;&#x62EC;&#x53F7;&#x4E4B;&#x95F4;&#xFF0C;&#x5E76;&#x4E14;&#x8981;&#x6709;&#x7A7A;&#x683C;&#xFF0C;&#x4F8B;&#x5982; [$a==$b] &#x662F;&#x9519;&#x8BEF;&#x7684;&#xFF0C;&#x5FC5;&#x987B;&#x5199;&#x6210; [ $a == $b ]&#x3002;</p>
+<h2 id="&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;">&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;</h2>
+<p>&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;&#x53EA;&#x652F;&#x6301;&#x6570;&#x5B57;&#xFF0C;&#x4E0D;&#x652F;&#x6301;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x9664;&#x975E;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x503C;&#x662F;&#x6570;&#x5B57;&#x3002;</p>
+<p>&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E2A;&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code>#!/bin/sh
+
+a=10
+b=20
+if [ $a -eq $b ]
+then
+   echo &quot;$a -eq $b : a is equal to b&quot;
+else
+   echo &quot;$a -eq $b: a is not equal to b&quot;
+fi
+
+if [ $a -ne $b ]
+then
+   echo &quot;$a -ne $b: a is not equal to b&quot;
+else
+   echo &quot;$a -ne $b : a is equal to b&quot;
+fi
+
+if [ $a -gt $b ]
+then
+   echo &quot;$a -gt $b: a is greater than b&quot;
+else
+   echo &quot;$a -gt $b: a is not greater than b&quot;
+fi
+
+if [ $a -lt $b ]
+then
+   echo &quot;$a -lt $b: a is less than b&quot;
+else
+   echo &quot;$a -lt $b: a is not less than b&quot;
+fi
+
+if [ $a -ge $b ]
+then
+   echo &quot;$a -ge $b: a is greater or  equal to b&quot;
+else
+   echo &quot;$a -ge $b: a is not greater or equal to b&quot;
+fi
+
+if [ $a -le $b ]
+then
+   echo &quot;$a -le $b: a is less or  equal to b&quot;
+else
+   echo &quot;$a -le $b: a is not less or equal to b&quot;
+fi
+</code></pre><p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>10 -eq 20: a is not equal to b
+10 -ne 20: a is not equal to b
+10 -gt 20: a is not greater than b
+10 -lt 20: a is less than b
+10 -ge 20: a is not greater or equal to b
+10 -le 20: a is less or  equal to b
+</code></pre><p>&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8FD0;&#x7B97;&#x7B26;</th>
+<th>&#x8BF4;&#x660E;</th>
+<th>&#x4E3E;&#x4F8B;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-eq</td>
+<td>&#x68C0;&#x6D4B;&#x4E24;&#x4E2A;&#x6570;&#x662F;&#x5426;&#x76F8;&#x7B49;&#xFF0C;&#x76F8;&#x7B49;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a -eq $b ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>-ne</td>
+<td>&#x68C0;&#x6D4B;&#x4E24;&#x4E2A;&#x6570;&#x662F;&#x5426;&#x76F8;&#x7B49;&#xFF0C;&#x4E0D;&#x76F8;&#x7B49;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a -ne $b ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>-gt</td>
+<td>&#x68C0;&#x6D4B;&#x5DE6;&#x8FB9;&#x7684;&#x6570;&#x662F;&#x5426;&#x5927;&#x4E8E;&#x53F3;&#x8FB9;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a -gt $b ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>-lt</td>
+<td>&#x68C0;&#x6D4B;&#x5DE6;&#x8FB9;&#x7684;&#x6570;&#x662F;&#x5426;&#x5C0F;&#x4E8E;&#x53F3;&#x8FB9;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a -lt $b ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>-ge</td>
+<td>&#x68C0;&#x6D4B;&#x5DE6;&#x8FB9;&#x7684;&#x6570;&#x662F;&#x5426;&#x5927;&#x7B49;&#x4E8E;&#x53F3;&#x8FB9;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a -ge $b ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>-le</td>
+<td>&#x68C0;&#x6D4B;&#x5DE6;&#x8FB9;&#x7684;&#x6570;&#x662F;&#x5426;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E;&#x53F3;&#x8FB9;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a -le $b ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;">&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;</h2>
+<p>&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E2A;&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code>
+#!/bin/sh
+a=10
+b=20
+
+if [ $a != $b ]
+then
+   echo &quot;$a != $b : a is not equal to b&quot;
+else
+   echo &quot;$a != $b: a is equal to b&quot;
+fi
+
+if [ $a -lt 100 -a $b -gt 15 ]
+then
+   echo &quot;$a -lt 100 -a $b -gt 15 : returns true&quot;
+else
+   echo &quot;$a -lt 100 -a $b -gt 15 : returns false&quot;
+fi
+
+if [ $a -lt 100 -o $b -gt 100 ]
+then
+   echo &quot;$a -lt 100 -o $b -gt 100 : returns true&quot;
+else
+   echo &quot;$a -lt 100 -o $b -gt 100 : returns false&quot;
+fi
+
+if [ $a -lt 5 -o $b -gt 100 ]
+then
+   echo &quot;$a -lt 100 -o $b -gt 100 : returns true&quot;
+else
+   echo &quot;$a -lt 100 -o $b -gt 100 : returns false&quot;
+fi
+</code></pre><p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>10 != 20 : a is not equal to b
+10 -lt 100 -a 20 -gt 15 : returns true
+10 -lt 100 -o 20 -gt 100 : returns true
+10 -lt 5 -o 20 -gt 100 : returns false
+</code></pre><p>&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8FD0;&#x7B97;&#x7B26;</th>
+<th>&#x8BF4;&#x660E;</th>
+<th>&#x4E3E;&#x4F8B;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>!</td>
+<td>&#x975E;&#x8FD0;&#x7B97;&#xFF0C;&#x8868;&#x8FBE;&#x5F0F;&#x4E3A; true &#x5219;&#x8FD4;&#x56DE; false&#xFF0C;&#x5426;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ ! false ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>&#x6216;&#x8FD0;&#x7B97;&#xFF0C;&#x6709;&#x4E00;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;&#x4E3A; true &#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a -lt 20 -o $b -gt 100 ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>&#x4E0E;&#x8FD0;&#x7B97;&#xFF0C;&#x4E24;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;&#x90FD;&#x4E3A; true &#x624D;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a -lt 20 -a $b -gt 100 ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="&#x5B57;&#x7B26;&#x4E32;&#x8FD0;&#x7B97;&#x7B26;">&#x5B57;&#x7B26;&#x4E32;&#x8FD0;&#x7B97;&#x7B26;</h2>
+<p>&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code>#!/bin/sh
+
+a=&quot;abc&quot;
+b=&quot;efg&quot;
+
+if [ $a = $b ]
+then
+   echo &quot;$a = $b : a is equal to b&quot;
+else
+   echo &quot;$a = $b: a is not equal to b&quot;
+fi
+
+if [ $a != $b ]
+then
+   echo &quot;$a != $b : a is not equal to b&quot;
+else
+   echo &quot;$a != $b: a is equal to b&quot;
+fi
+
+if [ -z $a ]
+then
+   echo &quot;-z $a : string length is zero&quot;
+else
+   echo &quot;-z $a : string length is not zero&quot;
+fi
+
+if [ -n $a ]
+then
+   echo &quot;-n $a : string length is not zero&quot;
+else
+   echo &quot;-n $a : string length is zero&quot;
+fi
+
+if [ $a ]
+then
+   echo &quot;$a : string is not empty&quot;
+else
+   echo &quot;$a : string is empty&quot;
+fi
+</code></pre><p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>abc = efg: a is not equal to b
+abc != efg : a is not equal to b
+-z abc : string length is not zero
+-n abc : string length is not zero
+abc : string is not empty
+</code></pre><p>&#x5B57;&#x7B26;&#x4E32;&#x8FD0;&#x7B97;&#x7B26;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8FD0;&#x7B97;&#x7B26;</th>
+<th>&#x8BF4;&#x660E;</th>
+<th>&#x4E3E;&#x4F8B;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>&#x68C0;&#x6D4B;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x5426;&#x76F8;&#x7B49;&#xFF0C;&#x76F8;&#x7B49;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a = $b ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>&#x68C0;&#x6D4B;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x5426;&#x76F8;&#x7B49;&#xFF0C;&#x4E0D;&#x76F8;&#x7B49;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a != $b ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>&#x68C0;&#x6D4B;&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;&#x662F;&#x5426;&#x4E3A;0&#xFF0C;&#x4E3A;0&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -z $a ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>&#x68C0;&#x6D4B;&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;&#x662F;&#x5426;&#x4E3A;0&#xFF0C;&#x4E0D;&#x4E3A;0&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -z $a ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>str</td>
+<td>&#x68C0;&#x6D4B;&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x5426;&#x4E3A;&#x7A7A;&#xFF0C;&#x4E0D;&#x4E3A;&#x7A7A;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ $a ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="&#x6587;&#x4EF6;&#x6D4B;&#x8BD5;&#x8FD0;&#x7B97;&#x7B26;">&#x6587;&#x4EF6;&#x6D4B;&#x8BD5;&#x8FD0;&#x7B97;&#x7B26;</h2>
+<p>&#x6587;&#x4EF6;&#x6D4B;&#x8BD5;&#x8FD0;&#x7B97;&#x7B26;&#x7528;&#x4E8E;&#x68C0;&#x6D4B; Unix &#x6587;&#x4EF6;&#x7684;&#x5404;&#x79CD;&#x5C5E;&#x6027;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x53D8;&#x91CF; file &#x8868;&#x793A;&#x6587;&#x4EF6;&#x201C;/var/www/tutorialspoint/unix/test.sh&#x201D;&#xFF0C;&#x5B83;&#x7684;&#x5927;&#x5C0F;&#x4E3A;100&#x5B57;&#x8282;&#xFF0C;&#x5177;&#x6709; rwx &#x6743;&#x9650;&#x3002;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5C06;&#x68C0;&#x6D4B;&#x8BE5;&#x6587;&#x4EF6;&#x7684;&#x5404;&#x79CD;&#x5C5E;&#x6027;&#xFF1A;</p>
+<pre><code>#!/bin/sh
+
+file=&quot;/var/www/tutorialspoint/unix/test.sh&quot;
+
+if [ -r $file ]
+then
+   echo &quot;File has read access&quot;
+else
+   echo &quot;File does not have read access&quot;
+fi
+
+if [ -w $file ]
+then
+   echo &quot;File has write permission&quot;
+else
+   echo &quot;File does not have write permission&quot;
+fi
+
+if [ -x $file ]
+then
+   echo &quot;File has execute permission&quot;
+else
+   echo &quot;File does not have execute permission&quot;
+fi
+
+if [ -f $file ]
+then
+   echo &quot;File is an ordinary file&quot;
+else
+   echo &quot;This is sepcial file&quot;
+fi
+
+if [ -d $file ]
+then
+   echo &quot;File is a directory&quot;
+else
+   echo &quot;This is not a directory&quot;
+fi
+
+if [ -s $file ]
+then
+   echo &quot;File size is not zero&quot;
+else
+   echo &quot;File size is zero&quot;
+fi
+
+if [ -e $file ]
+then
+   echo &quot;File exists&quot;
+else
+   echo &quot;File does not exist&quot;
+fi
+</code></pre><p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>File has read access
+File has write permission
+File has execute permission
+File is an ordinary file
+This is not a directory
+File size is not zero
+File exists
+</code></pre><p>&#x6587;&#x4EF6;&#x6D4B;&#x8BD5;&#x8FD0;&#x7B97;&#x7B26;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x64CD;&#x4F5C;&#x7B26;</th>
+<th>&#x8BF4;&#x660E;</th>
+<th>&#x4E3E;&#x4F8B;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-b file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x662F;&#x5757;&#x8BBE;&#x5907;&#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -b $file ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>-c file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x662F;&#x5B57;&#x7B26;&#x8BBE;&#x5907;&#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -c $file ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>-d file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x662F;&#x76EE;&#x5F55;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -d $file ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>-f file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x662F;&#x666E;&#x901A;&#x6587;&#x4EF6;&#xFF08;&#x65E2;&#x4E0D;&#x662F;&#x76EE;&#x5F55;&#xFF0C;&#x4E5F;&#x4E0D;&#x662F;&#x8BBE;&#x5907;&#x6587;&#x4EF6;&#xFF09;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -f $file ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>-g file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x8BBE;&#x7F6E;&#x4E86; SGID &#x4F4D;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -g $file ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>-k file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x8BBE;&#x7F6E;&#x4E86;&#x7C98;&#x7740;&#x4F4D;(Sticky Bit)&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -k $file ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>-p file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x662F;&#x5177;&#x540D;&#x7BA1;&#x9053;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -p $file ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>-u file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x8BBE;&#x7F6E;&#x4E86; SUID &#x4F4D;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -u $file ] &#x8FD4;&#x56DE; false&#x3002;</td>
+</tr>
+<tr>
+<td>-r file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x53EF;&#x8BFB;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -r $file ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>-w file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x53EF;&#x5199;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -w $file ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>-x file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x53EF;&#x6267;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -x $file ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>-s file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x4E3A;&#x7A7A;&#xFF08;&#x6587;&#x4EF6;&#x5927;&#x5C0F;&#x662F;&#x5426;&#x5927;&#x4E8E;0&#xFF09;&#xFF0C;&#x4E0D;&#x4E3A;&#x7A7A;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -s $file ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+<tr>
+<td>-e file</td>
+<td>&#x68C0;&#x6D4B;&#x6587;&#x4EF6;&#xFF08;&#x5305;&#x62EC;&#x76EE;&#x5F55;&#xFF09;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#x3002;</td>
+<td>[ -e $file ] &#x8FD4;&#x56DE; true&#x3002;</td>
+</tr>
+</tbody>
+</table>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="7-Shell替换.html" class="navigation navigation-prev " aria-label="Previous page: 7-Shell替换">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="9-Shell注释.html" class="navigation navigation-next " aria-label="Next page: 9-Shell注释">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"8-Shell运算符","level":"1.10","depth":1,"next":{"title":"9-Shell注释","level":"1.11","depth":1,"path":"9-Shell注释.md","ref":"9-Shell注释.md","articles":[]},"previous":{"title":"7-Shell替换","level":"1.9","depth":1,"path":"7-Shell替换.md","ref":"7-Shell替换.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"8-Shell运算符.md","mtime":"2017-05-01T08:44:51.790Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-01T14:56:59.302Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

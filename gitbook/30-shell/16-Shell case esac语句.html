@@ -1,0 +1,626 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>16-Shell case esac语句 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="17-Shell for循环.html" />
+    
+    
+    <link rel="prev" href="15-Shell test命令.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    关于本教程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="0-Shell简介.html">
+            
+                <a href="0-Shell简介.html">
+            
+                    
+                    0-Shell简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="1-几种常见的Shell.html">
+            
+                <a href="1-几种常见的Shell.html">
+            
+                    
+                    1-几种常见的Shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="2-Shell与编译型语言的差异.html">
+            
+                <a href="2-Shell与编译型语言的差异.html">
+            
+                    
+                    2-Shell与编译型语言的差异
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="3-什么时候使用Shell.html">
+            
+                <a href="3-什么时候使用Shell.html">
+            
+                    
+                    3-什么时候使用Shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="4-第一个Shell脚本.html">
+            
+                <a href="4-第一个Shell脚本.html">
+            
+                    
+                    4-第一个Shell脚本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="5-Shell变量.html">
+            
+                <a href="5-Shell变量.html">
+            
+                    
+                    5-Shell变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="6-Shell特殊变量.html">
+            
+                <a href="6-Shell特殊变量.html">
+            
+                    
+                    6-Shell特殊变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="7-Shell替换.html">
+            
+                <a href="7-Shell替换.html">
+            
+                    
+                    7-Shell替换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="8-Shell运算符.html">
+            
+                <a href="8-Shell运算符.html">
+            
+                    
+                    8-Shell运算符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="9-Shell注释.html">
+            
+                <a href="9-Shell注释.html">
+            
+                    
+                    9-Shell注释
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="10-Shell字符串.html">
+            
+                <a href="10-Shell字符串.html">
+            
+                    
+                    10-Shell字符串
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="11-Shell数组.html">
+            
+                <a href="11-Shell数组.html">
+            
+                    
+                    11-Shell数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="12-Shell echo命令.html">
+            
+                <a href="12-Shell echo命令.html">
+            
+                    
+                    12-Shell echo命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="13-Shell printf命令.html">
+            
+                <a href="13-Shell printf命令.html">
+            
+                    
+                    13-Shell printf命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="14-Shell if else语句.html">
+            
+                <a href="14-Shell if else语句.html">
+            
+                    
+                    14-Shell if else语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="15-Shell test命令.html">
+            
+                <a href="15-Shell test命令.html">
+            
+                    
+                    15-Shell test命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.18" data-path="16-Shell case esac语句.html">
+            
+                <a href="16-Shell case esac语句.html">
+            
+                    
+                    16-Shell case esac语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="17-Shell for循环.html">
+            
+                <a href="17-Shell for循环.html">
+            
+                    
+                    17-Shell for循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="18-Shell while循环.html">
+            
+                <a href="18-Shell while循环.html">
+            
+                    
+                    18-Shell while循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="19-Shell until循环.html">
+            
+                <a href="19-Shell until循环.html">
+            
+                    
+                    19-Shell until循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="20-Shell跳出循环.html">
+            
+                <a href="20-Shell跳出循环.html">
+            
+                    
+                    20-Shell跳出循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="21-Shell函数.html">
+            
+                <a href="21-Shell函数.html">
+            
+                    
+                    21-Shell函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.24" data-path="22-Shell函数参数.html">
+            
+                <a href="22-Shell函数参数.html">
+            
+                    
+                    22-Shell函数参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25" data-path="23-Shell输入输出重定向.html">
+            
+                <a href="23-Shell输入输出重定向.html">
+            
+                    
+                    23-Shell输入输出重定向
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.26" data-path="24-Shell文件包含.html">
+            
+                <a href="24-Shell文件包含.html">
+            
+                    
+                    24-Shell文件包含
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >16-Shell case esac语句</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="shell-case-esac&#x8BED;&#x53E5;">Shell case esac&#x8BED;&#x53E5;</h1>
+<p>case ... esac &#x4E0E;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x4E2D;&#x7684; switch ... case &#x8BED;&#x53E5;&#x7C7B;&#x4F3C;&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x591A;&#x5206;&#x679D;&#x9009;&#x62E9;&#x7ED3;&#x6784;&#x3002;</p>
+<p>case &#x8BED;&#x53E5;&#x5339;&#x914D;&#x4E00;&#x4E2A;&#x503C;&#x6216;&#x4E00;&#x4E2A;&#x6A21;&#x5F0F;&#xFF0C;&#x5982;&#x679C;&#x5339;&#x914D;&#x6210;&#x529F;&#xFF0C;&#x6267;&#x884C;&#x76F8;&#x5339;&#x914D;&#x7684;&#x547D;&#x4EE4;&#x3002;case&#x8BED;&#x53E5;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>case &#x503C; in
+&#x6A21;&#x5F0F;1)
+    command1
+    command2
+    command3
+    ;;
+&#x6A21;&#x5F0F;2&#xFF09;
+    command1
+    command2
+    command3
+    ;;
+*)
+    command1
+    command2
+    command3
+    ;;
+esac
+</code></pre><p>case&#x5DE5;&#x4F5C;&#x65B9;&#x5F0F;&#x5982;&#x4E0A;&#x6240;&#x793A;&#x3002;&#x53D6;&#x503C;&#x540E;&#x9762;&#x5FC5;&#x987B;&#x4E3A;&#x5173;&#x952E;&#x5B57; in&#xFF0C;&#x6BCF;&#x4E00;&#x6A21;&#x5F0F;&#x5FC5;&#x987B;&#x4EE5;&#x53F3;&#x62EC;&#x53F7;&#x7ED3;&#x675F;&#x3002;&#x53D6;&#x503C;&#x53EF;&#x4EE5;&#x4E3A;&#x53D8;&#x91CF;&#x6216;&#x5E38;&#x6570;&#x3002;&#x5339;&#x914D;&#x53D1;&#x73B0;&#x53D6;&#x503C;&#x7B26;&#x5408;&#x67D0;&#x4E00;&#x6A21;&#x5F0F;&#x540E;&#xFF0C;&#x5176;&#x95F4;&#x6240;&#x6709;&#x547D;&#x4EE4;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x76F4;&#x81F3; ;;&#x3002;;; &#x4E0E;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x4E2D;&#x7684; break &#x7C7B;&#x4F3C;&#xFF0C;&#x610F;&#x601D;&#x662F;&#x8DF3;&#x5230;&#x6574;&#x4E2A; case &#x8BED;&#x53E5;&#x7684;&#x6700;&#x540E;&#x3002;</p>
+<p>&#x53D6;&#x503C;&#x5C06;&#x68C0;&#x6D4B;&#x5339;&#x914D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x6A21;&#x5F0F;&#x3002;&#x4E00;&#x65E6;&#x6A21;&#x5F0F;&#x5339;&#x914D;&#xFF0C;&#x5219;&#x6267;&#x884C;&#x5B8C;&#x5339;&#x914D;&#x6A21;&#x5F0F;&#x76F8;&#x5E94;&#x547D;&#x4EE4;&#x540E;&#x4E0D;&#x518D;&#x7EE7;&#x7EED;&#x5176;&#x4ED6;&#x6A21;&#x5F0F;&#x3002;&#x5982;&#x679C;&#x65E0;&#x4E00;&#x5339;&#x914D;&#x6A21;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;&#x661F;&#x53F7; * &#x6355;&#x83B7;&#x8BE5;&#x503C;&#xFF0C;&#x518D;&#x6267;&#x884C;&#x540E;&#x9762;&#x7684;&#x547D;&#x4EE4;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x7684;&#x811A;&#x672C;&#x63D0;&#x793A;&#x8F93;&#x5165;1&#x5230;4&#xFF0C;&#x4E0E;&#x6BCF;&#x4E00;&#x79CD;&#x6A21;&#x5F0F;&#x8FDB;&#x884C;&#x5339;&#x914D;&#xFF1A;</p>
+<pre><code>echo &apos;Input a number between 1 to 4&apos;
+echo -e &apos;Your number is:\c&apos;
+read aNum
+case $aNum in
+    1)  echo &apos;You select 1&apos;
+    ;;
+    2)  echo &apos;You select 2&apos;
+    ;;
+    3)  echo &apos;You select 3&apos;
+    ;;
+    4)  echo &apos;You select 4&apos;
+    ;;
+    *)  echo &apos;You do not select a number between 1 to 4&apos;
+    ;;
+esac
+</code></pre><p>&#x8F93;&#x5165;&#x4E0D;&#x540C;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x4F1A;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code>Input a number between 1 to 4
+Your number is:3
+You select 3
+</code></pre><p>&#x518D;&#x4E3E;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code>#!/bin/bash
+
+option=&quot;${1}&quot;
+case ${option} in
+   -f) FILE=&quot;${2}&quot;
+      echo &quot;File name is $FILE&quot;
+      ;;
+   -d) DIR=&quot;${2}&quot;
+      echo &quot;Dir name is $DIR&quot;
+      ;;
+   *) 
+      echo &quot;`basename ${0}`:usage: [-f file] | [-d directory]&quot;
+      exit 1 # Command to come out of the program with status 1
+      ;;
+esac
+</code></pre><p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>$./test.sh
+test.sh: usage: [ -f filename ] | [ -d directory ]
+$ ./test.sh -f index.htm
+$ vi test.sh
+$ ./test.sh -f index.htm
+File name is index.htm
+$ ./test.sh -d unix
+Dir name is unix
+$
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="15-Shell test命令.html" class="navigation navigation-prev " aria-label="Previous page: 15-Shell test命令">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="17-Shell for循环.html" class="navigation navigation-next " aria-label="Next page: 17-Shell for循环">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"16-Shell case esac语句","level":"1.18","depth":1,"next":{"title":"17-Shell for循环","level":"1.19","depth":1,"path":"17-Shell for循环.md","ref":"17-Shell for循环.md","articles":[]},"previous":{"title":"15-Shell test命令","level":"1.17","depth":1,"path":"15-Shell test命令.md","ref":"15-Shell test命令.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"16-Shell case esac语句.md","mtime":"2017-05-01T08:46:30.094Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-01T14:56:59.302Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

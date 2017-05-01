@@ -1,0 +1,720 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>23-Shell输入输出重定向 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="24-Shell文件包含.html" />
+    
+    
+    <link rel="prev" href="22-Shell函数参数.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    关于本教程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="0-Shell简介.html">
+            
+                <a href="0-Shell简介.html">
+            
+                    
+                    0-Shell简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="1-几种常见的Shell.html">
+            
+                <a href="1-几种常见的Shell.html">
+            
+                    
+                    1-几种常见的Shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="2-Shell与编译型语言的差异.html">
+            
+                <a href="2-Shell与编译型语言的差异.html">
+            
+                    
+                    2-Shell与编译型语言的差异
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="3-什么时候使用Shell.html">
+            
+                <a href="3-什么时候使用Shell.html">
+            
+                    
+                    3-什么时候使用Shell
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="4-第一个Shell脚本.html">
+            
+                <a href="4-第一个Shell脚本.html">
+            
+                    
+                    4-第一个Shell脚本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="5-Shell变量.html">
+            
+                <a href="5-Shell变量.html">
+            
+                    
+                    5-Shell变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="6-Shell特殊变量.html">
+            
+                <a href="6-Shell特殊变量.html">
+            
+                    
+                    6-Shell特殊变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="7-Shell替换.html">
+            
+                <a href="7-Shell替换.html">
+            
+                    
+                    7-Shell替换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="8-Shell运算符.html">
+            
+                <a href="8-Shell运算符.html">
+            
+                    
+                    8-Shell运算符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="9-Shell注释.html">
+            
+                <a href="9-Shell注释.html">
+            
+                    
+                    9-Shell注释
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="10-Shell字符串.html">
+            
+                <a href="10-Shell字符串.html">
+            
+                    
+                    10-Shell字符串
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="11-Shell数组.html">
+            
+                <a href="11-Shell数组.html">
+            
+                    
+                    11-Shell数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="12-Shell echo命令.html">
+            
+                <a href="12-Shell echo命令.html">
+            
+                    
+                    12-Shell echo命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="13-Shell printf命令.html">
+            
+                <a href="13-Shell printf命令.html">
+            
+                    
+                    13-Shell printf命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="14-Shell if else语句.html">
+            
+                <a href="14-Shell if else语句.html">
+            
+                    
+                    14-Shell if else语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="15-Shell test命令.html">
+            
+                <a href="15-Shell test命令.html">
+            
+                    
+                    15-Shell test命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="16-Shell case esac语句.html">
+            
+                <a href="16-Shell case esac语句.html">
+            
+                    
+                    16-Shell case esac语句
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="17-Shell for循环.html">
+            
+                <a href="17-Shell for循环.html">
+            
+                    
+                    17-Shell for循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="18-Shell while循环.html">
+            
+                <a href="18-Shell while循环.html">
+            
+                    
+                    18-Shell while循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="19-Shell until循环.html">
+            
+                <a href="19-Shell until循环.html">
+            
+                    
+                    19-Shell until循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="20-Shell跳出循环.html">
+            
+                <a href="20-Shell跳出循环.html">
+            
+                    
+                    20-Shell跳出循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="21-Shell函数.html">
+            
+                <a href="21-Shell函数.html">
+            
+                    
+                    21-Shell函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.24" data-path="22-Shell函数参数.html">
+            
+                <a href="22-Shell函数参数.html">
+            
+                    
+                    22-Shell函数参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.25" data-path="23-Shell输入输出重定向.html">
+            
+                <a href="23-Shell输入输出重定向.html">
+            
+                    
+                    23-Shell输入输出重定向
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.26" data-path="24-Shell文件包含.html">
+            
+                <a href="24-Shell文件包含.html">
+            
+                    
+                    24-Shell文件包含
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >23-Shell输入输出重定向</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="shell&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;">Shell&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;</h1>
+<p>Unix &#x547D;&#x4EE4;&#x9ED8;&#x8BA4;&#x4ECE;&#x6807;&#x51C6;&#x8F93;&#x5165;&#x8BBE;&#x5907;(stdin)&#x83B7;&#x53D6;&#x8F93;&#x5165;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x8F93;&#x51FA;&#x5230;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#x8BBE;&#x5907;(stdout)&#x663E;&#x793A;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6807;&#x51C6;&#x8F93;&#x5165;&#x8BBE;&#x5907;&#x5C31;&#x662F;&#x952E;&#x76D8;&#xFF0C;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#x8BBE;&#x5907;&#x5C31;&#x662F;&#x7EC8;&#x7AEF;&#xFF0C;&#x5373;&#x663E;&#x793A;&#x5668;&#x3002;</p>
+<h2 id="&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;">&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;</h2>
+<p>&#x547D;&#x4EE4;&#x7684;&#x8F93;&#x51FA;&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x662F;&#x663E;&#x793A;&#x5668;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5F88;&#x5BB9;&#x6613;&#x7684;&#x8F6C;&#x79FB;&#x5411;&#x5230;&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x88AB;&#x79F0;&#x4E3A;&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;&#x7684;&#x8BED;&#x6CD5;&#x4E3A;&#xFF1A;</p>
+<pre><code>$ command &gt; file
+</code></pre><p>&#x8FD9;&#x6837;&#xFF0C;&#x8F93;&#x51FA;&#x5230;&#x663E;&#x793A;&#x5668;&#x7684;&#x5185;&#x5BB9;&#x5C31;&#x53EF;&#x4EE5;&#x88AB;&#x91CD;&#x5B9A;&#x5411;&#x5230;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#x5728;&#x663E;&#x793A;&#x5668;&#x4E0A;&#x4E0D;&#x4F1A;&#x770B;&#x5230;&#x4EFB;&#x4F55;&#x8F93;&#x51FA;&#xFF1A;</p>
+<pre><code>$ who &gt; users
+</code></pre><p>&#x6253;&#x5F00; users &#x6587;&#x4EF6;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E0B;&#x9762;&#x7684;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre><code>$ cat users
+oko         tty01   Sep 12 07:30
+ai          tty15   Sep 12 13:32
+ruth        tty21   Sep 12 10:10
+pat         tty24   Sep 12 13:07
+steve       tty25   Sep 12 13:03
+$
+</code></pre><p>&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;&#x4F1A;&#x8986;&#x76D6;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#xFF0C;&#x8BF7;&#x770B;&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code>$ echo line 1 &gt; users
+$ cat users
+line 1
+$
+</code></pre><p>&#x5982;&#x679C;&#x4E0D;&#x5E0C;&#x671B;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x88AB;&#x8986;&#x76D6;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; &gt;&gt; &#x8FFD;&#x52A0;&#x5230;&#x6587;&#x4EF6;&#x672B;&#x5C3E;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code>$ echo line 2 &gt;&gt; users
+$ cat users
+line 1
+line 2
+$
+</code></pre><h2 id="&#x8F93;&#x5165;&#x91CD;&#x5B9A;&#x5411;">&#x8F93;&#x5165;&#x91CD;&#x5B9A;&#x5411;</h2>
+<p>&#x548C;&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;&#x4E00;&#x6837;&#xFF0C;Unix &#x547D;&#x4EE4;&#x4E5F;&#x53EF;&#x4EE5;&#x4ECE;&#x6587;&#x4EF6;&#x83B7;&#x53D6;&#x8F93;&#x5165;&#xFF0C;&#x8BED;&#x6CD5;&#x4E3A;&#xFF1A;</p>
+<pre><code>command &lt; file
+</code></pre><p>&#x8FD9;&#x6837;&#xFF0C;&#x672C;&#x6765;&#x9700;&#x8981;&#x4ECE;&#x952E;&#x76D8;&#x83B7;&#x53D6;&#x8F93;&#x5165;&#x7684;&#x547D;&#x4EE4;&#x4F1A;&#x8F6C;&#x79FB;&#x5230;&#x6587;&#x4EF6;&#x8BFB;&#x53D6;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;&#x662F;&#x5927;&#x4E8E;&#x53F7;(&gt;)&#xFF0C;&#x8F93;&#x5165;&#x91CD;&#x5B9A;&#x5411;&#x662F;&#x5C0F;&#x4E8E;&#x53F7;(&lt;)&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x8BA1;&#x7B97; users &#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x884C;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF1A;</p>
+<pre><code>$ wc -l users
+2 users
+$
+</code></pre><p>&#x4E5F;&#x53EF;&#x4EE5;&#x5C06;&#x8F93;&#x5165;&#x91CD;&#x5B9A;&#x5411;&#x5230; users &#x6587;&#x4EF6;&#xFF1A;</p>
+<pre><code>$ wc -l &lt; users
+2
+$
+</code></pre><p>&#x6CE8;&#x610F;&#xFF1A;&#x4E0A;&#x9762;&#x4E24;&#x4E2A;&#x4F8B;&#x5B50;&#x7684;&#x7ED3;&#x679C;&#x4E0D;&#x540C;&#xFF1A;&#x7B2C;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x4F1A;&#x8F93;&#x51FA;&#x6587;&#x4EF6;&#x540D;&#xFF1B;&#x7B2C;&#x4E8C;&#x4E2A;&#x4E0D;&#x4F1A;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EC5;&#x4EC5;&#x77E5;&#x9053;&#x4ECE;&#x6807;&#x51C6;&#x8F93;&#x5165;&#x8BFB;&#x53D6;&#x5185;&#x5BB9;&#x3002;</p>
+<h2 id="&#x91CD;&#x5B9A;&#x5411;&#x6DF1;&#x5165;&#x8BB2;&#x89E3;">&#x91CD;&#x5B9A;&#x5411;&#x6DF1;&#x5165;&#x8BB2;&#x89E3;</h2>
+<p>&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6BCF;&#x4E2A; Unix/Linux &#x547D;&#x4EE4;&#x8FD0;&#x884C;&#x65F6;&#x90FD;&#x4F1A;&#x6253;&#x5F00;&#x4E09;&#x4E2A;&#x6587;&#x4EF6;&#xFF1A;</p>
+<ul>
+<li>&#x6807;&#x51C6;&#x8F93;&#x5165;&#x6587;&#x4EF6;(stdin)&#xFF1A;stdin&#x7684;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;&#x4E3A;0&#xFF0C;Unix&#x7A0B;&#x5E8F;&#x9ED8;&#x8BA4;&#x4ECE;stdin&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x3002;</li>
+<li>&#x6807;&#x51C6;&#x8F93;&#x51FA;&#x6587;&#x4EF6;(stdout)&#xFF1A;stdout &#x7684;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;&#x4E3A;1&#xFF0C;Unix&#x7A0B;&#x5E8F;&#x9ED8;&#x8BA4;&#x5411;stdout&#x8F93;&#x51FA;&#x6570;&#x636E;&#x3002;</li>
+<li>&#x6807;&#x51C6;&#x9519;&#x8BEF;&#x6587;&#x4EF6;(stderr)&#xFF1A;stderr&#x7684;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;&#x4E3A;2&#xFF0C;Unix&#x7A0B;&#x5E8F;&#x4F1A;&#x5411;stderr&#x6D41;&#x4E2D;&#x5199;&#x5165;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x3002;</li>
+</ul>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;command &gt; file &#x5C06; stdout &#x91CD;&#x5B9A;&#x5411;&#x5230; file&#xFF0C;command &lt; file &#x5C06;stdin &#x91CD;&#x5B9A;&#x5411;&#x5230; file&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5E0C;&#x671B; stderr &#x91CD;&#x5B9A;&#x5411;&#x5230; file&#xFF0C;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x5199;&#xFF1A;</p>
+<pre><code>$command 2 &gt; file
+</code></pre><p>&#x5982;&#x679C;&#x5E0C;&#x671B; stderr &#x8FFD;&#x52A0;&#x5230; file &#x6587;&#x4EF6;&#x672B;&#x5C3E;&#xFF0C;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x5199;&#xFF1A;</p>
+<pre><code>$command 2 &gt;&gt; file
+</code></pre><p>2 &#x8868;&#x793A;&#x6807;&#x51C6;&#x9519;&#x8BEF;&#x6587;&#x4EF6;(stderr)&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5E0C;&#x671B;&#x5C06; stdout &#x548C; stderr &#x5408;&#x5E76;&#x540E;&#x91CD;&#x5B9A;&#x5411;&#x5230; file&#xFF0C;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x5199;&#xFF1A;</p>
+<pre><code>$command &gt; file 2&gt;&amp;1
+</code></pre><p>&#x6216;</p>
+<pre><code>$command &gt;&gt; file 2&gt;&amp;1
+</code></pre><p>&#x5982;&#x679C;&#x5E0C;&#x671B;&#x5BF9; stdin &#x548C; stdout &#x90FD;&#x91CD;&#x5B9A;&#x5411;&#xFF0C;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x5199;&#xFF1A;</p>
+<pre><code>$command &lt; file1 &gt;file2
+</code></pre><p>command &#x547D;&#x4EE4;&#x5C06; stdin &#x91CD;&#x5B9A;&#x5411;&#x5230; file1&#xFF0C;&#x5C06; stdout &#x91CD;&#x5B9A;&#x5411;&#x5230; file2&#x3002; </p>
+<p>&#x5168;&#x90E8;&#x53EF;&#x7528;&#x7684;&#x91CD;&#x5B9A;&#x5411;&#x547D;&#x4EE4;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x547D;&#x4EE4;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command &gt; file</td>
+<td>&#x5C06;&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;&#x5230; file&#x3002;</td>
+</tr>
+<tr>
+<td>command &lt; file</td>
+<td>&#x5C06;&#x8F93;&#x5165;&#x91CD;&#x5B9A;&#x5411;&#x5230; file&#x3002;</td>
+</tr>
+<tr>
+<td>command &gt;&gt; file</td>
+<td>&#x5C06;&#x8F93;&#x51FA;&#x4EE5;&#x8FFD;&#x52A0;&#x7684;&#x65B9;&#x5F0F;&#x91CD;&#x5B9A;&#x5411;&#x5230; file&#x3002;</td>
+</tr>
+<tr>
+<td>n &gt; file</td>
+<td>&#x5C06;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;&#x4E3A; n &#x7684;&#x6587;&#x4EF6;&#x91CD;&#x5B9A;&#x5411;&#x5230; file&#x3002;</td>
+</tr>
+<tr>
+<td>n &gt;&gt; file</td>
+<td>&#x5C06;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;&#x4E3A; n &#x7684;&#x6587;&#x4EF6;&#x4EE5;&#x8FFD;&#x52A0;&#x7684;&#x65B9;&#x5F0F;&#x91CD;&#x5B9A;&#x5411;&#x5230; file&#x3002;</td>
+</tr>
+<tr>
+<td>n &gt;&amp; m</td>
+<td>&#x5C06;&#x8F93;&#x51FA;&#x6587;&#x4EF6; m &#x548C; n &#x5408;&#x5E76;&#x3002;</td>
+</tr>
+<tr>
+<td>n &lt;&amp; m</td>
+<td>&#x5C06;&#x8F93;&#x5165;&#x6587;&#x4EF6; m &#x548C; n &#x5408;&#x5E76;&#x3002;</td>
+</tr>
+<tr>
+<td>&lt;&lt; tag</td>
+<td>&#x5C06;&#x5F00;&#x59CB;&#x6807;&#x8BB0; tag &#x548C;&#x7ED3;&#x675F;&#x6807;&#x8BB0; tag &#x4E4B;&#x95F4;&#x7684;&#x5185;&#x5BB9;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="here-document">Here Document</h2>
+<p>Here Document &#x76EE;&#x524D;&#x6CA1;&#x6709;&#x7EDF;&#x4E00;&#x7684;&#x7FFB;&#x8BD1;&#xFF0C;&#x8FD9;&#x91CC;&#x6682;&#x8BD1;&#x4E3A;&#x201D;&#x5D4C;&#x5165;&#x6587;&#x6863;&#x201C;&#x3002;Here Document &#x662F; Shell &#x4E2D;&#x7684;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x7684;&#x91CD;&#x5B9A;&#x5411;&#x65B9;&#x5F0F;&#xFF0C;&#x5B83;&#x7684;&#x57FA;&#x672C;&#x7684;&#x5F62;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>command &lt;&lt; delimiter
+    document
+delimiter
+</code></pre><p>&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x5C06;&#x4E24;&#x4E2A; delimiter &#x4E4B;&#x95F4;&#x7684;&#x5185;&#x5BB9;(document) &#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#x4F20;&#x9012;&#x7ED9; command&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<ul>
+<li>&#x7ED3;&#x5C3E;&#x7684;delimiter &#x4E00;&#x5B9A;&#x8981;&#x9876;&#x683C;&#x5199;&#xFF0C;&#x524D;&#x9762;&#x4E0D;&#x80FD;&#x6709;&#x4EFB;&#x4F55;&#x5B57;&#x7B26;&#xFF0C;&#x540E;&#x9762;&#x4E5F;&#x4E0D;&#x80FD;&#x6709;&#x4EFB;&#x4F55;&#x5B57;&#x7B26;&#xFF0C;&#x5305;&#x62EC;&#x7A7A;&#x683C;&#x548C; tab &#x7F29;&#x8FDB;&#x3002;</li>
+<li>&#x5F00;&#x59CB;&#x7684;delimiter&#x524D;&#x540E;&#x7684;&#x7A7A;&#x683C;&#x4F1A;&#x88AB;&#x5FFD;&#x7565;&#x6389;&#x3002;</li>
+</ul>
+<p>&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x901A;&#x8FC7; wc -l &#x547D;&#x4EE4;&#x8BA1;&#x7B97; document &#x7684;&#x884C;&#x6570;&#xFF1A;</p>
+<pre><code>$wc -l &lt;&lt; EOF
+    This is a simple lookup program
+    for good (and bad) restaurants
+    in Cape Town.
+EOF
+3
+$
+</code></pre><p>&#x4E5F;&#x53EF;&#x4EE5; &#x5C06; Here Document &#x7528;&#x5728;&#x811A;&#x672C;&#x4E2D;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code>#!/bin/bash
+
+cat &lt;&lt; EOF
+This is a simple lookup program
+for good (and bad) restaurants
+in Cape Town.
+EOF
+</code></pre><p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>This is a simple lookup program
+for good (and bad) restaurants
+in Cape Town.
+</code></pre><p>&#x4E0B;&#x9762;&#x7684;&#x811A;&#x672C;&#x901A;&#x8FC7; vi &#x7F16;&#x8F91;&#x5668;&#x5C06; document &#x4FDD;&#x5B58;&#x5230; test.txt &#x6587;&#x4EF6;&#xFF1A;</p>
+<pre><code>#!/bin/sh
+
+filename=test.txt
+vi $filename &lt;&lt;EndOfCommands
+i
+This file was created automatically from
+a shell script
+^[
+ZZ
+EndOfCommands
+</code></pre><p>&#x8FD0;&#x884C;&#x811A;&#x672C;&#xFF1A;</p>
+<pre><code>$ sh test.sh
+Vim: Warning: Input is not from a terminal
+$
+</code></pre><p>&#x6253;&#x5F00; test.txt&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E0B;&#x9762;&#x7684;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre><code>$ cat test.txt
+This file was created automatically from
+a shell script
+$
+</code></pre><h2 id="devnull-&#x6587;&#x4EF6;">/dev/null &#x6587;&#x4EF6;</h2>
+<p>&#x5982;&#x679C;&#x5E0C;&#x671B;&#x6267;&#x884C;&#x67D0;&#x4E2A;&#x547D;&#x4EE4;&#xFF0C;&#x4F46;&#x53C8;&#x4E0D;&#x5E0C;&#x671B;&#x5728;&#x5C4F;&#x5E55;&#x4E0A;&#x663E;&#x793A;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x5C06;&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;&#x5230; /dev/null&#xFF1A;</p>
+<pre><code>$ command &gt; /dev/null
+</code></pre><p>/dev/null &#x662F;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x5199;&#x5165;&#x5230;&#x5B83;&#x7684;&#x5185;&#x5BB9;&#x90FD;&#x4F1A;&#x88AB;&#x4E22;&#x5F03;&#xFF1B;&#x5982;&#x679C;&#x5C1D;&#x8BD5;&#x4ECE;&#x8BE5;&#x6587;&#x4EF6;&#x8BFB;&#x53D6;&#x5185;&#x5BB9;&#xFF0C;&#x90A3;&#x4E48;&#x4EC0;&#x4E48;&#x4E5F;&#x8BFB;&#x4E0D;&#x5230;&#x3002;&#x4F46;&#x662F; /dev/null &#x6587;&#x4EF6;&#x975E;&#x5E38;&#x6709;&#x7528;&#xFF0C;&#x5C06;&#x547D;&#x4EE4;&#x7684;&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;&#x5230;&#x5B83;&#xFF0C;&#x4F1A;&#x8D77;&#x5230;&#x201D;&#x7981;&#x6B62;&#x8F93;&#x51FA;&#x201C;&#x7684;&#x6548;&#x679C;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5E0C;&#x671B;&#x5C4F;&#x853D; stdout &#x548C; stderr&#xFF0C;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x5199;&#xFF1A;</p>
+<pre><code>$ command &gt; /dev/null 2&gt;&amp;1
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="22-Shell函数参数.html" class="navigation navigation-prev " aria-label="Previous page: 22-Shell函数参数">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="24-Shell文件包含.html" class="navigation navigation-next " aria-label="Next page: 24-Shell文件包含">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"23-Shell输入输出重定向","level":"1.25","depth":1,"next":{"title":"24-Shell文件包含","level":"1.26","depth":1,"path":"24-Shell文件包含.md","ref":"24-Shell文件包含.md","articles":[]},"previous":{"title":"22-Shell函数参数","level":"1.24","depth":1,"path":"22-Shell函数参数.md","ref":"22-Shell函数参数.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"23-Shell输入输出重定向.md","mtime":"2017-05-01T08:47:51.005Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-01T14:56:59.302Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
