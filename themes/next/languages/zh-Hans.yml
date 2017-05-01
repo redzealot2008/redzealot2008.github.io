@@ -3,6 +3,7 @@ title:
   category: 分类
   tag: 标签
   schedule: 日程表
+  gitbook: 电子书
 
 author: 博主
 
@@ -16,6 +17,7 @@ menu:
   schedule: 日程表
   sitemap: 站点地图
   commonweal: 公益404
+  gitbook: 电子书
 
 sidebar:
   overview: 站点概览
@@ -69,6 +71,7 @@ state:
   pages: 页面
   tags: 标签
   categories: 分类
+  gitbook: 电子书
 
 search:
   placeholder: 搜索...
