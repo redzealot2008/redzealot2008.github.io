@@ -44,7 +44,7 @@ menu:
   tags: /tags
   #sitemap: /sitemap.xml
   #commonweal: /404.html
-  gitbook: /gitbook
+  gitbook: /gitbook/index.html
 
 
 # Enable/Disable menu icons.
