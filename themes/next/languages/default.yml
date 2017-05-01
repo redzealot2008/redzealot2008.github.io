@@ -3,6 +3,7 @@ title:
   category: Category
   tag: Tag
   schedule: Schedule
+  gitbook: Gitbook
 
 author: Author
 
@@ -16,6 +17,7 @@ menu:
   schedule: Schedule
   sitemap: Sitemap
   commonweal: Commonweal 404
+  gitbook: gitbook
 
 sidebar:
   overview: Overview
@@ -72,6 +74,7 @@ state:
   pages: pages
   tags: tags
   categories: categories
+  gitbook: gitbook
 
 search:
   placeholder: Searching...
