@@ -97,7 +97,10 @@
   deploy:
     type: git
     # 之前在Github上创建的仓库地址
-    repo: git@github.com:redzealot2008/redzealot2008.github.io.git
+    repo: 
+	github: git@github.com:redzealot2008/redzealot2008.github.io.git
+	coding: git@git.coding.net:redzealot2008/jeffchou.git
+	oschina: git@git.oschina.net:redzealot2008/jeffchou.git
     branch: master
 
   sitemap:
