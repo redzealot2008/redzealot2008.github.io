@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://redzealot2008.github.io/"/>
-  <updated>2017-05-03T13:42:28.698Z</updated>
+  <updated>2017-05-03T13:50:52.969Z</updated>
   <id>https://redzealot2008.github.io/</id>
   
   <author>
@@ -20,18 +20,13 @@
     <link href="https://redzealot2008.github.io/2017/05/03/Ubuntu%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E6%88%96%E6%9B%B4%E6%96%B0VMware-Tools/"/>
     <id>https://redzealot2008.github.io/2017/05/03/Ubuntu手动安装或更新VMware-Tools/</id>
     <published>2017-05-03T13:41:58.000Z</published>
-    <updated>2017-05-03T13:42:28.698Z</updated>
+    <updated>2017-05-03T13:50:52.969Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;#Ubuntu手动安装或更新VMware Tools&lt;/p&gt;
-&lt;p&gt;##安装环境&lt;/p&gt;
-&lt;ul&gt;
+      &lt;h2 id=&quot;安装环境&quot;&gt;&lt;a href=&quot;#安装环境&quot; class=&quot;headerlink&quot; title=&quot;安装环境&quot;&gt;&lt;/a&gt;安装环境&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;VMware Workstation 12 Pro&lt;/li&gt;
-&lt;li&gt;Ubuntu 17.04 64位系统&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;##安装步骤&lt;/p&gt;
-&lt;ol&gt;
+&lt;li&gt;Ubuntu 17.04 64位系统&lt;/l
     
     </summary>
     
