@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title></title>
+      <url>%2F2017%2F05%2F03%2FUbuntu%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E6%88%96%E6%9B%B4%E6%96%B0VMware%20Tools%2F</url>
+      <content type="text"><![CDATA[#Ubuntu手动安装或更新VMware Tools ##安装环境 VMware Workstation 12 Pro Ubuntu 17.04 64位系统 ##安装步骤 开启虚拟机。 在VMware Workstation菜单栏选择“虚拟机 &gt; 安装 VMware Tools”，等待CD/DVD Drive挂载VMware Tools，如下图所示： 右键点击VMwareTools tar.gz压缩包，选择“Extract To…”解压缩到用户目录中，我这里选择了Downloads。 进入vmware-tools-distrib目录，右键点击空白处选择“Open in Terminal”打开终端 安装VMware Tools需要超级用户权限，使用以下命令安装： 1sudo ./vmware-install.pl 输入登录密码，一路回车即可。 提示：安装过程中可能会出现以下语句，询问ifconfig所在位置。 1What is the location of the "ifconfig" program on your machine? 可以再打开一个终端窗口使用“Whereis”命令查看： 1Whereis ifconfig 返回结果如果是： 1ifconfig: 说明系统中没有ifconfig，可以使用以下命令安装： 1sudo apt install net-tools 返回结果如果是： 1ifconfig: /sbin/ifconfig /usr/share/man/man8/ifconfig.8.gz 说明ifconfig位置就在/sbin/ifconfig]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[欢迎来到我的个人技术博客]]></title>
       <url>%2F2017%2F04%2F15%2F1%2F</url>
       <content type="text"><![CDATA[因为某些原因，荒废了两年半的时间，没有接触程序猿方面的东西，这两天才重新捡起来，在网上看了很多软件开发类的资讯，发现两年半的时间真的让自己都要不认识这个行业了，当年流行的技术现如今不再流行，新的更实用的技术层出不穷，感觉自己已经奥特了，重新回归觉得真的是个不小的挑战。]]></content>
