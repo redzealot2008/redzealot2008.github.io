@@ -94,7 +94,7 @@
 <meta property="og:url" content="https://redzealot2008.github.io/2017/05/04/编译ijkplayer-android源码/index.html">
 <meta property="og:site_name" content="剑若成风的成长日志">
 <meta property="og:description" content="编译ijkplayer-android源码原本想在windows系统下编译，不过在windows 7 64位旗舰版系统下编译ffmpeg出现以下错误：  $ ./compile-ffmpeg.sh all ==================== [*] check archs ==================== FF_ALL_ARCHS = armv5 armv7a arm64 x86 x">
-<meta property="og:updated_time" content="2017-05-04T04:02:09.826Z">
+<meta property="og:updated_time" content="2017-05-04T15:00:47.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译ijkplayer-android源码">
 <meta name="twitter:description" content="编译ijkplayer-android源码原本想在windows系统下编译，不过在windows 7 64位旗舰版系统下编译ffmpeg出现以下错误：  $ ./compile-ffmpeg.sh all ==================== [*] check archs ==================== FF_ALL_ARCHS = armv5 armv7a arm64 x86 x">
@@ -366,7 +366,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-05-04T12:02:09+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-05-04T23:00:47+08:00">
                 2017-05-04
               </time>
             
@@ -447,7 +447,7 @@ Auto-config: --arch=arm
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#ANDROID SDK所在目录</span></div><div class="line"><span class="built_in">export</span> ANDROID_SDK=<span class="string">"/home/jeff-chou/develop/android-sdk-linux"</span></div><div class="line"><span class="comment">#ANDROID NDK所在目录</span></div><div class="line"><span class="built_in">export</span> ANDROID_NDK=<span class="string">"/home/jeff-chou/develop/android-ndk-r13b"</span></div><div class="line"><span class="comment">#加入到PATH路径</span></div><div class="line">PATH=<span class="string">"<span class="variable">$PATH</span>:<span class="variable">$&#123;ANDROID_SDK&#125;</span>:<span class="variable">$&#123;ANDROID_NDK&#125;</span>"</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>在你想要存储ijkplayer源码的目录下打开终端，通过git命令获取源码：</p>
- <figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">git</span> clone https://github.com/<span class="keyword">Bilibili/ijkplayer.git </span>ijkplayer-<span class="keyword">android</span></div><div class="line"><span class="symbol">cd</span> ijkplayer-<span class="keyword">android</span></div><div class="line"><span class="symbol">git</span> checkout -<span class="keyword">B </span>latest k0.<span class="number">7</span>.<span class="number">9</span></div></pre></td></tr></table></figure>
+ <figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">git</span> clone https://github.com/<span class="keyword">Bilibili/ijkplayer.git </span>ijkplayer-<span class="keyword">android</span></div><div class="line"><span class="symbol">cd</span> ijkplayer-<span class="keyword">android</span></div><div class="line"><span class="symbol">git</span> checkout -<span class="keyword">B </span>latest k0.<span class="number">7</span>.<span class="number">9</span></div><div class="line"></div><div class="line">./init-<span class="keyword">android.sh</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>配置ffmpeg编解码器格式：</p>
 <ul>
@@ -463,7 +463,7 @@ Auto-config: --arch=arm
 </ul>
 </li>
 <li><p>编译ffmpeg：</p>
- <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">./init-android<span class="selector-class">.sh</span></div><div class="line"></div><div class="line">cd android/contrib</div><div class="line">./compile-ffmpeg<span class="selector-class">.sh</span> clean</div><div class="line">./compile-ffmpeg<span class="selector-class">.sh</span> all</div></pre></td></tr></table></figure>
+ <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd android/contrib</div><div class="line">./compile-ffmpeg<span class="selector-class">.sh</span> clean</div><div class="line">./compile-ffmpeg<span class="selector-class">.sh</span> all</div></pre></td></tr></table></figure>
 </li>
 <li><p>编译ijkplayer：</p>
  <figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">cd</span></span> ..</div><div class="line">./compile-ijk.sh <span class="keyword">all</span></div></pre></td></tr></table></figure>
