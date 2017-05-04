@@ -314,6 +314,331 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://redzealot2008.github.io/2017/04/02/原-JVM垃圾收集器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="剑若成风">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://onmer39jj.bkt.clouddn.com/image/Avatar.jpg?imageView2/1/w/400/h/400/format/webp/interlace/1/q/75|imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="剑若成风的成长日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/02/原-JVM垃圾收集器/" itemprop="url">
+                  [原]JVM垃圾收集器
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-02T15:26:54+08:00">
+                2017-04-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-16T13:50:49+08:00">
+                2017-04-16
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>[牛客网]下列哪项不属于jdk1.6垃圾收集器？ </p>
+<p>  A.Serail收集器 </p>
+<p>  B.parNew收集器 </p>
+<p>  C.CMS收集器 </p>
+<p>  D.G1收集器</p>
+</blockquote>
+<p>在牛客网刷题，碰到这么一个问题，只知道JVM有垃圾收集器，却从来没具体了解过，真是越学越发现自己的无知，不懂就学。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><pre>垃圾收集 Garbage Collection 通常被称为“GC”，它诞生于1960年 MIT 的 Lisp 语言。如果说收集算法是内存回收的方法论，那么垃圾收集器就是内存回收的具体实现。Java虚拟机规范中对垃圾收集器应该如何实现并没有任何规定，因此不同的厂商、不同版本的虚拟机所提供的垃圾收集器都可能会有很大差别，并且一般都会提供参数供用户根据自己的应用特点和要求组合出各个年代所使用的收集器。
+    <font color="red">垃圾收集器需要完成的三件事：
+    1）哪些内存需要回收？
+    2）什么时候回收？
+    3）如何回收？</font></pre>
+
+<h2 id="Jvm运行时数据区域"><a href="#Jvm运行时数据区域" class="headerlink" title="Jvm运行时数据区域"></a>Jvm运行时数据区域</h2><pre><code>Java虚拟机在执行Java程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，已经创建和销毁时间，有的区域随着虚拟机进程的启动而创建，有些区域则依赖用户线程的启动和结束而创建和销毁。根据《Java虚拟机规范（Java SE 7）》的规定，Java虚拟机所管理的内存将会包括以下几个运行时数据区域，如下图所示：
+`&lt;/pre&gt;
+
+![](http://ontjktddg.bkt.clouddn.com/image/20160430235004007.jpg?imageView2/0/format/webp/interlace/1/q/75|imageslim)
+
+### 线程隔离（私有）的数据区
+</code></pre><ul>
+<li>程序计数器    程序计数器（Program Counter Register）是一块较小的内存空间，它可以看做是当前线程所执行的字节码的行号指示器。在虚拟机的概念模型里（仅是概念模型，各种虚拟机可能会通过一些更高效的方式去实现），字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令、分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个计数器来完成。    由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的。在任何一个确定的时刻，一个处理器都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各个线程之间计数器互不影响，独立存储。    如果线程正在执行的是一个Java方法，那这个计数器记录的是正在执行的字节码指令的地址；如果正在执行的是Native方法，这个计数器值则为空（undefined）。此内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域。</li>
+<li>Java虚拟机栈    虚拟机栈（Java Virtual Machine Stack）描述的是Java方法执行的内存模型：每个方法被执行的同时都会创建一个栈帧（Stack Frame）用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每一个方法从被调用直至执行完成的过程就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。    在Java虚拟机规范中，对这个区域规定了两种异常情况：<pre><code>1.  如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；2.  如果虚拟机栈可以动态扩展（当前大部分的Java虚拟机都可以扩展），如果扩展时无法申请到足够的内存，就会抛出OutOfMemoryError异常。
+</code></pre></li>
+<li><p>本地方法栈    本地方法栈（Native Method Stack）与虚拟机栈所发挥的作用是非常类似，它们之间的区别在于虚拟机栈为虚拟机执行Java方法服务，而本地方法栈则是为虚拟机使用到的Native方法服务。在虚拟机规范中对本地方法栈中方法使用的语言、使用方式与数据结构并没有强制规定，因此具体的虚拟机可以自由的实现它。与虚拟机栈一样，本地方法栈区域也会抛出StackOverflowError和OutOfMemoryError异常。</p>
+<h3 id="所有线程共享的数据区"><a href="#所有线程共享的数据区" class="headerlink" title="所有线程共享的数据区"></a>所有线程共享的数据区</h3></li>
+<li><p>Java堆    对于大多数应用来说，Java堆（Java Heap）是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都要在这里分配内存。    Java堆是垃圾收集器管理的主要区域，因此很多时候也被称为“GC堆”（Garbage Collected Heap）。从内存回收的角度来看，由于现在收集器基本都采用分代收集算法，所以Java堆还可以细分为：新生代和老年代；再细致一点的有：Eden空间、From Survivor空间、To Survivor空间等。    根据Java虚拟机规范的规定，Java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可，就像我们的磁盘空间一样。在实现时，既可以实现成固定大小的，也可以是可扩展的，不过当前主流的虚拟机都是按照可扩展来实现的（通过-Xmx和-Xms控制）。如果在堆中没有内存完成实例的分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。</p>
+</li>
+<li><p>方法区    方法区（Method Area）用于存放已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。    Java虚拟机规范对方法区的限制非常宽松，除了和Java堆一样不需要连续的内存空间和可以选择固定大小或者可扩展外，还可以选择不实现垃圾收集。    根据Java虚拟机规范的规定，当方法区无法满足内存分配需要时，将抛出OutOfMemoryError异常。</p>
+<h2 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h2><pre>`直接内存（Direct Memory）并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域。但是这部分内存也被频繁使用，而且也可能导致OutOfMemoryError异常出现。 
+在JDK 1.4 中新加入了NIO（New Input/Output）类，引入了一种基于通道（Channel）与缓冲区（Buffer）的I/O方法，它可以使用Native函数库直接分配堆外内存，然后通过一个存储在Java堆中的DirectByteBuffer对象作为这块内存的引用进行操作。这样能在一些场景中显著提高性能，因为避免了在Java堆和Native堆中来回复制数据。
+显然，本机直接内存的分配不会受到Java堆大小的限制，但是，既然是内存，肯定还是会受到本机总内存（包括RAM以及SWAP区或者分页文件）大小以及处理器寻址空间的限制。服务器管理员在配置虚拟机参数时，会根据实际内存设置-Xmx等参数信息，但经常忽略直接内存，使得各个内存区域总和大于物理内存限制（包括物理的和操作系统级的限制），从而导致动态扩展时出现OutOfMemoryError异常。
+`</pre>
+
+<blockquote>
+<font color="red">JVM 中，程序计数器、虚拟机栈、本地方法栈都是随线程而生随线程而灭，栈帧随着方法的进入和退出做入栈和出栈操作，实现了自动的内存清理，因此，我们的内存垃圾回收主要集中于 Java 堆和方法区中，在程序运行期间，这部分内存的分配和使用都是动态的。</font>
+
+</blockquote>
+<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><pre>`现在商用的JVM中的垃圾收集采用的是分代收集算法，即针对不同年代采用不同的收集算法。在JVM中，GC主要作用于堆内存中，堆内存又被划分为新生代和老年代，由于新生代对象绝大多数是朝生夕死，而老年代相对存活时间就很长，故而需要使用不同的垃圾收集机制，所以垃圾收集器也就分为新生代收集器和老年代收集器，两者相互组合进行JVM堆内存的空间回收（下图中相连的垃圾收集器表示可以相互组合，注意Serial Old和CMS也可以联合进行老年代的垃圾收集）。JDK6u14中开始测试的G1垃圾收集器，正式发布于JDK7u4中，是目前唯一不需要依赖其他垃圾收集器即可完成新生代和老年代内存收集。GC的两个指标：暂停时间-应对与存在大量用户交互的场景；吞吐量-应对后台计算任务。
+新生代的垃圾收集器有：Serial收集器、ParNew收集器、Parallel Scavenge收集器
+老年代的垃圾收集器有：Serial Old收集器、Parallel Old收集器、CMS收集器
+G1收集器：http://f.dataguru.cn/thread-514678-1-1.html
+`</pre>
+
+<p><img src="http://ontjktddg.bkt.clouddn.com/image/650075-8c5080659578032d.jpg?imageView2/0/format/webp/interlace/1/q/75|imageslim" alt=""></p>
+<h3 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a>概念理解</h3></li>
+<li><p>并发和并行</p>
+<pre><code>*   并行（Parallel）：指多条垃圾收集线程并行工作，但此时用户线程仍然处于等待状态。
+</code></pre><ul>
+<li>并发（Concurrent）：指用户线程与垃圾收集线程同时执行（但不一定是并行的，可能会交替执行），用户程序在继续运行，而垃圾收集程序运行于另一个CPU上。</li>
+</ul>
+</li>
+<li>Minor GC 和 Full GC<pre><code>*   新生代GC（Minor GC）：指发生在新生代的垃圾收集动作，因为Java对象大多都具备朝生夕灭的特性，所以Minor GC非常频繁，一般回收速度也比较快。
+</code></pre><ul>
+<li>老年代GC（Major GC / Full GC）：指发生在老年代的GC，出现了Major GC，经常会伴随至少一次的Minor GC（但非绝对的，在Parallel Scavenge收集器的收集策略里就有直接进行Major GC的策略选择过程）。Major GC的速度一般会比Minor GC慢10倍以上。</li>
+</ul>
+</li>
+<li><p>吞吐量    吞吐量就是CPU用于运行用户代码的时间与CPU总消耗时间的比值，即吞吐量 = 运行用户代码时间 /（运行用户代码时间 + 垃圾收集时间）。    虚拟机总共运行了100分钟，其中垃圾收集花掉1分钟，那吞吐量就是99%。</p>
+<h3 id="一、Serial收集器"><a href="#一、Serial收集器" class="headerlink" title="一、Serial收集器"></a>一、Serial收集器</h3><pre>`Serial收集器是最基本、发展历史最悠久的收集器，曾经（在JDK 1.3.1之前）是虚拟机新生代收集的唯一选择。
+
+特性：
+这个收集器是一个单线程的收集器，但它的“单线程”的意义并不仅仅说明它只会使用一个CPU或一条收集线程去完成垃圾收集工作，更重要的是在它进行垃圾收集时，必须暂停其他所有的工作线程，直到它收集结束。Stop The World
+
+应用场景：
+Serial收集器是虚拟机运行在Client模式下的默认新生代收集器。
+
+优势：
+简单而高效（与其他收集器的单线程比），对于限定单个CPU的环境来说，Serial收集器由于没有线程交互的开销，专心做垃圾收集自然可以获得最高的单线程收集效率。
+`</pre>
+
+<h3 id="二、ParNew收集器"><a href="#二、ParNew收集器" class="headerlink" title="二、ParNew收集器"></a>二、ParNew收集器</h3><pre>`特性：
+ParNew收集器其实就是Serial收集器的多线程版本，除了使用多条线程进行垃圾收集之外，其余行为包括Serial收集器可用的所有控制参数、收集算法、Stop The World、对象分配规则、回收策略等都与Serial收集器完全一样，在实现上，这两种收集器也共用了相当多的代码。
+
+应用场景：
+ParNew收集器是许多运行在Server模式下的虚拟机中首选的新生代收集器。
+
+很重要的原因是：除了Serial收集器外，目前只有它能与CMS收集器配合工作。
+在JDK 1.5时期，HotSpot推出了一款在强交互应用中几乎可认为有划时代意义的垃圾收集器——CMS收集器，这款收集器是HotSpot虚拟机中第一款真正意义上的并发收集器，它第一次实现了让垃圾收集线程与用户线程同时工作。
+不幸的是，CMS作为老年代的收集器，却无法与JDK 1.4.0中已经存在的新生代收集器Parallel Scavenge配合工作，所以在JDK 1.5中使用CMS来收集老年代的时候，新生代只能选择ParNew或者Serial收集器中的一个。
+
+Serial收集器 VS ParNew收集器：
+ParNew收集器在单CPU的环境中绝对不会有比Serial收集器更好的效果，甚至由于存在线程交互的开销，该收集器在通过超线程技术实现的两个CPU的环境中都不能百分之百地保证可以超越Serial收集器。
+然而，随着可以使用的CPU的数量的增加，它对于GC时系统资源的有效利用还是很有好处的。
+`</pre>
+
+<h3 id="三、Parallel-Scavenge收集器"><a href="#三、Parallel-Scavenge收集器" class="headerlink" title="三、Parallel Scavenge收集器"></a>三、Parallel Scavenge收集器</h3><pre>`特性：
+Parallel Scavenge收集器是一个新生代收集器，它也是使用复制算法的收集器，又是并行的多线程收集器。
+
+应用场景：
+停顿时间越短就越适合需要与用户交互的程序，良好的响应速度能提升用户体验，而高吞吐量则可以高效率地利用CPU时间，尽快完成程序的运算任务，主要适合在后台运算而不需要太多交互的任务。
+
+对比分析：
+
+Parallel Scavenge收集器 VS CMS等收集器：
+Parallel Scavenge收集器的特点是它的关注点与其他收集器不同，CMS等收集器的关注点是尽可能地缩短垃圾收集时用户线程的停顿时间，而Parallel Scavenge收集器的目标则是达到一个可控制的吞吐量（Throughput）。
+由于与吞吐量关系密切，Parallel Scavenge收集器也经常称为“吞吐量优先”收集器。
+
+Parallel Scavenge收集器 VS ParNew收集器：
+Parallel Scavenge收集器与ParNew收集器的一个重要区别是它具有自适应调节策略。
+
+GC自适应的调节策略：
+Parallel Scavenge收集器有一个参数-XX:+UseAdaptiveSizePolicy。当这个参数打开之后，就不需要手工指定新生代的大小、Eden与Survivor区的比例、晋升老年代对象年龄等细节参数了，虚拟机会根据当前系统的运行情况收集性能监控信息，动态调整这些参数以提供最合适的停顿时间或者最大的吞吐量，这种调节方式称为GC自适应的调节策略（GC Ergonomics）。
+`</pre>
+
+<h3 id="四、Serial-Old收集器"><a href="#四、Serial-Old收集器" class="headerlink" title="四、Serial Old收集器"></a>四、Serial Old收集器</h3><pre>`特性：
+Serial Old是Serial收集器的老年代版本，它同样是一个单线程收集器，使用标记－整理算法。
+
+应用场景：
+
+Client模式
+Serial Old收集器的主要意义也是在于给Client模式下的虚拟机使用。
+
+Server模式
+如果在Server模式下，那么它主要还有两大用途：一种用途是在JDK 1.5以及之前的版本中与Parallel Scavenge收集器搭配使用，另一种用途就是作为CMS收集器的后备预案，在并发收集发生Concurrent Mode Failure时使用。
+`</pre>
+
+<h3 id="五、Parallel-Old收集器"><a href="#五、Parallel-Old收集器" class="headerlink" title="五、Parallel Old收集器"></a>五、Parallel Old收集器</h3><pre>`特性：
+Parallel Old是Parallel Scavenge收集器的老年代版本，使用多线程和“标记－整理”算法。
+
+应用场景：
+在注重吞吐量以及CPU资源敏感的场合，都可以优先考虑Parallel Scavenge加Parallel Old收集器。
+
+这个收集器是在JDK 1.6中才开始提供的，在此之前，新生代的Parallel Scavenge收集器一直处于比较尴尬的状态。原因是，如果新生代选择了Parallel Scavenge收集器，老年代除了Serial Old收集器外别无选择（Parallel Scavenge收集器无法与CMS收集器配合工作）。由于老年代Serial Old收集器在服务端应用性能上的“拖累”，使用了Parallel Scavenge收集器也未必能在整体应用上获得吞吐量最大化的效果，由于单线程的老年代收集中无法充分利用服务器多CPU的处理能力，在老年代很大而且硬件比较高级的环境中，这种组合的吞吐量甚至还不一定有ParNew加CMS的组合“给力”。直到Parallel Old收集器出现后，“吞吐量优先”收集器终于有了比较名副其实的应用组合。
+`</pre>
+
+<h3 id="六、CMS收集器"><a href="#六、CMS收集器" class="headerlink" title="六、CMS收集器"></a>六、CMS收集器</h3><pre>`特性：
+CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。目前很大一部分的Java应用集中在互联网站或者B/S系统的服务端上，这类应用尤其重视服务的响应速度，希望系统停顿时间最短，以给用户带来较好的体验。CMS收集器就非常符合这类应用的需求。
+
+CMS收集器是基于“标记—清除”算法实现的，它的运作过程相对于前面几种收集器来说更复杂一些，整个过程分为4个步骤：
+
+初始标记（CMS initial mark）
+初始标记仅仅只是标记一下GC Roots能直接关联到的对象，速度很快，需要“Stop The World”。
+
+并发标记（CMS concurrent mark）
+并发标记阶段就是进行GC Roots Tracing的过程。
+
+重新标记（CMS remark）
+重新标记阶段是为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段稍长一些，但远比并发标记的时间短，仍然需要“Stop The World”。
+
+并发清除（CMS concurrent sweep）
+并发清除阶段会清除对象。
+
+由于整个过程中耗时最长的并发标记和并发清除过程收集器线程都可以与用户线程一起工作，所以，从总体上来说，CMS收集器的内存回收过程是与用户线程一起并发执行的。
+
+优点：
+CMS是一款优秀的收集器，它的主要优点在名字上已经体现出来了：并发收集、低停顿。
+
+缺点：
+
+CMS收集器对CPU资源非常敏感
+其实，面向并发设计的程序都对CPU资源比较敏感。在并发阶段，它虽然不会导致用户线程停顿，但是会因为占用了一部分线程（或者说CPU资源）而导致应用程序变慢，总吞吐量会降低。
+CMS默认启动的回收线程数是（CPU数量+3）/ 4，也就是当CPU在4个以上时，并发回收时垃圾收集线程不少于25%的CPU资源，并且随着CPU数量的增加而下降。但是当CPU不足4个（譬如2个）时，CMS对用户程序的影响就可能变得很大。
+
+CMS收集器无法处理浮动垃圾
+CMS收集器无法处理浮动垃圾，可能出现“Concurrent Mode Failure”失败而导致另一次Full GC的产生。
+
+由于CMS并发清理阶段用户线程还在运行着，伴随程序运行自然就还会有新的垃圾不断产生，这一部分垃圾出现在标记过程之后，CMS无法在当次收集中处理掉它们，只好留待下一次GC时再清理掉。这一部分垃圾就称为“浮动垃圾”。
+也是由于在垃圾收集阶段用户线程还需要运行，那也就还需要预留有足够的内存空间给用户线程使用，因此CMS收集器不能像其他收集器那样等到老年代几乎完全被填满了再进行收集，需要预留一部分空间提供并发收集时的程序运作使用。要是CMS运行期间预留的内存无法满足程序需要，就会出现一次“Concurrent Mode Failure”失败，这时虚拟机将启动后备预案：临时启用Serial Old收集器来重新进行老年代的垃圾收集，这样停顿时间就很长了。
+
+CMS收集器会产生大量空间碎片
+CMS是一款基于“标记—清除”算法实现的收集器，这意味着收集结束时会有大量空间碎片产生。
+
+空间碎片过多时，将会给大对象分配带来很大麻烦，往往会出现老年代还有很大空间剩余，但是无法找到足够大的连续空间来分配当前对象，不得不提前触发一次Full GC。
+`</pre>
+
+<h3 id="七、G1收集器"><a href="#七、G1收集器" class="headerlink" title="七、G1收集器"></a>七、G1收集器</h3><p><pre>`特性：<br>G1（Garbage-First）是一款面向服务端应用的垃圾收集器。HotSpot开发团队赋予它的使命是未来可以替换掉JDK 1.5中发布的CMS收集器。与其他GC收集器相比，G1具备如下特点。</pre></p>
+<p>并行与并发<br>G1能充分利用多CPU、多核环境下的硬件优势，使用多个CPU来缩短Stop-The-World停顿的时间，部分其他收集器原本需要停顿Java线程执行的GC动作，G1收集器仍然可以通过并发的方式让Java程序继续执行。</p>
+<p>分代收集<br>与其他收集器一样，分代概念在G1中依然得以保留。虽然G1可以不需要其他收集器配合就能独立管理整个GC堆，但它能够采用不同的方式去处理新创建的对象和已经存活了一段时间、熬过多次GC的旧对象以获取更好的收集效果。</p>
+<p>空间整合<br>与CMS的“标记—清理”算法不同，G1从整体来看是基于“标记—整理”算法实现的收集器，从局部（两个Region之间）上来看是基于“复制”算法实现的，但无论如何，这两种算法都意味着G1运作期间不会产生内存空间碎片，收集后能提供规整的可用内存。这种特性有利于程序长时间运行，分配大对象时不会因为无法找到连续内存空间而提前触发下一次GC。</p>
+<p>可预测的停顿<br>这是G1相对于CMS的另一大优势，降低停顿时间是G1和CMS共同的关注点，但G1除了追求低停顿外，还能建立可预测的停顿时间模型，能让使用者明确指定在一个长度为M毫秒的时间片段内，消耗在垃圾收集上的时间不得超过N毫秒。</p>
+<p>在G1之前的其他收集器进行收集的范围都是整个新生代或者老年代，而G1不再是这样。使用G1收集器时，Java堆的内存布局就与其他收集器有很大差别，它将整个Java堆划分为多个大小相等的独立区域（Region），虽然还保留有新生代和老年代的概念，但新生代和老年代不再是物理隔离的了，它们都是一部分Region（不需要连续）的集合。</p>
+<p>G1收集器之所以能建立可预测的停顿时间模型，是因为它可以有计划地避免在整个Java堆中进行全区域的垃圾收集。G1跟踪各个Region里面的垃圾堆积的价值大小（回收所获得的空间大小以及回收所需时间的经验值），在后台维护一个优先列表，每次根据允许的收集时间，优先回收价值最大的Region（这也就是Garbage-First名称的来由）。这种使用Region划分内存空间以及有优先级的区域回收方式，保证了G1收集器在有限的时间内可以获取尽可能高的收集效率。</p>
+<p>执行过程：<br>G1收集器的运作大致可划分为以下几个步骤：</p>
+<p>初始标记（Initial Marking）<br>初始标记阶段仅仅只是标记一下GC Roots能直接关联到的对象，并且修改TAMS（Next Top at Mark Start）的值，让下一阶段用户程序并发运行时，能在正确可用的Region中创建新对象，这阶段需要停顿线程，但耗时很短。</p>
+<p>并发标记（Concurrent Marking）<br>并发标记阶段是从GC Root开始对堆中对象进行可达性分析，找出存活的对象，这阶段耗时较长，但可与用户程序并发执行。</p>
+<p>最终标记（Final Marking）<br>最终标记阶段是为了修正在并发标记期间因用户程序继续运作而导致标记产生变动的那一部分标记记录，虚拟机将这段时间对象变化记录在线程Remembered Set Logs里面，最终标记阶段需要把Remembered Set Logs的数据合并到Remembered Set中，这阶段需要停顿线程，但是可并行执行。</p>
+<p>筛选回收（Live Data Counting and Evacuation）<br>筛选回收阶段首先对各个Region的回收价值和成本进行排序，根据用户所期望的GC停顿时间来制定回收计划，这个阶段其实也可以做到与用户程序一起并发执行，但是因为只回收一部分Region，时间是用户可控制的，而且停顿用户线程将大幅提高收集效率。</p>
+</li>
+</ul>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
+<li>垃圾收集器常用参数<br><img src="http://ontjktddg.bkt.clouddn.com/image/jvm-14.jpg" alt="垃圾收集器常用参数"></li>
+</ul>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p><a href="http://ontjktddg.bkt.clouddn.com/pdf/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%9AJVM%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%20%E7%AC%AC2%E7%89%88.pdf" target="_blank" rel="external">深入理解Java虚拟机：JVM高级特性与最佳实践 第2版</a> </p>
+<p><a href="http://blog.csdn.net/top_code/article/details/51288529" target="_blank" rel="external">深入理解Java虚拟机（一）-jvm运行时数据区</a> </p>
+<p><a href="http://blog.csdn.net/zhshulin/article/details/50614477" target="_blank" rel="external">JVM-垃圾收集器</a> </p>
+<p><a href="http://www.jianshu.com/p/50d5c88b272d" target="_blank" rel="external">深入理解JVM（5） : Java垃圾收集器</a> </p>
+<p><a href="https://yq.aliyun.com/articles/14410" target="_blank" rel="external">深入理解JVM之四：详解垃圾收集器</a></p>
+<pre><code>&lt;div&gt;
+    作者：redzealot2007 发表于2017/4/2 15:26:54 [原文链接](http://blog.csdn.net/redzealot2007/article/details/68952318)
+&lt;/div&gt;
+&lt;div&gt;
+阅读：16 评论：0 [查看评论](http://blog.csdn.net/redzealot2007/article/details/68952318#comments)
+&lt;/div&gt;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://redzealot2008.github.io/2017/03/29/原-一脸懵逼也能使用hexo搭建github博客/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -792,7 +1117,7 @@ deploy:
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://redzealot2008.github.io/"/>
-  <updated>2017-05-03T13:50:52.969Z</updated>
+  <updated>2017-05-04T03:20:33.988Z</updated>
   <id>https://redzealot2008.github.io/</id>
   
   <author>
@@ -14,6 +14,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>编译ijkplayer-android源码</title>
+    <link href="https://redzealot2008.github.io/2017/05/04/%E7%BC%96%E8%AF%91ijkplayer-android%E6%BA%90%E7%A0%81/"/>
+    <id>https://redzealot2008.github.io/2017/05/04/编译ijkplayer-android源码/</id>
+    <published>2017-05-04T03:19:49.000Z</published>
+    <updated>2017-05-04T03:20:33.988Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#编译ijkplayer-android源码&lt;/p&gt;
+&lt;p&gt;原本想在windows系统下编译，不过在windows 7 64位旗舰版系统下编译ffmpeg出现以下错误：&lt;/p&gt;
+&lt;pre&gt;
+$ ./compile-ffmpeg.sh all
+================
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Ubuntu手动安装或更新VMware Tools</title>
