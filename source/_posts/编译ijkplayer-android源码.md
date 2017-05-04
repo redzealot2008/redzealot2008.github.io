@@ -4,7 +4,7 @@ date: 2017-05-04 11:19:49
 tags:
 ---
 
-#编译ijkplayer-android源码#
+# 编译ijkplayer-android源码 #
 
 原本想在windows系统下编译，不过在windows 7 64位旗舰版系统下编译ffmpeg出现以下错误：
 <pre>
@@ -40,10 +40,10 @@ Auto-config: --arch=arm
 
 寻求解决办法无果，继而转向Ubuntu系统编译。
 
-##编译环境##
+## 编译环境 ##
 - Ubuntu 17.04 64位
 
-##编译步骤##
+## 编译步骤 ##
 1. 在任意位置打开终端，输入以下命令安装git、yasm：
 
 	```
@@ -105,5 +105,5 @@ Auto-config: --arch=arm
 	./compile-ijk.sh all
 	```
 
-##鸣谢##
+## 鸣谢 ##
 - http://blog.csdn.net/u010072711/article/details/51438871
