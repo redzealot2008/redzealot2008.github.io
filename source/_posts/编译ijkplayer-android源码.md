@@ -65,6 +65,8 @@ Auto-config: --arch=arm
 	git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-android
 	cd ijkplayer-android
 	git checkout -B latest k0.7.9
+
+	./init-android.sh
 	```
 
 4. 配置ffmpeg编解码器格式：
@@ -92,8 +94,6 @@ Auto-config: --arch=arm
 5. 编译ffmpeg：
 	
 	```
-	./init-android.sh
-
 	cd android/contrib
 	./compile-ffmpeg.sh clean
 	./compile-ffmpeg.sh all
