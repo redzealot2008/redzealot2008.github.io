@@ -15,6 +15,7 @@
   # URL
   ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
   #url: https://redzealot2008.github.io
+  #url: http://redzealot2008.oschina.io
   url: http://redzealot2008.coding.me
   root: /
   permalink: :year/:month/:day/:title/
@@ -100,13 +101,10 @@
     repo: git@github.com:redzealot2008/redzealot2008.github.io.git
     branch: master
   - type: git
-    repo: git@git.coding.net:redzealot2008/jeffchou.git
+    repo: git@git.coding.net:redzealot2008/redzealot2008.coding.me.git
     branch: master
   - type: git
-    repo: git@git.oschina.net:redzealot2008/jeffchou.git
-    branch: master
-  - type: git
-    repo: git@code.csdn.net:redzealot2007/jeffchou.git
+    repo: git@git.oschina.net:redzealot2008/redzealot2008.git
     branch: master
 
   sitemap:
