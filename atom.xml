@@ -4,9 +4,9 @@
   <subtitle>新的开始，回归自我</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://redzealot2008.github.io/"/>
+  <link href="http://redzealot2008.coding.me/"/>
   <updated>2017-05-04T15:00:47.543Z</updated>
-  <id>https://redzealot2008.github.io/</id>
+  <id>http://redzealot2008.coding.me/</id>
   
   <author>
     <name>剑若成风</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>编译ijkplayer-android源码</title>
-    <link href="https://redzealot2008.github.io/2017/05/04/%E7%BC%96%E8%AF%91ijkplayer-android%E6%BA%90%E7%A0%81/"/>
-    <id>https://redzealot2008.github.io/2017/05/04/编译ijkplayer-android源码/</id>
+    <link href="http://redzealot2008.coding.me/2017/05/04/%E7%BC%96%E8%AF%91ijkplayer-android%E6%BA%90%E7%A0%81/"/>
+    <id>http://redzealot2008.coding.me/2017/05/04/编译ijkplayer-android源码/</id>
     <published>2017-05-04T03:19:49.000Z</published>
     <updated>2017-05-04T15:00:47.543Z</updated>
     
@@ -33,8 +33,8 @@
   
   <entry>
     <title>Ubuntu手动安装或更新VMware Tools</title>
-    <link href="https://redzealot2008.github.io/2017/05/03/Ubuntu%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E6%88%96%E6%9B%B4%E6%96%B0VMware-Tools/"/>
-    <id>https://redzealot2008.github.io/2017/05/03/Ubuntu手动安装或更新VMware-Tools/</id>
+    <link href="http://redzealot2008.coding.me/2017/05/03/Ubuntu%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E6%88%96%E6%9B%B4%E6%96%B0VMware-Tools/"/>
+    <id>http://redzealot2008.coding.me/2017/05/03/Ubuntu手动安装或更新VMware-Tools/</id>
     <published>2017-05-03T13:41:58.000Z</published>
     <updated>2017-05-03T13:50:52.969Z</updated>
     
@@ -51,8 +51,8 @@
   
   <entry>
     <title>欢迎来到我的个人技术博客</title>
-    <link href="https://redzealot2008.github.io/2017/04/15/1/"/>
-    <id>https://redzealot2008.github.io/2017/04/15/1/</id>
+    <link href="http://redzealot2008.coding.me/2017/04/15/1/"/>
+    <id>http://redzealot2008.coding.me/2017/04/15/1/</id>
     <published>2017-04-15T10:47:00.289Z</published>
     <updated>2017-04-15T15:02:42.617Z</updated>
     
@@ -62,17 +62,17 @@
     
     </summary>
     
-      <category term="随笔" scheme="https://redzealot2008.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="http://redzealot2008.coding.me/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="随笔" scheme="https://redzealot2008.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="http://redzealot2008.coding.me/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title>[原]主叫号码信息识别及传送</title>
-    <link href="https://redzealot2008.github.io/2017/04/14/%E5%8E%9F-%E4%B8%BB%E5%8F%AB%E5%8F%B7%E7%A0%81%E4%BF%A1%E6%81%AF%E8%AF%86%E5%88%AB%E5%8F%8A%E4%BC%A0%E9%80%81/"/>
-    <id>https://redzealot2008.github.io/2017/04/14/原-主叫号码信息识别及传送/</id>
+    <link href="http://redzealot2008.coding.me/2017/04/14/%E5%8E%9F-%E4%B8%BB%E5%8F%AB%E5%8F%B7%E7%A0%81%E4%BF%A1%E6%81%AF%E8%AF%86%E5%88%AB%E5%8F%8A%E4%BC%A0%E9%80%81/"/>
+    <id>http://redzealot2008.coding.me/2017/04/14/原-主叫号码信息识别及传送/</id>
     <published>2017-04-14T09:42:21.000Z</published>
     <updated>2017-04-16T05:50:49.475Z</updated>
     
@@ -88,8 +88,8 @@
   
   <entry>
     <title>[原]java获取路径</title>
-    <link href="https://redzealot2008.github.io/2017/04/13/%E5%8E%9F-java%E8%8E%B7%E5%8F%96%E8%B7%AF%E5%BE%84/"/>
-    <id>https://redzealot2008.github.io/2017/04/13/原-java获取路径/</id>
+    <link href="http://redzealot2008.coding.me/2017/04/13/%E5%8E%9F-java%E8%8E%B7%E5%8F%96%E8%B7%AF%E5%BE%84/"/>
+    <id>http://redzealot2008.coding.me/2017/04/13/原-java获取路径/</id>
     <published>2017-04-12T16:15:28.000Z</published>
     <updated>2017-04-16T05:50:49.477Z</updated>
     
@@ -105,8 +105,8 @@ System&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.out&amp;l
   
   <entry>
     <title>[转]android:exported 属性详解</title>
-    <link href="https://redzealot2008.github.io/2017/04/11/%E8%BD%AC-android-exported-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/"/>
-    <id>https://redzealot2008.github.io/2017/04/11/转-android-exported-属性详解/</id>
+    <link href="http://redzealot2008.coding.me/2017/04/11/%E8%BD%AC-android-exported-%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://redzealot2008.coding.me/2017/04/11/转-android-exported-属性详解/</id>
     <published>2017-04-11T03:27:11.000Z</published>
     <updated>2017-04-16T05:50:49.477Z</updated>
     
@@ -121,8 +121,8 @@ System&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.out&amp;l
   
   <entry>
     <title>[转]Android中Preference的使用以及监听事件分析</title>
-    <link href="https://redzealot2008.github.io/2017/04/09/%E8%BD%AC-Android%E4%B8%ADPreference%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/"/>
-    <id>https://redzealot2008.github.io/2017/04/09/转-Android中Preference的使用以及监听事件分析/</id>
+    <link href="http://redzealot2008.coding.me/2017/04/09/%E8%BD%AC-Android%E4%B8%ADPreference%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90/"/>
+    <id>http://redzealot2008.coding.me/2017/04/09/转-Android中Preference的使用以及监听事件分析/</id>
     <published>2017-04-09T06:49:47.000Z</published>
     <updated>2017-04-16T05:50:49.477Z</updated>
     
@@ -137,8 +137,8 @@ System&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.out&amp;l
   
   <entry>
     <title>[原]阿里巴巴Weex对移动应用的理解</title>
-    <link href="https://redzealot2008.github.io/2017/04/06/%E5%8E%9F-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Weex%E5%AF%B9%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E7%9A%84%E7%90%86%E8%A7%A3/"/>
-    <id>https://redzealot2008.github.io/2017/04/06/原-阿里巴巴Weex对移动应用的理解/</id>
+    <link href="http://redzealot2008.coding.me/2017/04/06/%E5%8E%9F-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Weex%E5%AF%B9%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <id>http://redzealot2008.coding.me/2017/04/06/原-阿里巴巴Weex对移动应用的理解/</id>
     <published>2017-04-06T08:29:08.000Z</published>
     <updated>2017-04-16T05:50:49.478Z</updated>
     
@@ -156,8 +156,8 @@ System&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.out&amp;l
   
   <entry>
     <title>[原]JVM垃圾收集器</title>
-    <link href="https://redzealot2008.github.io/2017/04/02/%E5%8E%9F-JVM%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/"/>
-    <id>https://redzealot2008.github.io/2017/04/02/原-JVM垃圾收集器/</id>
+    <link href="http://redzealot2008.coding.me/2017/04/02/%E5%8E%9F-JVM%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/"/>
+    <id>http://redzealot2008.coding.me/2017/04/02/原-JVM垃圾收集器/</id>
     <published>2017-04-02T07:26:54.000Z</published>
     <updated>2017-04-16T05:50:49.477Z</updated>
     
@@ -179,8 +179,8 @@ System&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.out&amp;l
   
   <entry>
     <title>[原]一脸懵逼也能使用hexo搭建github博客</title>
-    <link href="https://redzealot2008.github.io/2017/03/29/%E5%8E%9F-%E4%B8%80%E8%84%B8%E6%87%B5%E9%80%BC%E4%B9%9F%E8%83%BD%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/"/>
-    <id>https://redzealot2008.github.io/2017/03/29/原-一脸懵逼也能使用hexo搭建github博客/</id>
+    <link href="http://redzealot2008.coding.me/2017/03/29/%E5%8E%9F-%E4%B8%80%E8%84%B8%E6%87%B5%E9%80%BC%E4%B9%9F%E8%83%BD%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://redzealot2008.coding.me/2017/03/29/原-一脸懵逼也能使用hexo搭建github博客/</id>
     <published>2017-03-29T06:10:26.000Z</published>
     <updated>2017-04-16T05:50:49.477Z</updated>
     
@@ -196,8 +196,8 @@ System&amp;lt;span class=&amp;quot;hljs-preprocessor&amp;quot;&amp;gt;.out&amp;l
   
   <entry>
     <title>[原]新的开始，回归自我</title>
-    <link href="https://redzealot2008.github.io/2017/03/29/%E5%8E%9F-%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B%EF%BC%8C%E5%9B%9E%E5%BD%92%E8%87%AA%E6%88%91/"/>
-    <id>https://redzealot2008.github.io/2017/03/29/原-新的开始，回归自我/</id>
+    <link href="http://redzealot2008.coding.me/2017/03/29/%E5%8E%9F-%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B%EF%BC%8C%E5%9B%9E%E5%BD%92%E8%87%AA%E6%88%91/"/>
+    <id>http://redzealot2008.coding.me/2017/03/29/原-新的开始，回归自我/</id>
     <published>2017-03-29T05:36:26.000Z</published>
     <updated>2017-04-16T05:50:49.477Z</updated>
     
