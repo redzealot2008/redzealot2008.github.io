@@ -14,7 +14,8 @@
 
   # URL
   ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-  url: https://redzealot2008.github.io
+  #url: https://redzealot2008.github.io
+  url: http://redzealot2008.coding.me
   root: /
   permalink: :year/:month/:day/:title/
   tag_dir: tags
