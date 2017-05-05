@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>第二十六章 : 启动一个项目 - Shell脚本学习 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="Linux命令行,shell,linux命令大全,shell脚本,shell脚本编程,linux shell,第二十六章 : 启动一个项目" />
+    <meta name="description" content="从这一章开始，我们将建设一个项目。这个项目的目的是为了了解怎样使用各种各样的 shell 功能来 创建程序，更重要的是，创建好程序。" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/prism.css" tppabs="http://shellbaike.com/static/css/prism.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmd/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/'" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div id="main_left" class="l mainInfo">
+            <h1 class="titleInfo">
+                第二十六章 : 启动一个项目
+            </h1>
+            <div class="info">
+                <span class="smartTime" smartTime="1420267960">2015-01-03 14:52:40 +0800 CST</span>
+            </div>
+            <div style="text-align: center;">
+    
+</div>
+            <div class="mainContent">
+                <p>从这一章开始，我们将建设一个项目。这个项目的目的是为了了解怎样使用各种各样的 shell 功能来 创建程序，更重要的是，创建好程序。</p><p>我们将要编写的程序是一个报告生成器。它会显示系统的各种统计数据和它的状态，并将产生 HTML 格式的报告， 所以我们能通过网络浏览器，比如说 Firefox 或者 Konqueror，来查看这个报告。</p><p>通常，创建程序要经过一系列阶段，每个阶段会添加新的特性和功能。我们程序的第一个阶段将会 产生一个非常小的 HTML 网页，其不包含系统信息。随后我们会添加这些信息。</p><h3>第一阶段：最小的文档</h3><p>首先我们需要知道的事是一个规则的 HTML 文档的格式。它看起来像这样：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">&lt;HTML&gt;
+      &lt;HEAD&gt;
+            &lt;TITLE&gt;Page Title&lt;/TITLE&gt;
+      &lt;/HEAD&gt;
+      &lt;BODY&gt;
+            Page body.
+      &lt;/BODY&gt;
+&lt;/HTML&gt;
+</code></pre><p>如果我们将这些内容输入到文本编辑器中，并把文件保存为 foo.html，然后我们就能在 Firefox 中 使用下面的 URL 来查看文件内容：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">file:///home/username/foo.html
+</code></pre><p>程序的第一个阶段将这个 HTML 文件输出到标准输出。我们可以编写一个程序，相当容易地完成这个任务。 启动我们的文本编辑器，然后创建一个名为 ~/bin/sys_<a href="javascript:if(confirm('http://shellbaike.com/cmd/info  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/info'" tppabs="http://shellbaike.com/cmd/info" title="info命令参数">info</a>_page 的新文件：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ vim ~/bin/sys_info_page
+</code></pre><p>随后输入下面的程序：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# Program to output a system information page
+echo "&lt;HTML&gt;"
+echo "      &lt;HEAD&gt;"
+echo "            &lt;TITLE&gt;Page Title&lt;/TITLE&gt;"
+echo "      &lt;/HEAD&gt;"
+echo "      &lt;BODY&gt;"
+echo "            Page body."
+echo "      &lt;/BODY&gt;"
+echo "&lt;/HTML&gt;"
+</code></pre><p>我们第一次尝试解决这个问题，程序包含了一个 shebang，一条注释（总是一个好主意）和一系列的 <a href="javascript:if(confirm('http://shellbaike.com/cmd/echo  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/echo'" tppabs="http://shellbaike.com/cmd/echo" title="echo用法">echo</a> 命令，每个命令负责输出一行文本。保存文件之后，我们将让它成为可执行文件，再尝试运行它：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ chmod 755 ~/bin/sys_info_page
+[me@linuxbox ~]$ sys_info_page
+</code></pre><p>当程序运行的时候，我们应该看到 HTML 文本在屏幕上显示出来，因为脚本中的 echo 命令会输出 发送到标准输出。我们再次运行这个程序，把程序的输出重定向到文件 sys_info_page.html 中， 从而我们可以通过网络浏览器来查看输出结果：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ sys_info_page &gt; sys_info_page.html
+[me@linuxbox ~]$ firefox sys_info_page.html
+</code></pre><p>到目前为止，一切顺利。</p><p>在编写程序的时候，尽量做到简单明了，这总是一个好主意。当一个程序易于阅读和理解的时候， 维护它也就更容易，更不用说，通过减少键入量，可以使程序更容易书写了。我们当前的程序版本 工作正常，但是它可以更简单些。实际上，我们可以把所有的 echo 命令结合成一个 echo 命令，当然 这样能更容易地添加更多的文本行到程序的输出中。那么，把我们的程序修改为：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# Program to output a system information page
+echo "&lt;HTML&gt;
+    &lt;HEAD&gt;
+          &lt;TITLE&gt;Page Title&lt;/TITLE&gt;
+    &lt;/HEAD&gt;
+    &lt;BODY&gt;
+          Page body.
+    &lt;/BODY&gt;
+&lt;/HTML&gt;"
+</code></pre><p>一个带引号的字符串可能包含换行符，因此可以包含多个文本行。Shell 会持续读取文本直到它遇到 右引号。它在命令行中也是这样工作的：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ echo "&lt;HTML&gt;
+
+&gt;         &lt;HEAD&gt;
+                &lt;TITLE&gt;Page Title&lt;/TITLE&gt;
+&gt;         &lt;/HEAD&gt;
+&gt;         &lt;BODY&gt;
+&gt;               Page body.
+&gt;         &lt;/BODY&gt;
+&gt;&lt;/HTML&gt;"
+</code></pre><p>开头的 “&gt;” 字符是包含在 PS2shell 变量中的 shell 提示符。每当我们在 shell 中键入多行语句的时候， 这个提示符就会出现。现在这个功能有点儿晦涩，但随后，当我们介绍多行编程语句时，它会派上大用场。</p><h3>第二阶段：添加一点儿数据</h3><p>现在我们的程序能生成一个最小的文档，让我们给报告添加些数据吧。为此，我们将做 以下修改：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# Program to output a system information page
+echo "&lt;HTML&gt;
+    &lt;HEAD&gt;
+          &lt;TITLE&gt;System Information Report&lt;/TITLE&gt;
+    &lt;/HEAD&gt;
+    &lt;BODY&gt;
+          &lt;H1&gt;System Information Report&lt;/H1&gt;
+    &lt;/BODY&gt;
+&lt;/HTML&gt;"
+</code></pre><p>我们增加了一个网页标题，并且在报告正文部分加了一个标题。</p><h3>变量和常量</h3><p>然而，我们的脚本存在一个问题。请注意字符串 “System Information Report” 是怎样被重复使用的？对于这个微小的脚本而言，它不是一个问题，但是让我们设想一下， 我们的脚本非常冗长，并且我们有许多这个字符串的实例。如果我们想要更换一个标题，我们必须 对脚本中的许多地方做修改，这会是很大的工作量。如果我们能整理一下脚本，让这个字符串只 出现一次而不是多次，会怎样呢？这样会使今后的脚本维护工作更加轻松。我们可以这样做：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# Program to output a system information page
+title="System Information Report"
+echo "&lt;HTML&gt;
+        &lt;HEAD&gt;
+                &lt;TITLE&gt;$title&lt;/TITLE&gt;
+        &lt;/HEAD&gt;
+        &lt;BODY&gt;
+                &lt;H1&gt;$title&lt;/H1&gt;
+        &lt;/BODY&gt;
+&lt;/HTML&gt;"
+</code></pre><p>通过创建一个名为 title 的变量，并把 “System Information Report” 字符串赋值给它，我们就可以利用参数展开功能，把这个字符串放到文件中的多个位置。</p><p>那么，我们怎样来创建一个变量呢？很简单，我们只管使用它。当 shell 碰到一个变量的时候，它会 自动地创建它。这不同于许多编程语言，它们中的变量在使用之前，必须显式的声明或是定义。关于 这个问题，shell 要求非常宽松，这可能会导致一些问题。例如，考虑一下在命令行中发生的这种情形：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ foo="yes"
+[me@linuxbox ~]$ echo $foo
+yes
+[me@linuxbox ~]$ echo $fool
+[me@linuxbox ~]$
+</code></pre><p>首先我们把 “yes” 赋给变量 foo，然后用 echo 命令来显示变量值。接下来，我们显示拼写错误的变量名 “fool” 的变量值，然后得到一个空值。这是因为 shell 很高兴地创建了变量 fool，当 shell 遇到 fool 的时候， 并且赋给 fool 一个空的默认值。因此，我们必须小心谨慎地拼写！同样理解实例中究竟发生了什么事情也 很重要。从我们以前学习 shell 执行展开操作，我们知道这个命令：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ echo $foo
+</code></pre><p>经历了参数展开操作，然后得到：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ echo yes
+</code></pre><p>然而这个命令：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ echo $fool
+</code></pre><p>展开为：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ echo
+</code></pre><p>这个空变量展开值为空！对于需要参数的命令来说，这会引起混乱。下面是一个例子：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ foo=foo.txt
+[me@linuxbox ~]$ foo1=foo1.txt
+[me@linuxbox ~]$ cp $foo $fool
+cp: missing destination file operand after `foo.txt'
+Try `cp --help' for more information.
+</code></pre><p>我们给两个变量赋值，foo 和 foo1。然后我们执行 <a href="javascript:if(confirm('http://shellbaike.com/cmd/cp  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cp'" tppabs="http://shellbaike.com/cmd/cp" title="cp例子">cp</a> 操作，但是拼写错了第二个参数的名字。 参数展开之后，这个 cp 命令只接受到一个参数，虽然它需要两个。</p><p>有一些关于变量名的规则：</p><ol><li><p>变量名可由字母数字字符（字母和数字）和下划线字符组成。</p></li><li><p>变量名的第一个字符必须是一个字母或一个下划线。</p></li><li><p>变量名中不允许出现空格和标点符号。</p></li></ol><p>单词 “variable” 意味着可变的值，并且在许多应用程序当中，都是以这种方式来使用变量的。然而， 我们应用程序中的变量，title，被用作一个常量。常量有一个名字且包含一个值，在这方面就 像是变量。不同之处是常量的值是不能改变的。在执行几何运算的应用程序中，我们可以把 PI 定义为 一个常量，并把 3.1415 赋值给它，用它来代替数字字面值。shell 不能辨别变量和常量；它们大多数情况下 是为了方便程序员。一个常用惯例是指定大写字母来表示常量，小写字母表示真正的变量。我们 将修改我们的脚本来遵从这个惯例：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# Program to output a system information page
+TITLE="System Information Report For $HOSTNAME"
+echo "&lt;HTML&gt;
+        &lt;HEAD&gt;
+                &lt;TITLE&gt;$title&lt;/TITLE&gt;
+        &lt;/HEAD&gt;
+        &lt;BODY&gt;
+                &lt;H1&gt;$title&lt;/H1&gt;
+        &lt;/BODY&gt;
+&lt;/HTML&gt;"
+</code></pre><p>我们亦借此机会，通过在标题中添加 shell 变量名 HOSTNAME，让标题变得活泼有趣些。 这个变量名是这台机器的网络名称。</p><hr><p>注意：实际上，shell 确实提供了一种方法，通过使用带有-r（只读）选项的内部命令 <a href="javascript:if(confirm('http://shellbaike.com/cmd/declare  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/declare'" tppabs="http://shellbaike.com/cmd/declare" title="declare命令详解">declare</a>， 来强制常量的不变性。如果我们给 TITLE 这样赋值：</p><p>那么 shell 会阻止之后给 TITLE 的任意赋值。这个功能极少被使用，但为了很早之前的脚本， 它仍然存在。</p><hr><h4>给变量和常量赋值</h4><p>这里是我们真正开始使用参数扩展知识的地方。正如我们所知道的，这样给变量赋值：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">variable=value
+</code></pre><p>这里的variable是变量的名字，value是一个字符串。不同于一些其它的编程语言，shell 不会 在乎变量值的类型；它把它们都看作是字符串。通过使用带有-i 选项的 declare 命令，你可以强制 shell 把 赋值限制为整型，但是，正如像设置变量为只读一样，极少这样做。</p><p>注意在赋值过程中，变量名，等号和变量值之间必须没有空格。那么，这些值由什么组成呢？ 可以展开成字符串的任意值：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">a=z                     # Assign the string "z" to variable a.
+b="a string"            # Embedded spaces must be within quotes.
+c="a string and $b"     # Other expansions such as variables can be
+                        # expanded into the assignment.
+
+d=$(ls -l foo.txt)      # Results of a command.
+e=$((5 * 7))            # Arithmetic expansion.
+f="\t\ta string\n"      # Escape sequences such as tabs and newlines.
+</code></pre><p>可以在同一行中对多个变量赋值：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">a=5 b="a string"
+</code></pre><p>在参数展开过程中，变量名可能被花括号 “{}” 包围着。由于变量名周围的上下文，其变得不明确的情况下， 这会很有帮助。这里，我们试图把一个文件名从 myfile 改为 myfile1，使用一个变量：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ filename="myfile"
+[me@linuxbox ~]$ touch $filename
+[me@linuxbox ~]$ mv $filename $filename1
+mv: missing destination file operand after `myfile'
+Try `mv --help' for more information.
+</code></pre><p>这种尝试失败了，因为 shell 把 <a href="javascript:if(confirm('http://shellbaike.com/cmd/mv  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/mv'" tppabs="http://shellbaike.com/cmd/mv" title="mv命令参数">mv</a> 命令的第二个参数解释为一个新的（并且空的）变量。通过这种方法 可以解决这个问题：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ mv $filename ${filename}1
+</code></pre><p>通过添加花括号，shell 不再把末尾的1解释为变量名的一部分。</p><p>我们将利用这个机会来添加一些数据到我们的报告中，即创建包括的日期和时间，以及创建者的用户名：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# Program to output a system information page
+TITLE="System Information Report For $HOSTNAME"
+CURRENT_TIME=$(date +"%x %r %Z")
+TIME_STAMP="Generated $CURRENT_TIME, by $USER"
+echo "&lt;HTML&gt;
+        &lt;HEAD&gt;
+                &lt;TITLE&gt;$TITLE&lt;/TITLE&gt;
+        &lt;/HEAD&gt;
+        &lt;BODY&gt;
+                &lt;H1&gt;$TITLE&lt;/H1&gt;
+                &lt;P&gt;$TIME_STAMP&lt;/P&gt;
+        &lt;/BODY&gt;
+&lt;/HTML&gt;"
+</code></pre><h3>Here Documents</h3><p>我们已经知道了两种不同的文本输出方法，两种方法都使用了 echo 命令。还有第三种方法，叫做 here document 或者 here script。一个 here document 是另外一种 I/O 重定向形式，我们 在脚本文件中嵌入正文文本，然后把它发送给一个命令的标准输入。它这样工作：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">command &lt;&lt; token
+text
+token
+</code></pre><p>这里的 command 是一个可以接受标准输入的命令名，token 是一个用来指示嵌入文本结束的字符串。 我们将修改我们的脚本，来使用一个 here document:</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# Program to output a system information page
+TITLE="System Information Report For $HOSTNAME"
+CURRENT_TIME=$(date +"%x %r %Z")
+TIME_STAMP="Generated $CURRENT_TIME, by $USER"
+cat &lt;&lt; _EOF_
+&lt;HTML&gt;
+         &lt;HEAD&gt;
+                &lt;TITLE&gt;$TITLE&lt;/TITLE&gt;
+         &lt;/HEAD&gt;
+         &lt;BODY&gt;
+                &lt;H1&gt;$TITLE&lt;/H1&gt;
+                &lt;P&gt;$TIME_STAMP&lt;/P&gt;
+         &lt;/BODY&gt;
+&lt;/HTML&gt;
+_EOF_
+</code></pre><p>取代 echo 命令，现在我们的脚本使用 <a href="javascript:if(confirm('http://shellbaike.com/cmd/cat  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cat'" tppabs="http://shellbaike.com/cmd/cat" title="cat用法">cat</a> 命令和一个 here document。这个字符串_EOF_（意思是“文件结尾”， 一个常见用法）被选作为 token，并标志着嵌入文本的结尾。注意这个 token 必须在一行中单独出现，并且文本行中 没有末尾的空格。</p><p>那么使用一个 here document 的优点是什么呢？它很大程度上和 echo 一样，除了默认情况下，here documents 中的单引号和双引号会失去它们在 shell 中的特殊含义。这里有一个命令中的例子：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ foo="some text"
+[me@linuxbox ~]$ cat &lt;&lt; _EOF_
+&gt; $foo
+&gt; "$foo"
+&gt; '$foo'
+&gt; \$foo
+&gt; _EOF_
+some text
+"some text"
+'some text'
+$foo
+</code></pre><p>正如我们所见到的，shell 根本没有注意到引号。它把它们看作是普通的字符。这就允许我们 在一个 here document 中可以随意的嵌入引号。对于我们的报告程序来说，这将是非常方便的。</p><p>Here documents 可以和任意能接受标准输入的命令一块使用。在这个例子中，我们使用了 一个 here document 将一系列的命令传递到这个 <a href="javascript:if(confirm('http://shellbaike.com/cmd/ftp  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/ftp'" tppabs="http://shellbaike.com/cmd/ftp" title="ftp例子">ftp</a> 程序中，为的是从一个远端 FTP 服务器中得到一个文件：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# Script to retrieve a file via FTP
+FTP_SERVER=ftp.nl.debian.org
+FTP_PATH=/debian/dists/lenny/main/installer-i386/current/images/cdrom
+REMOTE_FILE=debian-cd_info.tar.gz
+ftp -n &lt;&lt; _EOF_
+open $FTP_SERVER
+user anonymous me@linuxbox
+cd $FTP_PATH
+hash
+get $REMOTE_FILE
+bye
+_EOF_
+ls -l $REMOTE_FILE
+</code></pre><p>如果我们把重定向操作符从 “&lt;&lt;” 改为 “&lt;&lt;-”，shell 会忽略在此 here document 中开头的 tab 字符。 这就能缩进一个 here document，从而提高脚本的可读性：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# Script to retrieve a file via FTP
+FTP_SERVER=ftp.nl.debian.org
+FTP_PATH=/debian/dists/lenny/main/installer-i386/current/images/cdrom
+REMOTE_FILE=debian-cd_info.tar.gz
+ftp -n &lt;&lt;- _EOF_
+    open $FTP_SERVER
+    user anonymous me@linuxbox
+    cd $FTP_PATH
+    hash
+    get $REMOTE_FILE
+    bye
+_EOF_
+ls -l $REMOTE_FILE
+</code></pre><h3>总结归纳</h3><p>在这一章中，我们启动了一个项目，其带领我们领略了创建一个成功脚本的整个过程。 同时我们介绍了变量和常量的概念，以及怎样使用它们。它们是我们将找到的众多参数展开应用程序中的第一批实例。 我们也知道了怎样从我们的脚本文件中产生输出，及其各种各样嵌入文本块的方法。</p><h3>拓展阅读</h3><ul><li><p>关于 HTML 的更多信息，查看下面的文章和教材：</p><p><a href="javascript:if(confirm('http://en.wikipedia.org/wiki/Html  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://en.wikipedia.org/wiki/Html'" tppabs="http://en.wikipedia.org/wiki/Html" rel="nofollow">http://en.wikipedia.org/wiki/Html</a></p><p><a href="javascript:if(confirm('http://en.wikibooks.org/wiki/HTML_Programming  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://en.wikibooks.org/wiki/HTML_Programming'" tppabs="http://en.wikibooks.org/wiki/HTML_Programming" rel="nofollow">http://en.wikibooks.org/wiki/HTML_Programming</a></p><p><a href="javascript:if(confirm('http://html.net/tutorials/html/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://html.net/tutorials/html/'" tppabs="http://html.net/tutorials/html/" rel="nofollow">http://html.net/tutorials/html/</a></p></li><li><p>Bash 手册包括一节“HERE DOCUMENTS”的内容，其详细的讲述了这个功能。</p></li></ul>
+            </div>
+        </div>
+        <div id="main_right" class="r">
+            <div class="rightItem">
+                <h2>
+                    Shell脚本学习目录
+                </h2>
+                <ul>
+                    
+                    <li><a href="1.htm" tppabs="http://shellbaike.com/cmdline/1">第一章 引言</a></li>
+                    
+                    <li><a href="2.htm" tppabs="http://shellbaike.com/cmdline/2">第二章 : 什么是 shell</a></li>
+                    
+                    <li><a href="3.htm" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+                    
+                    <li><a href="5.htm" tppabs="http://shellbaike.com/cmdline/5">第四章：探究操作系统</a></li>
+                    
+                    <li><a href="6.htm" tppabs="http://shellbaike.com/cmdline/6">第五章：操作文件和目录</a></li>
+                    
+                    <li><a href="7.htm" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+                    
+                    <li><a href="8.htm" tppabs="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+                    
+                    <li><a href="9.htm" tppabs="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+                    
+                    <li><a href="10.htm" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+                    
+                    <li><a href="11.htm" tppabs="http://shellbaike.com/cmdline/11">第十章：权限</a></li>
+                    
+                    <li><a href="12.htm" tppabs="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+                    
+                    <li><a href="15.htm" tppabs="http://shellbaike.com/cmdline/15">第十二章 : shell 环境</a></li>
+                    
+                    <li><a href="16.htm" tppabs="http://shellbaike.com/cmdline/16">第十三章 : vi 简介</a></li>
+                    
+                    <li><a href="17.htm" tppabs="http://shellbaike.com/cmdline/17">第十四章 : 自定制 shell 提示符</a></li>
+                    
+                    <li><a href="18.htm" tppabs="http://shellbaike.com/cmdline/18">第十五章 : 软件包管理</a></li>
+                    
+                    <li><a href="19.htm" tppabs="http://shellbaike.com/cmdline/19">第十六章 : 存储媒介</a></li>
+                    
+                    <li><a href="20.htm" tppabs="http://shellbaike.com/cmdline/20">第十七章 : 网络系统</a></li>
+                    
+                    <li><a href="21.htm" tppabs="http://shellbaike.com/cmdline/21">第十八章 : 查找文件</a></li>
+                    
+                    <li><a href="22.htm" tppabs="http://shellbaike.com/cmdline/22">第十九章 : 归档和备份</a></li>
+                    
+                    <li><a href="23.htm" tppabs="http://shellbaike.com/cmdline/23">第二十章 : 正则表达式</a></li>
+                    
+                    <li><a href="24.htm" tppabs="http://shellbaike.com/cmdline/24">第二十一章 : 文本处理</a></li>
+                    
+                    <li><a href="25.htm" tppabs="http://shellbaike.com/cmdline/25">第二十二章 : 格式化输出</a></li>
+                    
+                    <li><a href="26.htm" tppabs="http://shellbaike.com/cmdline/26">第二十三章 : 打印</a></li>
+                    
+                    <li><a href="27.htm" tppabs="http://shellbaike.com/cmdline/27">第二十四章 : 编译程序</a></li>
+                    
+                    <li><a href="28.htm" tppabs="http://shellbaike.com/cmdline/28">第二十五章 : 编写第一个 Shell 脚本</a></li>
+                    
+                    <li><a href="29.htm" tppabs="http://shellbaike.com/cmdline/29">第二十六章 : 启动一个项目</a></li>
+                    
+                    <li><a href="30.htm" tppabs="http://shellbaike.com/cmdline/30">第二十七章 : 自顶向下设计</a></li>
+                    
+                    <li><a href="31.htm" tppabs="http://shellbaike.com/cmdline/31">第二十八章 : 流程控制：if 分支结构</a></li>
+                    
+                    <li><a href="32.htm" tppabs="http://shellbaike.com/cmdline/32">第二十九章 : 读取键盘输入</a></li>
+                    
+                    <li><a href="33.htm" tppabs="http://shellbaike.com/cmdline/33">第三十章 : 流程控制：while/until 循环</a></li>
+                    
+                    <li><a href="34.htm" tppabs="http://shellbaike.com/cmdline/34">第三十一章 : 疑难排解</a></li>
+                    
+                    <li><a href="35.htm" tppabs="http://shellbaike.com/cmdline/35">第三十二章 : 流程控制：case 分支</a></li>
+                    
+                    <li><a href="36.htm" tppabs="http://shellbaike.com/cmdline/36">第三十三章 : 位置参数</a></li>
+                    
+                    <li><a href="37.htm" tppabs="http://shellbaike.com/cmdline/37">第三十四章 : 流程控制：for 循环</a></li>
+                    
+                    <li><a href="38.htm" tppabs="http://shellbaike.com/cmdline/38">第三十五章 : 字符串和数字</a></li>
+                    
+                    <li><a href="39.htm" tppabs="http://shellbaike.com/cmdline/39">第三十六章 : 数组</a></li>
+                    
+                    <li><a href="40.htm" tppabs="http://shellbaike.com/cmdline/40">第三十七章 : 奇珍异宝</a></li>
+                    
+                </ul>
+            </div>
+            <div class="rightItem">
+    <h2>
+        Shell随机文章
+    </h2>
+    <ul>
+        
+        <li><a href="3.htm" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+        
+        <li><a href="6.htm" tppabs="http://shellbaike.com/cmdline/6">第五章：操作文件和目录</a></li>
+        
+        <li><a href="7.htm" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+        
+        <li><a href="8.htm" tppabs="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+        
+        <li><a href="9.htm" tppabs="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+        
+        <li><a href="10.htm" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+        
+        <li><a href="12.htm" tppabs="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/shell/13  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/13'" tppabs="http://shellbaike.com/shell/13">Linux安装软件</a></li>
+        
+        <li><a href="16.htm" tppabs="http://shellbaike.com/cmdline/16">第十三章 : vi 简介</a></li>
+        
+        <li><a href="19.htm" tppabs="http://shellbaike.com/cmdline/19">第十六章 : 存储媒介</a></li>
+        
+    </ul>
+</div>
+            <div class="rightItem">
+    <h2>
+        Linux常用命令
+    </h2>
+    <ul>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/apmd  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/apmd'" tppabs="http://shellbaike.com/cmd/apmd">apmd</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/apropos  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/apropos'" tppabs="http://shellbaike.com/cmd/apropos">apropos</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/aumix  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/aumix'" tppabs="http://shellbaike.com/cmd/aumix">aumix</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/bg  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/bg'" tppabs="http://shellbaike.com/cmd/bg">bg</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/bunzip2  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/bunzip2'" tppabs="http://shellbaike.com/cmd/bunzip2">bunzip2</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/bzip2  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/bzip2'" tppabs="http://shellbaike.com/cmd/bzip2">bzip2</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/cat  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cat'" tppabs="http://shellbaike.com/cmd/cat">cat</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/cd  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cd'" tppabs="http://shellbaike.com/cmd/cd">cd</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/cfdisk  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cfdisk'" tppabs="http://shellbaike.com/cmd/cfdisk">cfdisk</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/chfn  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/chfn'" tppabs="http://shellbaike.com/cmd/chfn">chfn</a></li>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+            <br/>
+<script type="text/javascript">
+    document.write('<a style="display:none!important" id="tanx-a-mm_12741493_8680874_29282972"></a>');
+    tanx_s = document.createElement("script");
+    tanx_s.type = "text/javascript";
+    tanx_s.charset = "gbk";
+    tanx_s.id = "tanx-s-mm_12741493_8680874_29282972";
+    tanx_s.async = true;
+    tanx_s.src = "../../p.tanx.com/ex-i=mm_12741493_8680874_29282972"/*tpa=http://p.tanx.com/ex?i=mm_12741493_8680874_29282972*/;
+    tanx_h = document.getElementsByTagName("head")[0];
+    if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
+</script>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="javascript:if(confirm('http://shellbaike.com/cmd/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/'" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/main.js" tppabs="http://shellbaike.com/static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/prism_pre.js" tppabs="http://shellbaike.com/static/js/prism_pre.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        $(".smartTime").smartTime();
+        $(".mainInfo").dblclick(function(){
+            $("html , body").animate({scrollTop:"0"}, 0);
+        });
+    });
+</script>
+</body>
+</html>

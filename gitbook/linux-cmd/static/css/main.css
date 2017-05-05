@@ -1,0 +1,349 @@
+/* 全局 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body,table,input,textarea,select,button {
+    font-family: 微软雅黑, Verdana, sans-serif, 宋体;
+    color: #000;
+    font-size: 16px;
+}
+input, textarea {
+    outline: none;
+}
+
+a {
+    color: #333;
+    outline: 0;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #09c;
+    text-decoration: none;
+}
+
+/*a:visited {*/
+    /*color: #750075;*/
+/*}*/
+
+ul,ol {
+    list-style-type: none;
+}
+
+img {
+    border: 0;
+}
+
+body {
+    background: #fff;
+    text-align: left;
+    font-size: 12pt;
+}
+
+.l {
+    float: left;
+}
+.r {
+    float: right;
+}
+.clear {
+    clear: both;
+    font-size: 1px;
+    line-height: 0;
+}
+.danger {
+    color: #da4f49;
+}
+.warning {
+    color: #faa732;
+}
+.inp {
+    font-family: inherit;
+    font-size: 100%;
+    padding: .5em 1em;
+    color: #444;
+    color: rgba(0,0,0,.8);
+    border: 1px solid #999;
+    border: 0 rgba(0,0,0,0);
+    background-color: #E6E6E6;
+    text-decoration: none;
+    border-radius: 2px;
+}
+.tags, .tags a, .date, .date a, .info, .info a {
+    color: #BBB;
+}
+.tags a {
+    margin-right: 10px;
+}
+
+.wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+#header_top {
+    margin: 20px 0 10px 0;
+    width: 190px;
+    display: inline-block;
+    float: left;
+}
+#header_ad {
+    display: block;
+    margin-left: 190px;
+    height: 67px;
+    padding-top: 10px;
+}
+#header_nav {
+    padding: 10px 0;
+    margin-top: 10px;
+    border-bottom: 7px solid;
+}
+#header_nav li a:visited {
+    color: #333;
+}
+#header_nav li a:hover {
+    color: #09c;
+}
+#header_nav li {
+    display: inline-block;
+    margin-right: 10px;
+}
+.logH1 a {
+    color: #333;
+}
+.logH3 a {
+    color: #09c;
+}
+
+#main {
+    margin-bottom: 30px;
+}
+#main_left {
+    width: 64%;
+    display: inline-block;
+}
+#main_right {
+    width: 30%;
+    display: inline-block;
+}
+.index_Item {
+    width: 32%;
+    display: inline-block;
+}
+
+.postItem {
+    line-height: 22px;
+    margin: 20px 0;
+    border-bottom: 1px dotted #e8e8e8;
+}
+.postItem h1 {
+    font-size: 20px;
+}
+.postItem p {
+    margin: 6px 0;
+}
+.postItem .post_info {
+    margin-bottom: 4px;
+}
+
+.pagination {
+    text-align: center;
+    border-bottom: 1px solid #f2f2f2;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.pagination li {
+    display: inline-block;
+}
+.pagination li a {
+    display: inline-block;
+    line-height: 50px;
+    width: 50px;
+}
+.pagination .currentPage {
+    font-weight: bold;
+}
+
+
+#footer {
+    background: #f8f8f8;
+    padding: 40px 0 0 0;
+    border-top: 1px solid #eee;
+}
+
+.cmdinfoSearcher {
+    padding-top: 20px;
+    text-align: center;
+}
+.cmdinfoSearcher input {
+    width: 40%;
+}
+
+.cmdinfoList {
+    padding-top: 20px;
+    min-height: 350px;
+}
+.cl_item {
+    width: 30%;
+    padding-left: 2%;
+    height: 41px;
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 20px;
+}
+.cl_item .info {
+    font-size: 15px;
+}
+
+.rightItem {
+    padding: 20px 20px 0px 20px;
+}
+.rightItem h2 {
+    font-size: 20px;
+}
+.rightItem li {
+    margin-top: 10px;
+}
+.rightItem .tagItem {
+    margin-right: 10px;
+    float: left;
+}
+
+.mainInfo .titleInfo {
+    margin-top: 20px;
+}
+.mainInfo .titleInfo, .mainInfo .info {
+    text-align: center;
+}
+.mainInfo .info {
+    margin: 10px 0;
+}
+.mainInfo p {
+    line-height: 30px;
+    /*text-indent: 2em;*/
+}
+.mainInfo blockquote {
+    border-left: 6px solid #ddd;
+    padding: 5px 0 5px 10px;
+    margin: 15px 0 15px 15px;
+}
+.mainInfo blockquote p {
+    /*text-indent: 0em;*/
+}
+
+.mainInfo {
+    overflow: hidden;
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
+.mainInfo h1, .mainInfo h2, .mainInfo h3, .mainInfo h4, .mainInfo h5, .mainInfo h6 {
+    position: relative;
+    margin-top: 1em;
+    margin-bottom: 16px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+.mainInfo h1 {
+    padding-bottom: 0.3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+.mainInfo h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+.mainInfo p, .mainInfo blockquote, .mainInfo ul, .mainInfo ol, .mainInfo dl, .mainInfo table, .mainInfo pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+.mainInfo ul, .mainInfo ol {
+    padding-left: 2em;
+}
+.mainInfo ul ul, .mainInfo ul ol, .mainInfo ol ol, .mainInfo ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.mainInfo li {
+    list-style: disc;
+}
+.mainInfo li li {
+    list-style: circle;
+}
+.mainInfo li li li {
+    list-style: square;
+}
+.mainInfo img {
+    max-width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.mainInfo h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+.mainInfo h4 {
+    font-size: 1.3em;
+    line-height: 1.43;
+}
+.mainInfo h5 {
+    font-size: 1em;
+}
+.mainInfo hr {
+    height: 4px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+}
+.mainInfo a {
+    color: #09c;
+}
+
+.links {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.links h3 {
+    font-size: 16px;
+    margin: 5px;
+}
+.links ul {
+    margin: 5px;
+}
+.links li {
+    float: left;
+    margin-right: 15px;
+}
+
+@media screen and (max-width: 960px) {
+    .wrapper {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+@media screen and (max-width: 700px) {
+    #main_left {
+        width: 100%;
+    }
+    #main_right {
+        width: 100%;
+    }
+    .cmdinfoSearcher input {
+        width: 90%;
+    }
+    .index_Item {
+        width: 100%;
+    }
+}

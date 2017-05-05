@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>磁盘管理相关命令 - linux命令大全 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="磁盘管理相关命令,shell,linux命令大全,shell脚本,shell脚本编程,linux shell" />
+    <link rel="stylesheet" href="../../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="../index.htm" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/'" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div class="cmdinfoList">
+            <h1>磁盘管理</h1>
+            
+            <div class="cl_item">
+                <a href="../cd.htm" tppabs="http://shellbaike.com/cmd/cd">cd</a>
+                <div class="info">
+                    切换目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../df.htm" tppabs="http://shellbaike.com/cmd/df">df</a>
+                <div class="info">
+                    显示磁盘的文件系统与使用情况
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../dirs.htm" tppabs="http://shellbaike.com/cmd/dirs">dirs</a>
+                <div class="info">
+                    显示目录记录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../du.htm" tppabs="http://shellbaike.com/cmd/du">du</a>
+                <div class="info">
+                    显示目录或文件的大小
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../edquota.htm" tppabs="http://shellbaike.com/cmd/edquota">edquota</a>
+                <div class="info">
+                    编辑用户或群组的quota
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../eject.htm" tppabs="http://shellbaike.com/cmd/eject">eject</a>
+                <div class="info">
+                    退出抽取式设备
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../lndir.htm" tppabs="http://shellbaike.com/cmd/lndir">lndir</a>
+                <div class="info">
+                    连接目录内容
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../ls.htm" tppabs="http://shellbaike.com/cmd/ls">ls</a>
+                <div class="info">
+                    列出目录内容
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mcd.htm" tppabs="http://shellbaike.com/cmd/mcd">mcd</a>
+                <div class="info">
+                    在MS-DOC系统上切换目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mdeltree.htm" tppabs="http://shellbaike.com/cmd/mdeltree">mdeltree</a>
+                <div class="info">
+                    删除MS-DOS系统文件目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mdu.htm" tppabs="http://shellbaike.com/cmd/mdu">mdu</a>
+                <div class="info">
+                    显示MS-DOS系统目录所占用的磁盘空间
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mkdir.htm" tppabs="http://shellbaike.com/cmd/mkdir">mkdir</a>
+                <div class="info">
+                    于目前目录有适当权限的所有使用者
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mlabel.htm" tppabs="http://shellbaike.com/cmd/mlabel">mlabel</a>
+                <div class="info">
+                    显示或设置MS-DOS磁盘的标签名称
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mmd.htm" tppabs="http://shellbaike.com/cmd/mmd">mmd</a>
+                <div class="info">
+                    在MS-DOS文件系统中建立目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mmount.htm" tppabs="http://shellbaike.com/cmd/mmount">mmount</a>
+                <div class="info">
+                    挂入MS-DOS文件系统
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mount.htm" tppabs="http://shellbaike.com/cmd/mount">mount</a>
+                <div class="info">
+                    加载文件系统
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mrd.htm" tppabs="http://shellbaike.com/cmd/mrd">mrd</a>
+                <div class="info">
+                    删除MS-DOS文件系统中的目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mzip.htm" tppabs="http://shellbaike.com/cmd/mzip">mzip</a>
+                <div class="info">
+                    Zip/Jaz磁盘驱动器控制指令
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../pwd.htm" tppabs="http://shellbaike.com/cmd/pwd">pwd</a>
+                <div class="info">
+                    显示工作目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../quota.htm" tppabs="http://shellbaike.com/cmd/quota">quota</a>
+                <div class="info">
+                    显示磁盘已使用的空间与限制
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../quotacheck.htm" tppabs="http://shellbaike.com/cmd/quotacheck">quotacheck</a>
+                <div class="info">
+                    检查磁盘的使用空间与限制
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../quotaoff.htm" tppabs="http://shellbaike.com/cmd/quotaoff">quotaoff</a>
+                <div class="info">
+                    关闭磁盘空间限制
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../quotaon.htm" tppabs="http://shellbaike.com/cmd/quotaon">quotaon</a>
+                <div class="info">
+                    开启磁盘空间限制
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../repquota.htm" tppabs="http://shellbaike.com/cmd/repquota">repquota</a>
+                <div class="info">
+                    检查磁盘空间限制的状态
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../rmdir.htm" tppabs="http://shellbaike.com/cmd/rmdir">rmdir</a>
+                <div class="info">
+                    删除目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../rmt.htm" tppabs="http://shellbaike.com/cmd/rmt">rmt</a>
+                <div class="info">
+                    远端磁带传输协议模块
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../stat.htm" tppabs="http://shellbaike.com/cmd/stat">stat</a>
+                <div class="info">
+                    显示inode内容
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../tree.htm" tppabs="http://shellbaike.com/cmd/tree">tree</a>
+                <div class="info">
+                    以树状图列出目录的内容
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../umount.htm" tppabs="http://shellbaike.com/cmd/umount">umount</a>
+                <div class="info">
+                    卸除文件系统
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="../index.htm" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+</body>
+</html>

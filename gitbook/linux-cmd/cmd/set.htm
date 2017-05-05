@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>setå‘½ä»¤è¯¦è§£ - Linuxå‘½ä»¤å¤§å…¨ - Shellç™¾ç§‘</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="setå‘½ä»¤è¯¦è§£,linuxå‘½ä»¤å¤§å…¨,linuxå¸¸ç”¨å‘½ä»¤,shell,setç”¨æ³•" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/prism.css" tppabs="http://shellbaike.com/static/css/prism.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shellç™¾ç§‘ æœ€å…¨linuxå‘½ä»¤å¤§å…¨ Shellè„šæœ¬ç¼–ç¨‹æŠ€å·§åˆ†äº«">Shellç™¾ç§‘</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">é¦–é¡µ</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmd/">Linuxå‘½ä»¤å¤§å…¨</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/'" tppabs="http://shellbaike.com/cmdline/">Shellè„šæœ¬å­¦ä¹ </a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shellè„šæœ¬ç¼–ç¨‹</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linuxèµ„è®¯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div id="main_left" class="l mainInfo">
+            <h1 class="titleInfo">
+                setå‘½ä»¤è¯¦è§£
+            </h1>
+            <div class="info">
+                è®¾å®šshell
+            </div>
+            <div style="text-align: center;">
+    
+</div>
+            <div class="mainContent">
+                <h2>è¯­æ³•</h2>
+
+<p>set [+-abCdefhHklmnpPtuvx]</p>
+
+<h2>åŠŸèƒ½ä»‹ç»</h2>
+
+<p>set ä¸º bash shell ä¸­æŸ¥è¯¢æˆ–è®¾å®šçŽ¯å¢ƒå˜é‡çš„å‘½ä»¤ã€‚set å‘½ä»¤èƒ½ä¾ç…§ä¸åŒçš„éœ€è¦è®¾å®šæ‰€ä½¿ç”¨ shell çš„æ‰§è¡Œæ–¹å¼ã€‚è€Œ set ä¹Ÿèƒ½æŸ¥è¯¢å˜é‡ï¼Œshell å¯å°†å˜é‡åˆ°å¤„æˆä¸ºçŽ¯å¢ƒå˜é‡ï¼ˆä½¿ç”¨ exportå‘½ä»¤ï¼‰ï¼Œè®©æ‰€æœ‰çš„å‘½ä»¤éƒ½å¯å­˜å–çŽ¯å¢ƒå˜é‡ã€‚è‹¥ä¸åŠ ä»»ä½•å‚æ•°ï¼Œåˆ™ä¼šæ˜¾ç¤ºå½“å‰æ‰€æœ‰å˜é‡ã€‚</p>
+
+<h2>å‚æ•°</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">å‚æ•°</th>
+<th align="left">ä½œç”¨</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">-a</td>
+<td align="left">è¡¨ç¤ºå·²ä¿®æ”¹çš„å˜é‡ï¼Œä»¥ä¾›è¾“å‡ºè‡³çŽ¯å¢ƒå˜é‡</td>
+</tr>
+
+<tr>
+<td align="left">-b</td>
+<td align="left">ä½¿è¢«ç»ˆæ­¢çš„åŽå°ç¨‹åºç«‹åˆ»è¿”å›žæ‰§è¡Œæƒ…å†µ</td>
+</tr>
+
+<tr>
+<td align="left">-C</td>
+<td align="left">ä¸“é¡¹æ‰€äº§ç”Ÿçš„æ–‡ä»¶æ— æ³•å¤å†™å·²å­˜åœ¨çš„æ–‡ä»¶</td>
+</tr>
+
+<tr>
+<td align="left">-d</td>
+<td align="left">shell é»˜è®¤ä¼šç”¨å“ˆå¸Œè¡¨è®°å¿†ä½¿ç”¨è¿‡çš„å‘½ä»¤ï¼Œä»¥åŠ é€Ÿå‘½ä»¤çš„æŒ‡å®šã€‚ä½¿ç”¨â€œ-dâ€å‚æ•°å¯å–æ¶ˆè¯¥åŠŸèƒ½</td>
+</tr>
+
+<tr>
+<td align="left">-e</td>
+<td align="left">è‹¥å‘½ä»¤è¿”å›žå€¼ä¸ç­‰äºŽ0ï¼Œåˆ™ç«‹å³é€€å‡º shell</td>
+</tr>
+
+<tr>
+<td align="left">-f</td>
+<td align="left">å–æ¶ˆä½¿ç”¨é€šé…å­—ç¬¦ã€‚shell æœ‰3ä¸­é€šé…ç¬¦ï¼šâ€œ*â€ï¼Œâ€œï¼Ÿâ€åŠâ€œ[abc]â€ ã€‚ä¾‹å¦‚â€œab*â€è¡¨ç¤ºä»¥ ab ä¸ºå¼€å¤´çš„å­—ç¬¦ä¸²ã€‚â€œå®‰æ ‡ï¼Ÿâ€åˆ™æ˜¯abå¼€å¤´ï¼Œé•¿åº¦ä¸º3ä¸ªå­—ç¬¦çš„å­—ç¬¦ä¸²ã€‚â€œab[a-c]â€æ„æŒ‡abaã€abbã€åŠabcç­‰3ä¸ªå­—ç¬¦ä¸²</td>
+</tr>
+
+<tr>
+<td align="left">-h</td>
+<td align="left">è‡ªåŠ¨è®°å½•å‡½æ•°çš„æ‰€åœ¨ä½ç½®</td>
+</tr>
+
+<tr>
+<td align="left">-H</td>
+<td align="left">å¯åˆ©ç”¨â€œ!â€åŠ ä¸Š&lt;å‘½ä»¤ç¼–å·&gt;çš„æ–¹å¼æ¥æ‰§è¡Œhistoryä¸­è®°å½•çš„å‘½ä»¤</td>
+</tr>
+
+<tr>
+<td align="left">-k</td>
+<td align="left">å‘½ä»¤æ‰€ç»™çš„å‚æ•°ä¼šè¢«è§†ä¸ºæ­¤å‘½ä»¤çš„çŽ¯å¢ƒå˜é‡</td>
+</tr>
+
+<tr>
+<td align="left">-l</td>
+<td align="left">è®°å½• for å¾ªçŽ¯çš„å˜é‡åç§°</td>
+</tr>
+
+<tr>
+<td align="left">-m</td>
+<td align="left">ä½¿ç”¨ç›‘è§†æ¨¡å¼ã€‚åœ¨æ­¤æ¨¡å¼ä¸‹ï¼ŒåŽå°æ‰§è¡Œçš„ç¨‹åºè‹¥æ‰§è¡Œç»“æŸï¼Œä¼šæ˜¾ç¤ºæ‰§è¡Œç»“æžœ</td>
+</tr>
+
+<tr>
+<td align="left">-n</td>
+<td align="left">åªè¯»å–å‘½ä»¤ï¼Œè€Œä¸å®žé™…æ‰§è¡Œã€‚é€šå¸¸ç”¨æ¥æµ‹è¯• shell script æ˜¯å¦æ­£ç¡®</td>
+</tr>
+
+<tr>
+<td align="left">-p</td>
+<td align="left">å¯åŠ¨ä¼˜å…ˆé¡ºåºæ¨¡å¼</td>
+</tr>
+
+<tr>
+<td align="left">-t</td>
+<td align="left">æ‰§è¡Œå®ŒéšåŽçš„å‘½ä»¤ï¼Œå³æŽ¨å‡º shell</td>
+</tr>
+
+<tr>
+<td align="left">-u</td>
+<td align="left">å½“æ‰§è¡Œæ—¶ï¼Œä½¿ç”¨åˆ°æœªå®šä¹‰è¿‡çš„å˜é‡ï¼Œåˆ™æ˜¾ç¤ºé”™è¯¯ä¿¡æ¯</td>
+</tr>
+
+<tr>
+<td align="left">-v</td>
+<td align="left">æ˜¾ç¤º shell æ‰€è¯»å–çš„è¾“å…¥å€¼</td>
+</tr>
+
+<tr>
+<td align="left">-x</td>
+<td align="left">æ‰§è¡Œå‘½ä»¤åŽï¼Œä¼šå…ˆæ˜¾ç¤ºè¯¥å‘½ä»¤åŠæ‰€ä¸‹çš„å‚æ•°</td>
+</tr>
+
+<tr>
+<td align="left">+&lt;å‚æ•°&gt;</td>
+<td align="left">å–æ¶ˆæŸä¸ª set æ›¾å¯åŠ¨çš„å‚æ•°ã€‚æ­¤&lt;å‚æ•°&gt;å¯ä¸ºä»¥ä¸Šä»‹ç»è¿‡çš„å‚æ•°ã€‚ä¾‹å¦‚æ‰§è¡Œ set -x åŽï¼Œå¯æ‰§è¡Œ set +x å–æ¶ˆ</td>
+</tr>
+</tbody>
+</table>
+
+<h2>ä¾‹å­</h2>
+
+<p>æŸ¥è¯¢å½“å‰æ‰€æœ‰çš„å˜é‡ï¼š</p>
+
+<pre><code class="language-bash"># set
+BASH=/bin/bash
+BASHOPTS=checkwinsize:cmdhist:expand_aliases:extquote:force_fignore:hostcomplete:interactive_comments:login_shell:progcomp:promptvars:sourcepath
+BASH_ALIASES=()
+BASH_ARGC=()
+BASH_ARGV=()
+BASH_CMDS=()
+...
+</code></pre>
+
+            </div>
+        </div>
+        <div id="main_right" class="r">
+            <div class="rightItem">
+                <ul>
+                    
+                    <li class="tagItem"><a href="tag/setting.htm" tppabs="http://shellbaike.com/cmd/tag/setting">ç³»ç»Ÿè®¾ç½®</a></li>
+                    
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="rightItem">
+                <h2>
+                    set ç›¸å…³æ–‡ç« 
+                </h2>
+                <ul>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/shell/76  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/shell/76'" tppabs="http://shellbaike.com/shell/76">linuxå¦‚ä½•ä½¿ç”¨vim æ–‡æœ¬ç¼–è¾‘å™¨</a></li>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/shell/51  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/shell/51'" tppabs="http://shellbaike.com/shell/51">Shellå¸¸ç”¨å‘½ä»¤æ•´ç†</a></li>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/shell/41  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/shell/41'" tppabs="http://shellbaike.com/shell/41">Top å‘½ä»¤è¯¦è§£</a></li>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/34  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/34'" tppabs="http://shellbaike.com/cmdline/34">ç¬¬ä¸‰åä¸€ç«  : ç–‘éš¾æŽ’è§£</a></li>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/28  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/28'" tppabs="http://shellbaike.com/cmdline/28">ç¬¬äºŒåäº”ç«  : ç¼–å†™ç¬¬ä¸€ä¸ª Shell è„šæœ¬</a></li>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/16  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/16'" tppabs="http://shellbaike.com/cmdline/16">ç¬¬åä¸‰ç«  : vi ç®€ä»‹</a></li>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/15  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/15'" tppabs="http://shellbaike.com/cmdline/15">ç¬¬åäºŒç«  : shell çŽ¯å¢ƒ</a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="rightItem">
+                <h2>
+                    set ç›¸å…³å‘½ä»¤
+                </h2>
+                <ul>
+                    
+                    <li class="tagItem"><a href="declare.htm" tppabs="http://shellbaike.com/cmd/declare">declare</a></li>
+                    
+                    <li class="tagItem"><a href="export.htm" tppabs="http://shellbaike.com/cmd/export">export</a></li>
+                    
+                    <li class="tagItem"><a href="setenv.htm" tppabs="http://shellbaike.com/cmd/setenv">setenv</a></li>
+                    
+                </ul>
+                <div class="clear"></div>
+            </div>
+            
+            <div class="rightItem">
+    <h2>
+        Shelléšæœºæ–‡ç« 
+    </h2>
+    <ul>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/2  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/2'" tppabs="http://shellbaike.com/cmdline/2">ç¬¬äºŒç«  : ä»€ä¹ˆæ˜¯ shell</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/3  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/3'" tppabs="http://shellbaike.com/cmdline/3">ç¬¬ä¸‰ç« ï¼šæ–‡ä»¶ç³»ç»Ÿä¸­è·³è½¬</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/6  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/6'" tppabs="http://shellbaike.com/cmdline/6">ç¬¬äº”ç« ï¼šæ“ä½œæ–‡ä»¶å’Œç›®å½•</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/7  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/7'" tppabs="http://shellbaike.com/cmdline/7">ç¬¬å…­ç« ï¼šä½¿ç”¨å‘½ä»¤</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/8  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/8'" tppabs="http://shellbaike.com/cmdline/8">ç¬¬ä¸ƒç« ï¼šé‡å®šå‘</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/9  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/9'" tppabs="http://shellbaike.com/cmdline/9">ç¬¬å…«ç« ï¼šä»Ž shell çœ¼ä¸­çœ‹ä¸–ç•Œ</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/10  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/10'" tppabs="http://shellbaike.com/cmdline/10">ç¬¬ä¹ç« ï¼šé”®ç›˜é«˜çº§æ“ä½œæŠ€å·§</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/12  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/12'" tppabs="http://shellbaike.com/cmdline/12">ç¬¬åä¸€ç« ï¼šè¿›ç¨‹</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/shell/13  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/shell/13'" tppabs="http://shellbaike.com/shell/13">Linuxå®‰è£…è½¯ä»¶</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/16  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/16'" tppabs="http://shellbaike.com/cmdline/16">ç¬¬åä¸‰ç«  : vi ç®€ä»‹</a></li>
+        
+    </ul>
+</div>
+            <div class="rightItem">
+    <h2>
+        Linuxå¸¸ç”¨å‘½ä»¤
+    </h2>
+    <ul>
+        
+        <li class="tagItem"><a href="apmd.htm" tppabs="http://shellbaike.com/cmd/apmd">apmd</a></li>
+        
+        <li class="tagItem"><a href="apropos.htm" tppabs="http://shellbaike.com/cmd/apropos">apropos</a></li>
+        
+        <li class="tagItem"><a href="aumix.htm" tppabs="http://shellbaike.com/cmd/aumix">aumix</a></li>
+        
+        <li class="tagItem"><a href="bg.htm" tppabs="http://shellbaike.com/cmd/bg">bg</a></li>
+        
+        <li class="tagItem"><a href="bunzip2.htm" tppabs="http://shellbaike.com/cmd/bunzip2">bunzip2</a></li>
+        
+        <li class="tagItem"><a href="bzip2.htm" tppabs="http://shellbaike.com/cmd/bzip2">bzip2</a></li>
+        
+        <li class="tagItem"><a href="cat.htm" tppabs="http://shellbaike.com/cmd/cat">cat</a></li>
+        
+        <li class="tagItem"><a href="cd.htm" tppabs="http://shellbaike.com/cmd/cd">cd</a></li>
+        
+        <li class="tagItem"><a href="cfdisk.htm" tppabs="http://shellbaike.com/cmd/cfdisk">cfdisk</a></li>
+        
+        <li class="tagItem"><a href="chfn.htm" tppabs="http://shellbaike.com/cmd/chfn">chfn</a></li>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>å‹æƒ…é“¾æŽ¥</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="index.htm" tppabs="http://shellbaike.com/cmd/" title="Linuxå‘½ä»¤å¤§å…¨" target="_blank">Linuxå‘½ä»¤å¤§å…¨</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="åªçœ‹æ¥¼ä¸»ç½‘ - æœ€ä¸“ä¸šçš„åªçœ‹æ¥¼ä¸»ç²¾å“å¸–å­ç½‘ç«™" target="_blank">åªçœ‹æ¥¼ä¸»ç½‘</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - æœ€å…¨çš„Luceneæ•™ç¨‹ã€Luceneå…¥é—¨ã€Lucene APIã€Luceneèµ„æ–™ç½‘ç«™" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL ç™¾ç§‘</p><br/>
+        <p class="info">æœ€å…¨linuxå‘½ä»¤å¤§å…¨ Shellè„šæœ¬ç¼–ç¨‹æŠ€å·§åˆ†äº«</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/main.js" tppabs="http://shellbaike.com/static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/prism.js" tppabs="http://shellbaike.com/static/js/prism.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        $(".mainInfo").dblclick(function(){
+            $("html , body").animate({scrollTop:"0"}, 0);
+        });
+    });
+</script>
+</body>
+</html>

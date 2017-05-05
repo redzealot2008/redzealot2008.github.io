@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>rsync命令详解 - Linux命令大全 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="rsync命令详解,linux命令大全,linux常用命令,shell,rsync用法" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/prism.css" tppabs="http://shellbaike.com/static/css/prism.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/'" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div id="main_left" class="l mainInfo">
+            <h1 class="titleInfo">
+                rsync命令详解
+            </h1>
+            <div class="info">
+                同步远端文件和目录
+            </div>
+            <div style="text-align: center;">
+    
+</div>
+            <div class="mainContent">
+                <h2>语法</h2>
+
+<p>rsync [OPTION]&hellip; SRC DEST</p>
+
+<p>rsync [OPTION]&hellip; SRC [USER@]HOST:DEST</p>
+
+<p>rsync [OPTION]&hellip; [USER@]HOST:SRC DEST</p>
+
+<p>rsync [OPTION]&hellip; [USER@]HOST::SRC DEST</p>
+
+<p>rsync [OPTION]&hellip; SRC [USER@]HOST::DEST</p>
+
+<p>rsync [OPTION]&hellip; rsync://[USER@]HOST[:PORT]/SRC [DEST]</p>
+
+<p>对应于以上六种命令格式，rsync有六种不同的工作模式：</p>
+
+<p>1)拷贝本地文件。当SRC和DES路径信息都不包含有单个冒号&rdquo;:&ldquo;分隔符时就启动这种工作模式。如：rsync -a /data /backup</p>
+
+<p>2)使用一个远程shell程序(如rsh、ssh)来实现将本地机器的内容拷贝到远程机器。当DST路径地址包含单个冒号&rdquo;:&ldquo;分隔符时启动该模式。如：rsync -avz *.c foo:src</p>
+
+<p>3)使用一个远程shell程序(如rsh、ssh)来实现将远程机器的内容拷贝到本地机器。当SRC地址路径包含单个冒号&rdquo;:&ldquo;分隔符时启动该模式。如：rsync -avz foo:src/bar /data</p>
+
+<p>4)从远程rsync服务器中拷贝文件到本地机。当SRC路径信息包含&rdquo;::&ldquo;分隔符时启动该模式。如：rsync -av root@172.16.78.192::www /databack</p>
+
+<p>5)从本地机器拷贝文件到远程rsync服务器中。当DST路径信息包含&rdquo;::&ldquo;分隔符时启动该模式。如：rsync -av /databack root@172.16.78.192::www</p>
+
+<p>6)列远程机的文件列表。这类似于rsync传输，不过只要在命令中省略掉本地机信息即可。如：rsync -v rsync://172.16.78.192/www</p>
+
+<h2>功能介绍</h2>
+
+<p>rsync是类unix系统下的数据镜像备份工具——remote sync。一款快速增量备份工具 Remote Sync，远程同步 支持本地复制，或者与其他SSH、rsync主机同步。</p>
+
+<h2>参数</h2>
+
+<p>-v, &ndash;verbose 详细模式输出</p>
+
+<p>-q, &ndash;quiet 精简输出模式</p>
+
+<p>-c, &ndash;checksum 打开校验开关，强制对文件传输进行校验</p>
+
+<p>-a, &ndash;archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD</p>
+
+<p>-r, &ndash;recursive 对子目录以递归模式处理</p>
+
+<p>-R, &ndash;relative 使用相对路径信息</p>
+
+<p>-b, &ndash;backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用&ndash;suffix选项来指定不同的备份文件前缀。</p>
+
+<p>&ndash;backup-dir 将备份文件(如~filename)存放在在目录下。</p>
+
+<p>-suffix=SUFFIX 定义备份文件前缀</p>
+
+<p>-u, &ndash;update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件。(不覆盖更新的文件)</p>
+
+<p>-l, &ndash;links 保留软链结</p>
+
+<p>-L, &ndash;copy-links 想对待常规文件一样处理软链结</p>
+
+<p>&ndash;copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链结</p>
+
+<p>&ndash;safe-links 忽略指向SRC路径目录树以外的链结</p>
+
+<p>-H, &ndash;hard-links 保留硬链结</p>
+
+<p>-p, &ndash;perms 保持文件权限</p>
+
+<p>-o, &ndash;owner 保持文件属主信息</p>
+
+<p>-g, &ndash;group 保持文件属组信息</p>
+
+<p>-D, &ndash;devices 保持设备文件信息</p>
+
+<p>-t, &ndash;times 保持文件时间信息</p>
+
+<p>-S, &ndash;sparse 对稀疏文件进行特殊处理以节省DST的空间</p>
+
+<p>-n, &ndash;dry-run现实哪些文件将被传输</p>
+
+<p>-W, &ndash;whole-file 拷贝文件，不进行增量检测</p>
+
+<p>-x, &ndash;one-file-system 不要跨越文件系统边界</p>
+
+<p>-B, &ndash;block-size=SIZE 检验算法使用的块尺寸，默认是700字节</p>
+
+<p>-e, &ndash;rsh=COMMAND 指定使用rsh、ssh方式进行数据同步</p>
+
+<p>&ndash;rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息</p>
+
+<p>-C, &ndash;cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件</p>
+
+<p>&ndash;existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件</p>
+
+<p>&ndash;delete 删除那些DST中SRC没有的文件</p>
+
+<p>&ndash;delete-excluded 同样删除接收端那些被该选项指定排除的文件</p>
+
+<p>&ndash;delete-after 传输结束以后再删除</p>
+
+<p>&ndash;ignore-errors 及时出现IO错误也进行删除</p>
+
+<p>&ndash;max-delete=NUM 最多删除NUM个文件</p>
+
+<p>&ndash;partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输</p>
+
+<p>&ndash;force 强制删除目录，即使不为空</p>
+
+<p>&ndash;numeric-ids 不将数字的用户和组ID匹配为用户名和组名</p>
+
+<p>&ndash;timeout=TIME IP超时时间，单位为秒</p>
+
+<p>-I, &ndash;ignore-times 不跳过那些有同样的时间和长度的文件</p>
+
+<p>&ndash;size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间</p>
+
+<p>&ndash;modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0</p>
+
+<p>-T &ndash;temp-dir=DIR 在DIR中创建临时文件</p>
+
+<p>&ndash;compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份</p>
+
+<p>-P 等同于 &ndash;partial</p>
+
+<p>&ndash;progress 显示备份过程</p>
+
+<p>-z, &ndash;compress 对备份的文件在传输时进行压缩处理</p>
+
+<p>&ndash;exclude=PATTERN 指定排除不需要传输的文件模式</p>
+
+<p>&ndash;include=PATTERN 指定不排除而需要传输的文件模式</p>
+
+<p>&ndash;exclude-from=FILE 排除FILE中指定模式的文件</p>
+
+<p>&ndash;include-from=FILE 不排除FILE指定模式匹配的文件</p>
+
+<p>&ndash;version 打印版本信息</p>
+
+<p>&ndash;address 绑定到特定的地址</p>
+
+<p>&ndash;config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件</p>
+
+<p>&ndash;port=PORT 指定其他的rsync服务端口</p>
+
+<p>&ndash;blocking-io 对远程shell使用阻塞IO</p>
+
+<p>-stats 给出某些文件的传输状态</p>
+
+<p>&ndash;progress 在传输时现实传输过程</p>
+
+<p>&ndash;log-format=formAT 指定日志文件格式</p>
+
+<p>&ndash;password-file=FILE 从FILE中得到密码</p>
+
+<p>&ndash;bwlimit=KBPS 限制I/O带宽，KBytes per second</p>
+
+<p>-h, &ndash;help 显示帮助信息</p>
+
+<h2>例子</h2>
+
+            </div>
+        </div>
+        <div id="main_right" class="r">
+            <div class="rightItem">
+                <ul>
+                    
+                    <li class="tagItem"><a href="tag/compress.htm" tppabs="http://shellbaike.com/cmd/tag/compress">备份压缩</a></li>
+                    
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="rightItem">
+                <h2>
+                    rsync 相关文章
+                </h2>
+                <ul>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/22  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/22'" tppabs="http://shellbaike.com/cmdline/22">第十九章 : 归档和备份</a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="rightItem">
+                <h2>
+                    rsync 相关命令
+                </h2>
+                <ul>
+                    
+                    <li class="tagItem"><a href="gzip.htm" tppabs="http://shellbaike.com/cmd/gzip">gzip</a></li>
+                    
+                    <li class="tagItem"><a href="zip.htm" tppabs="http://shellbaike.com/cmd/zip">zip</a></li>
+                    
+                    <li class="tagItem"><a href="tar.htm" tppabs="http://shellbaike.com/cmd/tar">tar</a></li>
+                    
+                </ul>
+                <div class="clear"></div>
+            </div>
+            
+            <div class="rightItem">
+    <h2>
+        Shell随机文章
+    </h2>
+    <ul>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/3  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/3'" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/7  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/7'" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/10  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/10'" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/shell/13  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/13'" tppabs="http://shellbaike.com/shell/13">Linux安装软件</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/16  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/16'" tppabs="http://shellbaike.com/cmdline/16">第十三章 : vi 简介</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/27  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/27'" tppabs="http://shellbaike.com/cmdline/27">第二十四章 : 编译程序</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/32  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/32'" tppabs="http://shellbaike.com/cmdline/32">第二十九章 : 读取键盘输入</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/36  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/36'" tppabs="http://shellbaike.com/cmdline/36">第三十三章 : 位置参数</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/50  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/50'" tppabs="http://shellbaike.com/linux/50">朝鲜开发的 Linux 系统Red Star OS 3.0 发布</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/59  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/59'" tppabs="http://shellbaike.com/linux/59">使用 Docker 还是 Rocket ？也许可以一起来</a></li>
+        
+    </ul>
+</div>
+            <div class="rightItem">
+    <h2>
+        Linux常用命令
+    </h2>
+    <ul>
+        
+        <li class="tagItem"><a href="apmd.htm" tppabs="http://shellbaike.com/cmd/apmd">apmd</a></li>
+        
+        <li class="tagItem"><a href="apropos.htm" tppabs="http://shellbaike.com/cmd/apropos">apropos</a></li>
+        
+        <li class="tagItem"><a href="aumix.htm" tppabs="http://shellbaike.com/cmd/aumix">aumix</a></li>
+        
+        <li class="tagItem"><a href="bg.htm" tppabs="http://shellbaike.com/cmd/bg">bg</a></li>
+        
+        <li class="tagItem"><a href="bunzip2.htm" tppabs="http://shellbaike.com/cmd/bunzip2">bunzip2</a></li>
+        
+        <li class="tagItem"><a href="bzip2.htm" tppabs="http://shellbaike.com/cmd/bzip2">bzip2</a></li>
+        
+        <li class="tagItem"><a href="cat.htm" tppabs="http://shellbaike.com/cmd/cat">cat</a></li>
+        
+        <li class="tagItem"><a href="cd.htm" tppabs="http://shellbaike.com/cmd/cd">cd</a></li>
+        
+        <li class="tagItem"><a href="cfdisk.htm" tppabs="http://shellbaike.com/cmd/cfdisk">cfdisk</a></li>
+        
+        <li class="tagItem"><a href="chfn.htm" tppabs="http://shellbaike.com/cmd/chfn">chfn</a></li>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="index.htm" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/main.js" tppabs="http://shellbaike.com/static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/prism.js" tppabs="http://shellbaike.com/static/js/prism.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        $(".mainInfo").dblclick(function(){
+            $("html , body").animate({scrollTop:"0"}, 0);
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tar命令详解 - Linux命令大全 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="tar命令详解,linux命令大全,linux常用命令,shell,tar用法" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/prism.css" tppabs="http://shellbaike.com/static/css/prism.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/'" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div id="main_left" class="l mainInfo">
+            <h1 class="titleInfo">
+                tar命令详解
+            </h1>
+            <div class="info">
+                打包文件
+            </div>
+            <div style="text-align: center;">
+    
+</div>
+            <div class="mainContent">
+                <h2>语法</h2>
+
+<p>tar [-ABcdgGhiklmMoOpPrRsStuUvwWxzZ][-b &lt;区块数目&gt;][-C &lt;目的目录&gt;][-f &lt;备份文件&gt;][-F <Script文件>][-K &lt;文件&gt;][-L &lt;媒体容量&gt;][-N &lt;日期时间&gt;][-T &lt;范本文件&gt;][-V &lt;卷册名称&gt;][-X &lt;范本文件&gt;][-&lt;设备编号&gt;&lt;存储密度&gt;][&ndash;after-date=&lt;日期时间&gt;][&ndash;atime-preserve][&ndash;backuup=&lt;备份方式&gt;][&ndash;checkpoint][&ndash;concatenate][&ndash;confirmation][&ndash;delete][&ndash;exclude=&lt;范本样式&gt;][&ndash;force-local][&ndash;group=&lt;群组名称&gt;][&ndash;help][&ndash;ignore-failed-read][&ndash;new-volume-script=<Script文件>][&ndash;newer-mtime][&ndash;no-recursion][&ndash;null][&ndash;numeric-owner][&ndash;owner=&lt;用户名称&gt;][&ndash;posix][&ndash;erve][&ndash;preserve-order][&ndash;preserve-permissions][&ndash;record-size=&lt;区块数目&gt;][&ndash;recursive-unlink][&ndash;remove-files][&ndash;rsh-command=&lt;执行指令&gt;][&ndash;same-owner][&ndash;suffix=&lt;备份字尾字符串&gt;][&ndash;totals][&ndash;use-compress-program=&lt;执行指令&gt;][&ndash;version][&ndash;volno-file=&lt;编号文件&gt;][文件或目录&hellip;]</p>
+
+<h2>功能介绍</h2>
+
+<p>tar是用来建立，还原备份文件的工具程序，它可以加入，解开备份文件内的文件。</p>
+
+<h2>参数</h2>
+
+<p>-A或&ndash;catenate 新增温暖件到已存在的备份文件。</p>
+
+<p>-b&lt;区块数目&gt;或&ndash;blocking-factor=&lt;区块数目&gt; 设置每笔记录的区块数目，每个区块大小为12Bytes。</p>
+
+<p>-B或&ndash;read-full-records 读取数据时重设区块大小。</p>
+
+<p>-c或&ndash;create 建立新的备份文件。</p>
+
+<p>-C&lt;目的目录&gt;或&ndash;directory=&lt;目的目录&gt; 切换到指定的目录。</p>
+
+<p>-d或&ndash;diff或&ndash;compare 对比备份文件内和文件系统上的文件的差异。</p>
+
+<p>-f&lt;备份文件&gt;或&ndash;file=&lt;备份文件&gt; 指定备份文件。</p>
+
+<p>-F<Script文件>或&ndash;info-script=<Script文件> 每次更换磁带时，就执行指定的Script文件。</p>
+
+<p>-g或&ndash;listed-incremental 处理GNU格式的大量备份。</p>
+
+<p>-G或&ndash;incremental 处理旧的GNU格式的大量备份。</p>
+
+<p>-h或&ndash;dereference 不建立符号连接，直接复制该连接所指向的原始文件。</p>
+
+<p>-i或&ndash;ignore-zeros 忽略备份文件中的0 Byte区块，也就是EOF。</p>
+
+<p>-k或&ndash;keep-old-files 解开备份文件时，不覆盖已有的文件。</p>
+
+<p>-K&lt;文件&gt;或&ndash;starting-file=&lt;文件&gt; 从指定的文件开始还原。</p>
+
+<p>-l或&ndash;one-file-system 复制的文件或目录存放的文件系统，必须与tar指令执行时所处的文件系统相同，否则不予复制。</p>
+
+<p>-L&lt;媒体容量&gt;或-tape-length=&lt;媒体容量&gt; 设置存放每体的容量，单位以1024 Bytes计算。</p>
+
+<p>-m或&ndash;modification-time 还原文件时，不变更文件的更改时间。</p>
+
+<p>-M或&ndash;multi-volume 在建立，还原备份文件或列出其中的内容时，采用多卷册模式。</p>
+
+<p>-N&lt;日期格式&gt;或&ndash;newer=&lt;日期时间&gt; 只将较指定日期更新的文件保存到备份文件里。</p>
+
+<p>-o或&ndash;old-archive或&ndash;portability 将资料写入备份文件时使用V7格式。</p>
+
+<p>-O或&ndash;stdout 把从备份文件里还原的文件输出到标准输出设备。</p>
+
+<p>-p或&ndash;same-permissions 用原来的文件权限还原文件。</p>
+
+<p>-P或&ndash;absolute-names 文件名使用绝对名称，不移除文件名称前的&rdquo;/&ldquo;号。</p>
+
+<p>-r或&ndash;append 新增文件到已存在的备份文件的结尾部分。</p>
+
+<p>-R或&ndash;block-number 列出每个信息在备份文件中的区块编号。</p>
+
+<p>-s或&ndash;same-order 还原文件的顺序和备份文件内的存放顺序相同。</p>
+
+<p>-S或&ndash;sparse 倘若一个文件内含大量的连续0字节，则将此文件存成稀疏文件。</p>
+
+<p>-t或&ndash;list 列出备份文件的内容。</p>
+
+<p>-T&lt;范本文件&gt;或&ndash;files-from=&lt;范本文件&gt; 指定范本文件，其内含有一个或多个范本样式，让tar解开或建立符合设置条件的文件。</p>
+
+<p>-u或&ndash;update 仅置换较备份文件内的文件更新的文件。</p>
+
+<p>-U或&ndash;unlink-first 解开压缩文件还原文件之前，先解除文件的连接。</p>
+
+<p>-v或&ndash;verbose 显示指令执行过程。</p>
+
+<p>-V&lt;卷册名称&gt;或&ndash;label=&lt;卷册名称&gt; 建立使用指定的卷册名称的备份文件。</p>
+
+<p>-w或&ndash;interactive 遭遇问题时先询问用户。</p>
+
+<p>-W或&ndash;verify 写入备份文件后，确认文件正确无误。</p>
+
+<p>-x或&ndash;extract或&ndash;get 从备份文件中还原文件。</p>
+
+<p>-X&lt;范本文件&gt;或&ndash;exclude-from=&lt;范本文件&gt; 指定范本文件，其内含有一个或多个范本样式，让ar排除符合设置条件的文件。</p>
+
+<p>-z或&ndash;gzip或&ndash;ungzip 通过gzip指令处理备份文件。</p>
+
+<p>-Z或&ndash;compress或&ndash;uncompress 通过compress指令处理备份文件。</p>
+
+<p>-&lt;设备编号&gt;&lt;存储密度&gt; 设置备份用的外围设备编号及存放数据的密度。</p>
+
+<p>&ndash;after-date=&lt;日期时间&gt; 此参数的效果和指定&rdquo;-N&rdquo;参数相同。</p>
+
+<p>&ndash;atime-preserve 不变更文件的存取时间。</p>
+
+<p>&ndash;backup=&lt;备份方式&gt;或&ndash;backup 移除文件前先进行备份。</p>
+
+<p>&ndash;checkpoint 读取备份文件时列出目录名称。</p>
+
+<p>&ndash;concatenate 此参数的效果和指定&rdquo;-A&rdquo;参数相同。</p>
+
+<p>&ndash;confirmation 此参数的效果和指定&rdquo;-w&rdquo;参数相同。</p>
+
+<p>&ndash;delete 从备份文件中删除指定的文件。</p>
+
+<p>&ndash;exclude=&lt;范本样式&gt; 排除符合范本样式的问家。</p>
+
+<p>&ndash;group=&lt;群组名称&gt; 把加入设备文件中的文件的所属群组设成指定的群组。</p>
+
+<p>&ndash;help 在线帮助。</p>
+
+<p>&ndash;ignore-failed-read 忽略数据读取错误，不中断程序的执行。</p>
+
+<p>&ndash;new-volume-script=<Script文件> 此参数的效果和指定&rdquo;-F&rdquo;参数相同。</p>
+
+<p>&ndash;newer-mtime 只保存更改过的文件。</p>
+
+<p>&ndash;no-recursion 不做递归处理，也就是指定目录下的所有文件及子目录不予处理。</p>
+
+<p>&ndash;null 从null设备读取文件名称。</p>
+
+<p>&ndash;numeric-owner 以用户识别码及群组识别码取代用户名称和群组名称。</p>
+
+<p>&ndash;owner=&lt;用户名称&gt; 把加入备份文件中的文件的拥有者设成指定的用户。</p>
+
+<p>&ndash;posix 将数据写入备份文件时使用POSIX格式。</p>
+
+<p>&ndash;preserve 此参数的效果和指定&rdquo;-ps&rdquo;参数相同。</p>
+
+<p>&ndash;preserve-order 此参数的效果和指定&rdquo;-A&rdquo;参数相同。</p>
+
+<p>&ndash;preserve-permissions 此参数的效果和指定&rdquo;-p&rdquo;参数相同。</p>
+
+<p>&ndash;record-size=&lt;区块数目&gt; 此参数的效果和指定&rdquo;-b&rdquo;参数相同。</p>
+
+<p>&ndash;recursive-unlink 解开压缩文件还原目录之前，先解除整个目录下所有文件的连接。</p>
+
+<p>&ndash;remove-files 文件加入备份文件后，就将其删除。</p>
+
+<p>&ndash;rsh-command=&lt;执行指令&gt; 设置要在远端主机上执行的指令，以取代rsh指令。</p>
+
+<p>&ndash;same-owner 尝试以相同的文件拥有者还原问家你。</p>
+
+<p>&ndash;suffix=&lt;备份字尾字符串&gt; 移除文件前先行备份。</p>
+
+<p>&ndash;totals 备份文件建立后，列出文件大小。</p>
+
+<p>&ndash;use-compress-program=&lt;执行指令&gt; 通过指定的指令处理备份文件。</p>
+
+<p>&ndash;version 显示版本信息。</p>
+
+<p>&ndash;volno-file=&lt;编号文件&gt; 使用指定文件内的编号取代预设的卷册编号。</p>
+
+<h2>例子</h2>
+
+            </div>
+        </div>
+        <div id="main_right" class="r">
+            <div class="rightItem">
+                <ul>
+                    
+                    <li class="tagItem"><a href="tag/compress.htm"/*tpa=http://shellbaike.com/cmd/tag/compress*/>备份压缩</a></li>
+                    
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="rightItem">
+                <h2>
+                    tar 相关文章
+                </h2>
+                <ul>
+                    
+                    <li><a href="http://shellbaike.com/shell/227">CentOS 6.5下安装MySQL 5.6.21</a></li>
+                    
+                    <li><a href="http://shellbaike.com/linux/206">Deis v1.8 发布，开源 PaaS 系统</a></li>
+                    
+                    <li><a href="http://shellbaike.com/shell/204">Tor浏览器：Linux下用于匿名Web浏览的终极浏览器</a></li>
+                    
+                    <li><a href="http://shellbaike.com/linux/177">Nginx 1.9.0 开发版发布，支持 TCP 代理</a></li>
+                    
+                    <li><a href="http://shellbaike.com/linux/135">Linux Kernel 4.0 RC1发布！</a></li>
+                    
+                    <li><a href="http://shellbaike.com/shell/91">使用 nice、cpulimit 和 cgroups 限制 cpu 占用率</a></li>
+                    
+                    <li><a href="http://shellbaike.com/cmdline/27">第二十四章 : 编译程序</a></li>
+                    
+                    <li><a href="http://shellbaike.com/cmdline/22">第十九章 : 归档和备份</a></li>
+                    
+                    <li><a href="http://shellbaike.com/shell/13">Linux安装软件</a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="rightItem">
+    <h2>
+        Shell随机文章
+    </h2>
+    <ul>
+        
+        <li><a href="http://shellbaike.com/cmdline/1">第一章 引言</a></li>
+        
+        <li><a href="http://shellbaike.com/cmdline/2">第二章 : 什么是 shell</a></li>
+        
+        <li><a href="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+        
+        <li><a href="http://shellbaike.com/cmdline/6">第五章：操作文件和目录</a></li>
+        
+        <li><a href="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+        
+        <li><a href="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+        
+        <li><a href="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+        
+        <li><a href="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+        
+        <li><a href="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+        
+        <li><a href="http://shellbaike.com/shell/13">Linux安装软件</a></li>
+        
+    </ul>
+</div>
+            <div class="rightItem">
+    <h2>
+        Linux常用命令
+    </h2>
+    <ul>
+        
+        <li class="tagItem"><a href="adduser.htm"/*tpa=http://shellbaike.com/cmd/adduser*/>adduser</a></li>
+        
+        <li class="tagItem"><a href="apachectl.htm"/*tpa=http://shellbaike.com/cmd/apachectl*/>apachectl</a></li>
+        
+        <li class="tagItem"><a href="apmd.htm"/*tpa=http://shellbaike.com/cmd/apmd*/>apmd</a></li>
+        
+        <li class="tagItem"><a href="apropos.htm"/*tpa=http://shellbaike.com/cmd/apropos*/>apropos</a></li>
+        
+        <li class="tagItem"><a href="arpwatch.htm"/*tpa=http://shellbaike.com/cmd/arpwatch*/>arpwatch</a></li>
+        
+        <li class="tagItem"><a href="aspell.htm"/*tpa=http://shellbaike.com/cmd/aspell*/>aspell</a></li>
+        
+        <li class="tagItem"><a href="aumix.htm"/*tpa=http://shellbaike.com/cmd/aumix*/>aumix</a></li>
+        
+        <li class="tagItem"><a href="badblocks.htm"/*tpa=http://shellbaike.com/cmd/badblocks*/>badblocks</a></li>
+        
+        <li class="tagItem"><a href="bc.htm"/*tpa=http://shellbaike.com/cmd/bc*/>bc</a></li>
+        
+        <li class="tagItem"><a href="bg.htm"/*tpa=http://shellbaike.com/cmd/bg*/>bg</a></li>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="index.htm"/*tpa=http://shellbaike.com/cmd/*/ title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/main.js" tppabs="http://shellbaike.com/static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/prism.js" tppabs="http://shellbaike.com/static/js/prism.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        $(".mainInfo").dblclick(function(){
+            $("html , body").animate({scrollTop:"0"}, 0);
+        });
+    });
+</script>
+</body>
+</html>

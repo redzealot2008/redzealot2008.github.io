@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ç³»ç»Ÿç®¡ç†ç›¸å…³å‘½ä»¤ - linuxå‘½ä»¤å¤§å…¨ - Shellç™¾ç§‘</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="ç³»ç»Ÿç®¡ç†ç›¸å…³å‘½ä»¤,shell,linuxå‘½ä»¤å¤§å…¨,shellè„šæœ¬,shellè„šæœ¬ç¼–ç¨‹,linux shell" />
+    <link rel="stylesheet" href="../../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shellç™¾ç§‘ æœ€å…¨linuxå‘½ä»¤å¤§å…¨ Shellè„šæœ¬ç¼–ç¨‹æŠ€å·§åˆ†äº«">Shellç™¾ç§‘</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">é¦–é¡µ</a></li>
+                <li><a href="../index.htm" tppabs="http://shellbaike.com/cmd/">Linuxå‘½ä»¤å¤§å…¨</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/'" tppabs="http://shellbaike.com/cmdline/">Shellè„šæœ¬å­¦ä¹ </a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shellè„šæœ¬ç¼–ç¨‹</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linuxèµ„è®¯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div class="cmdinfoList">
+            <h1>ç³»ç»Ÿç®¡ç†</h1>
+            
+            <div class="cl_item">
+                <a href="../adduser.htm" tppabs="http://shellbaike.com/cmd/adduser">adduser</a>
+                <div class="info">
+                    å»ºç«‹ç”¨æˆ·è´¦å·
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../chfn.htm" tppabs="http://shellbaike.com/cmd/chfn">chfn</a>
+                <div class="info">
+                    æ”¹å˜fingerå‘½ä»¤æ˜¾ç¤ºçš„ä¿¡æ¯
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../chsh.htm" tppabs="http://shellbaike.com/cmd/chsh">chsh</a>
+                <div class="info">
+                    æ›´æ¢ç™»å½•ç³»ç»Ÿæ˜¯æ‰€ç”¨çš„shell
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../date.htm" tppabs="http://shellbaike.com/cmd/date">date</a>
+                <div class="info">
+                    æ˜¾ç¤ºæˆ–è®¾ç½®ç³»ç»Ÿæ—¶é—´ä¸æ—¥æœŸ
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../exit.htm" tppabs="http://shellbaike.com/cmd/exit">exit</a>
+                <div class="info">
+                    é€€å‡ºå½“å‰çš„shell
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../finger.htm" tppabs="http://shellbaike.com/cmd/finger">finger</a>
+                <div class="info">
+                    æŸ¥æ‰¾å¹¶æ˜¾ç¤ºç”¨æˆ·ä¿¡æ¯
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../free.htm" tppabs="http://shellbaike.com/cmd/free">free</a>
+                <div class="info">
+                    æŸ¥çœ‹å†…å­˜çŠ¶æ€
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../groupadd.htm" tppabs="http://shellbaike.com/cmd/groupadd">groupadd</a>
+                <div class="info">
+                    å»ºç«‹ç»„
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../groupdel.htm" tppabs="http://shellbaike.com/cmd/groupdel">groupdel</a>
+                <div class="info">
+                    åˆ é™¤ç»„
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../groupmod.htm" tppabs="http://shellbaike.com/cmd/groupmod">groupmod</a>
+                <div class="info">
+                    æ›´æ”¹ç»„è¯†åˆ«ç æˆ–åç§°
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../halt.htm" tppabs="http://shellbaike.com/cmd/halt">halt</a>
+                <div class="info">
+                    å…³é—­ç³»ç»Ÿ
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../hostname.htm" tppabs="http://shellbaike.com/cmd/hostname">hostname</a>
+                <div class="info">
+                    æŸ¥è¯¢åŠè®¾ç½®ä¸»æœºåç§°
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../id.htm" tppabs="http://shellbaike.com/cmd/id">id</a>
+                <div class="info">
+                    æ˜¾ç¤ºç”¨æˆ·idï¼Œä»¥åŠæ‰€å±ç»„id
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../kill.htm" tppabs="http://shellbaike.com/cmd/kill">kill</a>
+                <div class="info">
+                    åˆ é™¤æ‰§è¡Œä¸­çš„ç¨‹åºæˆ–å·¥ä½œ
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../last.htm" tppabs="http://shellbaike.com/cmd/last">last</a>
+                <div class="info">
+                    åˆ—å‡ºå½“å‰ä¸è¿‡å»ç™»å½•ç³»ç»Ÿçš„ç”¨æˆ·ç›¸å…³ä¿¡æ¯ã€‚
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../login.htm" tppabs="http://shellbaike.com/cmd/login">login</a>
+                <div class="info">
+                    ç™»å½•ç³»ç»Ÿ
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../logname.htm" tppabs="http://shellbaike.com/cmd/logname">logname</a>
+                <div class="info">
+                    æ˜¾ç¤ºç”¨æˆ·åç§°
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../logout.htm" tppabs="http://shellbaike.com/cmd/logout">logout</a>
+                <div class="info">
+                    é€€å‡ºç³»ç»Ÿ
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../logrotate.htm" tppabs="http://shellbaike.com/cmd/logrotate">logrotate</a>
+                <div class="info">
+                    ç®¡ç†è®°å½•æ–‡ä»¶
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../lsb_release.htm" tppabs="http://shellbaike.com/cmd/lsb_release">lsb_release</a>
+                <div class="info">
+                    æ˜¾ç¤ºLinuxå‘è¡Œç‰ˆæœ¬çš„ç›¸å…³ä¿¡æ¯
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../newgrp.htm" tppabs="http://shellbaike.com/cmd/newgrp">newgrp</a>
+                <div class="info">
+                    ç™»å½•å¦ä¸€ä¸ªç»„
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../nice.htm" tppabs="http://shellbaike.com/cmd/nice">nice</a>
+                <div class="info">
+                    è®¾ç½®ä¼˜å…ˆçº§
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../procinfo.htm" tppabs="http://shellbaike.com/cmd/procinfo">procinfo</a>
+                <div class="info">
+                    æ˜¾ç¤ºç³»ç»ŸçŠ¶æ€
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../ps.htm" tppabs="http://shellbaike.com/cmd/ps">ps</a>
+                <div class="info">
+                    æŠ¥å‘Šç¨‹åºçŠ¶å†µ
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../pstree.htm" tppabs="http://shellbaike.com/cmd/pstree">pstree</a>
+                <div class="info">
+                    ä»¥æ ‘çŠ¶å›¾æ˜¾ç¤ºç¨‹åº
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../rcp.htm" tppabs="http://shellbaike.com/cmd/rcp">rcp</a>
+                <div class="info">
+                    è¿œç«¯å¤åˆ¶æ–‡ä»¶æˆ–ç›®å½•
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../reboot.htm" tppabs="http://shellbaike.com/cmd/reboot">reboot</a>
+                <div class="info">
+                    é‡æ–°å¼€æœº
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../renice.htm" tppabs="http://shellbaike.com/cmd/renice">renice</a>
+                <div class="info">
+                    è°ƒæ•´ä¼˜å…ˆçº§
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../rlogin.htm" tppabs="http://shellbaike.com/cmd/rlogin">rlogin</a>
+                <div class="info">
+                    è¿œç¨‹ç™»å½•
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../rsh.htm" tppabs="http://shellbaike.com/cmd/rsh">rsh</a>
+                <div class="info">
+                    è¿œç¨‹ç™»å½•çš„shell
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../rwho.htm" tppabs="http://shellbaike.com/cmd/rwho">rwho</a>
+                <div class="info">
+                    æŸ¥çœ‹ç³»ç»Ÿç”¨æˆ·
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../screen.htm" tppabs="http://shellbaike.com/cmd/screen">screen</a>
+                <div class="info">
+                    å¤šé‡è§†çª—ç®¡ç†ç¨‹åº
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../shutdown.htm" tppabs="http://shellbaike.com/cmd/shutdown">shutdown</a>
+                <div class="info">
+                    ç³»ç»Ÿå…³é—­å‘½ä»¤
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../su.htm" tppabs="http://shellbaike.com/cmd/su">su</a>
+                <div class="info">
+                    å˜æ›´ç”¨æˆ·èº«ä»½
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../suspend.htm" tppabs="http://shellbaike.com/cmd/suspend">suspend</a>
+                <div class="info">
+                    æš‚åœæ‰§è¡Œshell
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../swatch.htm" tppabs="http://shellbaike.com/cmd/swatch">swatch</a>
+                <div class="info">
+                    ç³»ç»Ÿç›‘æ§ç¨‹åº
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../tload.htm" tppabs="http://shellbaike.com/cmd/tload">tload</a>
+                <div class="info">
+                    æ˜¾ç¤ºç³»ç»Ÿè´Ÿè½½çŠ¶å†µ
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../top.htm" tppabs="http://shellbaike.com/cmd/top">top</a>
+                <div class="info">
+                    æ˜¾ç¤ºã€ç®¡ç†æ‰§è¡Œä¸­çš„ç¨‹åº
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../uname.htm" tppabs="http://shellbaike.com/cmd/uname">uname</a>
+                <div class="info">
+                    æ˜¾ç¤ºç³»ç»Ÿä¿¡æ¯
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../useradd.htm" tppabs="http://shellbaike.com/cmd/useradd">useradd</a>
+                <div class="info">
+                    å»ºç«‹ç”¨æˆ·å¸å·
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../userconf.htm" tppabs="http://shellbaike.com/cmd/userconf">userconf</a>
+                <div class="info">
+                    ç”¨æˆ·å¸å·è®¾ç½®ç¨‹åº
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../userdel.htm" tppabs="http://shellbaike.com/cmd/userdel">userdel</a>
+                <div class="info">
+                    åˆ é™¤ç”¨æˆ·å¸å·
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../usermod.htm" tppabs="http://shellbaike.com/cmd/usermod">usermod</a>
+                <div class="info">
+                    ä¿®æ”¹ç”¨æˆ·å¸å·
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../vlock.htm" tppabs="http://shellbaike.com/cmd/vlock">vlock</a>
+                <div class="info">
+                    é”ä½è™šæ‹Ÿç»ˆç«¯
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../w.htm" tppabs="http://shellbaike.com/cmd/w">w</a>
+                <div class="info">
+                    æ˜¾ç¤ºç›®å‰ç™»å…¥ç³»ç»Ÿçš„ç”¨æˆ·ä¿¡æ¯
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../who.htm" tppabs="http://shellbaike.com/cmd/who">who</a>
+                <div class="info">
+                    æ˜¾ç¤ºå½“å‰ç™»å½•ç³»ç»Ÿçš„ç”¨æˆ·ä¿¡æ¯
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../whoami.htm" tppabs="http://shellbaike.com/cmd/whoami">whoami</a>
+                <div class="info">
+                    æ˜¾ç¤ºè‡ªèº«ç”¨æˆ·åç§°ã€‚
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../whois.htm" tppabs="http://shellbaike.com/cmd/whois">whois</a>
+                <div class="info">
+                    æŸ¥æ‰¾å¹¶æ˜¾ç¤ºç”¨æˆ·ä¿¡æ¯ã€‚
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>å‹æƒ…é“¾æ¥</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="../index.htm" tppabs="http://shellbaike.com/cmd/" title="Linuxå‘½ä»¤å¤§å…¨" target="_blank">Linuxå‘½ä»¤å¤§å…¨</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="åªçœ‹æ¥¼ä¸»ç½‘ - æœ€ä¸“ä¸šçš„åªçœ‹æ¥¼ä¸»ç²¾å“å¸–å­ç½‘ç«™" target="_blank">åªçœ‹æ¥¼ä¸»ç½‘</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - æœ€å…¨çš„Luceneæ•™ç¨‹ã€Luceneå…¥é—¨ã€Lucene APIã€Luceneèµ„æ–™ç½‘ç«™" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL ç™¾ç§‘</p><br/>
+        <p class="info">æœ€å…¨linuxå‘½ä»¤å¤§å…¨ Shellè„šæœ¬ç¼–ç¨‹æŠ€å·§åˆ†äº«</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+</body>
+</html>

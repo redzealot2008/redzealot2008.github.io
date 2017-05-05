@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文件管理相关命令 - linux命令大全 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="文件管理相关命令,shell,linux命令大全,shell脚本,shell脚本编程,linux shell" />
+    <link rel="stylesheet" href="../../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="../index.htm" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/'" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div class="cmdinfoList">
+            <h1>文件管理</h1>
+            
+            <div class="cl_item">
+                <a href="../chattr.htm" tppabs="http://shellbaike.com/cmd/chattr">chattr</a>
+                <div class="info">
+                    改变文件属性
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../chgrp.htm" tppabs="http://shellbaike.com/cmd/chgrp">chgrp</a>
+                <div class="info">
+                    变更文件或目录的所属群组
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../chmod.htm" tppabs="http://shellbaike.com/cmd/chmod">chmod</a>
+                <div class="info">
+                    更改文件或目录的权限
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../chown.htm" tppabs="http://shellbaike.com/cmd/chown">chown</a>
+                <div class="info">
+                    更改文件或目录的所属组
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../cksum.htm" tppabs="http://shellbaike.com/cmd/cksum">cksum</a>
+                <div class="info">
+                    检查文件的CRC是否正确。
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../cp.htm" tppabs="http://shellbaike.com/cmd/cp">cp</a>
+                <div class="info">
+                    复制文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../cut.htm" tppabs="http://shellbaike.com/cmd/cut">cut</a>
+                <div class="info">
+                    指定与现实的文件内容，输出到标准输出设备
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../diff.htm" tppabs="http://shellbaike.com/cmd/diff">diff</a>
+                <div class="info">
+                    比较文件的差异
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../diffstat.htm" tppabs="http://shellbaike.com/cmd/diffstat">diffstat</a>
+                <div class="info">
+                    根据diff的比较结果，显示统计数字
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../file.htm" tppabs="http://shellbaike.com/cmd/file">file</a>
+                <div class="info">
+                    辨识文件类型
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../find.htm" tppabs="http://shellbaike.com/cmd/find">find</a>
+                <div class="info">
+                    查找文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../less.htm" tppabs="http://shellbaike.com/cmd/less">less</a>
+                <div class="info">
+                    显示文件内容
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../ln.htm" tppabs="http://shellbaike.com/cmd/ln">ln</a>
+                <div class="info">
+                    连接文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../locate.htm" tppabs="http://shellbaike.com/cmd/locate">locate</a>
+                <div class="info">
+                    locate命令用于查找文件，它比find命令的搜索速度快
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../lsattr.htm" tppabs="http://shellbaike.com/cmd/lsattr">lsattr</a>
+                <div class="info">
+                    显示文件属性
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mattrib.htm" tppabs="http://shellbaike.com/cmd/mattrib">mattrib</a>
+                <div class="info">
+                    更改或显示MS_DOS文件的属性
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mc.htm" tppabs="http://shellbaike.com/cmd/mc">mc</a>
+                <div class="info">
+                    提供一个菜单式的文件管理程序
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mcopy.htm" tppabs="http://shellbaike.com/cmd/mcopy">mcopy</a>
+                <div class="info">
+                    复制MS-DOS文件
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mdel.htm" tppabs="http://shellbaike.com/cmd/mdel">mdel</a>
+                <div class="info">
+                    删除MS-DOS文件
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mdir.htm" tppabs="http://shellbaike.com/cmd/mdir">mdir</a>
+                <div class="info">
+                    显示MS-DOS目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mktemp.htm" tppabs="http://shellbaike.com/cmd/mktemp">mktemp</a>
+                <div class="info">
+                    建立暂存文件
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mmove.htm" tppabs="http://shellbaike.com/cmd/mmove">mmove</a>
+                <div class="info">
+                    在MS-DOS文件系统中，移动文件或目录，或更改名称
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../more.htm" tppabs="http://shellbaike.com/cmd/more">more</a>
+                <div class="info">
+                    使文件能逐页地显示
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mread.htm" tppabs="http://shellbaike.com/cmd/mread">mread</a>
+                <div class="info">
+                    将MS-DOS文件复制到Linux/Unix的目录中
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mren.htm" tppabs="http://shellbaike.com/cmd/mren">mren</a>
+                <div class="info">
+                    
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mshowfat.htm" tppabs="http://shellbaike.com/cmd/mshowfat">mshowfat</a>
+                <div class="info">
+                    显示MS-DOS文件在FAT中的记录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mtools.htm" tppabs="http://shellbaike.com/cmd/mtools">mtools</a>
+                <div class="info">
+                    显示mtools支持的指令
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mtoolstest.htm" tppabs="http://shellbaike.com/cmd/mtoolstest">mtoolstest</a>
+                <div class="info">
+                    测试并显示mtools的相关设置
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../mv.htm" tppabs="http://shellbaike.com/cmd/mv">mv</a>
+                <div class="info">
+                    移动或更名现有的文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../od.htm" tppabs="http://shellbaike.com/cmd/od">od</a>
+                <div class="info">
+                    输出文件内容
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../paste.htm" tppabs="http://shellbaike.com/cmd/paste">paste</a>
+                <div class="info">
+                    合并文件的列
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../patch.htm" tppabs="http://shellbaike.com/cmd/patch">patch</a>
+                <div class="info">
+                    修补文件
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../rcp.htm" tppabs="http://shellbaike.com/cmd/rcp">rcp</a>
+                <div class="info">
+                    远端复制文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../rhmask.htm" tppabs="http://shellbaike.com/cmd/rhmask">rhmask</a>
+                <div class="info">
+                    产生与还原加密文件
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../rm.htm" tppabs="http://shellbaike.com/cmd/rm">rm</a>
+                <div class="info">
+                    删除文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../slocate.htm" tppabs="http://shellbaike.com/cmd/slocate">slocate</a>
+                <div class="info">
+                    查找文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../split.htm" tppabs="http://shellbaike.com/cmd/split">split</a>
+                <div class="info">
+                    切割文件
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../tee.htm" tppabs="http://shellbaike.com/cmd/tee">tee</a>
+                <div class="info">
+                    读取标准输入的数据，并将其内容输出成文件。
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../tmpwatch.htm" tppabs="http://shellbaike.com/cmd/tmpwatch">tmpwatch</a>
+                <div class="info">
+                    删除暂存文件
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../touch.htm" tppabs="http://shellbaike.com/cmd/touch">touch</a>
+                <div class="info">
+                    改变文件或目录时间
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../umask.htm" tppabs="http://shellbaike.com/cmd/umask">umask</a>
+                <div class="info">
+                    指定在建立文件时预设的权限掩码。
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../whereis.htm" tppabs="http://shellbaike.com/cmd/whereis">whereis</a>
+                <div class="info">
+                    查找文件
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../which.htm" tppabs="http://shellbaike.com/cmd/which">which</a>
+                <div class="info">
+                    查找文件
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="../index.htm" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+</body>
+</html>

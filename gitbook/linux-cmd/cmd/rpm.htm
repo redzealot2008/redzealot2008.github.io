@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>rpm命令详解 - Linux命令大全 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="rpm命令详解,linux命令大全,linux常用命令,shell,rpm用法" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/prism.css" tppabs="http://shellbaike.com/static/css/prism.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/'" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div id="main_left" class="l mainInfo">
+            <h1 class="titleInfo">
+                rpm命令详解
+            </h1>
+            <div class="info">
+                管理包
+            </div>
+            <div style="text-align: center;">
+    
+</div>
+            <div class="mainContent">
+                <h2>语法</h2>
+
+<p>rpm &hellip;</p>
+
+<h2>功能介绍</h2>
+
+<p>rpm 原本是 Red Hat Linux 发行版专门管理 Linux 各项包的程序，由于它遵循 GPL 规则，且功能欠打方便，因而广受欢迎，逐渐被其他发行版采用。RPM 包管理方式的出现，让 Linux 的软件易于安装，升级，间接提升了 Linux 的适用度。</p>
+
+<h2>参数</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">-a</td>
+<td align="left">查询所有的包</td>
+</tr>
+
+<tr>
+<td align="left">-c</td>
+<td align="left">列出配置设置文件</td>
+</tr>
+
+<tr>
+<td align="left">-d</td>
+<td align="left">列出文件</td>
+</tr>
+
+<tr>
+<td align="left">-e&lt;包文件&gt; 或&ndash;erase&lt;包文件&gt;</td>
+<td align="left">删除指定的包</td>
+</tr>
+
+<tr>
+<td align="left">-f&lt;文件&gt;+</td>
+<td align="left">查询拥有指定文件的包</td>
+</tr>
+
+<tr>
+<td align="left">-h 或 &ndash;hash</td>
+<td align="left">包安装时列出标记</td>
+</tr>
+
+<tr>
+<td align="left">-i</td>
+<td align="left">显示包的相关i型奶昔</td>
+</tr>
+
+<tr>
+<td align="left">-i&lt;包文件&gt; 或 &ndash;install&lt;包文件&gt;</td>
+<td align="left">安装指定的包文件</td>
+</tr>
+
+<tr>
+<td align="left">-l</td>
+<td align="left">显示包的文件列表</td>
+</tr>
+
+<tr>
+<td align="left">-p&lt;包文件+&gt;</td>
+<td align="left">玄讯指定搞定RPM包文件</td>
+</tr>
+
+<tr>
+<td align="left">-q</td>
+<td align="left">使用查询模式</td>
+</tr>
+
+<tr>
+<td align="left">-R</td>
+<td align="left">显示包的相关性信息</td>
+</tr>
+
+<tr>
+<td align="left">-s</td>
+<td align="left">显示文件状态</td>
+</tr>
+
+<tr>
+<td align="left">-U&lt;包文件&gt; 或 &ndash;upgrade&lt;包文件&gt;</td>
+<td align="left">升级指定的包文件</td>
+</tr>
+
+<tr>
+<td align="left">-v</td>
+<td align="left">显示命令执行过程</td>
+</tr>
+
+<tr>
+<td align="left">-V</td>
+<td align="left">检查文件正确性</td>
+</tr>
+
+<tr>
+<td align="left">-vv</td>
+<td align="left">详细显示命令执行过程，以便于排错</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;addsign&lt;包文件&gt;+</td>
+<td align="left">在指定的包里加上新的签名认证</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;allfiles</td>
+<td align="left">安装所有文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;allmatches</td>
+<td align="left">移除符合指定的包所包含的文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;badreloc</td>
+<td align="left">发生错误时，重新配置文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;changelog</td>
+<td align="left">显示包的异动记录</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;checksig&lt;包文件&gt;+</td>
+<td align="left">检验该包的签名认证</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;clean</td>
+<td align="left">完成包的安装后，移除包装过程中所建立的目录</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;dbpath&lt;数据库目录&gt;</td>
+<td align="left">设定于存放RPM数据库的目录</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;dump</td>
+<td align="left">显示每个文件的验证信息。此参数配合“-l”参数使用</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;excludedocs</td>
+<td align="left">安装包时，不要安装文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;excludepaath&lt;排除目录&gt;</td>
+<td align="left">忽略在指定目录里的所有文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;force</td>
+<td align="left">强行替换包或文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;ftpproxy&lt;主机名称或IP地址&gt;</td>
+<td align="left">指定FTP代理服务器</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;ftpport&lt;端口&gt;</td>
+<td align="left">设定FTP服务器或代理服务器使用的通讯端口</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;help</td>
+<td align="left">显示帮助</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;httproxy&lt;主机名称或IP地址&gt;</td>
+<td align="left">设定HTTP代理服务器</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;httpport&lt;端口&gt;</td>
+<td align="left">设定HTTP服务器或代理服务器端口</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;ignorearch</td>
+<td align="left">不验证包文件的结构正确性</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;ignoreos</td>
+<td align="left">不验证包文件的操作系统</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;ignoresize</td>
+<td align="left">安装前不验证磁盘空间是否足够</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;includedocs</td>
+<td align="left">安装包时，一并安装文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;initdb</td>
+<td align="left">确认有正确的数据库可以使用</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;justdb</td>
+<td align="left">更新数据库，但不变动任何文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;nodeps</td>
+<td align="left">不验证包文件的相互关联性</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;nofiles</td>
+<td align="left">不验证文件的属性</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;nomd5</td>
+<td align="left">不使用MD5编码验证人间的大小和正确性</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;noorder</td>
+<td align="left">不重新编排包的安装顺序，以便满足其彼此间的关联性</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;noscripts</td>
+<td align="left">不执行任何安装script文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;notriggers</td>
+<td align="left">不执行该包包装内的任何script文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;oldpackage</td>
+<td align="left">升级成旧版本的包</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;percent</td>
+<td align="left">安装包时显示完成进度的百分比</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;pipe&lt;执行命令&gt;</td>
+<td align="left">建立管道，把输出结果转为该执行命令的输入数据</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;prefix&lt;目的目录&gt;</td>
+<td align="left">若重新配置文件，就把文件放在指定的目录下</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;provides</td>
+<td align="left">查询该包所提供的相容度</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;queryformat&lt;文件头格式&gt;</td>
+<td align="left">设定文件头的表示方法。文件头格式分为“name”、“version”和“description”3种，本参数需配合“-i”参数使用</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;querytags</td>
+<td align="left">列出可用于文件头格式的标签</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;rcfile&lt;设定文件&gt;</td>
+<td align="left">使用指定的设定文件。默认的设定文件位于 /etc 或用户专属目录里，文件名称为 rpmrc 或 .rpmrc，可用此参数改变它</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;rebuilddb</td>
+<td align="left">以现有的数据库为主，重建一份数据库</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;relocate&lt;远目录&gt;=&lt;新目录&gt;</td>
+<td align="left">把本来会放到原目录下的文件改放至新目录</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;replacefiles</td>
+<td align="left">强行替换文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;replacepkgs</td>
+<td align="left">强行替换包</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;requires</td>
+<td align="left">查询该包所需要的相容度</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;resign&lt;包文件&gt;+</td>
+<td align="left">移除现有的认证，重新产生签名认证</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;rmsource</td>
+<td align="left">完成包的安装后，移除原始码</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;rmsource&lt;文件&gt;</td>
+<td align="left">移除原始码和指定的文件</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;root&lt;根目录&gt;</td>
+<td align="left">设定欲当作根目录的目录</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;script</td>
+<td align="left">列出安装包的Script的变数</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;setperms</td>
+<td align="left">设定文件的权限</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;setugids</td>
+<td align="left">设定文件的拥有者和所属组</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;short&ndash;circuit</td>
+<td align="left">直接略过指定完成阶段的步骤</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;test</td>
+<td align="left">仅作测试，并不真正安装包</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;triggeredby&lt;包文件&gt;</td>
+<td align="left">查询该包的包装者</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;triggers</td>
+<td align="left">展示包文件内的包装Script</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;verify</td>
+<td align="left">此参数的效果和指定“-q”参数相同</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;version</td>
+<td align="left">显示版本信息</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;whatprovides&lt;功能特性&gt;</td>
+<td align="left">查询该包对指定的功能特性所提供的相容度</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;whatrequires&lt;功能特性&gt;</td>
+<td align="left">查询该包对指定的功能特性所需要的相容度</td>
+</tr>
+</tbody>
+</table>
+
+<h2>例子</h2>
+
+<p>将 XX.rpm 包安装到系统上：</p>
+
+<pre><code class="language-bash"># rpm -i XXX.rpm
+</code></pre>
+
+<p>将 XX.rpm 包安装到系统上，执行时显示命令执行过程：</p>
+
+<pre><code class="language-bash"># rpm -iv XXX.rpm
+...
+...
+</code></pre>
+
+<p>将 XX.rpm 包安装到系统上，执行时显示详细的命令执行过程：</p>
+
+<pre><code class="language-bash"># rpm -ivv XXX.rpm
+...
+...
+</code></pre>
+
+<p>从系统移除 XXX 包</p>
+
+<pre><code class="language-bash"># rpm -e XXX
+</code></pre>
+
+            </div>
+        </div>
+        <div id="main_right" class="r">
+            <div class="rightItem">
+                <ul>
+                    
+                    <li class="tagItem"><a href="tag/setting.htm" tppabs="http://shellbaike.com/cmd/tag/setting">系统设置</a></li>
+                    
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="rightItem">
+                <h2>
+                    rpm 相关文章
+                </h2>
+                <ul>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/shell/227  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/227'" tppabs="http://shellbaike.com/shell/227">CentOS 6.5下安装MySQL 5.6.21</a></li>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/linux/195  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/195'" tppabs="http://shellbaike.com/linux/195">谁是最棒的容器操作系统？</a></li>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/18  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/18'" tppabs="http://shellbaike.com/cmdline/18">第十五章 : 软件包管理</a></li>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/shell/13  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/13'" tppabs="http://shellbaike.com/shell/13">Linux安装软件</a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="rightItem">
+    <h2>
+        Shell随机文章
+    </h2>
+    <ul>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/3  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/3'" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/7  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/7'" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/8  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/8'" tppabs="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/9  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/9'" tppabs="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/10  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/10'" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/12  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/12'" tppabs="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/shell/13  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/13'" tppabs="http://shellbaike.com/shell/13">Linux安装软件</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/16  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/16'" tppabs="http://shellbaike.com/cmdline/16">第十三章 : vi 简介</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/27  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/27'" tppabs="http://shellbaike.com/cmdline/27">第二十四章 : 编译程序</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/32  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/32'" tppabs="http://shellbaike.com/cmdline/32">第二十九章 : 读取键盘输入</a></li>
+        
+    </ul>
+</div>
+            <div class="rightItem">
+    <h2>
+        Linux常用命令
+    </h2>
+    <ul>
+        
+        <li class="tagItem"><a href="adduser.htm" tppabs="http://shellbaike.com/cmd/adduser">adduser</a></li>
+        
+        <li class="tagItem"><a href="apachectl.htm" tppabs="http://shellbaike.com/cmd/apachectl">apachectl</a></li>
+        
+        <li class="tagItem"><a href="apmd.htm" tppabs="http://shellbaike.com/cmd/apmd">apmd</a></li>
+        
+        <li class="tagItem"><a href="apropos.htm" tppabs="http://shellbaike.com/cmd/apropos">apropos</a></li>
+        
+        <li class="tagItem"><a href="arpwatch.htm" tppabs="http://shellbaike.com/cmd/arpwatch">arpwatch</a></li>
+        
+        <li class="tagItem"><a href="aspell.htm" tppabs="http://shellbaike.com/cmd/aspell">aspell</a></li>
+        
+        <li class="tagItem"><a href="aumix.htm" tppabs="http://shellbaike.com/cmd/aumix">aumix</a></li>
+        
+        <li class="tagItem"><a href="bc.htm" tppabs="http://shellbaike.com/cmd/bc">bc</a></li>
+        
+        <li class="tagItem"><a href="bg.htm" tppabs="http://shellbaike.com/cmd/bg">bg</a></li>
+        
+        <li class="tagItem"><a href="bunzip2.htm" tppabs="http://shellbaike.com/cmd/bunzip2">bunzip2</a></li>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="index.htm" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/main.js" tppabs="http://shellbaike.com/static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/prism.js" tppabs="http://shellbaike.com/static/js/prism.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        $(".mainInfo").dblclick(function(){
+            $("html , body").animate({scrollTop:"0"}, 0);
+        });
+    });
+</script>
+</body>
+</html>

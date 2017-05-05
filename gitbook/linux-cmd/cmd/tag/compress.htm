@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>å¤‡ä»½å‹ç¼©ç›¸å…³å‘½ä»¤ - linuxå‘½ä»¤å¤§å…¨ - Shellç™¾ç§‘</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="å¤‡ä»½å‹ç¼©ç›¸å…³å‘½ä»¤,shell,linuxå‘½ä»¤å¤§å…¨,shellè„šæœ¬,shellè„šæœ¬ç¼–ç¨‹,linux shell" />
+    <link rel="stylesheet" href="../../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shellç™¾ç§‘ æœ€å…¨linuxå‘½ä»¤å¤§å…¨ Shellè„šæœ¬ç¼–ç¨‹æŠ€å·§åˆ†äº«">Shellç™¾ç§‘</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">é¦–é¡µ</a></li>
+                <li><a href="../index.htm" tppabs="http://shellbaike.com/cmd/">Linuxå‘½ä»¤å¤§å…¨</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/cmdline/'" tppabs="http://shellbaike.com/cmdline/">Shellè„šæœ¬å­¦ä¹ </a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shellè„šæœ¬ç¼–ç¨‹</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linuxèµ„è®¯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div class="cmdinfoList">
+            <h1>å¤‡ä»½å‹ç¼©</h1>
+            
+            <div class="cl_item">
+                <a href="../ar.htm" tppabs="http://shellbaike.com/cmd/ar">ar</a>
+                <div class="info">
+                    å»ºç«‹æˆ–ä¿®æ”¹å¤‡å­˜æ–‡ä»¶ï¼Œæˆ–æ˜¯ä»å¤‡å­˜æ–‡ä»¶ä¸­æŠ½å–æ–‡ä»¶
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../bunzip2.htm" tppabs="http://shellbaike.com/cmd/bunzip2">bunzip2</a>
+                <div class="info">
+                    .bz2æ–‡ä»¶çš„è§£å‹ç¼©ç¨‹åº
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../bzip2.htm" tppabs="http://shellbaike.com/cmd/bzip2">bzip2</a>
+                <div class="info">
+                    .bz2æ–‡ä»¶çš„å‹ç¼©ç¨‹åº
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../bzip2recover.htm" tppabs="http://shellbaike.com/cmd/bzip2recover">bzip2recover</a>
+                <div class="info">
+                    ç”¨æ¥ä¿®å¤æŸåçš„.bz2æ–‡ä»¶
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../compress.htm" tppabs="http://shellbaike.com/cmd/compress">compress</a>
+                <div class="info">
+                    å‹ç¼©æˆ–è§£å‹æ–‡ä»¶
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../cpio.htm" tppabs="http://shellbaike.com/cmd/cpio">cpio</a>
+                <div class="info">
+                    å¤‡ä»½æ–‡ä»¶
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../dump.htm" tppabs="http://shellbaike.com/cmd/dump">dump</a>
+                <div class="info">
+                    å¤‡ä»½æ–‡ä»¶ç³»ç»Ÿ
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../gunzip.htm" tppabs="http://shellbaike.com/cmd/gunzip">gunzip</a>
+                <div class="info">
+                    è§£å‹æ–‡ä»¶
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../gzip.htm" tppabs="http://shellbaike.com/cmd/gzip">gzip</a>
+                <div class="info">
+                    å‹ç¼©æ–‡ä»¶
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../rsync.htm" tppabs="http://shellbaike.com/cmd/rsync">rsync</a>
+                <div class="info">
+                    åŒæ­¥è¿œç«¯æ–‡ä»¶å’Œç›®å½•
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../tar.htm" tppabs="http://shellbaike.com/cmd/tar">tar</a>
+                <div class="info">
+                    æ‰“åŒ…æ–‡ä»¶
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../unarj.htm" tppabs="http://shellbaike.com/cmd/unarj">unarj</a>
+                <div class="info">
+                    è§£å‹ç¼©.arjæ–‡ä»¶
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../unzip.htm" tppabs="http://shellbaike.com/cmd/unzip">unzip</a>
+                <div class="info">
+                    è§£å‹ç¼©zipæ–‡ä»¶
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../zip.htm" tppabs="http://shellbaike.com/cmd/zip">zip</a>
+                <div class="info">
+                    å‹ç¼©æ–‡ä»¶
+                </div>
+            </div>
+            
+            <div class="cl_item">
+                <a href="../zipinfo.htm" tppabs="http://shellbaike.com/cmd/zipinfo">zipinfo</a>
+                <div class="info">
+                    åˆ—å‡ºå‹ç¼©æ–‡ä»¶ä¿¡æ¯
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>å‹æƒ…é“¾æ¥</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="../index.htm" tppabs="http://shellbaike.com/cmd/" title="Linuxå‘½ä»¤å¤§å…¨" target="_blank">Linuxå‘½ä»¤å¤§å…¨</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="åªçœ‹æ¥¼ä¸»ç½‘ - æœ€ä¸“ä¸šçš„åªçœ‹æ¥¼ä¸»ç²¾å“å¸–å­ç½‘ç«™" target="_blank">åªçœ‹æ¥¼ä¸»ç½‘</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Jeff Chou ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - æœ€å…¨çš„Luceneæ•™ç¨‹ã€Luceneå…¥é—¨ã€Lucene APIã€Luceneèµ„æ–™ç½‘ç«™" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL ç™¾ç§‘</p><br/>
+        <p class="info">æœ€å…¨linuxå‘½ä»¤å¤§å…¨ Shellè„šæœ¬ç¼–ç¨‹æŠ€å·§åˆ†äº«</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>patch命令详解 - Linux命令大全 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="patch命令详解,linux命令大全,linux常用命令,shell,patch用法" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/prism.css" tppabs="http://shellbaike.com/static/css/prism.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/'" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div id="main_left" class="l mainInfo">
+            <h1 class="titleInfo">
+                patch命令详解
+            </h1>
+            <div class="info">
+                修补文件
+            </div>
+            <div style="text-align: center;">
+    
+</div>
+            <div class="mainContent">
+                <h2>语法</h2>
+
+<p>patch [-bceEflnNRstTuvZ][-B &lt;备份字首字符串&gt;][-d &lt;工作目录&gt;][-D &lt;标示符号&gt;][-F &lt;监别列数&gt;][-g &lt;控制数值&gt;][-i &lt;修补文件&gt;][-o &lt;输出文件&gt;][-p &lt;剥离层级&gt;][-r &lt;拒绝文件&gt;][-V &lt;备份方式&gt;][-Y &lt;备份字首字符串&gt;][-z &lt;备份字尾字符串&gt;][&ndash;backup-if　　 -mismatch][&ndash;binary][&ndash;help][&ndash;nobackup-if-mismatch][&ndash;verbose][原始文件 &lt;修补文件&gt;]</p>
+
+<p>或</p>
+
+<p>path [-p &lt;剥离层级&gt;] &lt; [修补文件]</p>
+
+<h2>功能介绍</h2>
+
+<p>patch指令让用户利用设置修补文件的方式，修改，更新原始文件。倘若一次仅修改一个文件，可直接在指令列中下达指令依序执行。如果配合修补文件的方式则能一次修补大批文件，这也是Linux系统核心的升级方法之一。</p>
+
+<h2>参数</h2>
+
+<p>-b或&ndash;backup 　备份每一个原始文件。</p>
+
+<p>-B&lt;备份字首字符串&gt;或&ndash;prefix=&lt;备份字首字符串&gt; 　设置文件备份时，附加在文件名称前面的字首字符串，该字符串可以是路径名称。</p>
+
+<p>-c或&ndash;context 　把修补数据解译成关联性的差异。</p>
+
+<p>-d&lt;工作目录&gt;或&ndash;directory=&lt;工作目录&gt; 　设置工作目录。</p>
+
+<p>-D&lt;标示符号&gt;或&ndash;ifdef=&lt;标示符号&gt; 　用指定的符号把改变的地方标示出来。</p>
+
+<p>-e或&ndash;ed 　把修补数据解译成ed指令可用的叙述文件。</p>
+
+<p>-E或&ndash;remove-empty-files 　若修补过后输出的文件其内容是一片空白，则移除该文件。</p>
+
+<p>-f或&ndash;force 　此参数的效果和指定&rdquo;-t&rdquo;参数类似，但会假设修补数据的版本为新　版本。</p>
+
+<p>-F&lt;监别列数&gt;或&ndash;fuzz&lt;监别列数&gt; 　设置监别列数的最大值。</p>
+
+<p>-g&lt;控制数值&gt;或&ndash;get=&lt;控制数值&gt; 　设置以RSC或SCCS控制修补作业。</p>
+
+<p>-i&lt;修补文件&gt;或&ndash;input=&lt;修补文件&gt; 　读取指定的修补问家你。</p>
+
+<p>-l或&ndash;ignore-whitespace 　忽略修补数据与输入数据的跳格，空格字符。</p>
+
+<p>-n或&ndash;normal 　把修补数据解译成一般性的差异。</p>
+
+<p>-N或&ndash;forward 　忽略修补的数据较原始文件的版本更旧，或该版本的修补数据已使　用过。</p>
+
+<p>-o&lt;输出文件&gt;或&ndash;output=&lt;输出文件&gt; 　设置输出文件的名称，修补过的文件会以该名称存放。</p>
+
+<p>-p&lt;剥离层级&gt;或&ndash;strip=&lt;剥离层级&gt; 　设置欲剥离几层路径名称。</p>
+
+<p>-f&lt;拒绝文件&gt;或&ndash;reject-file=&lt;拒绝文件&gt; 　设置保存拒绝修补相关信息的文件名称，预设的文件名称为.rej。</p>
+
+<p>-R或&ndash;reverse 　假设修补数据是由新旧文件交换位置而产生。</p>
+
+<p>-s或&ndash;quiet或&ndash;silent 　不显示指令执行过程，除非发生错误。</p>
+
+<p>-t或&ndash;batch 　自动略过错误，不询问任何问题。</p>
+
+<p>-T或&ndash;set-time 　此参数的效果和指定&rdquo;-Z&rdquo;参数类似，但以本地时间为主。</p>
+
+<p>-u或&ndash;unified 　把修补数据解译成一致化的差异。</p>
+
+<p>-v或&ndash;version 　显示版本信息。</p>
+
+<p>-V&lt;备份方式&gt;或&ndash;version-control=&lt;备份方式&gt;
+ 　用&rdquo;-b&rdquo;参数备份目标文件后，备份文件的字尾会被加上一个备份字符串，这个字符串不仅可用&rdquo;-z&rdquo;参数变更，当使用&rdquo;-V&rdquo;参数指定不同备份方式时，也会产生不同字尾的备份字符串。
+-Y&lt;备份字首字符串&gt;或&ndash;basename-prefix=&ndash;&lt;备份字首字符串&gt; 　设置文件备份时，附加在文件基本名称开头的字首字符串。</p>
+
+<p>-z&lt;备份字尾字符串&gt;或&ndash;suffix=&lt;备份字尾字符串&gt; 　此参数的效果和指定&rdquo;-B&rdquo;参数类似，差别在于修补作业使用的路径与文件名若为src/linux/fs/super.c，加上&rdquo;backup/&ldquo;字符串后，文件super.c会备份于/src/linux/fs/backup目录里。</p>
+
+<p>-Z或&ndash;set-utc 　把修补过的文件更改，存取时间设为UTC。</p>
+
+<p>&ndash;backup-if-mismatch 　在修补数据不完全吻合，且没有刻意指定要备份文件时，才备份文件。</p>
+
+<p>&ndash;binary 　以二进制模式读写数据，而不通过标准输出设备。</p>
+
+<p>&ndash;help 　在线帮助。</p>
+
+<p>&ndash;nobackup-if-mismatch 　在修补数据不完全吻合，且没有刻意指定要备份文件时，不要备份文件。</p>
+
+<p>&ndash;verbose 　详细显示指令的执行过程。</p>
+
+<h2>例子</h2>
+
+            </div>
+        </div>
+        <div id="main_right" class="r">
+            <div class="rightItem">
+                <ul>
+                    
+                    <li class="tagItem"><a href="tag/file.htm" tppabs="http://shellbaike.com/cmd/tag/file">文件管理</a></li>
+                    
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="rightItem">
+                <h2>
+                    patch 相关文章
+                </h2>
+                <ul>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/24  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/24'" tppabs="http://shellbaike.com/cmdline/24">第二十一章 : 文本处理</a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="rightItem">
+    <h2>
+        Shell随机文章
+    </h2>
+    <ul>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/3  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/3'" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/6  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/6'" tppabs="http://shellbaike.com/cmdline/6">第五章：操作文件和目录</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/7  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/7'" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/8  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/8'" tppabs="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/9  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/9'" tppabs="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/10  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/10'" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/12  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/12'" tppabs="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/shell/13  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/13'" tppabs="http://shellbaike.com/shell/13">Linux安装软件</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/16  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/16'" tppabs="http://shellbaike.com/cmdline/16">第十三章 : vi 简介</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/17  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/17'" tppabs="http://shellbaike.com/cmdline/17">第十四章 : 自定制 shell 提示符</a></li>
+        
+    </ul>
+</div>
+            <div class="rightItem">
+    <h2>
+        Linux常用命令
+    </h2>
+    <ul>
+        
+        <li class="tagItem"><a href="bzip2.htm" tppabs="http://shellbaike.com/cmd/bzip2">bzip2</a></li>
+        
+        <li class="tagItem"><a href="chkconfig.htm" tppabs="http://shellbaike.com/cmd/chkconfig">chkconfig</a></li>
+        
+        <li class="tagItem"><a href="chown.htm" tppabs="http://shellbaike.com/cmd/chown">chown</a></li>
+        
+        <li class="tagItem"><a href="clear.htm" tppabs="http://shellbaike.com/cmd/clear">clear</a></li>
+        
+        <li class="tagItem"><a href="date.htm" tppabs="http://shellbaike.com/cmd/date">date</a></li>
+        
+        <li class="tagItem"><a href="declare.htm" tppabs="http://shellbaike.com/cmd/declare">declare</a></li>
+        
+        <li class="tagItem"><a href="dnsconf.htm" tppabs="http://shellbaike.com/cmd/dnsconf">dnsconf</a></li>
+        
+        <li class="tagItem"><a href="echo.htm" tppabs="http://shellbaike.com/cmd/echo">echo</a></li>
+        
+        <li class="tagItem"><a href="export.htm" tppabs="http://shellbaike.com/cmd/export">export</a></li>
+        
+        <li class="tagItem"><a href="ext2ed.htm" tppabs="http://shellbaike.com/cmd/ext2ed">ext2ed</a></li>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="index.htm" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/main.js" tppabs="http://shellbaike.com/static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/prism.js" tppabs="http://shellbaike.com/static/js/prism.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        $(".mainInfo").dblclick(function(){
+            $("html , body").animate({scrollTop:"0"}, 0);
+        });
+    });
+</script>
+</body>
+</html>

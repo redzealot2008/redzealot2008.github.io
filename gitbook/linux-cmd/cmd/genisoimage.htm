@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>genisoimage命令详解 - Linux命令大全 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="genisoimage命令详解,linux命令大全,linux常用命令,shell,genisoimage用法" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/prism.css" tppabs="http://shellbaike.com/static/css/prism.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/'" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div id="main_left" class="l mainInfo">
+            <h1 class="titleInfo">
+                genisoimage命令详解
+            </h1>
+            <div class="info">
+                建立ISO 9660映像文件
+            </div>
+            <div style="text-align: center;">
+    
+</div>
+            <div class="mainContent">
+                <h2>语法</h2>
+
+<p>mkisofs [-adDfhJlLNrRTvz][-print-size][-quiet][-A ][-abstract ][-b ][-biblio ][-c ][-C ][-copyright ][-hide ][-hide-joliet ][-log-file ][-m ][-M ][-o ][-p ][-P ][-sysid ][-V ][-volset ][-volset-size ][-volset-seqno ][-x ][目录或文件]</p>
+
+<h2>功能介绍</h2>
+
+<p>mkisofs可将指定的目录与文件做成ISO 9660格式的映像文件，以供刻录光盘。</p>
+
+<h2>参数</h2>
+
+<p>-a或–all   mkisofs通常不处理备份文件。使用此参数可以把备份文件加到映像文件中。</p>
+
+<p>-A或-appid   指定光盘的应用程序ID。</p>
+
+<p>-abstract   指定摘要文件的文件名。</p>
+
+<p>-b或-eltorito-boot   指定在制作可开机光盘时所需的开机映像文件。</p>
+
+<p>-biblio   指定ISBN文件的文件名，ISBN文件位于光盘根目录下，记录光盘的ISBN。</p>
+
+<p>-c   制作可开机光盘时，mkisofs会将开机映像文件中的全-eltorito-catalog全部内容作成一个文件。</p>
+
+<p>-C   将许多节区合成一个映像文件时，必须使用此参数。</p>
+
+<p>-copyright   指定版权信息文件的文件名。</p>
+
+<p>-d或-omit-period   省略文件后的句号。</p>
+
+<p>-D或-disable-deep-relocation   ISO 9660最多只能处理8层的目录，超过8层的部分，RRIP会自动将它们设置成ISO 9660兼容的格式。使用-D参数可关闭此功能。</p>
+
+<p>-f或-follow-links   忽略符号连接。</p>
+
+<p>-h   显示帮助。</p>
+
+<p>-hide   使指定的目录或文件在ISO 9660或Rock RidgeExtensions的系统中隐藏。</p>
+
+<p>-hide-joliet   使指定的目录或文件在Joliet系统中隐藏。</p>
+
+<p>-J或-joliet   使用Joliet格式的目录与文件名称。</p>
+
+<p>-l或-full-iso9660-filenames   使用ISO 9660 32字符长度的文件名。</p>
+
+<p>-L或-allow-leading-dots   允许文件名的第一个字符为句号。</p>
+
+<p>-log-file   在执行过程中若有错误信息，预设会显示在屏幕上。</p>
+
+<p>-m或-exclude   指定的目录或文件名将不会房入映像文件中。</p>
+
+<p>-M或-prev-session   与指定的映像文件合并。</p>
+
+<p>-N或-omit-version-number   省略ISO 9660文件中的版本信息。</p>
+
+<p>-o或-output   指定映像文件的名称。</p>
+
+<p>-p或-preparer   记录光盘的数据处理人。</p>
+
+<p>-print-size   显示预估的文件系统大小。</p>
+
+<p>-quiet   执行时不显示任何信息。</p>
+
+<p>-r或-rational-rock   使用Rock Ridge Extensions，并开放全部文件的读取权限。</p>
+
+<p>-R或-rock   使用Rock Ridge Extensions。</p>
+
+<p>-sysid   指定光盘的系统ID。</p>
+
+<p>-T或-translation-table   建立文件名的转换表，适用于不支持Rock Ridge Extensions的系统上。</p>
+
+<p>-v或-verbose   执行时显示详细的信息。</p>
+
+<p>-V或-volid   指定光盘的卷册集ID。</p>
+
+<p>-volset-size   指定卷册集所包含的光盘张数。</p>
+
+<p>-volset-seqno   指定光盘片在卷册集中的编号。</p>
+
+<p>-x   指定的目录将不会放入映像文件中。</p>
+
+<p>-z   建立通透性压缩文件的SUSP记录，此记录目前只在Alpha机器上的Linux有效。</p>
+
+<h2>例子</h2>
+
+            </div>
+        </div>
+        <div id="main_right" class="r">
+            <div class="rightItem">
+                <ul>
+                    
+                    <li class="tagItem"><a href="tag/diskmanage.htm" tppabs="http://shellbaike.com/cmd/tag/diskmanage">磁盘维护</a></li>
+                    
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="rightItem">
+                <h2>
+                    genisoimage 相关文章
+                </h2>
+                <ul>
+                    
+                    <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/19  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/19'" tppabs="http://shellbaike.com/cmdline/19">第十六章 : 存储媒介</a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="rightItem">
+                <h2>
+                    genisoimage 相关命令
+                </h2>
+                <ul>
+                    
+                    <li class="tagItem"><a href="fdformat.htm" tppabs="http://shellbaike.com/cmd/fdformat">fdformat</a></li>
+                    
+                </ul>
+                <div class="clear"></div>
+            </div>
+            
+            <div class="rightItem">
+    <h2>
+        Shell随机文章
+    </h2>
+    <ul>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/3  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/3'" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/36  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/36'" tppabs="http://shellbaike.com/cmdline/36">第三十三章 : 位置参数</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/59  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/59'" tppabs="http://shellbaike.com/linux/59">使用 Docker 还是 Rocket ？也许可以一起来</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/62  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/62'" tppabs="http://shellbaike.com/linux/62">游戏操作系统 SteamOS 1.0 Beta Update 153 发布</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/shell/64  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/64'" tppabs="http://shellbaike.com/shell/64">shell中使用别名alias</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/65  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/65'" tppabs="http://shellbaike.com/linux/65">Linux Kernel 3.19-rc5 发布下载</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/shell/72  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/72'" tppabs="http://shellbaike.com/shell/72">硬盘监控和分析工具：Smartctl</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/74  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/74'" tppabs="http://shellbaike.com/linux/74">面向新手的 Linux 系统 HandyLinux 1.8 发布</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/78  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/78'" tppabs="http://shellbaike.com/linux/78">美国海军陆战队要把雷达操作系统从Windows XP换成Linux</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/90  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/90'" tppabs="http://shellbaike.com/linux/90">2015:开源已经完胜，但这并不是结束</a></li>
+        
+    </ul>
+</div>
+            <div class="rightItem">
+    <h2>
+        Linux常用命令
+    </h2>
+    <ul>
+        
+        <li class="tagItem"><a href="adduser.htm" tppabs="http://shellbaike.com/cmd/adduser">adduser</a></li>
+        
+        <li class="tagItem"><a href="apachectl.htm" tppabs="http://shellbaike.com/cmd/apachectl">apachectl</a></li>
+        
+        <li class="tagItem"><a href="apmd.htm" tppabs="http://shellbaike.com/cmd/apmd">apmd</a></li>
+        
+        <li class="tagItem"><a href="apropos.htm" tppabs="http://shellbaike.com/cmd/apropos">apropos</a></li>
+        
+        <li class="tagItem"><a href="ar.htm" tppabs="http://shellbaike.com/cmd/ar">ar</a></li>
+        
+        <li class="tagItem"><a href="arpwatch.htm" tppabs="http://shellbaike.com/cmd/arpwatch">arpwatch</a></li>
+        
+        <li class="tagItem"><a href="aspell.htm" tppabs="http://shellbaike.com/cmd/aspell">aspell</a></li>
+        
+        <li class="tagItem"><a href="aumix.htm" tppabs="http://shellbaike.com/cmd/aumix">aumix</a></li>
+        
+        <li class="tagItem"><a href="badblocks.htm" tppabs="http://shellbaike.com/cmd/badblocks">badblocks</a></li>
+        
+        <li class="tagItem"><a href="bc.htm" tppabs="http://shellbaike.com/cmd/bc">bc</a></li>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="index.htm" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/main.js" tppabs="http://shellbaike.com/static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/prism.js" tppabs="http://shellbaike.com/static/js/prism.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        $(".mainInfo").dblclick(function(){
+            $("html , body").animate({scrollTop:"0"}, 0);
+        });
+    });
+</script>
+</body>
+</html>

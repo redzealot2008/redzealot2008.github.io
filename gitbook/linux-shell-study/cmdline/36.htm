@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>第三十三章 : 位置参数 - Shell脚本学习 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="Linux命令行,shell,linux命令大全,shell脚本,shell脚本编程,linux shell,第三十三章 : 位置参数" />
+    <meta name="description" content="现在我们的程序还缺少一种本领，就是接收和处理命令行选项和参数的能力。在这一章中，我们将探究一些能 让程序访问命令行内容的 shell 性能。" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/prism.css" tppabs="http://shellbaike.com/static/css/prism.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmd/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/'" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div id="main_left" class="l mainInfo">
+            <h1 class="titleInfo">
+                第三十三章 : 位置参数
+            </h1>
+            <div class="info">
+                <span class="smartTime" smartTime="1420268359">2015-01-03 14:59:19 +0800 CST</span>
+            </div>
+            <div style="text-align: center;">
+    
+</div>
+            <div class="mainContent">
+                <p>现在我们的程序还缺少一种本领，就是接收和处理命令行选项和参数的能力。在这一章中，我们将探究一些能 让程序访问命令行内容的 shell 性能。</p><h3>访问命令行</h3><p>shell 提供了一个称为位置参数的变量集合，这个集合包含了命令行中所有独立的单词。这些变量按照从0到9给予命名。 可以以这种方式讲明白：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# posit-param: script to view command line parameters
+echo "
+\$0 = $0
+\$1 = $1
+\$2 = $2
+\$3 = $3
+\$4 = $4
+\$5 = $5
+\$6 = $6
+\$7 = $7
+\$8 = $8
+\$9 = $9
+"
+</code></pre><p>一个非常简单的脚本，显示从 $0 到 $9 所有变量的值。当不带命令行参数执行该脚本时，输出结果如下：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ posit-param
+$0 = /home/me/bin/posit-param
+$1 =
+$2 =
+$3 =
+$4 =
+$5 =
+$6 =
+$7 =
+$8 =
+$9 =
+</code></pre><p>即使不带命令行参数，位置参数 $0 总会包含命令行中出现的第一个单词，也就是已执行程序的路径名。 当带参数执行脚本时，我们看看输出结果：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ posit-param a b c d
+$0 = /home/me/bin/posit-param
+$1 = a
+$2 = b
+$3 = c
+$4 = d
+$5 =
+$6 =
+$7 =
+$8 =
+$9 =
+</code></pre><p>注意： 实际上通过参数展开方式你可以访问的参数个数多于9个。只要指定一个大于9的数字，用花括号把该数字括起来就可以。 例如 ${10}， ${55}， ${211}，等等。</p><h4>确定参数个数</h4><p>另外 shell 还提供了一个名为 $#，可以得到命令行参数个数的变量:</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# posit-param: script to view command line parameters
+echo "
+Number of arguments: $#
+\$0 = $0
+\$1 = $1
+\$2 = $2
+\$3 = $3
+\$4 = $4
+\$5 = $5
+\$6 = $6
+\$7 = $7
+\$8 = $8
+\$9 = $9
+"
+</code></pre><p>结果是：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ posit-param a b c d
+Number of arguments: 4
+$0 = /home/me/bin/posit-param
+$1 = a
+$2 = b
+$3 = c
+$4 = d
+$5 =
+$6 =
+$7 =
+$8 =
+$9 =
+</code></pre><h4>shift - 访问多个参数的利器</h4><p>但是如果我们给一个程序添加大量的命令行参数，会怎么样呢？ 正如下面的例子：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ posit-param *
+Number of arguments: 82
+$0 = /home/me/bin/posit-param
+$1 = addresses.ldif
+$2 = bin
+$3 = bookmarks.html
+$4 = debian-500-i386-netinst.iso
+$5 = debian-500-i386-netinst.jigdo
+$6 = debian-500-i386-netinst.template
+$7 = debian-cd_info.tar.gz
+$8 = Desktop
+$9 = dirlist-bin.txt
+</code></pre><p>在这个例子运行的环境下，通配符 * 展开成82个参数。我们如何处理那么多的参数？ 为此，shell 提供了一种方法，尽管笨拙，但可以解决这个问题。执行一次 shift 命令， 就会导致所有的位置参数 “向下移动一个位置”。事实上，用 shift 命令也可以 处理只有一个参数的情况（除了其值永远不会改变的变量 $0）：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# posit-param2: script to display all arguments
+count=1
+while [[ $# -gt 0 ]]; do
+    echo "Argument $count = $1"
+    count=$((count + 1))
+    shift
+done
+</code></pre><p>每次 shift 命令执行的时候，变量 $2 的值会移动到变量 $1 中，变量 $3 的值会移动到变量 $2 中，依次类推。 变量 $# 的值也会相应的减1。</p><p>在该 posit-param2 程序中，我们编写了一个计算剩余参数数量，只要参数个数不为零就会继续执行的 while 循环。 我们显示当前的位置参数，每次循环迭代变量 count 的值都会加1，用来计数处理的参数数量， 最后，执行 shift 命令加载 $1，其值为下一个位置参数的值。这里是程序运行后的输出结果:</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ posit-param2 a b c d
+Argument 1 = a
+Argument 2 = b
+Argument 3 = c
+Argument 4 = d
+</code></pre><h4>简单应用</h4><p>即使没有 shift 命令，也可以用位置参数编写一个有用的应用。举例说明，这里是一个简单的输出文件信息的程序：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# file_info: simple file information program
+PROGNAME=$(basename $0)
+if [[ -e $1 ]]; then
+    echo -e "\nFile Type:"
+    file $1
+    echo -e "\nFile Status:"
+    stat $1
+else
+    echo "$PROGNAME: usage: $PROGNAME file" &gt;&amp;2
+    exit 1
+fi
+</code></pre><p>这个程序显示一个具体文件的文件类型（由 <a href="javascript:if(confirm('http://shellbaike.com/cmd/file  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/file'" tppabs="http://shellbaike.com/cmd/file" title="file命令参数">file</a> 命令确定）和文件状态（来自 stat 命令）。该程序一个有意思 的特点是 PROGNAME 变量。它的值就是 basename $0 命令的执行结果。这个 basename 命令清除 一个路径名的开头部分，只留下一个文件的基本名称。在我们的程序中，basename 命令清除了包含在 $0 位置参数 中的路径名的开头部分，$0 中包含着我们示例程序的完整路径名。当构建提示信息正如程序结尾的使用信息的时候， basename $0 的执行结果就很有用处。按照这种方式编码，可以重命名该脚本，且程序信息会自动调整为 包含相应的程序名称。</p><h4>Shell 函数中使用位置参数</h4><p>正如位置参数被用来给 shell 脚本传递参数一样，它们也能够被用来给 shell 函数传递参数。为了说明这一点， 我们将把 file_<a href="javascript:if(confirm('http://shellbaike.com/cmd/info  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/info'" tppabs="http://shellbaike.com/cmd/info" title="info用法">info</a> 脚本转变成一个 shell 函数：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">file_info () {
+  # file_info: function to display file information
+  if [[ -e $1 ]]; then
+      echo -e "\nFile Type:"
+      file $1
+      echo -e "\nFile Status:"
+      stat $1
+  else
+      echo "$FUNCNAME: usage: $FUNCNAME file" &gt;&amp;2
+      return 1
+  fi
+}
+</code></pre><p>现在，如果一个包含 shell 函数 file_info 的脚本调用该函数，且带有一个文件名参数，那这个参数会传递给 file_info 函数。</p><p>通过此功能，我们可以写出许多有用的 shell 函数，这些函数不仅能在脚本中使用，也可以用在 .bashrc 文件中。</p><p>注意那个 PROGNAME 变量已经改成 shell 变量 FUNCNAME 了。shell 会自动更新 FUNCNAME 变量，以便 跟踪当前执行的 shell 函数。注意位置参数 $0 总是包含命令行中第一项的完整路径名（例如，该程序的名字）， 但不会包含这个我们可能期望的 shell 函数的名字。</p><h3>处理集体位置参数</h3><p>有时候把所有的位置参数作为一个集体来管理是很有用的。例如，我们可能想为另一个程序编写一个 “包裹程序”。 这意味着我们会创建一个脚本或 shell 函数，来简化另一个程序的执行。包裹程序提供了一个神秘的命令行选项 列表，然后把这个参数列表传递给下一级的程序。</p><p>为此 shell 提供了两种特殊的参数。他们二者都能扩展成完整的位置参数列表，但以相当微妙的方式略有不同。它们是：</p>表 32-1: * 和 @ 特殊参数<table><colgroup><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>参数</td><td>描述</td></tr><tr><td>$*</td><td>展开成一个从1开始的位置参数列表。当它被用双引号引起来的时候，展开成一个由双引号引起来 的字符串，包含了所有的位置参数，每个位置参数由 shell 变量 IFS 的第一个字符（默认为一个空格）分隔开。</td></tr><tr><td>$@</td><td>展开成一个从1开始的位置参数列表。当它被用双引号引起来的时候， 它把每一个位置参数展开成一个由双引号引起来的分开的字符串。</td></tr></tbody></table><p>下面这个脚本用程序中展示了这些特殊参数：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# posit-params3 : script to demonstrate $* and $@
+print_params () {
+    echo "\$1 = $1"
+    echo "\$2 = $2"
+    echo "\$3 = $3"
+    echo "\$4 = $4"
+}
+pass_params () {
+    echo -e "\n" '$* :';      print_params   $*
+    echo -e "\n" '"$*" :';    print_params   "$*"
+    echo -e "\n" '$@ :';      print_params   $@
+    echo -e "\n" '"$@" :';    print_params   "$@"
+}
+pass_params "word" "words with spaces"
+</code></pre><p>在这个相当复杂的程序中，我们创建了两个参数： “word” 和 “words with spaces”，然后把它们 传递给 pass_params 函数。这个函数，依次，再把两个参数传递给 print_params 函数， 使用了特殊参数 $* 和 $@ 提供的四种可用方法。脚本运行后，揭示了这两个特殊参数存在的差异：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ posit-param3
+ $* :
+$1 = word
+$2 = words
+$3 = with
+$4 = spaces
+ "$*" :
+$1 = word words with spaces
+$2 =
+$3 =
+$4 =
+ $@ :
+$1 = word
+$2 = words
+$3 = with
+$4 = spaces
+ "$@" :
+$1 = word
+$2 = words with spaces
+$3 =
+$4 =
+</code></pre><p>通过我们的参数，$* 和 $@ 两个都产生了一个有四个词的结果：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">word words with spaces
+"$*" produces a one word result:
+    "word words with spaces"
+"$@" produces a two word result:
+    "word" "words with spaces"
+</code></pre><p>这个结果符合我们实际的期望。我们从中得到的教训是尽管 shell 提供了四种不同的得到位置参数列表的方法， 但到目前为止， “$@” 在大多数情况下是最有用的方法，因为它保留了每一个位置参数的完整性。</p><h3>一个更复杂的应用</h3><p>经过长时间的间断，我们将恢复程序 sys_info_page 的工作。我们下一步要给程序添加如下几个命令行选项：</p><ul><li><p><strong>输出文件</strong>。 我们将添加一个选项，以便指定一个文件名，来包含程序的输出结果。 选项格式要么是 -f file，要么是 --file file</p></li><li><p><strong>交互模式</strong>。这个选项将提示用户输入一个输出文件名，然后判断是否指定的文件已经存在了。如果文件存在， 在覆盖这个存在的文件之前会提示用户。这个选项可以通过 -i 或者 --interactive 来指定。</p></li><li><p><strong>帮助</strong>。指定 -h 选项 或者是 --help 选项，可导致程序输出提示性的使用信息。</p></li></ul><p>这里是处理命令行选项所需的代码：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">usage () {
+    echo "$PROGNAME: usage: $PROGNAME [-f file | -i]"
+    return
+}
+# process command line options
+interactive=
+filename=
+while [[ -n $1 ]]; do
+    case $1 in
+    -f | --file)            shift
+                            filename=$1
+                            ;;
+    -i | --interactive)     interactive=1
+                            ;;
+    -h | --help)            usage
+                            exit
+                            ;;
+    *)                      usage &gt;&amp;2
+                            exit 1
+                            ;;
+    esac
+    shift
+done
+</code></pre><p>首先，我们添加了一个叫做 usage 的 shell 函数，以便显示帮助信息，当启用帮助选项或敲写了一个未知选项的时候。</p><p>下一步，我们开始处理循环。当位置参数 $1 不为空的时候，这个循环会持续运行。在循环的底部，有一个 shift 命令， 用来提升位置参数，以便确保该循环最终会终止。在循环体内，我们使用了一个 case 语句来检查当前位置参数的值， 看看它是否匹配某个支持的选项。若找到了匹配项，就会执行与之对应的代码。若没有，就会打印出程序使用信息， 该脚本终止且执行错误。</p><p>处理 -f 参数的方式很有意思。当监测到 -f 参数的时候，会执行一次 shift 命令，从而提升位置参数 $1 为 伴随着 -f 选项的 filename 参数。</p><p>我们下一步添加代码来实现交互模式：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;"># interactive mode
+if [[ -n $interactive ]]; then
+    while true; do
+        read -p "Enter name of output file: " filename
+        if [[ -e $filename ]]; then
+            read -p "'$filename' exists. Overwrite? [y/n/q] &gt; "
+            case $REPLY in
+            Y|y)    break
+                    ;;
+            Q|q)    echo "Program terminated."
+                    exit
+                    ;;
+            *)      continue
+                    ;;
+            esac
+        elif [[ -z $filename ]]; then
+            continue
+        else
+            break
+        fi
+    done
+fi
+</code></pre><p>若 interactive 变量不为空，就会启动一个无休止的循环，该循环包含文件名提示和随后存在的文件处理代码。 如果所需要的输出文件已经存在，则提示用户覆盖，选择另一个文件名，或者退出程序。如果用户选择覆盖一个 已经存在的文件，则会执行 break 命令终止循环。注意 case 语句是怎样只检测用户选择了覆盖还是退出选项。 其它任何选择都会导致循环继续并提示用户再次选择。</p><p>为了实现这个输出文件名的功能，首先我们必须把现有的这个写页面（page-writing）的代码转变成一个 shell 函数， 一会儿就会明白这样做的原因：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">write_html_page () {
+    cat &lt;&lt;- _EOF_
+        &lt;HTML&gt;
+            &lt;HEAD&gt;
+                &lt;TITLE&gt;$TITLE&lt;/TITLE&gt;
+            &lt;/HEAD&gt;
+            &lt;BODY&gt;
+                &lt;H1&gt;$TITLE&lt;/H1&gt;
+                &lt;P&gt;$TIMESTAMP&lt;/P&gt;
+                $(report_uptime)
+                $(report_disk_space)
+                $(report_home_space)
+            &lt;/BODY&gt;
+        &lt;/HTML&gt;
+    _EOF_
+    return
+}
+# output html page
+if [[ -n $filename ]]; then
+    if touch $filename &amp;&amp; [[ -f $filename ]]; then
+        write_html_page &gt; $filename
+    else
+        echo "$PROGNAME: Cannot write file '$filename'" &gt;&amp;2
+        exit 1
+    fi
+else
+    write_html_page
+fi
+</code></pre><p>解决 -f 选项逻辑的代码出现在以上程序片段的末尾。在这段代码中，我们测试一个文件名是否存在，若文件名存在， 则执行另一个测试看看该文件是不是可写文件。为此，会运行 <a href="javascript:if(confirm('http://shellbaike.com/cmd/touch  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/touch'" tppabs="http://shellbaike.com/cmd/touch" title="touch例子">touch</a> 命令，紧随其后执行一个测试，来决定 touch 命令 创建的文件是否是个普通文件。这两个测试考虑到了输入是无效路径名（touch 命令执行失败），和一个普通文件已经存在的情况。</p><p>正如我们所看到的，程序调用 write_html_page 函数来生成实际的网页。函数输出要么直接定向到 标准输出（若 filename 变量为空的话）要么重定向到具体的文件中。</p><h3>总结</h3><p>伴随着位置参数的加入，现在我们能编写相当具有功能性的脚本。例如，重复性的任务，位置参数使得编写 非常有用的，可以放置在一个用户的 .bashrc 文件中的 shell 函数成为可能。</p><p>我们的 sys_info_page 程序日渐精进。这里是一个完整的程序清单，最新的更改用高亮显示：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# sys_info_page: program to output a system information page
+PROGNAME=$(basename $0)
+TITLE="System Information Report For $HOSTNAME"
+CURRENT_TIME=$(date +"%x %r %Z")
+TIMESTAMP="Generated $CURRENT_TIME, by $USER"
+report_uptime () {
+    cat &lt;&lt;- _EOF_
+        &lt;H2&gt;System Uptime&lt;/H2&gt;
+        &lt;PRE&gt;$(uptime)&lt;/PRE&gt;
+    _EOF_
+    return
+}
+report_disk_space () {
+    cat &lt;&lt;- _EOF_
+        &lt;H2&gt;Disk Space Utilization&lt;/H2&gt;
+        &lt;PRE&gt;$(df -h)&lt;/PRE&gt;
+    _EOF_
+    return
+}
+report_home_space () {
+    if [[ $(id -u) -eq 0 ]]; then
+        cat &lt;&lt;- _EOF_
+            &lt;H2&gt;Home Space Utilization (All Users)&lt;/H2&gt;
+            &lt;PRE&gt;$(du -sh /home/*)&lt;/PRE&gt;
+        _EOF_
+    else
+        cat &lt;&lt;- _EOF_
+            &lt;H2&gt;Home Space Utilization ($USER)&lt;/H2&gt;
+            &lt;PRE&gt;$(du -sh $HOME)&lt;/PRE&gt;
+        _EOF_
+    fi
+    return
+}
+usage () {
+    echo "$PROGNAME: usage: $PROGNAME [-f file | -i]"
+    return
+}
+write_html_page () {
+    cat &lt;&lt;- _EOF_
+        &lt;HTML&gt;
+            &lt;HEAD&gt;
+                &lt;TITLE&gt;$TITLE&lt;/TITLE&gt;
+            &lt;/HEAD&gt;
+            &lt;BODY&gt;
+                &lt;H1&gt;$TITLE&lt;/H1&gt;
+                &lt;P&gt;$TIMESTAMP&lt;/P&gt;
+                $(report_uptime)
+                $(report_disk_space)
+                $(report_home_space)
+            &lt;/BODY&gt;
+        &lt;/HTML&gt;
+    _EOF_
+    return
+}
+# process command line options
+interactive=
+filename=
+while [[ -n $1 ]]; do
+    case $1 in
+        -f | --file)          shift
+                              filename=$1
+                              ;;
+        -i | --interactive)   interactive=1
+                              ;;
+        -h | --help)          usage
+                              exit
+                              ;;
+        *)                    usage &gt;&amp;2
+                              exit 1
+                              ;;
+    esac
+    shift
+done
+# interactive mode
+if [[ -n $interactive ]]; then
+    while true; do
+        read -p "Enter name of output file: " filename
+        if [[ -e $filename ]]; then
+            read -p "'$filename' exists. Overwrite? [y/n/q] &gt; "
+            case $REPLY in
+                Y|y)    break
+                        ;;
+                Q|q)    echo "Program terminated."
+                        exit
+                        ;;
+                *)      continue
+                        ;;
+            esac
+        fi
+    done
+fi
+# output html page
+if [[ -n $filename ]]; then
+    if touch $filename &amp;&amp; [[ -f $filename ]]; then
+        write_html_page &gt; $filename
+    else
+        echo "$PROGNAME: Cannot write file '$filename'" &gt;&amp;2
+        exit 1
+    fi
+else
+    write_html_page
+fi
+</code></pre><p>我们还没有完成。仍然还有许多事情我们可以做，可以改进。</p><h3>拓展阅读</h3><ul><li><p>Bash Hackers Wiki&nbsp;上有一篇不错的关于位置参数的文章：</p><p><a href="javascript:if(confirm('http://wiki.bash-hackers.org/scripting/posparams  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://wiki.bash-hackers.org/scripting/posparams'" tppabs="http://wiki.bash-hackers.org/scripting/posparams" rel="nofollow">http://wiki.bash-hackers.org/scripting/posparams</a></p></li><li><p>Bash 的参考手册有一篇关于特殊参数的文章，包括 $* 和 $@：</p><p><a href="javascript:if(confirm('http://www.gnu.org/software/bash/manual/bashref.html  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.gnu.org/software/bash/manual/bashref.html#Special-Parameters'" tppabs="http://www.gnu.org/software/bash/manual/bashref.html#Special-Parameters" rel="nofollow">http://www.gnu.org/software/bash/manual/bashref.html#Special-Parameters</a></p></li><li><p>除了本章讨论的技术之外，bash 还包含一个叫做 getopts 的内部命令，此命令也可以用来处理命令行参数。 bash 参考页面的 SHELL BUILTIN COMMANDS 一节介绍了这个命令，Bash Hackers Wiki 上也有对它的描述：</p><p><a href="javascript:if(confirm('http://wiki.bash-hackers.org/howto/getopts_tutorial  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://wiki.bash-hackers.org/howto/getopts_tutorial'" tppabs="http://wiki.bash-hackers.org/howto/getopts_tutorial" rel="nofollow" class="">http://wiki.bash-hackers.org/howto/getopts_tutorial</a></p></li></ul>
+            </div>
+        </div>
+        <div id="main_right" class="r">
+            <div class="rightItem">
+                <h2>
+                    Shell脚本学习目录
+                </h2>
+                <ul>
+                    
+                    <li><a href="1.htm" tppabs="http://shellbaike.com/cmdline/1">第一章 引言</a></li>
+                    
+                    <li><a href="2.htm" tppabs="http://shellbaike.com/cmdline/2">第二章 : 什么是 shell</a></li>
+                    
+                    <li><a href="3.htm" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+                    
+                    <li><a href="5.htm" tppabs="http://shellbaike.com/cmdline/5">第四章：探究操作系统</a></li>
+                    
+                    <li><a href="6.htm" tppabs="http://shellbaike.com/cmdline/6">第五章：操作文件和目录</a></li>
+                    
+                    <li><a href="7.htm" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+                    
+                    <li><a href="8.htm" tppabs="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+                    
+                    <li><a href="9.htm" tppabs="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+                    
+                    <li><a href="10.htm" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+                    
+                    <li><a href="11.htm" tppabs="http://shellbaike.com/cmdline/11">第十章：权限</a></li>
+                    
+                    <li><a href="12.htm" tppabs="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+                    
+                    <li><a href="15.htm" tppabs="http://shellbaike.com/cmdline/15">第十二章 : shell 环境</a></li>
+                    
+                    <li><a href="16.htm" tppabs="http://shellbaike.com/cmdline/16">第十三章 : vi 简介</a></li>
+                    
+                    <li><a href="17.htm" tppabs="http://shellbaike.com/cmdline/17">第十四章 : 自定制 shell 提示符</a></li>
+                    
+                    <li><a href="18.htm" tppabs="http://shellbaike.com/cmdline/18">第十五章 : 软件包管理</a></li>
+                    
+                    <li><a href="19.htm" tppabs="http://shellbaike.com/cmdline/19">第十六章 : 存储媒介</a></li>
+                    
+                    <li><a href="20.htm" tppabs="http://shellbaike.com/cmdline/20">第十七章 : 网络系统</a></li>
+                    
+                    <li><a href="21.htm" tppabs="http://shellbaike.com/cmdline/21">第十八章 : 查找文件</a></li>
+                    
+                    <li><a href="22.htm" tppabs="http://shellbaike.com/cmdline/22">第十九章 : 归档和备份</a></li>
+                    
+                    <li><a href="23.htm" tppabs="http://shellbaike.com/cmdline/23">第二十章 : 正则表达式</a></li>
+                    
+                    <li><a href="24.htm" tppabs="http://shellbaike.com/cmdline/24">第二十一章 : 文本处理</a></li>
+                    
+                    <li><a href="25.htm" tppabs="http://shellbaike.com/cmdline/25">第二十二章 : 格式化输出</a></li>
+                    
+                    <li><a href="26.htm" tppabs="http://shellbaike.com/cmdline/26">第二十三章 : 打印</a></li>
+                    
+                    <li><a href="27.htm" tppabs="http://shellbaike.com/cmdline/27">第二十四章 : 编译程序</a></li>
+                    
+                    <li><a href="28.htm" tppabs="http://shellbaike.com/cmdline/28">第二十五章 : 编写第一个 Shell 脚本</a></li>
+                    
+                    <li><a href="29.htm" tppabs="http://shellbaike.com/cmdline/29">第二十六章 : 启动一个项目</a></li>
+                    
+                    <li><a href="30.htm" tppabs="http://shellbaike.com/cmdline/30">第二十七章 : 自顶向下设计</a></li>
+                    
+                    <li><a href="31.htm" tppabs="http://shellbaike.com/cmdline/31">第二十八章 : 流程控制：if 分支结构</a></li>
+                    
+                    <li><a href="32.htm" tppabs="http://shellbaike.com/cmdline/32">第二十九章 : 读取键盘输入</a></li>
+                    
+                    <li><a href="33.htm" tppabs="http://shellbaike.com/cmdline/33">第三十章 : 流程控制：while/until 循环</a></li>
+                    
+                    <li><a href="34.htm" tppabs="http://shellbaike.com/cmdline/34">第三十一章 : 疑难排解</a></li>
+                    
+                    <li><a href="35.htm" tppabs="http://shellbaike.com/cmdline/35">第三十二章 : 流程控制：case 分支</a></li>
+                    
+                    <li><a href="36.htm" tppabs="http://shellbaike.com/cmdline/36">第三十三章 : 位置参数</a></li>
+                    
+                    <li><a href="37.htm" tppabs="http://shellbaike.com/cmdline/37">第三十四章 : 流程控制：for 循环</a></li>
+                    
+                    <li><a href="38.htm" tppabs="http://shellbaike.com/cmdline/38">第三十五章 : 字符串和数字</a></li>
+                    
+                    <li><a href="39.htm" tppabs="http://shellbaike.com/cmdline/39">第三十六章 : 数组</a></li>
+                    
+                    <li><a href="40.htm" tppabs="http://shellbaike.com/cmdline/40">第三十七章 : 奇珍异宝</a></li>
+                    
+                </ul>
+            </div>
+            <div class="rightItem">
+    <h2>
+        Shell随机文章
+    </h2>
+    <ul>
+        
+        <li><a href="3.htm" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+        
+        <li><a href="6.htm" tppabs="http://shellbaike.com/cmdline/6">第五章：操作文件和目录</a></li>
+        
+        <li><a href="7.htm" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+        
+        <li><a href="8.htm" tppabs="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+        
+        <li><a href="9.htm" tppabs="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+        
+        <li><a href="10.htm" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+        
+        <li><a href="12.htm" tppabs="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/shell/13  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/13'" tppabs="http://shellbaike.com/shell/13">Linux安装软件</a></li>
+        
+        <li><a href="16.htm" tppabs="http://shellbaike.com/cmdline/16">第十三章 : vi 简介</a></li>
+        
+        <li><a href="19.htm" tppabs="http://shellbaike.com/cmdline/19">第十六章 : 存储媒介</a></li>
+        
+    </ul>
+</div>
+            <div class="rightItem">
+    <h2>
+        Linux常用命令
+    </h2>
+    <ul>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/apmd  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/apmd'" tppabs="http://shellbaike.com/cmd/apmd">apmd</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/apropos  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/apropos'" tppabs="http://shellbaike.com/cmd/apropos">apropos</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/aumix  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/aumix'" tppabs="http://shellbaike.com/cmd/aumix">aumix</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/bg  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/bg'" tppabs="http://shellbaike.com/cmd/bg">bg</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/bzip2  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/bzip2'" tppabs="http://shellbaike.com/cmd/bzip2">bzip2</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/cd  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cd'" tppabs="http://shellbaike.com/cmd/cd">cd</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/cfdisk  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cfdisk'" tppabs="http://shellbaike.com/cmd/cfdisk">cfdisk</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/chfn  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/chfn'" tppabs="http://shellbaike.com/cmd/chfn">chfn</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/chgrp  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/chgrp'" tppabs="http://shellbaike.com/cmd/chgrp">chgrp</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/chkconfig  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/chkconfig'" tppabs="http://shellbaike.com/cmd/chkconfig">chkconfig</a></li>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+            <br/>
+<script type="text/javascript">
+    document.write('<a style="display:none!important" id="tanx-a-mm_12741493_8680874_29282972"></a>');
+    tanx_s = document.createElement("script");
+    tanx_s.type = "text/javascript";
+    tanx_s.charset = "gbk";
+    tanx_s.id = "tanx-s-mm_12741493_8680874_29282972";
+    tanx_s.async = true;
+    tanx_s.src = "../../p.tanx.com/ex-i=mm_12741493_8680874_29282972"/*tpa=http://p.tanx.com/ex?i=mm_12741493_8680874_29282972*/;
+    tanx_h = document.getElementsByTagName("head")[0];
+    if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
+</script>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="javascript:if(confirm('http://shellbaike.com/cmd/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/'" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/main.js" tppabs="http://shellbaike.com/static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/prism_pre.js" tppabs="http://shellbaike.com/static/js/prism_pre.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        $(".smartTime").smartTime();
+        $(".mainInfo").dblclick(function(){
+            $("html , body").animate({scrollTop:"0"}, 0);
+        });
+    });
+</script>
+</body>
+</html>

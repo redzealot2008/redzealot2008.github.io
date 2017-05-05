@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>第九章：键盘高级操作技巧 - Shell脚本学习 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="Linux命令行,shell,linux命令大全,shell脚本,shell脚本编程,linux shell,第九章：键盘高级操作技巧" />
+    <meta name="description" content="命令行最为珍视的目标之一就是懒惰；用最少的击键次数 来完成最多的工作。另一个目标是你的手指永远不必离开键盘，永不触摸鼠标。在这一 章节，我们将看一下 bash 特性，这些特性使键盘使用起来更加迅速，更加高效。" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/prism.css" tppabs="http://shellbaike.com/static/css/prism.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmd/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/'" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div id="main_left" class="l mainInfo">
+            <h1 class="titleInfo">
+                第九章：键盘高级操作技巧
+            </h1>
+            <div class="info">
+                <span class="smartTime" smartTime="1420209264">2015-01-02 22:34:24 +0800 CST</span>
+            </div>
+            <div style="text-align: center;">
+    
+</div>
+            <div class="mainContent">
+                <p>开玩笑地说，我经常把 Unix 描述为“这个操作系统是为喜欢敲键盘的人们服务的。” 当然，Unix 甚至还有一个命令行，这个事实是个确凿的证据，证明了我所说的话。 但是命令行用户不喜欢敲入那么多字。那又为什么如此多的命令会有这样简短的命令名，像 <a href="javascript:if(confirm('http://shellbaike.com/cmd/cp  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cp'" tppabs="http://shellbaike.com/cmd/cp" title="cp命令参数">cp</a>，ls，mv，和 rm？事实上，命令行最为珍视的目标之一就是懒惰；用最少的击键次数 来完成最多的工作。另一个目标是你的手指永远不必离开键盘，永不触摸鼠标。在这一 章节，我们将看一下 bash 特性，这些特性使键盘使用起来更加迅速，更加高效。</p><p>以下命令将会露面：</p><ul><li><p><a href="javascript:if(confirm('http://shellbaike.com/cmd/clear  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/clear'" tppabs="http://shellbaike.com/cmd/clear" title="clear用法">clear</a> － 清空屏幕</p></li><li><p><a href="javascript:if(confirm('http://shellbaike.com/cmd/history  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/history'" tppabs="http://shellbaike.com/cmd/history" title="history例子">history</a> － 显示历史列表内容</p></li></ul><h3>命令行编辑</h3><p>Bash 使用了一个名为 Readline 的库（共享的线程集合，可以被不同的程序使用）， 来实现命令行编辑。我们已经看到一些例子。我们知道，例如，箭头按键可以移动鼠标， 此外还有许多特性。想想这些额外的工具，我们可以在工作中使用。学会所有的特性 并不重要，但许多特性非常有帮助。选择自己需要的特性。</p><p>注意：下面一些按键组合（尤其使用 Alt 键的组合），可能会被 GUI 拦截来触发其它的功能。 当使用虚拟控制台时，所有的按键组合都应该正确地工作。</p><h3>移动光标</h3><p>下表列出了移动光标所使用的按键：</p>表9-1: 光标移动命令<table><colgroup><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>按键</td><td>行动</td></tr><tr><td>Ctrl-a</td><td>移动光标到行首。</td></tr><tr><td>Ctrl-e</td><td>移动光标到行尾。</td></tr><tr><td>Ctrl-f</td><td>光标前移一个字符；和右箭头作用一样。</td></tr><tr><td>Ctrl-b</td><td>光标后移一个字符；和左箭头作用一样。</td></tr><tr><td>Alt-f</td><td>光标前移一个字。</td></tr><tr><td>Alt-b</td><td>光标后移一个字。</td></tr><tr><td>Ctrl-l</td><td>清空屏幕，移动光标到左上角。clear 命令完成同样的工作。</td></tr></tbody></table><h3>修改文本</h3><p>表9－2列出了键盘命令，这些命令用来在命令行中编辑字符。</p>表9-2: 文本编辑命令<table><colgroup><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>按键</td><td>行动</td></tr><tr><td>Ctrl-d</td><td>删除光标位置的字符。</td></tr><tr><td>Ctrl-t</td><td>光标位置的字符和光标前面的字符互换位置。</td></tr><tr><td>Alt-t</td><td>光标位置的字和其前面的字互换位置。</td></tr><tr><td>Alt-l</td><td>把从光标位置到字尾的字符转换成小写字母。</td></tr><tr><td>Alt-u</td><td>把从光标位置到字尾的字符转换成大写字母。</td></tr></tbody></table><h3>剪切和粘贴文本</h3><p>Readline 的文档使用术语 killing 和 yanking 来指我们平常所说的剪切和粘贴。 剪切下来的本文被存储在一个叫做剪切环(kill-ring)的缓冲区中。</p>表9-3: 剪切和粘贴命令<table><colgroup><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>按键</td><td>行动</td></tr><tr><td>Ctrl-k</td><td>剪切从光标位置到行尾的文本。</td></tr><tr><td>Ctrl-u</td><td>剪切从光标位置到行首的文本。</td></tr><tr><td>Alt-d</td><td>剪切从光标位置到词尾的文本。</td></tr><tr><td>Alt-Backspace</td><td>剪切从光标位置到词头的文本。如果光标在一个单词的开头，剪切前一个单词。</td></tr><tr><td>Ctrl-y</td><td>把剪切环中的文本粘贴到光标位置。</td></tr></tbody></table><blockquote><p>元键</p><p>如果你冒险进入到 Readline 的文档中，你会在 bash 手册页的 READLINE 段落， 遇到一个术语”元键”（meta key）。在当今的键盘上，这个元键是指 Alt 键，但 并不总是这样。</p><p>回到昏暗的年代（在 PC 之前 Unix 之后），并不是每个人都有他们自己的计算机。 他们可能有一个叫做终端的设备。一个终端是一种通信设备，它以一个文本显示 屏幕和一个键盘作为其特色，它里面有足够的电子器件来显示文本字符和移动光标。 它连接到（通常通过串行电缆）一个更大的计算机或者是一个大型计算机的通信 网络。有许多不同的终端产品商标，它们有着不同的键盘和特征显示集。因为它们 都倾向于至少能理解 ASCII，所以软件开发者想要符合最低标准的可移植的应用程序。 Unix 系统有一个非常精巧的方法来处理各种终端产品和它们不同的显示特征。因为 Readline 程序的开发者们，不能确定一个专用多余的控制键的存在，他们发明了一个 控制键，并把它叫做”元”（”meta”）。然而在现代的键盘上，Alt 键作为元键来服务。 如果你仍然在使用终端（在 Linux 中，你仍然可以得到一个终端），你也可以按下和 释放 Esc 键来得到如控制 Alt 键一样的效果。</p></blockquote><h3>自动补全</h3><p>shell 能帮助你的另一种方式是通过一种叫做自动补全的机制。当你敲入一个命令时， 按下 tab 键，自动补全就会发生。让我们看一下这是怎样工作的。给出一个看起来 像这样的家目录：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ ls
+Desktop   ls-output.txt   Pictures   Templates   Videos
+....
+</code></pre><p>试着输入下面的命令，但不要按下 Enter 键：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ ls l
+</code></pre><p>现在按下 tab 键：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ ls ls-output.txt
+</code></pre><p>看一下 shell 是怎样补全这一行的？让我们再试试另一个例子。这回，也 不要按下 Enter:</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ ls D
+</code></pre><p>按下 tab:</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ ls D
+</code></pre><p>没有补全，只是嘟嘟响。因为”D”不止匹配目录中的一个条目。为了自动补全执行成功， 你给它的”线索”必须不模棱两可。如果我们继续输入：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ ls Do
+</code></pre><p>然后按下 tab：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ ls Documents
+</code></pre><p>自动补全成功了。</p><p>这个实例展示了路径名自动补全，这是最常用的形式。自动补全也能对变量起作用（如果 字的开头是一个”$”），用户名字（单词以”~”开始），命令（如果单词是一行的第一个单词）， 和主机名（如果单词的开头是”@”）。主机名自动补全只对包含在文件/etc/hosts 中的主机名有效。</p><p>有一系列的控制和元键序列与自动补全相关联：</p>表9-4: 自动补全命令<table><colgroup><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>按键</td><td>行动</td></tr><tr><td>Alt-?</td><td>显示可能的自动补全列表。在大多数系统中，你也可以完成这个通过按 两次 tab 键，这会更容易些。</td></tr><tr><td>Alt-*</td><td>插入所有可能的自动补全。当你想要使用多个可能的匹配项时，这个很有帮助。</td></tr></tbody></table><blockquote><p>可编程自动补全</p><p>目前的 bash 版本有一个叫做可编程自动补全工具。可编程自动补全允许你（更可能是，你的 发行版提供商）来加入额外的自动补全规则。通常需要加入对特定应用程序的支持，来完成这个 任务。例如，有可能为一个命令的选项列表，或者一个应用程序支持的特殊文件类型加入自动补全。 默认情况下，Ubuntu 已经定义了一个相当大的规则集合。可编程自动补全是由 shell 函数实现的，shell 函数是一种小巧的 shell 脚本，我们会在后面的章节中讨论到。如果你感到好奇，试一下：</p><p>set | <a href="javascript:if(confirm('http://shellbaike.com/cmd/less  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/less'" tppabs="http://shellbaike.com/cmd/less" title="less命令详解">less</a></p><p>查看一下如果你能找到它们的话。默认情况下，并不是所有的发行版都包括它们。</p></blockquote><h3>利用历史命令</h3><p>正如我们在第二章中讨论到的，bash 维护着一个已经执行过的命令的历史列表。这个命令列表 被保存在你家目录下，一个叫做 .bash_history 的文件里。这个 history 工具是个有用资源， 因为它可以减少你敲键盘的次数，尤其当和命令行编辑联系起来时。</p><h3>搜索历史命令</h3><p>在任何时候，我们都可以浏览历史列表的内容，通过：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ history | less
+</code></pre><p>在默认情况下，bash 会存储你所输入的最后 500 个命令。在随后的章节里，我们会知道 怎样调整这个数值。比方说我们想要找到列出目录 /usr/bin 内容的命令。一种方法，我们可以这样做：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ history | grep /usr/bin
+</code></pre><p>比方说在我们的搜索结果之中，我们得到一行，包含了有趣的命令，像这样；</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">88  ls -l /usr/bin &gt; ls-output.txt
+</code></pre><p>数字 “88” 是这个命令在历史列表中的行号。随后在使用另一种展开类型时，叫做 历史命令展开，我们会用到这个数字。我们可以这样做，来使用我们所发现的行：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ !88
+</code></pre><p>bash 会把 “!88” 展开成为历史列表中88行的内容。还有其它的历史命令展开形式，我们一会儿 讨论它们。bash 也具有按递增顺序来搜索历史列表的能力。这意味着随着字符的输入，我们 可以告诉 bash 去搜索历史列表，每一个附加字符都进一步提炼我们的搜索。启动递增搜索， 输入 Ctrl-r，其后输入你要寻找的文本。当你找到它以后，你可以敲入 Enter 来执行命令， 或者输入 Ctrl-j，从历史列表中复制这一行到当前命令行。再次输入 Ctrl-r，来找到下一个 匹配项（向上移动历史列表）。输入 Ctrl-g 或者 Ctrl-c，退出搜索。实际来体验一下：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$
+</code></pre><p>首先输入 Ctrl-r:</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">(reverse-i-search)`':
+</code></pre><p>提示符改变，显示我们正在执行反向递增搜索。搜索过程是”反向的”，因为我们按照从”现在”到过去 某个时间段的顺序来搜寻。下一步，我们开始输入要查找的文本。在这个例子里是 “/usr/bin”：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">(reverse-i-search)`/usr/bin': ls -l /usr/bin &gt; ls-output.txt
+</code></pre><p>即刻，搜索返回我们需要的结果。我们可以执行这个命令，按下 Enter 键，或者我们可以复制 这个命令到我们当前的命令行，来进一步编辑它，输入 Ctrl-j。复制它，输入 Ctrl-j：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ ls -l /usr/bin &gt; ls-output.txt
+</code></pre><p>我们的 shell 提示符重新出现，命令行加载完毕，正准备行动！下表列出了一些按键组合， 这些按键用来操作历史列表：</p>表9-5: 历史命令<table><colgroup><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>按键</td><td>行为</td></tr><tr><td>Ctrl-p</td><td>移动到上一个历史条目。类似于上箭头按键。</td></tr><tr><td>Ctrl-n</td><td>移动到下一个历史条目。类似于下箭头按键。</td></tr><tr><td>Alt-&lt;</td><td>移动到历史列表开头。</td></tr><tr><td>Alt-&gt;</td><td>移动到历史列表结尾，即当前命令行。</td></tr><tr><td>Ctrl-r</td><td>反向递增搜索。从当前命令行开始，向上递增搜索。</td></tr><tr><td>Alt-p</td><td>反向搜索，不是递增顺序。输入要查找的字符串，然后按下 Enter，执行搜索。</td></tr><tr><td>Alt-n</td><td>向前搜索，非递增顺序。</td></tr><tr><td>Ctrl-o</td><td>执行历史列表中的当前项，并移到下一个。如果你想要执行历史列表中一系列的命令，这很方便。</td></tr></tbody></table><h3>历史命令展开</h3><p>通过使用 “!” 字符，shell 为历史列表中的命令，提供了一个特殊的展开类型。我们已经知道一个感叹号 ，其后再加上一个数字，可以把来自历史列表中的命令插入到命令行中。还有一些其它的展开特性：</p>表9-6: 历史展开命令<table><colgroup><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>序列</td><td>行为</td></tr><tr><td>!!</td><td>重复最后一次执行的命令。可能按下上箭头按键和 enter 键更容易些。</td></tr><tr><td>!number</td><td>重复历史列表中第 number 行的命令。</td></tr><tr><td>!string</td><td>重复最近历史列表中，以这个字符串开头的命令。</td></tr><tr><td>!?string</td><td>重复最近历史列表中，包含这个字符串的命令。</td></tr></tbody></table><p>应该小心谨慎地使用 “!string” 和 “!?string” 格式，除非你完全确信历史列表条目的内容。</p><p>在历史展开机制中，还有许多可利用的特点，但是这个题目已经太晦涩难懂了， 如果我们再继续讨论的话，我们的头可能要爆炸了。bash 手册页的 HISTORY EXPANSION 部分详尽地讲述了所有要素。</p><blockquote><p>脚本</p><p>除了 bash 中的命令历史特性，许多 Linux 发行版包括一个叫做 script 的程序， 这个程序可以记录整个 shell 会话，并把 shell 会话存在一个文件里面。这个命令的基本语法是：</p><p>script [<a href="javascript:if(confirm('http://shellbaike.com/cmd/file  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/file'" tppabs="http://shellbaike.com/cmd/file" title="file命令参数">file</a>]</p><p>命令中的 file 是指用来存储 shell 会话记录的文件名。如果没有指定文件名，则使用文件 typescript。查看脚本的手册页，可以得到一个关于 script 程序选项和特点的完整列表。</p></blockquote><h3>总结归纳</h3><p>在这一章中，我们已经讨论了一些由 shell 提供的键盘操作技巧，这些技巧是来帮助打字员减少工作量的。 随着时光流逝，你和命令行打交道越来越多，我猜想你会重新翻阅这一章的内容，学会更多的技巧。 目前，你就认为它们是可选的，潜在地有帮助的。</p><h3>拓展阅读</h3><ul><li><p>Wikipedia 上有一篇关于计算机终端的好文章：</p><p><a href="javascript:if(confirm('http://en.wikipedia.org/wiki/Computer_terminal  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://en.wikipedia.org/wiki/Computer_terminal'" tppabs="http://en.wikipedia.org/wiki/Computer_terminal" rel="nofollow">http://en.wikipedia.org/wiki/Computer_terminal</a></p></li></ul>
+            </div>
+        </div>
+        <div id="main_right" class="r">
+            <div class="rightItem">
+                <h2>
+                    Shell脚本学习目录
+                </h2>
+                <ul>
+                    
+                    <li><a href="1.htm" tppabs="http://shellbaike.com/cmdline/1">第一章 引言</a></li>
+                    
+                    <li><a href="2.htm" tppabs="http://shellbaike.com/cmdline/2">第二章 : 什么是 shell</a></li>
+                    
+                    <li><a href="3.htm" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+                    
+                    <li><a href="5.htm" tppabs="http://shellbaike.com/cmdline/5">第四章：探究操作系统</a></li>
+                    
+                    <li><a href="6.htm" tppabs="http://shellbaike.com/cmdline/6">第五章：操作文件和目录</a></li>
+                    
+                    <li><a href="7.htm" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+                    
+                    <li><a href="8.htm" tppabs="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+                    
+                    <li><a href="9.htm" tppabs="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+                    
+                    <li><a href="10.htm" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+                    
+                    <li><a href="11.htm" tppabs="http://shellbaike.com/cmdline/11">第十章：权限</a></li>
+                    
+                    <li><a href="12.htm" tppabs="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+                    
+                    <li><a href="15.htm" tppabs="http://shellbaike.com/cmdline/15">第十二章 : shell 环境</a></li>
+                    
+                    <li><a href="16.htm" tppabs="http://shellbaike.com/cmdline/16">第十三章 : vi 简介</a></li>
+                    
+                    <li><a href="17.htm" tppabs="http://shellbaike.com/cmdline/17">第十四章 : 自定制 shell 提示符</a></li>
+                    
+                    <li><a href="18.htm" tppabs="http://shellbaike.com/cmdline/18">第十五章 : 软件包管理</a></li>
+                    
+                    <li><a href="19.htm" tppabs="http://shellbaike.com/cmdline/19">第十六章 : 存储媒介</a></li>
+                    
+                    <li><a href="20.htm" tppabs="http://shellbaike.com/cmdline/20">第十七章 : 网络系统</a></li>
+                    
+                    <li><a href="21.htm" tppabs="http://shellbaike.com/cmdline/21">第十八章 : 查找文件</a></li>
+                    
+                    <li><a href="22.htm" tppabs="http://shellbaike.com/cmdline/22">第十九章 : 归档和备份</a></li>
+                    
+                    <li><a href="23.htm" tppabs="http://shellbaike.com/cmdline/23">第二十章 : 正则表达式</a></li>
+                    
+                    <li><a href="24.htm" tppabs="http://shellbaike.com/cmdline/24">第二十一章 : 文本处理</a></li>
+                    
+                    <li><a href="25.htm" tppabs="http://shellbaike.com/cmdline/25">第二十二章 : 格式化输出</a></li>
+                    
+                    <li><a href="26.htm" tppabs="http://shellbaike.com/cmdline/26">第二十三章 : 打印</a></li>
+                    
+                    <li><a href="27.htm" tppabs="http://shellbaike.com/cmdline/27">第二十四章 : 编译程序</a></li>
+                    
+                    <li><a href="28.htm" tppabs="http://shellbaike.com/cmdline/28">第二十五章 : 编写第一个 Shell 脚本</a></li>
+                    
+                    <li><a href="29.htm" tppabs="http://shellbaike.com/cmdline/29">第二十六章 : 启动一个项目</a></li>
+                    
+                    <li><a href="30.htm" tppabs="http://shellbaike.com/cmdline/30">第二十七章 : 自顶向下设计</a></li>
+                    
+                    <li><a href="31.htm" tppabs="http://shellbaike.com/cmdline/31">第二十八章 : 流程控制：if 分支结构</a></li>
+                    
+                    <li><a href="32.htm" tppabs="http://shellbaike.com/cmdline/32">第二十九章 : 读取键盘输入</a></li>
+                    
+                    <li><a href="33.htm" tppabs="http://shellbaike.com/cmdline/33">第三十章 : 流程控制：while/until 循环</a></li>
+                    
+                    <li><a href="34.htm" tppabs="http://shellbaike.com/cmdline/34">第三十一章 : 疑难排解</a></li>
+                    
+                    <li><a href="35.htm" tppabs="http://shellbaike.com/cmdline/35">第三十二章 : 流程控制：case 分支</a></li>
+                    
+                    <li><a href="36.htm" tppabs="http://shellbaike.com/cmdline/36">第三十三章 : 位置参数</a></li>
+                    
+                    <li><a href="37.htm" tppabs="http://shellbaike.com/cmdline/37">第三十四章 : 流程控制：for 循环</a></li>
+                    
+                    <li><a href="38.htm" tppabs="http://shellbaike.com/cmdline/38">第三十五章 : 字符串和数字</a></li>
+                    
+                    <li><a href="39.htm" tppabs="http://shellbaike.com/cmdline/39">第三十六章 : 数组</a></li>
+                    
+                    <li><a href="40.htm" tppabs="http://shellbaike.com/cmdline/40">第三十七章 : 奇珍异宝</a></li>
+                    
+                </ul>
+            </div>
+            <div class="rightItem">
+    <h2>
+        Shell随机文章
+    </h2>
+    <ul>
+        
+        <li><a href="1.htm" tppabs="http://shellbaike.com/cmdline/1">第一章 引言</a></li>
+        
+        <li><a href="2.htm" tppabs="http://shellbaike.com/cmdline/2">第二章 : 什么是 shell</a></li>
+        
+        <li><a href="3.htm" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+        
+        <li><a href="6.htm" tppabs="http://shellbaike.com/cmdline/6">第五章：操作文件和目录</a></li>
+        
+        <li><a href="7.htm" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+        
+        <li><a href="8.htm" tppabs="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+        
+        <li><a href="9.htm" tppabs="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+        
+        <li><a href="10.htm" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+        
+        <li><a href="12.htm" tppabs="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/shell/13  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/13'" tppabs="http://shellbaike.com/shell/13">Linux安装软件</a></li>
+        
+    </ul>
+</div>
+            <div class="rightItem">
+    <h2>
+        Linux常用命令
+    </h2>
+    <ul>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/apropos  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/apropos'" tppabs="http://shellbaike.com/cmd/apropos">apropos</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/aumix  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/aumix'" tppabs="http://shellbaike.com/cmd/aumix">aumix</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/bzip2  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/bzip2'" tppabs="http://shellbaike.com/cmd/bzip2">bzip2</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/cd  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cd'" tppabs="http://shellbaike.com/cmd/cd">cd</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/cfdisk  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cfdisk'" tppabs="http://shellbaike.com/cmd/cfdisk">cfdisk</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/chgrp  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/chgrp'" tppabs="http://shellbaike.com/cmd/chgrp">chgrp</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/chkconfig  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/chkconfig'" tppabs="http://shellbaike.com/cmd/chkconfig">chkconfig</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/chown  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/chown'" tppabs="http://shellbaike.com/cmd/chown">chown</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/clear  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/clear'" tppabs="http://shellbaike.com/cmd/clear">clear</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/clock  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/clock'" tppabs="http://shellbaike.com/cmd/clock">clock</a></li>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+            <br/>
+<script type="text/javascript">
+    document.write('<a style="display:none!important" id="tanx-a-mm_12741493_8680874_29282972"></a>');
+    tanx_s = document.createElement("script");
+    tanx_s.type = "text/javascript";
+    tanx_s.charset = "gbk";
+    tanx_s.id = "tanx-s-mm_12741493_8680874_29282972";
+    tanx_s.async = true;
+    tanx_s.src = "../../p.tanx.com/ex-i=mm_12741493_8680874_29282972"/*tpa=http://p.tanx.com/ex?i=mm_12741493_8680874_29282972*/;
+    tanx_h = document.getElementsByTagName("head")[0];
+    if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
+</script>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="javascript:if(confirm('http://shellbaike.com/cmd/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/'" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/main.js" tppabs="http://shellbaike.com/static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/prism_pre.js" tppabs="http://shellbaike.com/static/js/prism_pre.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        $(".smartTime").smartTime();
+        $(".mainInfo").dblclick(function(){
+            $("html , body").animate({scrollTop:"0"}, 0);
+        });
+    });
+</script>
+</body>
+</html>

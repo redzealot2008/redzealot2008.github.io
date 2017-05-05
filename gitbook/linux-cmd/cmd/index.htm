@@ -1,0 +1,2232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Linux命令大全 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="linux命令大全,linux常用命令,shell,shell脚本,shell脚本编程,linux shell" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmdline/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmdline/'" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div class="cmdinfoSearcher">
+            <input type="text" class="inp" id="cmdinfoSearchInp" placeholder="输入要搜索的命令" onkeyup="inputUp(this.value)" value="">
+        </div>
+        <div class="cmdinfoList">
+            
+            <div class="cl_item" cmdName="adduser">
+                <a href="adduser.htm" tppabs="http://shellbaike.com/cmd/adduser">adduser</a>
+                <div class="info">
+                    建立用户账号
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="alias">
+                <a href="alias.htm" tppabs="http://shellbaike.com/cmd/alias">alias</a>
+                <div class="info">
+                    设置命令的别名
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="apachectl">
+                <a href="apachectl.htm" tppabs="http://shellbaike.com/cmd/apachectl">apachectl</a>
+                <div class="info">
+                    可用来控制Apache HTTP服务器的程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="apmd">
+                <a href="apmd.htm" tppabs="http://shellbaike.com/cmd/apmd">apmd</a>
+                <div class="info">
+                    高级电源管理服务程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="apropos">
+                <a href="apropos.htm" tppabs="http://shellbaike.com/cmd/apropos">apropos</a>
+                <div class="info">
+                    apropos命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字，然后把结果送到标准输出
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ar">
+                <a href="ar.htm" tppabs="http://shellbaike.com/cmd/ar">ar</a>
+                <div class="info">
+                    建立或修改备存文件，或是从备存文件中抽取文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="arpwatch">
+                <a href="arpwatch.htm" tppabs="http://shellbaike.com/cmd/arpwatch">arpwatch</a>
+                <div class="info">
+                    监听网络上ARP的记录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="aspell">
+                <a href="aspell.htm" tppabs="http://shellbaike.com/cmd/aspell">aspell</a>
+                <div class="info">
+                    交互式拼写检查器
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="aumix">
+                <a href="aumix.htm" tppabs="http://shellbaike.com/cmd/aumix">aumix</a>
+                <div class="info">
+                    设置音效设备
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="badblocks">
+                <a href="badblocks.htm" tppabs="http://shellbaike.com/cmd/badblocks">badblocks</a>
+                <div class="info">
+                    检查磁盘装置中损坏的区块
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="bc">
+                <a href="bc.htm" tppabs="http://shellbaike.com/cmd/bc">bc</a>
+                <div class="info">
+                    命令计算器
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="bg">
+                <a href="bg.htm" tppabs="http://shellbaike.com/cmd/bg">bg</a>
+                <div class="info">
+                    把一个任务放到后台执行
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="bind">
+                <a href="bind.htm" tppabs="http://shellbaike.com/cmd/bind">bind</a>
+                <div class="info">
+                    显示或设置键盘按键与其相关的功能
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="bunzip2">
+                <a href="bunzip2.htm" tppabs="http://shellbaike.com/cmd/bunzip2">bunzip2</a>
+                <div class="info">
+                    .bz2文件的解压缩程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="bye">
+                <a href="bye.htm" tppabs="http://shellbaike.com/cmd/bye">bye</a>
+                <div class="info">
+                    中断FTP连线并结束程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="bzip2">
+                <a href="bzip2.htm" tppabs="http://shellbaike.com/cmd/bzip2">bzip2</a>
+                <div class="info">
+                    .bz2文件的压缩程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="bzip2recover">
+                <a href="bzip2recover.htm" tppabs="http://shellbaike.com/cmd/bzip2recover">bzip2recover</a>
+                <div class="info">
+                    用来修复损坏的.bz2文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="cat">
+                <a href="cat.htm" tppabs="http://shellbaike.com/cmd/cat">cat</a>
+                <div class="info">
+                    cat命令连接文件并打印到标准输出设备上，cat经常用来显示文件的内容
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="cd">
+                <a href="cd.htm" tppabs="http://shellbaike.com/cmd/cd">cd</a>
+                <div class="info">
+                    切换目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="cfdisk">
+                <a href="cfdisk.htm" tppabs="http://shellbaike.com/cmd/cfdisk">cfdisk</a>
+                <div class="info">
+                    磁盘分区
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="chattr">
+                <a href="chattr.htm" tppabs="http://shellbaike.com/cmd/chattr">chattr</a>
+                <div class="info">
+                    改变文件属性
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="chfn">
+                <a href="chfn.htm" tppabs="http://shellbaike.com/cmd/chfn">chfn</a>
+                <div class="info">
+                    改变finger命令显示的信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="chgrp">
+                <a href="chgrp.htm" tppabs="http://shellbaike.com/cmd/chgrp">chgrp</a>
+                <div class="info">
+                    变更文件或目录的所属群组
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="chkconfig">
+                <a href="chkconfig.htm" tppabs="http://shellbaike.com/cmd/chkconfig">chkconfig</a>
+                <div class="info">
+                    检查、设置系统的各种服务
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="chmod">
+                <a href="chmod.htm" tppabs="http://shellbaike.com/cmd/chmod">chmod</a>
+                <div class="info">
+                    更改文件或目录的权限
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="chown">
+                <a href="chown.htm" tppabs="http://shellbaike.com/cmd/chown">chown</a>
+                <div class="info">
+                    更改文件或目录的所属组
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="chroot">
+                <a href="chroot.htm" tppabs="http://shellbaike.com/cmd/chroot">chroot</a>
+                <div class="info">
+                    更改根目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="chsh">
+                <a href="chsh.htm" tppabs="http://shellbaike.com/cmd/chsh">chsh</a>
+                <div class="info">
+                    更换登录系统是所用的shell
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="cksum">
+                <a href="cksum.htm" tppabs="http://shellbaike.com/cmd/cksum">cksum</a>
+                <div class="info">
+                    检查文件的CRC是否正确。
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="clear">
+                <a href="clear.htm" tppabs="http://shellbaike.com/cmd/clear">clear</a>
+                <div class="info">
+                    清空屏幕
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="clock">
+                <a href="clock.htm" tppabs="http://shellbaike.com/cmd/clock">clock</a>
+                <div class="info">
+                    调整 RTC（Real Time CLock）时间
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="col">
+                <a href="col.htm" tppabs="http://shellbaike.com/cmd/col">col</a>
+                <div class="info">
+                    过滤控制字符
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="colrm">
+                <a href="colrm.htm" tppabs="http://shellbaike.com/cmd/colrm">colrm</a>
+                <div class="info">
+                    滤掉指定的行
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="comm">
+                <a href="comm.htm" tppabs="http://shellbaike.com/cmd/comm">comm</a>
+                <div class="info">
+                    比较两个已排过序的文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="compress">
+                <a href="compress.htm" tppabs="http://shellbaike.com/cmd/compress">compress</a>
+                <div class="info">
+                    压缩或解压文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="cp">
+                <a href="cp.htm" tppabs="http://shellbaike.com/cmd/cp">cp</a>
+                <div class="info">
+                    复制文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="cpio">
+                <a href="cpio.htm" tppabs="http://shellbaike.com/cmd/cpio">cpio</a>
+                <div class="info">
+                    备份文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="crontab">
+                <a href="crontab.htm" tppabs="http://shellbaike.com/cmd/crontab">crontab</a>
+                <div class="info">
+                    设置计时器
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="csplit">
+                <a href="csplit.htm" tppabs="http://shellbaike.com/cmd/csplit">csplit</a>
+                <div class="info">
+                    分割文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="cut">
+                <a href="cut.htm" tppabs="http://shellbaike.com/cmd/cut">cut</a>
+                <div class="info">
+                    指定与现实的文件内容，输出到标准输出设备
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="date">
+                <a href="date.htm" tppabs="http://shellbaike.com/cmd/date">date</a>
+                <div class="info">
+                    显示或设置系统时间与日期
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="dd">
+                <a href="dd.htm" tppabs="http://shellbaike.com/cmd/dd">dd</a>
+                <div class="info">
+                    读取、转换并输出数据
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="declare">
+                <a href="declare.htm" tppabs="http://shellbaike.com/cmd/declare">declare</a>
+                <div class="info">
+                    声明shell变量
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="depmod">
+                <a href="depmod.htm" tppabs="http://shellbaike.com/cmd/depmod">depmod</a>
+                <div class="info">
+                    分析可载入模块的相依性
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="df">
+                <a href="df.htm" tppabs="http://shellbaike.com/cmd/df">df</a>
+                <div class="info">
+                    显示磁盘的文件系统与使用情况
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="diff">
+                <a href="diff.htm" tppabs="http://shellbaike.com/cmd/diff">diff</a>
+                <div class="info">
+                    比较文件的差异
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="diffstat">
+                <a href="diffstat.htm" tppabs="http://shellbaike.com/cmd/diffstat">diffstat</a>
+                <div class="info">
+                    根据diff的比较结果，显示统计数字
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="dip">
+                <a href="dip.htm" tppabs="http://shellbaike.com/cmd/dip">dip</a>
+                <div class="info">
+                    IP拨号连接
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="dircolors">
+                <a href="dircolors.htm" tppabs="http://shellbaike.com/cmd/dircolors">dircolors</a>
+                <div class="info">
+                    设置 ls 命令在显示目录或文件时所用的颜色
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="dirs">
+                <a href="dirs.htm" tppabs="http://shellbaike.com/cmd/dirs">dirs</a>
+                <div class="info">
+                    显示目录记录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="dmesg">
+                <a href="dmesg.htm" tppabs="http://shellbaike.com/cmd/dmesg">dmesg</a>
+                <div class="info">
+                    显示开机信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="dnsconf">
+                <a href="dnsconf.htm" tppabs="http://shellbaike.com/cmd/dnsconf">dnsconf</a>
+                <div class="info">
+                    设置DNS服务器组态
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="du">
+                <a href="du.htm" tppabs="http://shellbaike.com/cmd/du">du</a>
+                <div class="info">
+                    显示目录或文件的大小
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="dump">
+                <a href="dump.htm" tppabs="http://shellbaike.com/cmd/dump">dump</a>
+                <div class="info">
+                    备份文件系统
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="e2fsck">
+                <a href="e2fsck.htm" tppabs="http://shellbaike.com/cmd/e2fsck">e2fsck</a>
+                <div class="info">
+                    检查ext2文件系统的正确性
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="echo">
+                <a href="echo.htm" tppabs="http://shellbaike.com/cmd/echo">echo</a>
+                <div class="info">
+                    打印shell变量的值，或者直接输出指定的字符串
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ed">
+                <a href="ed.htm" tppabs="http://shellbaike.com/cmd/ed">ed</a>
+                <div class="info">
+                    文本编辑器
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="edquota">
+                <a href="edquota.htm" tppabs="http://shellbaike.com/cmd/edquota">edquota</a>
+                <div class="info">
+                    编辑用户或群组的quota
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="efax">
+                <a href="efax.htm" tppabs="http://shellbaike.com/cmd/efax">efax</a>
+                <div class="info">
+                    收发传真
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="egrep">
+                <a href="egrep.htm" tppabs="http://shellbaike.com/cmd/egrep">egrep</a>
+                <div class="info">
+                    查找文件里符合条件的字符串
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="eject">
+                <a href="eject.htm" tppabs="http://shellbaike.com/cmd/eject">eject</a>
+                <div class="info">
+                    退出抽取式设备
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="enable">
+                <a href="enable.htm" tppabs="http://shellbaike.com/cmd/enable">enable</a>
+                <div class="info">
+                    启动或关闭shell内建命令
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="eval">
+                <a href="eval.htm" tppabs="http://shellbaike.com/cmd/eval">eval</a>
+                <div class="info">
+                    重新计算求出参数的内容
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ex">
+                <a href="ex.htm" tppabs="http://shellbaike.com/cmd/ex">ex</a>
+                <div class="info">
+                    
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="exit">
+                <a href="exit.htm" tppabs="http://shellbaike.com/cmd/exit">exit</a>
+                <div class="info">
+                    退出当前的shell
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="export">
+                <a href="export.htm" tppabs="http://shellbaike.com/cmd/export">export</a>
+                <div class="info">
+                    设置或显示环境变量
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="expr">
+                <a href="expr.htm" tppabs="http://shellbaike.com/cmd/expr">expr</a>
+                <div class="info">
+                    整数值计算
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ext2ed">
+                <a href="ext2ed.htm" tppabs="http://shellbaike.com/cmd/ext2ed">ext2ed</a>
+                <div class="info">
+                    ext2文件系统编辑程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="fbset">
+                <a href="fbset.htm" tppabs="http://shellbaike.com/cmd/fbset">fbset</a>
+                <div class="info">
+                    设置帧缓冲
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="fdformat">
+                <a href="fdformat.htm" tppabs="http://shellbaike.com/cmd/fdformat">fdformat</a>
+                <div class="info">
+                    格式化一张软盘
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="fdisk">
+                <a href="fdisk.htm" tppabs="http://shellbaike.com/cmd/fdisk">fdisk</a>
+                <div class="info">
+                    磁盘分区
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="fg">
+                <a href="fg.htm" tppabs="http://shellbaike.com/cmd/fg">fg</a>
+                <div class="info">
+                    把一个任务放到前台执行
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="fgrep">
+                <a href="fgrep.htm" tppabs="http://shellbaike.com/cmd/fgrep">fgrep</a>
+                <div class="info">
+                    查找文件里符合条件的字符串
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="file">
+                <a href="file.htm" tppabs="http://shellbaike.com/cmd/file">file</a>
+                <div class="info">
+                    辨识文件类型
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="find">
+                <a href="find.htm" tppabs="http://shellbaike.com/cmd/find">find</a>
+                <div class="info">
+                    查找文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="finger">
+                <a href="finger.htm" tppabs="http://shellbaike.com/cmd/finger">finger</a>
+                <div class="info">
+                    查找并显示用户信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="fmt">
+                <a href="fmt.htm" tppabs="http://shellbaike.com/cmd/fmt">fmt</a>
+                <div class="info">
+                    编排文本文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="fold">
+                <a href="fold.htm" tppabs="http://shellbaike.com/cmd/fold">fold</a>
+                <div class="info">
+                    限制文件列宽
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="free">
+                <a href="free.htm" tppabs="http://shellbaike.com/cmd/free">free</a>
+                <div class="info">
+                    查看内存状态
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="fsck">
+                <a href="fsck.htm" tppabs="http://shellbaike.com/cmd/fsck">fsck</a>
+                <div class="info">
+                    检查文件系统并尝试修复错误
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="fsck.ext2">
+                <a href="fsck.ext2.htm" tppabs="http://shellbaike.com/cmd/fsck.ext2">fsck.ext2</a>
+                <div class="info">
+                    检查文件系统并尝试修复错误
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="fsck.minix">
+                <a href="fsck.minix.htm" tppabs="http://shellbaike.com/cmd/fsck.minix">fsck.minix</a>
+                <div class="info">
+                    检查文件系统并尝试修复错误
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="fsconf">
+                <a href="fsconf.htm" tppabs="http://shellbaike.com/cmd/fsconf">fsconf</a>
+                <div class="info">
+                    设置文件系统相关功能
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ftp">
+                <a href="ftp.htm" tppabs="http://shellbaike.com/cmd/ftp">ftp</a>
+                <div class="info">
+                    传输文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ftpcount">
+                <a href="ftpcount.htm" tppabs="http://shellbaike.com/cmd/ftpcount">ftpcount</a>
+                <div class="info">
+                    显示目前以FTP登入的用户人数
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ftpshut">
+                <a href="ftpshut.htm" tppabs="http://shellbaike.com/cmd/ftpshut">ftpshut</a>
+                <div class="info">
+                    在指定的时间关闭FTP服务器
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ftpwho">
+                <a href="ftpwho.htm" tppabs="http://shellbaike.com/cmd/ftpwho">ftpwho</a>
+                <div class="info">
+                    显示目前所有以FTP登入的用户信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="genisoimage">
+                <a href="genisoimage.htm" tppabs="http://shellbaike.com/cmd/genisoimage">genisoimage</a>
+                <div class="info">
+                    建立ISO 9660映像文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="getty">
+                <a href="getty.htm" tppabs="http://shellbaike.com/cmd/getty">getty</a>
+                <div class="info">
+                    设置终端机模式，连线速率和管制线路
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="grep">
+                <a href="grep.htm" tppabs="http://shellbaike.com/cmd/grep">grep</a>
+                <div class="info">
+                    查找文件里符合条件的字符串
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="groff">
+                <a href="groff.htm" tppabs="http://shellbaike.com/cmd/groff">groff</a>
+                <div class="info">
+                    文档排版系统前端
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="groupadd">
+                <a href="groupadd.htm" tppabs="http://shellbaike.com/cmd/groupadd">groupadd</a>
+                <div class="info">
+                    建立组
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="groupdel">
+                <a href="groupdel.htm" tppabs="http://shellbaike.com/cmd/groupdel">groupdel</a>
+                <div class="info">
+                    删除组
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="groupmod">
+                <a href="groupmod.htm" tppabs="http://shellbaike.com/cmd/groupmod">groupmod</a>
+                <div class="info">
+                    更改组识别码或名称
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="grpconv">
+                <a href="grpconv.htm" tppabs="http://shellbaike.com/cmd/grpconv">grpconv</a>
+                <div class="info">
+                    打开组的影子密码
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="grpunconv">
+                <a href="grpunconv.htm" tppabs="http://shellbaike.com/cmd/grpunconv">grpunconv</a>
+                <div class="info">
+                    关闭组的影子密码
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="gunzip">
+                <a href="gunzip.htm" tppabs="http://shellbaike.com/cmd/gunzip">gunzip</a>
+                <div class="info">
+                    解压文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="gzip">
+                <a href="gzip.htm" tppabs="http://shellbaike.com/cmd/gzip">gzip</a>
+                <div class="info">
+                    压缩文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="halt">
+                <a href="halt.htm" tppabs="http://shellbaike.com/cmd/halt">halt</a>
+                <div class="info">
+                    关闭系统
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="hdparm">
+                <a href="hdparm.htm" tppabs="http://shellbaike.com/cmd/hdparm">hdparm</a>
+                <div class="info">
+                    显示与设定硬盘的参数
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="head">
+                <a href="head.htm" tppabs="http://shellbaike.com/cmd/head">head</a>
+                <div class="info">
+                    head命令用于显示文件的开头的内容
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="history">
+                <a href="history.htm" tppabs="http://shellbaike.com/cmd/history">history</a>
+                <div class="info">
+                    显示历史列表内容
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="hostname">
+                <a href="hostname.htm" tppabs="http://shellbaike.com/cmd/hostname">hostname</a>
+                <div class="info">
+                    查询及设置主机名称
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="hwclock">
+                <a href="hwclock.htm" tppabs="http://shellbaike.com/cmd/hwclock">hwclock</a>
+                <div class="info">
+                    显示与设置硬件时钟
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="id">
+                <a href="id.htm" tppabs="http://shellbaike.com/cmd/id">id</a>
+                <div class="info">
+                    显示用户id，以及所属组id
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ifconfig">
+                <a href="ifconfig.htm" tppabs="http://shellbaike.com/cmd/ifconfig">ifconfig</a>
+                <div class="info">
+                    显示或设置网络设备
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="info">
+                <a href="info.htm" tppabs="http://shellbaike.com/cmd/info">info</a>
+                <div class="info">
+                    info命令是Linux下info格式的帮助指令
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="insmod">
+                <a href="insmod.htm" tppabs="http://shellbaike.com/cmd/insmod">insmod</a>
+                <div class="info">
+                    载入模块
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ispell">
+                <a href="ispell.htm" tppabs="http://shellbaike.com/cmd/ispell">ispell</a>
+                <div class="info">
+                    拼字检查程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="jed">
+                <a href="jed.htm" tppabs="http://shellbaike.com/cmd/jed">jed</a>
+                <div class="info">
+                    编辑文本文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="jobs">
+                <a href="jobs.htm" tppabs="http://shellbaike.com/cmd/jobs">jobs</a>
+                <div class="info">
+                    列出活跃的任务
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="joe">
+                <a href="joe.htm" tppabs="http://shellbaike.com/cmd/joe">joe</a>
+                <div class="info">
+                    编辑文本文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="join">
+                <a href="join.htm" tppabs="http://shellbaike.com/cmd/join">join</a>
+                <div class="info">
+                    将两个文件中，指定栏位内容相同的行连接起来。
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="kill">
+                <a href="kill.htm" tppabs="http://shellbaike.com/cmd/kill">kill</a>
+                <div class="info">
+                    删除执行中的程序或工作
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="killall">
+                <a href="killall.htm" tppabs="http://shellbaike.com/cmd/killall">killall</a>
+                <div class="info">
+                    杀死指定名字的进程
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="last">
+                <a href="last.htm" tppabs="http://shellbaike.com/cmd/last">last</a>
+                <div class="info">
+                    列出当前与过去登录系统的用户相关信息。
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="less">
+                <a href="less.htm" tppabs="http://shellbaike.com/cmd/less">less</a>
+                <div class="info">
+                    显示文件内容
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="let">
+                <a href="let.htm" tppabs="http://shellbaike.com/cmd/let">let</a>
+                <div class="info">
+                    整数计算
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="lilo">
+                <a href="lilo.htm" tppabs="http://shellbaike.com/cmd/lilo">lilo</a>
+                <div class="info">
+                    安装内核载入、启动管理程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ln">
+                <a href="ln.htm" tppabs="http://shellbaike.com/cmd/ln">ln</a>
+                <div class="info">
+                    连接文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="lndir">
+                <a href="lndir.htm" tppabs="http://shellbaike.com/cmd/lndir">lndir</a>
+                <div class="info">
+                    连接目录内容
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="locate">
+                <a href="locate.htm" tppabs="http://shellbaike.com/cmd/locate">locate</a>
+                <div class="info">
+                    locate命令用于查找文件，它比find命令的搜索速度快
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="login">
+                <a href="login.htm" tppabs="http://shellbaike.com/cmd/login">login</a>
+                <div class="info">
+                    登录系统
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="logname">
+                <a href="logname.htm" tppabs="http://shellbaike.com/cmd/logname">logname</a>
+                <div class="info">
+                    显示用户名称
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="logout">
+                <a href="logout.htm" tppabs="http://shellbaike.com/cmd/logout">logout</a>
+                <div class="info">
+                    退出系统
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="logrotate">
+                <a href="logrotate.htm" tppabs="http://shellbaike.com/cmd/logrotate">logrotate</a>
+                <div class="info">
+                    管理记录文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="look">
+                <a href="look.htm" tppabs="http://shellbaike.com/cmd/look">look</a>
+                <div class="info">
+                    查询单字
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="losetup">
+                <a href="losetup.htm" tppabs="http://shellbaike.com/cmd/losetup">losetup</a>
+                <div class="info">
+                    设置循环设备
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="lp">
+                <a href="lp.htm" tppabs="http://shellbaike.com/cmd/lp">lp</a>
+                <div class="info">
+                    打印文件（System V）
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="lpd">
+                <a href="lpd.htm" tppabs="http://shellbaike.com/cmd/lpd">lpd</a>
+                <div class="info">
+                    提供打印机排队常驻服务
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="lpq">
+                <a href="lpq.htm" tppabs="http://shellbaike.com/cmd/lpq">lpq</a>
+                <div class="info">
+                    显示列表机贮列中未完成的工作
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="lpr">
+                <a href="lpr.htm" tppabs="http://shellbaike.com/cmd/lpr">lpr</a>
+                <div class="info">
+                    Linux打印文件命令
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="lprm">
+                <a href="lprm.htm" tppabs="http://shellbaike.com/cmd/lprm">lprm</a>
+                <div class="info">
+                    将一个工作由打印机贮列中移除
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="lpstat">
+                <a href="lpstat.htm" tppabs="http://shellbaike.com/cmd/lpstat">lpstat</a>
+                <div class="info">
+                    显示打印机状态信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ls">
+                <a href="ls.htm" tppabs="http://shellbaike.com/cmd/ls">ls</a>
+                <div class="info">
+                    列出目录内容
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="lsattr">
+                <a href="lsattr.htm" tppabs="http://shellbaike.com/cmd/lsattr">lsattr</a>
+                <div class="info">
+                    显示文件属性
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="lsb_release">
+                <a href="lsb_release.htm" tppabs="http://shellbaike.com/cmd/lsb_release">lsb_release</a>
+                <div class="info">
+                    显示Linux发行版本的相关信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="lsmod">
+                <a href="lsmod.htm" tppabs="http://shellbaike.com/cmd/lsmod">lsmod</a>
+                <div class="info">
+                    显示已载入系统的模块
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="man">
+                <a href="man.htm" tppabs="http://shellbaike.com/cmd/man">man</a>
+                <div class="info">
+                    man命令是Linux下的帮助指令，通过man指令可以查看Linux中的指令帮助、配置文件帮助和编程帮助等信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mattrib">
+                <a href="mattrib.htm" tppabs="http://shellbaike.com/cmd/mattrib">mattrib</a>
+                <div class="info">
+                    更改或显示MS_DOS文件的属性
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mc">
+                <a href="mc.htm" tppabs="http://shellbaike.com/cmd/mc">mc</a>
+                <div class="info">
+                    提供一个菜单式的文件管理程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mcd">
+                <a href="mcd.htm" tppabs="http://shellbaike.com/cmd/mcd">mcd</a>
+                <div class="info">
+                    在MS-DOC系统上切换目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mcopy">
+                <a href="mcopy.htm" tppabs="http://shellbaike.com/cmd/mcopy">mcopy</a>
+                <div class="info">
+                    复制MS-DOS文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="md5sum">
+                <a href="md5sum.htm" tppabs="http://shellbaike.com/cmd/md5sum">md5sum</a>
+                <div class="info">
+                    计算MD5检验码
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mdel">
+                <a href="mdel.htm" tppabs="http://shellbaike.com/cmd/mdel">mdel</a>
+                <div class="info">
+                    删除MS-DOS文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mdeltree">
+                <a href="mdeltree.htm" tppabs="http://shellbaike.com/cmd/mdeltree">mdeltree</a>
+                <div class="info">
+                    删除MS-DOS系统文件目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mdir">
+                <a href="mdir.htm" tppabs="http://shellbaike.com/cmd/mdir">mdir</a>
+                <div class="info">
+                    显示MS-DOS目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mdu">
+                <a href="mdu.htm" tppabs="http://shellbaike.com/cmd/mdu">mdu</a>
+                <div class="info">
+                    显示MS-DOS系统目录所占用的磁盘空间
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mesg">
+                <a href="mesg.htm" tppabs="http://shellbaike.com/cmd/mesg">mesg</a>
+                <div class="info">
+                    设置终端机的写入权限
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mformat">
+                <a href="mformat.htm" tppabs="http://shellbaike.com/cmd/mformat">mformat</a>
+                <div class="info">
+                    对MS-DOS文件系统的磁盘进行格式化
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="minfo">
+                <a href="minfo.htm" tppabs="http://shellbaike.com/cmd/minfo">minfo</a>
+                <div class="info">
+                    显示MS-DOS文件系统的各项参数
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mingetty">
+                <a href="mingetty.htm" tppabs="http://shellbaike.com/cmd/mingetty">mingetty</a>
+                <div class="info">
+                    精简版的getty
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="minicom">
+                <a href="minicom.htm" tppabs="http://shellbaike.com/cmd/minicom">minicom</a>
+                <div class="info">
+                    调制解调器通信程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mkbootdisk">
+                <a href="mkbootdisk.htm" tppabs="http://shellbaike.com/cmd/mkbootdisk">mkbootdisk</a>
+                <div class="info">
+                    建立目前系统的启动盘
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mkdir">
+                <a href="mkdir.htm" tppabs="http://shellbaike.com/cmd/mkdir">mkdir</a>
+                <div class="info">
+                    于目前目录有适当权限的所有使用者
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mke2fs">
+                <a href="mke2fs.htm" tppabs="http://shellbaike.com/cmd/mke2fs">mke2fs</a>
+                <div class="info">
+                    建立ext2文件系统
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mkfs">
+                <a href="mkfs.htm" tppabs="http://shellbaike.com/cmd/mkfs">mkfs</a>
+                <div class="info">
+                    建立各种文件系统
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mkfs.ext2">
+                <a href="mkfs.ext2.htm" tppabs="http://shellbaike.com/cmd/mkfs.ext2">mkfs.ext2</a>
+                <div class="info">
+                    与mke2fs相同
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mkfs.minix">
+                <a href="mkfs.minix.htm" tppabs="http://shellbaike.com/cmd/mkfs.minix">mkfs.minix</a>
+                <div class="info">
+                    建立Minix文件系统
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mkfs.msdos">
+                <a href="mkfs.msdos.htm" tppabs="http://shellbaike.com/cmd/mkfs.msdos">mkfs.msdos</a>
+                <div class="info">
+                    与mkdosfs相同
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mkinitrd">
+                <a href="mkinitrd.htm" tppabs="http://shellbaike.com/cmd/mkinitrd">mkinitrd</a>
+                <div class="info">
+                    建立要载入ramdisk的映像文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mkswap">
+                <a href="mkswap.htm" tppabs="http://shellbaike.com/cmd/mkswap">mkswap</a>
+                <div class="info">
+                    设置交换区(swap area)
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mktemp">
+                <a href="mktemp.htm" tppabs="http://shellbaike.com/cmd/mktemp">mktemp</a>
+                <div class="info">
+                    建立暂存文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mlabel">
+                <a href="mlabel.htm" tppabs="http://shellbaike.com/cmd/mlabel">mlabel</a>
+                <div class="info">
+                    显示或设置MS-DOS磁盘的标签名称
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mmd">
+                <a href="mmd.htm" tppabs="http://shellbaike.com/cmd/mmd">mmd</a>
+                <div class="info">
+                    在MS-DOS文件系统中建立目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mmount">
+                <a href="mmount.htm" tppabs="http://shellbaike.com/cmd/mmount">mmount</a>
+                <div class="info">
+                    挂入MS-DOS文件系统
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mmove">
+                <a href="mmove.htm" tppabs="http://shellbaike.com/cmd/mmove">mmove</a>
+                <div class="info">
+                    在MS-DOS文件系统中，移动文件或目录，或更改名称
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="modinfo">
+                <a href="modinfo.htm" tppabs="http://shellbaike.com/cmd/modinfo">modinfo</a>
+                <div class="info">
+                    显示kernel模块的信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="modprobe">
+                <a href="modprobe.htm" tppabs="http://shellbaike.com/cmd/modprobe">modprobe</a>
+                <div class="info">
+                    自动处理可载入模块
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="more">
+                <a href="more.htm" tppabs="http://shellbaike.com/cmd/more">more</a>
+                <div class="info">
+                    使文件能逐页地显示
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mount">
+                <a href="mount.htm" tppabs="http://shellbaike.com/cmd/mount">mount</a>
+                <div class="info">
+                    加载文件系统
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mpartition">
+                <a href="mpartition.htm" tppabs="http://shellbaike.com/cmd/mpartition">mpartition</a>
+                <div class="info">
+                    建立或删除MS-DOS的分区
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mrd">
+                <a href="mrd.htm" tppabs="http://shellbaike.com/cmd/mrd">mrd</a>
+                <div class="info">
+                    删除MS-DOS文件系统中的目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mread">
+                <a href="mread.htm" tppabs="http://shellbaike.com/cmd/mread">mread</a>
+                <div class="info">
+                    将MS-DOS文件复制到Linux/Unix的目录中
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mren">
+                <a href="mren.htm" tppabs="http://shellbaike.com/cmd/mren">mren</a>
+                <div class="info">
+                    
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mshowfat">
+                <a href="mshowfat.htm" tppabs="http://shellbaike.com/cmd/mshowfat">mshowfat</a>
+                <div class="info">
+                    显示MS-DOS文件在FAT中的记录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mtools">
+                <a href="mtools.htm" tppabs="http://shellbaike.com/cmd/mtools">mtools</a>
+                <div class="info">
+                    显示mtools支持的指令
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mtoolstest">
+                <a href="mtoolstest.htm" tppabs="http://shellbaike.com/cmd/mtoolstest">mtoolstest</a>
+                <div class="info">
+                    测试并显示mtools的相关设置
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mtype">
+                <a href="mtype.htm" tppabs="http://shellbaike.com/cmd/mtype">mtype</a>
+                <div class="info">
+                    显示MS-DOS文件的内容
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mv">
+                <a href="mv.htm" tppabs="http://shellbaike.com/cmd/mv">mv</a>
+                <div class="info">
+                    移动或更名现有的文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="mzip">
+                <a href="mzip.htm" tppabs="http://shellbaike.com/cmd/mzip">mzip</a>
+                <div class="info">
+                    Zip/Jaz磁盘驱动器控制指令
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="nc">
+                <a href="nc.htm" tppabs="http://shellbaike.com/cmd/nc">nc</a>
+                <div class="info">
+                    设置路由器
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ncftp">
+                <a href="ncftp.htm" tppabs="http://shellbaike.com/cmd/ncftp">ncftp</a>
+                <div class="info">
+                    传输文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="netconfig">
+                <a href="netconfig.htm" tppabs="http://shellbaike.com/cmd/netconfig">netconfig</a>
+                <div class="info">
+                    设置网络环境
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="netstat">
+                <a href="netstat.htm" tppabs="http://shellbaike.com/cmd/netstat">netstat</a>
+                <div class="info">
+                    显示网络状态
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="newgrp">
+                <a href="newgrp.htm" tppabs="http://shellbaike.com/cmd/newgrp">newgrp</a>
+                <div class="info">
+                    登录另一个组
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="nice">
+                <a href="nice.htm" tppabs="http://shellbaike.com/cmd/nice">nice</a>
+                <div class="info">
+                    设置优先级
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="nl">
+                <a href="nl.htm" tppabs="http://shellbaike.com/cmd/nl">nl</a>
+                <div class="info">
+                    添加行号
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="od">
+                <a href="od.htm" tppabs="http://shellbaike.com/cmd/od">od</a>
+                <div class="info">
+                    输出文件内容
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="passwd">
+                <a href="passwd.htm" tppabs="http://shellbaike.com/cmd/passwd">passwd</a>
+                <div class="info">
+                    设置密码
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="paste">
+                <a href="paste.htm" tppabs="http://shellbaike.com/cmd/paste">paste</a>
+                <div class="info">
+                    合并文件的列
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="patch">
+                <a href="patch.htm" tppabs="http://shellbaike.com/cmd/patch">patch</a>
+                <div class="info">
+                    修补文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="pico">
+                <a href="pico.htm" tppabs="http://shellbaike.com/cmd/pico">pico</a>
+                <div class="info">
+                    编辑文字文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ping">
+                <a href="ping.htm" tppabs="http://shellbaike.com/cmd/ping">ping</a>
+                <div class="info">
+                    检测主机
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="popd">
+                <a href="popd.htm" tppabs="http://shellbaike.com/cmd/popd">popd</a>
+                <div class="info">
+                    从shell目录堆栈中删除记录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="pppstats">
+                <a href="pppstats.htm" tppabs="http://shellbaike.com/cmd/pppstats">pppstats</a>
+                <div class="info">
+                    显示PPP连线状态
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="pr">
+                <a href="pr.htm" tppabs="http://shellbaike.com/cmd/pr">pr</a>
+                <div class="info">
+                    让文本为打印做好准备
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="printenv">
+                <a href="printenv.htm" tppabs="http://shellbaike.com/cmd/printenv">printenv</a>
+                <div class="info">
+                    打印部分或所有的环境变量
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="printf">
+                <a href="printf.htm" tppabs="http://shellbaike.com/cmd/printf">printf</a>
+                <div class="info">
+                    格式化数据并打印出来
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="procinfo">
+                <a href="procinfo.htm" tppabs="http://shellbaike.com/cmd/procinfo">procinfo</a>
+                <div class="info">
+                    显示系统状态
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ps">
+                <a href="ps.htm" tppabs="http://shellbaike.com/cmd/ps">ps</a>
+                <div class="info">
+                    报告程序状况
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="pstree">
+                <a href="pstree.htm" tppabs="http://shellbaike.com/cmd/pstree">pstree</a>
+                <div class="info">
+                    以树状图显示程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="pushd">
+                <a href="pushd.htm" tppabs="http://shellbaike.com/cmd/pushd">pushd</a>
+                <div class="info">
+                    向shell目录堆栈中添加记录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="pwconv">
+                <a href="pwconv.htm" tppabs="http://shellbaike.com/cmd/pwconv">pwconv</a>
+                <div class="info">
+                    打开用户的影子密码
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="pwd">
+                <a href="pwd.htm" tppabs="http://shellbaike.com/cmd/pwd">pwd</a>
+                <div class="info">
+                    显示工作目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="pwunconv">
+                <a href="pwunconv.htm" tppabs="http://shellbaike.com/cmd/pwunconv">pwunconv</a>
+                <div class="info">
+                    关闭用户的影子密码
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="quota">
+                <a href="quota.htm" tppabs="http://shellbaike.com/cmd/quota">quota</a>
+                <div class="info">
+                    显示磁盘已使用的空间与限制
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="quotacheck">
+                <a href="quotacheck.htm" tppabs="http://shellbaike.com/cmd/quotacheck">quotacheck</a>
+                <div class="info">
+                    检查磁盘的使用空间与限制
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="quotaoff">
+                <a href="quotaoff.htm" tppabs="http://shellbaike.com/cmd/quotaoff">quotaoff</a>
+                <div class="info">
+                    关闭磁盘空间限制
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="quotaon">
+                <a href="quotaon.htm" tppabs="http://shellbaike.com/cmd/quotaon">quotaon</a>
+                <div class="info">
+                    开启磁盘空间限制
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rcp">
+                <a href="rcp.htm" tppabs="http://shellbaike.com/cmd/rcp">rcp</a>
+                <div class="info">
+                    远端复制文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rdate">
+                <a href="rdate.htm" tppabs="http://shellbaike.com/cmd/rdate">rdate</a>
+                <div class="info">
+                    显示其他主机的日期与实践
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="reboot">
+                <a href="reboot.htm" tppabs="http://shellbaike.com/cmd/reboot">reboot</a>
+                <div class="info">
+                    重新开机
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="renice">
+                <a href="renice.htm" tppabs="http://shellbaike.com/cmd/renice">renice</a>
+                <div class="info">
+                    调整优先级
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="repquota">
+                <a href="repquota.htm" tppabs="http://shellbaike.com/cmd/repquota">repquota</a>
+                <div class="info">
+                    检查磁盘空间限制的状态
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rgrep">
+                <a href="rgrep.htm" tppabs="http://shellbaike.com/cmd/rgrep">rgrep</a>
+                <div class="info">
+                    递归查找文件里符合条件的字符串
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rhmask">
+                <a href="rhmask.htm" tppabs="http://shellbaike.com/cmd/rhmask">rhmask</a>
+                <div class="info">
+                    产生与还原加密文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rlogin">
+                <a href="rlogin.htm" tppabs="http://shellbaike.com/cmd/rlogin">rlogin</a>
+                <div class="info">
+                    远程登录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rm">
+                <a href="rm.htm" tppabs="http://shellbaike.com/cmd/rm">rm</a>
+                <div class="info">
+                    删除文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rmdir">
+                <a href="rmdir.htm" tppabs="http://shellbaike.com/cmd/rmdir">rmdir</a>
+                <div class="info">
+                    删除目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rmmod">
+                <a href="rmmod.htm" tppabs="http://shellbaike.com/cmd/rmmod">rmmod</a>
+                <div class="info">
+                    删除模块
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rmt">
+                <a href="rmt.htm" tppabs="http://shellbaike.com/cmd/rmt">rmt</a>
+                <div class="info">
+                    远端磁带传输协议模块
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rpm">
+                <a href="rpm.htm" tppabs="http://shellbaike.com/cmd/rpm">rpm</a>
+                <div class="info">
+                    管理包
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rsh">
+                <a href="rsh.htm" tppabs="http://shellbaike.com/cmd/rsh">rsh</a>
+                <div class="info">
+                    远程登录的shell
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rsync">
+                <a href="rsync.htm" tppabs="http://shellbaike.com/cmd/rsync">rsync</a>
+                <div class="info">
+                    同步远端文件和目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="rwho">
+                <a href="rwho.htm" tppabs="http://shellbaike.com/cmd/rwho">rwho</a>
+                <div class="info">
+                    查看系统用户
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="samba">
+                <a href="samba.htm" tppabs="http://shellbaike.com/cmd/samba">samba</a>
+                <div class="info">
+                    Samba服务器控制
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="screen">
+                <a href="screen.htm" tppabs="http://shellbaike.com/cmd/screen">screen</a>
+                <div class="info">
+                    多重视窗管理程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="sed">
+                <a href="sed.htm" tppabs="http://shellbaike.com/cmd/sed">sed</a>
+                <div class="info">
+                    利用script来处理文本文件。
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="set">
+                <a href="set.htm" tppabs="http://shellbaike.com/cmd/set">set</a>
+                <div class="info">
+                    设定shell
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="setenv">
+                <a href="setenv.htm" tppabs="http://shellbaike.com/cmd/setenv">setenv</a>
+                <div class="info">
+                    查询或显示环境变量
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="setserial">
+                <a href="setserial.htm" tppabs="http://shellbaike.com/cmd/setserial">setserial</a>
+                <div class="info">
+                    设置或显示串口的相关信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="sfdisk">
+                <a href="sfdisk.htm" tppabs="http://shellbaike.com/cmd/sfdisk">sfdisk</a>
+                <div class="info">
+                    硬盘分区工具程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="shapecfg">
+                <a href="shapecfg.htm" tppabs="http://shellbaike.com/cmd/shapecfg">shapecfg</a>
+                <div class="info">
+                    管制网络设备的流量
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="shutdown">
+                <a href="shutdown.htm" tppabs="http://shellbaike.com/cmd/shutdown">shutdown</a>
+                <div class="info">
+                    系统关闭命令
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="slocate">
+                <a href="slocate.htm" tppabs="http://shellbaike.com/cmd/slocate">slocate</a>
+                <div class="info">
+                    查找文件或目录
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="smbclient">
+                <a href="smbclient.htm" tppabs="http://shellbaike.com/cmd/smbclient">smbclient</a>
+                <div class="info">
+                    可存取SMB/CIFS服务器的用户端程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="smbd">
+                <a href="smbd.htm" tppabs="http://shellbaike.com/cmd/smbd">smbd</a>
+                <div class="info">
+                    Samba服务器程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="sort">
+                <a href="sort.htm" tppabs="http://shellbaike.com/cmd/sort">sort</a>
+                <div class="info">
+                    将文本文件内容加以排序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="spell">
+                <a href="spell.htm" tppabs="http://shellbaike.com/cmd/spell">spell</a>
+                <div class="info">
+                    拼写检查程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="split">
+                <a href="split.htm" tppabs="http://shellbaike.com/cmd/split">split</a>
+                <div class="info">
+                    切割文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ssh">
+                <a href="ssh.htm" tppabs="http://shellbaike.com/cmd/ssh">ssh</a>
+                <div class="info">
+                    OpenSSH SSH 客户端（远程登录程序）
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="stat">
+                <a href="stat.htm" tppabs="http://shellbaike.com/cmd/stat">stat</a>
+                <div class="info">
+                    显示inode内容
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="statserial">
+                <a href="statserial.htm" tppabs="http://shellbaike.com/cmd/statserial">statserial</a>
+                <div class="info">
+                    显示串口状态
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="su">
+                <a href="su.htm" tppabs="http://shellbaike.com/cmd/su">su</a>
+                <div class="info">
+                    变更用户身份
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="sudo">
+                <a href="sudo.htm" tppabs="http://shellbaike.com/cmd/sudo">sudo</a>
+                <div class="info">
+                    以另一个用户的身份来执行命令
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="suspend">
+                <a href="suspend.htm" tppabs="http://shellbaike.com/cmd/suspend">suspend</a>
+                <div class="info">
+                    暂停执行shell
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="swapoff">
+                <a href="swapoff.htm" tppabs="http://shellbaike.com/cmd/swapoff">swapoff</a>
+                <div class="info">
+                    关闭系统交换区(swap area)
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="swapon">
+                <a href="swapon.htm" tppabs="http://shellbaike.com/cmd/swapon">swapon</a>
+                <div class="info">
+                    关闭系统的交换区
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="swatch">
+                <a href="swatch.htm" tppabs="http://shellbaike.com/cmd/swatch">swatch</a>
+                <div class="info">
+                    系统监控程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="symlinks">
+                <a href="symlinks.htm" tppabs="http://shellbaike.com/cmd/symlinks">symlinks</a>
+                <div class="info">
+                    维护符号连接的工具程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="sync">
+                <a href="sync.htm" tppabs="http://shellbaike.com/cmd/sync">sync</a>
+                <div class="info">
+                    将缓存区内的数据写入磁盘
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="tail">
+                <a href="tail.htm" tppabs="http://shellbaike.com/cmd/tail">tail</a>
+                <div class="info">
+                    输出文件最后一部分
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="tar">
+                <a href="tar.htm" tppabs="http://shellbaike.com/cmd/tar">tar</a>
+                <div class="info">
+                    打包文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="tcpdump">
+                <a href="tcpdump.htm" tppabs="http://shellbaike.com/cmd/tcpdump">tcpdump</a>
+                <div class="info">
+                    倾倒网络传输数据
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="tee">
+                <a href="tee.htm" tppabs="http://shellbaike.com/cmd/tee">tee</a>
+                <div class="info">
+                    读取标准输入的数据，并将其内容输出成文件。
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="telinit">
+                <a href="telinit.htm" tppabs="http://shellbaike.com/cmd/telinit">telinit</a>
+                <div class="info">
+                    切换系统的执行等级
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="telnet">
+                <a href="telnet.htm" tppabs="http://shellbaike.com/cmd/telnet">telnet</a>
+                <div class="info">
+                    远端登入
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="testparm">
+                <a href="testparm.htm" tppabs="http://shellbaike.com/cmd/testparm">testparm</a>
+                <div class="info">
+                    测试Samba的设置是否正确无误
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="tftp">
+                <a href="tftp.htm" tppabs="http://shellbaike.com/cmd/tftp">tftp</a>
+                <div class="info">
+                    传输文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="timeconfig">
+                <a href="timeconfig.htm" tppabs="http://shellbaike.com/cmd/timeconfig">timeconfig</a>
+                <div class="info">
+                    设置时区
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="tload">
+                <a href="tload.htm" tppabs="http://shellbaike.com/cmd/tload">tload</a>
+                <div class="info">
+                    显示系统负载状况
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="tmpwatch">
+                <a href="tmpwatch.htm" tppabs="http://shellbaike.com/cmd/tmpwatch">tmpwatch</a>
+                <div class="info">
+                    删除暂存文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="top">
+                <a href="top.htm" tppabs="http://shellbaike.com/cmd/top">top</a>
+                <div class="info">
+                    显示、管理执行中的程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="touch">
+                <a href="touch.htm" tppabs="http://shellbaike.com/cmd/touch">touch</a>
+                <div class="info">
+                    改变文件或目录时间
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="tr">
+                <a href="tr.htm" tppabs="http://shellbaike.com/cmd/tr">tr</a>
+                <div class="info">
+                    处理输出的字符
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="traceroute">
+                <a href="traceroute.htm" tppabs="http://shellbaike.com/cmd/traceroute">traceroute</a>
+                <div class="info">
+                    显示数据包到主机间的路径
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="tree">
+                <a href="tree.htm" tppabs="http://shellbaike.com/cmd/tree">tree</a>
+                <div class="info">
+                    以树状图列出目录的内容
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="tty">
+                <a href="tty.htm" tppabs="http://shellbaike.com/cmd/tty">tty</a>
+                <div class="info">
+                    显示终端机连接标准输入设备的文件名称
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="type">
+                <a href="type.htm" tppabs="http://shellbaike.com/cmd/type">type</a>
+                <div class="info">
+                    type命令用来显示指定命令的类型，判断给出的指令是内部指令还是外部指令
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="ulimit">
+                <a href="ulimit.htm" tppabs="http://shellbaike.com/cmd/ulimit">ulimit</a>
+                <div class="info">
+                    控制shell程序的资源
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="umask">
+                <a href="umask.htm" tppabs="http://shellbaike.com/cmd/umask">umask</a>
+                <div class="info">
+                    指定在建立文件时预设的权限掩码。
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="umount">
+                <a href="umount.htm" tppabs="http://shellbaike.com/cmd/umount">umount</a>
+                <div class="info">
+                    卸除文件系统
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="unalias">
+                <a href="unalias.htm" tppabs="http://shellbaike.com/cmd/unalias">unalias</a>
+                <div class="info">
+                    删除别名
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="uname">
+                <a href="uname.htm" tppabs="http://shellbaike.com/cmd/uname">uname</a>
+                <div class="info">
+                    显示系统信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="unarj">
+                <a href="unarj.htm" tppabs="http://shellbaike.com/cmd/unarj">unarj</a>
+                <div class="info">
+                    解压缩.arj文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="uniq">
+                <a href="uniq.htm" tppabs="http://shellbaike.com/cmd/uniq">uniq</a>
+                <div class="info">
+                    检查及删除文本文件中重复出现的行列
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="unset">
+                <a href="unset.htm" tppabs="http://shellbaike.com/cmd/unset">unset</a>
+                <div class="info">
+                    删除变量或函数
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="unzip">
+                <a href="unzip.htm" tppabs="http://shellbaike.com/cmd/unzip">unzip</a>
+                <div class="info">
+                    解压缩zip文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="useradd">
+                <a href="useradd.htm" tppabs="http://shellbaike.com/cmd/useradd">useradd</a>
+                <div class="info">
+                    建立用户帐号
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="userconf">
+                <a href="userconf.htm" tppabs="http://shellbaike.com/cmd/userconf">userconf</a>
+                <div class="info">
+                    用户帐号设置程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="userdel">
+                <a href="userdel.htm" tppabs="http://shellbaike.com/cmd/userdel">userdel</a>
+                <div class="info">
+                    删除用户帐号
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="usermod">
+                <a href="usermod.htm" tppabs="http://shellbaike.com/cmd/usermod">usermod</a>
+                <div class="info">
+                    修改用户帐号
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="uucico">
+                <a href="uucico.htm" tppabs="http://shellbaike.com/cmd/uucico">uucico</a>
+                <div class="info">
+                    UUCP文件传输服务程序
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="uucp">
+                <a href="uucp.htm" tppabs="http://shellbaike.com/cmd/uucp">uucp</a>
+                <div class="info">
+                    在Unix系统之间传送文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="uulog">
+                <a href="uulog.htm" tppabs="http://shellbaike.com/cmd/uulog">uulog</a>
+                <div class="info">
+                    显示UUCP记录文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="uuname">
+                <a href="uuname.htm" tppabs="http://shellbaike.com/cmd/uuname">uuname</a>
+                <div class="info">
+                    显示全部的UUCP远端主机
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="uupick">
+                <a href="uupick.htm" tppabs="http://shellbaike.com/cmd/uupick">uupick</a>
+                <div class="info">
+                    处理传送进来的文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="uustat">
+                <a href="uustat.htm" tppabs="http://shellbaike.com/cmd/uustat">uustat</a>
+                <div class="info">
+                    显示UUCP目前的状况
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="uuto">
+                <a href="uuto.htm" tppabs="http://shellbaike.com/cmd/uuto">uuto</a>
+                <div class="info">
+                    将文件传送到远端的UUCP主机
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="uux">
+                <a href="uux.htm" tppabs="http://shellbaike.com/cmd/uux">uux</a>
+                <div class="info">
+                    在远端的UUCP主机上执行指令
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="vi">
+                <a href="vi.htm" tppabs="http://shellbaike.com/cmd/vi">vi</a>
+                <div class="info">
+                    编辑文本
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="vlock">
+                <a href="vlock.htm" tppabs="http://shellbaike.com/cmd/vlock">vlock</a>
+                <div class="info">
+                    锁住虚拟终端
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="w">
+                <a href="w.htm" tppabs="http://shellbaike.com/cmd/w">w</a>
+                <div class="info">
+                    显示目前登入系统的用户信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="wall">
+                <a href="wall.htm" tppabs="http://shellbaike.com/cmd/wall">wall</a>
+                <div class="info">
+                    传送信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="wc">
+                <a href="wc.htm" tppabs="http://shellbaike.com/cmd/wc">wc</a>
+                <div class="info">
+                    计算字数
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="wget">
+                <a href="wget.htm" tppabs="http://shellbaike.com/cmd/wget">wget</a>
+                <div class="info">
+                    非交互式网络下载器
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="whatis">
+                <a href="whatis.htm" tppabs="http://shellbaike.com/cmd/whatis">whatis</a>
+                <div class="info">
+                    显示一个命令的简洁描述
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="whereis">
+                <a href="whereis.htm" tppabs="http://shellbaike.com/cmd/whereis">whereis</a>
+                <div class="info">
+                    查找文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="which">
+                <a href="which.htm" tppabs="http://shellbaike.com/cmd/which">which</a>
+                <div class="info">
+                    查找文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="who">
+                <a href="who.htm" tppabs="http://shellbaike.com/cmd/who">who</a>
+                <div class="info">
+                    显示当前登录系统的用户信息
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="whoami">
+                <a href="whoami.htm" tppabs="http://shellbaike.com/cmd/whoami">whoami</a>
+                <div class="info">
+                    显示自身用户名称。
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="whois">
+                <a href="whois.htm" tppabs="http://shellbaike.com/cmd/whois">whois</a>
+                <div class="info">
+                    查找并显示用户信息。
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="xargs">
+                <a href="xargs.htm" tppabs="http://shellbaike.com/cmd/xargs">xargs</a>
+                <div class="info">
+                    从标准输入生成和执行命令行
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="zip">
+                <a href="zip.htm" tppabs="http://shellbaike.com/cmd/zip">zip</a>
+                <div class="info">
+                    压缩文件
+                </div>
+            </div>
+            
+            <div class="cl_item" cmdName="zipinfo">
+                <a href="zipinfo.htm" tppabs="http://shellbaike.com/cmd/zipinfo">zipinfo</a>
+                <div class="info">
+                    列出压缩文件信息
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="index.htm" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" >
+    function inputUp(input){
+//        var $inp = $(inp);
+//        var input = $inp.value();
+        console.info(input);
+        $(".cl_item").each(function(){
+            $item = $(this);
+            var cmdName = $item.attr("cmdName");
+            if (cmdName.indexOf(input)==0) {
+                $item.show();
+            } else {
+                $item.hide();
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>第二十九章 : 读取键盘输入 - Shell脚本学习 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="Linux命令行,shell,linux命令大全,shell脚本,shell脚本编程,linux shell,第二十九章 : 读取键盘输入" />
+    <meta name="description" content="到目前为止我们编写的脚本都缺乏一项在大多数计算机程序中都很常见的功能－交互性。也就是， 程序与用户进行交互的能力。虽然许多程序不必是可交互的，但一些程序却得到益处，能够直接 接受用户的输入。" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/prism.css" tppabs="http://shellbaike.com/static/css/prism.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmd/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/'" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div id="main_left" class="l mainInfo">
+            <h1 class="titleInfo">
+                第二十九章 : 读取键盘输入
+            </h1>
+            <div class="info">
+                <span class="smartTime" smartTime="1420268134">2015-01-03 14:55:34 +0800 CST</span>
+            </div>
+            <div style="text-align: center;">
+    
+</div>
+            <div class="mainContent">
+                <p>到目前为止我们编写的脚本都缺乏一项在大多数计算机程序中都很常见的功能－交互性。也就是， 程序与用户进行交互的能力。虽然许多程序不必是可交互的，但一些程序却得到益处，能够直接 接受用户的输入。以这个前面章节中的脚本为例：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# test-integer2: evaluate the value of an integer.
+INT=-5
+if [[ "$INT" =~ ^-?[0-9]+$ ]]; then
+    if [ $INT -eq 0 ]; then
+        echo "INT is zero."
+    else
+        if [ $INT -lt 0 ]; then
+            echo "INT is negative."
+        else
+            echo "INT is positive."
+        fi
+        if [ $((INT % 2)) -eq 0 ]; then
+            echo "INT is even."
+        else
+        echo "INT is odd."
+        fi
+    fi
+else
+    echo "INT is not an integer." &gt;&amp;2
+    exit 1
+fi
+</code></pre><p>每次我们想要改变 INT 数值的时候，我们必须编辑这个脚本。如果脚本能请求用户输入数值，那 么它会更加有用处。在这个脚本中，我们将看一下我们怎样给程序增加交互性功能。</p><h3>read - 从标准输入读取数值</h3><p>这个 read 内部命令被用来从标准输入读取单行数据。这个命令可以用来读取键盘输入，当使用 重定向的时候，读取文件中的一行数据。这个命令有以下语法形式：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">read [-options] [variable...]
+</code></pre><p>这里的 options 是下面列出的可用选项中的一个或多个，且 variable 是用来存储输入数值的一个或多个变量名。 如果没有提供变量名，shell 变量 REPLY 会包含数据行。</p><p>基本上，read 会把来自标准输入的字段赋值给具体的变量。如果我们修改我们的整数求值脚本，让其使用 read ，它可能看起来像这样：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# read-integer: evaluate the value of an integer.
+echo -n "Please enter an integer -&gt; "
+read int
+if [[ "$int" =~ ^-?[0-9]+$ ]]; then
+    if [ $int -eq 0 ]; then
+        echo "$int is zero."
+    else
+        if [ $int -lt 0 ]; then
+            echo "$int is negative."
+        else
+            echo "$int is positive."
+        fi
+        if [ $((int % 2)) -eq 0 ]; then
+            echo "$int is even."
+        else
+            echo "$int is odd."
+        fi
+    fi
+else
+    echo "Input value is not an integer." &gt;&amp;2
+    exit 1
+fi
+</code></pre><p>我们使用带有 -n 选项（其会删除输出结果末尾的换行符）的 <a href="javascript:if(confirm('http://shellbaike.com/cmd/echo  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/echo'" tppabs="http://shellbaike.com/cmd/echo" title="echo命令参数">echo</a> 命令，来显示提示信息， 然后使用 read 来读入变量 int 的数值。运行这个脚本得到以下输出：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ read-integer
+Please enter an integer -&gt; 5
+5 is positive.
+5 is odd.
+</code></pre><p>read 可以给多个变量赋值，正如下面脚本中所示：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# read-multiple: read multiple values from keyboard
+echo -n "Enter one or more values &gt; "
+read var1 var2 var3 var4 var5
+echo "var1 = '$var1'"
+echo "var2 = '$var2'"
+echo "var3 = '$var3'"
+echo "var4 = '$var4'"
+echo "var5 = '$var5'"
+</code></pre><p>在这个脚本中，我们给五个变量赋值并显示其结果。注意当给定不同个数的数值后，read 怎样操作：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ read-multiple
+Enter one or more values &gt; a b c d e
+var1 = 'a'
+var2 = 'b'
+var3 = 'c'
+var4 = 'd'
+var5 = 'e'
+[me@linuxbox ~]$ read-multiple
+Enter one or more values &gt; a
+var1 = 'a'
+var2 = ''
+var3 = ''
+var4 = ''
+var5 = ''
+[me@linuxbox ~]$ read-multiple
+Enter one or more values &gt; a b c d e f g
+var1 = 'a'
+var2 = 'b'
+var3 = 'c'
+var4 = 'd'
+var5 = 'e f g'
+</code></pre><p>如果 read 命令接受到变量值数目少于期望的数字，那么额外的变量值为空，而多余的输入数据则会 被包含到最后一个变量中。如果 read 命令之后没有列出变量名，则一个 shell 变量，REPLY，将会包含 所有的输入：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# read-single: read multiple values into default variable
+echo -n "Enter one or more values &gt; "
+read
+echo "REPLY = '$REPLY'"
+</code></pre><p>这个脚本的输出结果是：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ read-single
+Enter one or more values &gt; a b c d
+REPLY = 'a b c d'
+</code></pre><h4>选项</h4><p>read 支持以下选送：</p>表29-1: read 选项<table><colgroup><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>-a array</td><td>把输入赋值到数组 array 中，从索引号零开始。我们 将在第36章中讨论数组问题。</td></tr><tr><td>-d delimiter</td><td>用字符串 delimiter 中的第一个字符指示输入结束，而不是一个换行符。</td></tr><tr><td>-e</td><td>使用 Readline 来处理输入。这使得与命令行相同的方式编辑输入。</td></tr><tr><td>-n num</td><td>读取 num 个输入字符，而不是整行。</td></tr><tr><td>-p prompt</td><td>为输入显示提示信息，使用字符串 prompt。</td></tr><tr><td>-r</td><td>Raw mode. 不把反斜杠字符解释为转义字符。</td></tr><tr><td>-s</td><td>Silent mode. 不会在屏幕上显示输入的字符。当输入密码和其它确认信息的时候，这会很有帮助。</td></tr><tr><td>-t seconds</td><td>超时. 几秒钟后终止输入。read 会返回一个非零退出状态，若输入超时。</td></tr><tr><td>-u fd</td><td>使用文件描述符 fd 中的输入，而不是标准输入。</td></tr></tbody></table><p>使用各种各样的选项，我们能用 read 完成有趣的事情。例如，通过-p 选项，我们能够提供提示信息：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# read-single: read multiple values into default variable
+read -p "Enter one or more values &gt; "
+echo "REPLY = '$REPLY'"
+</code></pre><p>通过 -t 和 -s 选项，我们可以编写一个这样的脚本，读取“秘密”输入，并且如果在特定的时间内 输入没有完成，就终止输入。</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# read-secret: input a secret pass phrase
+if read -t 10 -sp "Enter secret pass phrase &gt; " secret_pass; then
+    echo -e "\nSecret pass phrase = '$secret_pass'"
+else
+    echo -e "\nInput timed out" &gt;&amp;2
+    exit 1
+if
+</code></pre><p>这个脚本提示用户输入一个密码，并等待输入10秒钟。如果在特定的时间内没有完成输入， 则脚本会退出并返回一个错误。因为包含了一个 -s 选项，所以输入的密码不会出现在屏幕上。</p><h3>IFS</h3><p>通常，shell 对提供给 read 的输入按照单词进行分离。正如我们所见到的，这意味着多个由一个或几个空格 分离开的单词在输入行中变成独立的个体，并被 read 赋值给单独的变量。这种行为由 shell 变量__IFS__ （内部字符分隔符）配置。IFS&nbsp;的默认值包含一个空格，一个 tab，和一个换行符，每一个都会把 字段分割开。</p><p>我们可以调整&nbsp;IFS&nbsp;的值来控制输入字段的分离。例如，这个 /etc/passwd 文件包含的数据行 使用冒号作为字段分隔符。通过把&nbsp;IFS&nbsp;的值更改为单个冒号，我们可以使用 read 读取 /etc/passwd 中的内容，并成功地把字段分给不同的变量。这个就是做这样的事情：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# read-ifs: read fields from a file
+FILE=/etc/passwd
+read -p "Enter a user name &gt; " user_name
+file_info=$(grep "^$user_name:" $FILE)
+if [ -n "$file_info" ]; then
+    IFS=":" read user pw uid gid name home shell &lt;&lt;&lt; "$file_info"
+    echo "User = '$user'"
+    echo "UID = '$uid'"
+    echo "GID = '$gid'"
+    echo "Full Name = '$name'"
+    echo "Home Dir. = '$home'"
+    echo "Shell = '$shell'"
+else
+    echo "No such user '$user_name'" &gt;&amp;2
+    exit 1
+fi
+</code></pre><p>这个脚本提示用户输入系统中一个帐户的用户名，然后显示在文件 /etc/passwd/ 文件中关于用户记录的 不同字段。这个脚本包含两个有趣的文本行。 第一个是：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">file_info=$(grep "^$user_name:" $FILE)
+</code></pre><p>这一行把 grep 命令的输入结果赋值给变量 file_info。grep 命令使用的正则表达式 确保用户名只会在 /etc/passwd 文件中匹配一个文本行。</p><p>第二个有意思的文本行是：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">IFS=":" read user pw uid gid name home shell &lt;&lt;&lt; "$file_info"
+</code></pre><p>这一行由三部分组成：一个变量赋值，一个带有一串参数的 read 命令，和一个奇怪的新的重定向操作符。 我们首先看一下变量赋值。</p><p>Shell 允许在一个命令之前立即发生一个或多个变量赋值。这些赋值为跟随着的命令更改环境变量。 这个赋值的影响是暂时的；只是在命令存在期间改变环境变量。在这种情况下，IFS 的值改为一个冒号。 另外，我们也可以这样编码：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">OLD_IFS="$IFS"
+IFS=":"
+read user pw uid gid name home shell &lt;&lt;&lt; "$file_info"
+IFS="$OLD_IFS"
+</code></pre><p>我们先存储 IFS 的值，然后赋给一个新值，再执行 read 命令，最后把 IFS 恢复原值。显然，完成相同的任务， 在命令之前放置变量名赋值是一种更简明的方式。</p><p>这个&nbsp;&lt;&lt;&lt;&nbsp;操作符指示一个 here 字符串。一个 here 字符串就像一个 here 文档，只是比较简短，由 单个字符串组成。在这个例子中，来自 /etc/passwd 文件的数据发送给 read 命令的标准输入。 我们可能想知道为什么选择这种相当晦涩的方法而不是：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">echo "$file_info" | IFS=":" read user pw uid gid name home shell
+</code></pre><blockquote><p>你不能管道 read</p><p>虽然通常 read 命令接受标准输入，但是你不能这样做：</p><p>echo “foo” | read</p><p>我们期望这个命令能生效，但是它不能。这个命令将显示成功，但是 REPLY 变量 总是为空。为什么会这样？</p><p>答案与 shell 处理管道线的方式有关系。在 bash（和其它 shells，例如 sh）中，管道线 会创建子 shell。它们是 shell 的副本，且用来执行命令的环境变量在管道线中。 上面示例中，read 命令将在子 shell 中执行。</p><p>在类 Unix 的系统中，子 shell 执行的时候，会为进程创建父环境的副本。当进程结束 之后，环境副本就会被破坏掉。这意味着一个子 shell 永远不能改变父进程的环境。read 赋值变量， 然后会变为环境的一部分。在上面的例子中，read 在它的子 shell 环境中，把 foo 赋值给变量 REPLY， 但是当命令退出后，子 shell 和它的环境将被破坏掉，这样赋值的影响就会消失。</p><p>使用 here 字符串是解决此问题的一种方法。另一种方法将在37章中讨论。</p></blockquote><h3>校正输入</h3><p>从键盘输入这种新技能，带来了额外的编程挑战，校正输入。很多时候，一个良好编写的程序与 一个拙劣程序之间的区别就是程序处理意外的能力。通常，意外会以错误输入的形式出现。在前面 章节中的计算程序，我们已经这样做了一点儿，我们检查整数值，甄别空值和非数字字符。每次 程序接受输入的时候，执行这类的程序检查非常重要，为的是避免无效数据。对于 由多个用户共享的程序，这个尤为重要。如果一个程序只使用一次且只被作者用来执行一些特殊任务， 那么为了经济利益而忽略这些保护措施，可能会被原谅。即使这样，如果程序执行危险任务，比如说 删除文件，所以最好包含数据校正，以防万一。</p><p>这里我们有一个校正各种输入的示例程序：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# read-validate: validate input
+invalid_input () {
+    echo "Invalid input '$REPLY'" &gt;&amp;2
+    exit 1
+}
+read -p "Enter a single item &gt; "
+# input is empty (invalid)
+[[ -z $REPLY ]] &amp;&amp; invalid_input
+# input is multiple items (invalid)
+(( $(echo $REPLY | wc -w) &gt; 1 )) &amp;&amp; invalid_input
+# is input a valid filename?
+if [[ $REPLY =~ ^[-[:alnum:]\._]+$ ]]; then
+    echo "'$REPLY' is a valid filename."
+    if [[ -e $REPLY ]]; then
+        echo "And file '$REPLY' exists."
+    else
+        echo "However, file '$REPLY' does not exist."
+    fi
+    # is input a floating point number?
+    if [[ $REPLY =~ ^-?[[:digit:]]*\.[[:digit:]]+$ ]]; then
+        echo "'$REPLY' is a floating point number."
+    else
+        echo "'$REPLY' is not a floating point number."
+    fi
+    # is input an integer?
+    if [[ $REPLY =~ ^-?[[:digit:]]+$ ]]; then
+        echo "'$REPLY' is an integer."
+    else
+        echo "'$REPLY' is not an integer."
+    fi
+else
+    echo "The string '$REPLY' is not a valid filename."
+fi
+</code></pre><p>这个脚本提示用户输入一个数字。随后，分析这个数字来决定它的内容。正如我们所看到的，这个脚本 使用了许多我们已经讨论过的概念，包括 shell 函数，[[ ]]，(( ))，控制操作符&nbsp;&amp;&amp;，以及&nbsp;if&nbsp;和 一些正则表达式。</p><h3>菜单</h3><p>一种常见的交互类型称为菜单驱动。在菜单驱动程序中，呈现给用户一系列选择，并要求用户选择一项。 例如，我们可以想象一个展示以下信息的程序：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">Please Select:
+1.Display System Information
+2.Display Disk Space
+3.Display Home Space Utilization
+0.Quit
+Enter selection [0-3] &gt;
+</code></pre><p>使用我们从编写 sys_<a href="javascript:if(confirm('http://shellbaike.com/cmd/info  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/info'" tppabs="http://shellbaike.com/cmd/info" title="info例子">info</a>_page 程序中所学到的知识，我们能够构建一个菜单驱动程序来执行 上述菜单中的任务：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">#!/bin/bash
+# read-menu: a menu driven system information program
+clear
+echo "
+Please Select:
+
+    1. Display System Information
+    2. Display Disk Space
+    3. Display Home Space Utilization
+    0. Quit
+"
+read -p "Enter selection [0-3] &gt; "
+
+if [[ $REPLY =~ ^[0-3]$ ]]; then
+    if [[ $REPLY == 0 ]]; then
+        echo "Program terminated."
+        exit
+    fi
+    if [[ $REPLY == 1 ]]; then
+        echo "Hostname: $HOSTNAME"
+        uptime
+        exit
+    fi
+    if [[ $REPLY == 2 ]]; then
+        df -h
+        exit
+    fi
+    if [[ $REPLY == 3 ]]; then
+        if [[ $(id -u) -eq 0 ]]; then
+            echo "Home Space Utilization (All Users)"
+            du -sh /home/*
+        else
+            echo "Home Space Utilization ($USER)"
+            du -sh $HOME
+        fi
+        exit
+    fi
+else
+    echo "Invalid entry." &gt;&amp;2
+    exit 1
+fi
+</code></pre><p>The presence of multiple ｀<a href="javascript:if(confirm('http://shellbaike.com/cmd/exit  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/exit'" tppabs="http://shellbaike.com/cmd/exit" title="exit命令详解">exit</a>｀ points in a program is generally a bad idea (it makes</p><p>从逻辑上讲，这个脚本被分为两部分。第一部分显示菜单和用户输入。第二部分确认用户反馈，并执行 选择的行动。注意脚本中使用的 exit 命令。在这里，在一个行动执行之后， exit 被用来阻止脚本执行不必要的代码。 通常在程序中出现多个 exit 代码是一个坏想法（它使程序逻辑较难理解），但是它在这个脚本中起作用。</p><h3>总结归纳</h3><p>在这一章中，我们向着程序交互性迈出了第一步；允许用户通过键盘向程序输入数据。使用目前 已经学过的技巧，有可能编写许多有用的程序，比如说特定的计算程序和容易使用的命令行工具 前端。在下一章中，我们将继续建立菜单驱动程序概念，让它更完善。</p><h4>友情提示</h4><p>仔细研究本章中的程序，并对程序的逻辑结构有一个完整的理解，这是非常重要的，因为即将到来的 程序会日益复杂。作为练习，用 test 命令而不是[[ ]]复合命令来重新编写本章中的程序。 提示：使用 <a href="javascript:if(confirm('http://shellbaike.com/cmd/grep  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/grep'" tppabs="http://shellbaike.com/cmd/grep" title="grep命令参数">grep</a> 命令来计算正则表达式及其退出状态。这会是一个不错的实践。</p><h3>拓展阅读</h3><ul><li><p>Bash 参考手册有一章关于内部命令的内容，其包括了read命令：</p><p><a href="javascript:if(confirm('http://www.gnu.org/software/bash/manual/bashref.html  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.gnu.org/software/bash/manual/bashref.html#Bash-Builtins'" tppabs="http://www.gnu.org/software/bash/manual/bashref.html#Bash-Builtins" rel="nofollow">http://www.gnu.org/software/bash/manual/bashref.html#Bash-Builtins</a></p></li></ul>
+            </div>
+        </div>
+        <div id="main_right" class="r">
+            <div class="rightItem">
+                <h2>
+                    Shell脚本学习目录
+                </h2>
+                <ul>
+                    
+                    <li><a href="1.htm" tppabs="http://shellbaike.com/cmdline/1">第一章 引言</a></li>
+                    
+                    <li><a href="2.htm" tppabs="http://shellbaike.com/cmdline/2">第二章 : 什么是 shell</a></li>
+                    
+                    <li><a href="3.htm" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+                    
+                    <li><a href="5.htm" tppabs="http://shellbaike.com/cmdline/5">第四章：探究操作系统</a></li>
+                    
+                    <li><a href="6.htm" tppabs="http://shellbaike.com/cmdline/6">第五章：操作文件和目录</a></li>
+                    
+                    <li><a href="7.htm" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+                    
+                    <li><a href="8.htm" tppabs="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+                    
+                    <li><a href="9.htm" tppabs="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+                    
+                    <li><a href="10.htm" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+                    
+                    <li><a href="11.htm" tppabs="http://shellbaike.com/cmdline/11">第十章：权限</a></li>
+                    
+                    <li><a href="12.htm" tppabs="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+                    
+                    <li><a href="15.htm" tppabs="http://shellbaike.com/cmdline/15">第十二章 : shell 环境</a></li>
+                    
+                    <li><a href="16.htm" tppabs="http://shellbaike.com/cmdline/16">第十三章 : vi 简介</a></li>
+                    
+                    <li><a href="17.htm" tppabs="http://shellbaike.com/cmdline/17">第十四章 : 自定制 shell 提示符</a></li>
+                    
+                    <li><a href="18.htm" tppabs="http://shellbaike.com/cmdline/18">第十五章 : 软件包管理</a></li>
+                    
+                    <li><a href="19.htm" tppabs="http://shellbaike.com/cmdline/19">第十六章 : 存储媒介</a></li>
+                    
+                    <li><a href="20.htm" tppabs="http://shellbaike.com/cmdline/20">第十七章 : 网络系统</a></li>
+                    
+                    <li><a href="21.htm" tppabs="http://shellbaike.com/cmdline/21">第十八章 : 查找文件</a></li>
+                    
+                    <li><a href="22.htm" tppabs="http://shellbaike.com/cmdline/22">第十九章 : 归档和备份</a></li>
+                    
+                    <li><a href="23.htm" tppabs="http://shellbaike.com/cmdline/23">第二十章 : 正则表达式</a></li>
+                    
+                    <li><a href="24.htm" tppabs="http://shellbaike.com/cmdline/24">第二十一章 : 文本处理</a></li>
+                    
+                    <li><a href="25.htm" tppabs="http://shellbaike.com/cmdline/25">第二十二章 : 格式化输出</a></li>
+                    
+                    <li><a href="26.htm" tppabs="http://shellbaike.com/cmdline/26">第二十三章 : 打印</a></li>
+                    
+                    <li><a href="27.htm" tppabs="http://shellbaike.com/cmdline/27">第二十四章 : 编译程序</a></li>
+                    
+                    <li><a href="28.htm" tppabs="http://shellbaike.com/cmdline/28">第二十五章 : 编写第一个 Shell 脚本</a></li>
+                    
+                    <li><a href="29.htm" tppabs="http://shellbaike.com/cmdline/29">第二十六章 : 启动一个项目</a></li>
+                    
+                    <li><a href="30.htm" tppabs="http://shellbaike.com/cmdline/30">第二十七章 : 自顶向下设计</a></li>
+                    
+                    <li><a href="31.htm" tppabs="http://shellbaike.com/cmdline/31">第二十八章 : 流程控制：if 分支结构</a></li>
+                    
+                    <li><a href="32.htm" tppabs="http://shellbaike.com/cmdline/32">第二十九章 : 读取键盘输入</a></li>
+                    
+                    <li><a href="33.htm" tppabs="http://shellbaike.com/cmdline/33">第三十章 : 流程控制：while/until 循环</a></li>
+                    
+                    <li><a href="34.htm" tppabs="http://shellbaike.com/cmdline/34">第三十一章 : 疑难排解</a></li>
+                    
+                    <li><a href="35.htm" tppabs="http://shellbaike.com/cmdline/35">第三十二章 : 流程控制：case 分支</a></li>
+                    
+                    <li><a href="36.htm" tppabs="http://shellbaike.com/cmdline/36">第三十三章 : 位置参数</a></li>
+                    
+                    <li><a href="37.htm" tppabs="http://shellbaike.com/cmdline/37">第三十四章 : 流程控制：for 循环</a></li>
+                    
+                    <li><a href="38.htm" tppabs="http://shellbaike.com/cmdline/38">第三十五章 : 字符串和数字</a></li>
+                    
+                    <li><a href="39.htm" tppabs="http://shellbaike.com/cmdline/39">第三十六章 : 数组</a></li>
+                    
+                    <li><a href="40.htm" tppabs="http://shellbaike.com/cmdline/40">第三十七章 : 奇珍异宝</a></li>
+                    
+                </ul>
+            </div>
+            <div class="rightItem">
+    <h2>
+        Shell随机文章
+    </h2>
+    <ul>
+        
+        <li><a href="3.htm" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+        
+        <li><a href="36.htm" tppabs="http://shellbaike.com/cmdline/36">第三十三章 : 位置参数</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/59  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/59'" tppabs="http://shellbaike.com/linux/59">使用 Docker 还是 Rocket ？也许可以一起来</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/65  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/65'" tppabs="http://shellbaike.com/linux/65">Linux Kernel 3.19-rc5 发布下载</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/shell/72  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/72'" tppabs="http://shellbaike.com/shell/72">硬盘监控和分析工具：Smartctl</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/78  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/78'" tppabs="http://shellbaike.com/linux/78">美国海军陆战队要把雷达操作系统从Windows XP换成Linux</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/90  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/90'" tppabs="http://shellbaike.com/linux/90">2015:开源已经完胜，但这并不是结束</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/103  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/103'" tppabs="http://shellbaike.com/linux/103">Libvirt 1.2.12 发布，Linux 虚拟化库</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/109  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/109'" tppabs="http://shellbaike.com/linux/109">微软开源 .NET CoreCLR</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/linux/110  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/110'" tppabs="http://shellbaike.com/linux/110">Q4OS 0.5.25 发布，基于 Debian 桌面 Linux 发行</a></li>
+        
+    </ul>
+</div>
+            <div class="rightItem">
+    <h2>
+        Linux常用命令
+    </h2>
+    <ul>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/adduser  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/adduser'" tppabs="http://shellbaike.com/cmd/adduser">adduser</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/apachectl  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/apachectl'" tppabs="http://shellbaike.com/cmd/apachectl">apachectl</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/apmd  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/apmd'" tppabs="http://shellbaike.com/cmd/apmd">apmd</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/apropos  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/apropos'" tppabs="http://shellbaike.com/cmd/apropos">apropos</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/ar  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/ar'" tppabs="http://shellbaike.com/cmd/ar">ar</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/arpwatch  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/arpwatch'" tppabs="http://shellbaike.com/cmd/arpwatch">arpwatch</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/aspell  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/aspell'" tppabs="http://shellbaike.com/cmd/aspell">aspell</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/aumix  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/aumix'" tppabs="http://shellbaike.com/cmd/aumix">aumix</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/badblocks  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/badblocks'" tppabs="http://shellbaike.com/cmd/badblocks">badblocks</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/bc  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/bc'" tppabs="http://shellbaike.com/cmd/bc">bc</a></li>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+            <br/>
+<script type="text/javascript">
+    document.write('<a style="display:none!important" id="tanx-a-mm_12741493_8680874_29282972"></a>');
+    tanx_s = document.createElement("script");
+    tanx_s.type = "text/javascript";
+    tanx_s.charset = "gbk";
+    tanx_s.id = "tanx-s-mm_12741493_8680874_29282972";
+    tanx_s.async = true;
+    tanx_s.src = "../../p.tanx.com/ex-i=mm_12741493_8680874_29282972"/*tpa=http://p.tanx.com/ex?i=mm_12741493_8680874_29282972*/;
+    tanx_h = document.getElementsByTagName("head")[0];
+    if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
+</script>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="javascript:if(confirm('http://shellbaike.com/cmd/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/'" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/main.js" tppabs="http://shellbaike.com/static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/prism_pre.js" tppabs="http://shellbaike.com/static/js/prism_pre.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        $(".smartTime").smartTime();
+        $(".mainInfo").dblclick(function(){
+            $("html , body").animate({scrollTop:"0"}, 0);
+        });
+    });
+</script>
+</body>
+</html>

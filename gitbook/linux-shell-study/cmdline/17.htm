@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>第十四章 : 自定制 shell 提示符 - Shell脚本学习 - Shell百科</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="Linux命令行,shell,linux命令大全,shell脚本,shell脚本编程,linux shell,第十四章 : 自定制 shell 提示符" />
+    <meta name="description" content="在这一章中，我们将会看一下表面上看来很琐碎的细节－shell 提示符。但这会揭示一些内部 shell 和 终端仿真器的工作方式。" />
+    <link rel="stylesheet" href="../static/css/main.css" tppabs="http://shellbaike.com/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/prism.css" tppabs="http://shellbaike.com/static/css/prism.css" />
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <div id="header_top">
+            <h1 class="logH1"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/" title="Shell百科 最全linux命令大全 Shell脚本编程技巧分享">Shell百科</a></h1>
+            <h3 class="logH3"><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">shellbaike.com</a></h3>
+        </div>
+        <div id="header_ad">
+
+        </div>
+        <div class="clear"></div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/'" tppabs="http://shellbaike.com/">首页</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/cmd/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/'" tppabs="http://shellbaike.com/cmd/">Linux命令大全</a></li>
+                <li><a href="index.htm" tppabs="http://shellbaike.com/cmdline/">Shell脚本学习</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/shell/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/'" tppabs="http://shellbaike.com/shell/">Shell脚本编程</a></li>
+                <li><a href="javascript:if(confirm('http://shellbaike.com/linux/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/linux/'" tppabs="http://shellbaike.com/linux/">Linux资讯</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="wrapper">
+        <div id="main_left" class="l mainInfo">
+            <h1 class="titleInfo">
+                第十四章 : 自定制 shell 提示符
+            </h1>
+            <div class="info">
+                <span class="smartTime" smartTime="1420264172">2015-01-03 13:49:32 +0800 CST</span>
+            </div>
+            <div style="text-align: center;">
+    
+</div>
+            <div class="mainContent">
+                <p>在这一章中，我们将会看一下表面上看来很琐碎的细节－shell 提示符。但这会揭示一些内部 shell 和 终端仿真器的工作方式。</p><p>和 Linux 内的许多程序一样，shell 提示符是可高度配置的，虽然我们把它相当多地看作是理所当然的， 但是我们一旦学会了怎样控制它，shell 提示符是一个真正有用的设备。</p><h3>解剖一个提示符</h3><p>我们默认的提示符看起来像这样：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$
+</code></pre><p>注意它包含我们的用户名，主机名和当前工作目录，但是它又是怎样得到这些东西的呢？ 结果证明非常简单。提示符是由一个环境变量定义的，叫做 PS1（是“prompt string one” 的简写）。我们可以通过 <a href="javascript:if(confirm('http://shellbaike.com/cmd/echo  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/echo'" tppabs="http://shellbaike.com/cmd/echo" title="echo命令参数">echo</a> 命令来查看 PS1的内容。</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ echo $PS1
+[\u@\h \W]\$
+</code></pre><hr><p>注意：如果你 shell 提示符的内容和上例不是一模一样，也不必担心。每个 Linux 发行版 定义的提示符稍微有点不同，其中一些相当异乎寻常。</p><hr><p>从输出结果中，我们看到那个 PS1 环境变量包含一些这样的字符，比方说中括号，@符号，和美元符号， 但是剩余部分就是个谜。我们中一些机敏的人会把这些看作是由反斜杠转义的特殊字符，就像我们 在第八章中看到的一样。这里是一部分字符列表，在提示符中 shell 会特殊对待这些字符：</p>表14-1: Shell 提示符中用到的转义字符<table><colgroup><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>序列</td><td>显示值</td></tr><tr><td>\a</td><td>以 ASCII 格式编码的铃声 . 当遇到这个转义序列时，计算机会发出嗡嗡的响声。</td></tr><tr><td>\d</td><td>以日，月，天格式来表示当前日期。例如，“Mon May 26.”</td></tr><tr><td>\h</td><td>本地机的主机名，但不带末尾的域名。</td></tr><tr><td>\H</td><td>完整的主机名。</td></tr><tr><td>\j</td><td>运行在当前 shell 会话中的工作数。</td></tr><tr><td>\l</td><td>当前终端设备名。</td></tr><tr><td>\n</td><td>一个换行符。</td></tr><tr><td>\r</td><td>一个回车符。</td></tr><tr><td>\s</td><td>shell 程序名。</td></tr><tr><td>\t</td><td>以24小时制，hours:minutes:seconds 的格式表示当前时间.</td></tr><tr><td>\T</td><td>以12小时制表示当前时间。</td></tr><tr><td>\@</td><td>以12小时制，AM/PM 格式来表示当前时间。</td></tr><tr><td>\A</td><td>以24小时制，hours:minutes 格式表示当前时间。</td></tr><tr><td>\u</td><td>当前用户名。</td></tr><tr><td>\v</td><td>shell 程序的版本号。</td></tr><tr><td>\V</td><td>Version and release numbers of the shell.</td></tr><tr><td>\w</td><td>当前工作目录名。</td></tr><tr><td>\W</td><td>当前工作目录名的最后部分。</td></tr><tr><td>\!</td><td>当前命令的历史号。</td></tr><tr><td>\#</td><td>当前 shell 会话中的命令数。</td></tr><tr><td>\$</td><td>这会显示一个"$"字符，除非你拥有超级用户权限。在那种情况下， 它会显示一个"#"字符。</td></tr><tr><td>\[</td><td>标志着一系列一个或多个非打印字符的开始。这被用来嵌入非打印 的控制字符，这些字符以某种方式来操作终端仿真器，比方说移动光标或者是更改文本颜色。</td></tr><tr><td>\]</td><td>标志着非打印字符序列结束。</td></tr></tbody></table><h3>试试一些可替代的提示符设计</h3><p>参照这个特殊字符列表，我们可以更改提示符来看一下效果。首先， 我们把原来提示符字符串的内容备份一下，以备之后恢复原貌。为了完成备份， 我们把已有的字符串复制到另一个 shell 变量中，这个变量是我们自己创造的。</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ ps1_old="$PS1"
+</code></pre><p>我们新创建了一个叫做 <a href="javascript:if(confirm('http://shellbaike.com/cmd/ps  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/ps'" tppabs="http://shellbaike.com/cmd/ps" title="ps用法">ps</a>1_old 的变量，并把变量 PS1的值赋 ps1_old。通过 echo 命令可以证明 我们的确复制了 PS1的值。</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ echo $ps1_old
+[\u@\h \W]\$
+</code></pre><p>在终端会话中，我们能在任一时间复原提示符，只要简单地反向操作就可以了。</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ PS1="$ps1_old"
+</code></pre><p>现在，我们准备开始，让我们看看如果有一个空的字符串会发生什么：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">[me@linuxbox ~]$ PS1=
+</code></pre><p>如果我们没有给提示字符串赋值，那么我们什么也得不到。根本没有提示字符串！提示符仍然在那里， 但是什么也不显示，正如我们所要求的那样。我们将用一个最小的提示符来代替它：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">PS1="\$ "
+</code></pre><p>这样要好一些。至少能看到我们在做什么。注意双引号中末尾的空格。当提示符显示的时候， 这个空格把美元符号和光标分离开。</p><p>在提示符中添加一个响铃：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">$ PS1="\a\$ "
+</code></pre><p>现在每次提示符显示的时候，我们应该能听到嗡嗡声。这会变得很烦人，但是它可能会 很有用，特别是当一个需要运行很长时间的命令执行完后，我们要得到通知。</p><p>下一步，让我们试着创建一个信息丰富的提示符，包含主机名和当天时间的信息。</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">$ PS1="\A \h \$ "
+17:33 linuxbox $
+</code></pre><p>试试其他上表中列出的转义序列，看看你能否想出精彩的新提示符。</p><h3>添加颜色</h3><p>大多数终端仿真器程序支持一定的非打印字符序列来控制，比方说字符属性（像颜色，黑体和可怕的闪烁） 和光标位置。我们会更深入地讨论光标位置，但首先我们要看一下字体颜色。</p><blockquote><p>混乱的终端时代</p><p>回溯到终端连接到远端计算机的时代，有许多竞争的终端品牌，它们各自工作不同。 它们有着不同的键盘，以不同的方式来解释控制信息。Unix 和类 Unix 的系统有两个 相当复杂的子系统来处理终端控制领域的混乱局面（称为 termcap 和 terminfo）。如果你 查看一下终端仿真器最底层的属性设置，可能会找到一个关于终端仿真器类型的设置。</p><p>为了努力使所有的终端都讲某种通用语言，美国国家标准委员会（ANSI）制定了 一套标准的字符序列集合来控制视频终端。原先 DOS 用户会记得 ANSI.SYS 文件， 这是一个用来使这些编码解释生效的文件。</p></blockquote><p>字符颜色是由发送到终端仿真器的一个嵌入到了要显示的字符流中的 ANSI 转义编码来控制的。 这个控制编码不会“打印”到屏幕上，而是被终端解释为一个指令。正如我们在上表看到的字符序列， 这个 [ 和 ] 序列被用来封装这些非打印字符。一个 ANSI 转义编码以一个八进制033（这个编码是由 退出按键产生的）开头，其后跟着一个可选的字符属性，在之后是一个指令。例如，把文本颜色 设为正常（attribute = 0），黑色文本的编码如下：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">\033[0;30m
+</code></pre><p>这里是一个可用的文本颜色列表。注意这些颜色被分为两组，由应用程序粗体字符属性（1） 分化开来，这个属性可以描绘出“浅”色文本。</p>表14-2: 用转义序列来设置文本颜色<table><colgroup><col width="NaN%"><col width="NaN%"><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>序列</td><td>文本颜色</td><td>序列</td><td>文本颜色</td></tr><tr><td>\033[0;30m</td><td>黑色</td><td>\033[1;30m</td><td>深灰色</td></tr><tr><td>\033[0;31m</td><td>红色</td><td>\033[1;31m</td><td>浅红色</td></tr><tr><td>\033[0;32m</td><td>绿色</td><td>\033[1;32m</td><td>浅绿色</td></tr><tr><td>\033[0;33m</td><td>棕色</td><td>\033[1;33m</td><td>黄色</td></tr><tr><td>\033[0;34m</td><td>蓝色</td><td>\033[1;34m</td><td>浅蓝色</td></tr><tr><td>\033[0;35m</td><td>粉红</td><td>\033[1;35m</td><td>浅粉色</td></tr><tr><td>\033[0;36m</td><td>青色</td><td>\033[1;36m</td><td>浅青色</td></tr><tr><td>\033[0;37m</td><td>浅灰色</td><td>\033[1;37m</td><td>白色</td></tr></tbody></table><p>让我们试着制作一个红色提示符。我们将在开头加入转义编码：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">&lt;me@linuxbox ~&gt;$ PS1='\[\033[0;31m\]&lt;\u@\h \W&gt;\$'
+&lt;me@linuxbox ~&gt;$
+</code></pre><p>我们的提示符生效了，但是注意我们在提示符之后输入的文本也是红色的。为了修改这个问题， 我们将添加另一个转义编码到这个提示符的末尾来告诉终端仿真器恢复到原来的颜色。</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">&lt;me@linuxbox ~&gt;$ PS1='\[\033[0;31m\]&lt;\u@\h \W&gt;\$\[\033[0m\]'
+&lt;me@linuxbox ~&gt;$
+</code></pre><p>这看起来要好些！</p><p>也有可能要设置文本的背景颜色，使用下面列出的转义编码。这个背景颜色不支持黑体属性。</p>表14-3: 用转义序列来设置背景颜色<table><colgroup><col width="NaN%"><col width="NaN%"><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>\033[0;40m</td><td>蓝色</td><td>\033[1;44m</td><td>黑色</td></tr><tr><td>\033[0;41m</td><td>红色</td><td>\033[1;45m</td><td>粉红</td></tr><tr><td>\033[0;42m</td><td>绿色</td><td>\033[1;46m</td><td>青色</td></tr><tr><td>\033[0;43m</td><td>棕色</td><td>\033[1;47m</td><td>浅灰色</td></tr></tbody></table><p>我们可以创建一个带有红色背景的提示符，只是对第一个转义编码做个简单的修改。</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">&lt;me@linuxbox ~&gt;$ PS1='\[\033[0;41m\]&lt;\u@\h \W&gt;\$\[\033[0m\] '
+&lt;me@linuxbox ~&gt;$
+</code></pre><p>试试这些颜色编码，看看你能定制出怎样的提示符！</p><hr><p>注意：除了正常的 (0) 和黑体 (1) 字符属性之外，文本也可以具有下划线 (4)，闪烁 (5)， 和反向 (7) 属性。为了拥有好品味，然而，许多终端仿真器拒绝使用这个闪烁属性。</p><hr><h3>移动光标</h3><p>转义编码也可以用来定位光标。这些编码被普遍地用来，每次当提示符出现的时候，会在屏幕的不同位置 比如说上面一个角落，显示一个时钟或者其它一些信息。这里是一系列用来定位光标的转义编码：</p>表14-4: 光标移动转义序列<table><colgroup><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>转义编码</td><td>行动</td></tr><tr><td>\033[l;cH</td><td>把光标移到第 l 行，第 c 列。</td></tr><tr><td>\033[nA</td><td>把光标向上移动 n 行。</td></tr><tr><td>\033[nB</td><td>把光标向下移动 n 行。</td></tr><tr><td>\033[nC</td><td>把光标向前移动 n 个字符。</td></tr><tr><td>\033[nD</td><td>把光标向后移动 n 个字符。</td></tr><tr><td>\033[2J</td><td>清空屏幕，把光标移到左上角（第零行，第零列）。</td></tr><tr><td>\033[K</td><td>清空从光标位置到当前行末的内容。</td></tr><tr><td>\033[s</td><td>存储当前光标位置。</td></tr><tr><td>\033[u</td><td>唤醒之前存储的光标位置。</td></tr></tbody></table><p>使用上面的编码，我们将构建一个提示符，每次当这个提示符出现的时候，会在屏幕的上方画出一个 包含时钟（由黄色文本渲染）的红色长条。提示符的编码就是这个看起来令人敬畏的字符串：</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">PS1='\[\033[s\033[0;0H\033[0;41m\033[K\033[1;33m\t\033[0m\033[u\]
+&lt;\u@\h \W&gt;\$ '
+</code></pre><p>让我们分别看一下这个字符串的每一部分所表示的意思：</p><table><colgroup><col width="NaN%"><col width="NaN%"></colgroup><tbody><tr><td>序列</td><td>行动</td></tr><tr><td>\[</td><td>开始一个非打印字符序列。其真正的目的是为了让 bash 能够正确地计算提示符的大小。如果没有这个转义字符的话，命令行编辑 功能会弄错光标的位置。</td></tr><tr><td>\033[s</td><td>存储光标位置。这个用来使光标能回到原来提示符的位置， 当长条和时钟显示到屏幕上方之后。当心一些 终端仿真器不推崇这个编码。</td></tr><tr><td>\033[0;0H</td><td>把光标移到屏幕左上角，也就是第零行，第零列的位置。</td></tr><tr><td>\033[0;41m</td><td>把背景设置为红色。</td></tr><tr><td>\033[K</td><td>清空从当前光标位置到行末的内容。因为现在 背景颜色是红色，则被清空行背景成为红色，以此来创建长条。注意虽然一直清空到行末， 但是不改变光标位置，它仍然在屏幕左上角。</td></tr><tr><td>\033[1;33m</td><td>把文本颜色设为黄色。</td></tr><tr><td>\t</td><td>显示当前时间。虽然这是一个可“打印”的元素，但我们仍把它包含在提示符的非打印部分， 因为我们不想 bash 在计算可见提示符的真正大小时包括这个时钟在内。</td></tr><tr><td>\033[0m</td><td>关闭颜色设置。这对文本和背景都起作用。</td></tr><tr><td>\033[u</td><td>恢复到之前保存过的光标位置处。</td></tr><tr><td>\]</td><td>结束非打印字符序列。</td></tr><tr><td>&lt;\u@\h \W&gt;\$</td><td>提示符字符串。</td></tr></tbody></table><h3>保存提示符</h3><p>显然地，我们不想总是敲入那个怪物，所以我们将要把这个提示符存储在某个地方。通过把它 添加到我们的.bashrc 文件，可以使这个提示符永久存在。为了达到目的，把下面这两行添加到.bashrc 文件中。</p><pre><code style="font-family: 'Courier New', Courier, monospace; border: none;">PS1='\[\033[s\033[0;0H\033[0;41m\033[K\033[1;33m\t\033[0m\033[u\]&lt;\u@\h \W&gt;\$ '
+export PS1
+</code></pre><h3>总结归纳</h3><p>不管你信不信，还有许多事情可以由提示符来完成，涉及到我们在这里没有论及的 shell 函数和脚本， 但这是一个好的开始。并不是每个人都会花心思来更改提示符，因为通常默认的提示符就很让人满意。 但是对于我们这些喜欢思考的人们来说，shell 却提供了许多制造琐碎乐趣的机会。</p><h3>拓展阅读</h3><ul><li><p>The Bash Prompt HOWTO 来自于 Linux 文档工程，对 shell 提示符的用途进行了相当 完备的论述。可在以下链接中得到：</p><p><a href="javascript:if(confirm('http://tldp.org/HOWTO/Bash-Prompt-HOWTO/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://tldp.org/HOWTO/Bash-Prompt-HOWTO/'" tppabs="http://tldp.org/HOWTO/Bash-Prompt-HOWTO/" rel="nofollow">http://tldp.org/HOWTO/Bash-Prompt-HOWTO/</a></p></li><li><p>Wikipedia 上有一篇关于 ANSI Escape Codes 的好文章：</p><p><a href="javascript:if(confirm('http://en.wikipedia.org/wiki/ANSI_escape_code  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://en.wikipedia.org/wiki/ANSI_escape_code'" tppabs="http://en.wikipedia.org/wiki/ANSI_escape_code" rel="nofollow">http://en.wikipedia.org/wiki/ANSI_escape_code</a></p></li></ul>
+            </div>
+        </div>
+        <div id="main_right" class="r">
+            <div class="rightItem">
+                <h2>
+                    Shell脚本学习目录
+                </h2>
+                <ul>
+                    
+                    <li><a href="1.htm" tppabs="http://shellbaike.com/cmdline/1">第一章 引言</a></li>
+                    
+                    <li><a href="2.htm" tppabs="http://shellbaike.com/cmdline/2">第二章 : 什么是 shell</a></li>
+                    
+                    <li><a href="3.htm" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+                    
+                    <li><a href="5.htm" tppabs="http://shellbaike.com/cmdline/5">第四章：探究操作系统</a></li>
+                    
+                    <li><a href="6.htm" tppabs="http://shellbaike.com/cmdline/6">第五章：操作文件和目录</a></li>
+                    
+                    <li><a href="7.htm" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+                    
+                    <li><a href="8.htm" tppabs="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+                    
+                    <li><a href="9.htm" tppabs="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+                    
+                    <li><a href="10.htm" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+                    
+                    <li><a href="11.htm" tppabs="http://shellbaike.com/cmdline/11">第十章：权限</a></li>
+                    
+                    <li><a href="12.htm" tppabs="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+                    
+                    <li><a href="15.htm" tppabs="http://shellbaike.com/cmdline/15">第十二章 : shell 环境</a></li>
+                    
+                    <li><a href="16.htm" tppabs="http://shellbaike.com/cmdline/16">第十三章 : vi 简介</a></li>
+                    
+                    <li><a href="17.htm" tppabs="http://shellbaike.com/cmdline/17">第十四章 : 自定制 shell 提示符</a></li>
+                    
+                    <li><a href="18.htm" tppabs="http://shellbaike.com/cmdline/18">第十五章 : 软件包管理</a></li>
+                    
+                    <li><a href="19.htm" tppabs="http://shellbaike.com/cmdline/19">第十六章 : 存储媒介</a></li>
+                    
+                    <li><a href="20.htm" tppabs="http://shellbaike.com/cmdline/20">第十七章 : 网络系统</a></li>
+                    
+                    <li><a href="21.htm" tppabs="http://shellbaike.com/cmdline/21">第十八章 : 查找文件</a></li>
+                    
+                    <li><a href="22.htm" tppabs="http://shellbaike.com/cmdline/22">第十九章 : 归档和备份</a></li>
+                    
+                    <li><a href="23.htm" tppabs="http://shellbaike.com/cmdline/23">第二十章 : 正则表达式</a></li>
+                    
+                    <li><a href="24.htm" tppabs="http://shellbaike.com/cmdline/24">第二十一章 : 文本处理</a></li>
+                    
+                    <li><a href="25.htm" tppabs="http://shellbaike.com/cmdline/25">第二十二章 : 格式化输出</a></li>
+                    
+                    <li><a href="26.htm" tppabs="http://shellbaike.com/cmdline/26">第二十三章 : 打印</a></li>
+                    
+                    <li><a href="27.htm" tppabs="http://shellbaike.com/cmdline/27">第二十四章 : 编译程序</a></li>
+                    
+                    <li><a href="28.htm" tppabs="http://shellbaike.com/cmdline/28">第二十五章 : 编写第一个 Shell 脚本</a></li>
+                    
+                    <li><a href="29.htm" tppabs="http://shellbaike.com/cmdline/29">第二十六章 : 启动一个项目</a></li>
+                    
+                    <li><a href="30.htm" tppabs="http://shellbaike.com/cmdline/30">第二十七章 : 自顶向下设计</a></li>
+                    
+                    <li><a href="31.htm" tppabs="http://shellbaike.com/cmdline/31">第二十八章 : 流程控制：if 分支结构</a></li>
+                    
+                    <li><a href="32.htm" tppabs="http://shellbaike.com/cmdline/32">第二十九章 : 读取键盘输入</a></li>
+                    
+                    <li><a href="33.htm" tppabs="http://shellbaike.com/cmdline/33">第三十章 : 流程控制：while/until 循环</a></li>
+                    
+                    <li><a href="34.htm" tppabs="http://shellbaike.com/cmdline/34">第三十一章 : 疑难排解</a></li>
+                    
+                    <li><a href="35.htm" tppabs="http://shellbaike.com/cmdline/35">第三十二章 : 流程控制：case 分支</a></li>
+                    
+                    <li><a href="36.htm" tppabs="http://shellbaike.com/cmdline/36">第三十三章 : 位置参数</a></li>
+                    
+                    <li><a href="37.htm" tppabs="http://shellbaike.com/cmdline/37">第三十四章 : 流程控制：for 循环</a></li>
+                    
+                    <li><a href="38.htm" tppabs="http://shellbaike.com/cmdline/38">第三十五章 : 字符串和数字</a></li>
+                    
+                    <li><a href="39.htm" tppabs="http://shellbaike.com/cmdline/39">第三十六章 : 数组</a></li>
+                    
+                    <li><a href="40.htm" tppabs="http://shellbaike.com/cmdline/40">第三十七章 : 奇珍异宝</a></li>
+                    
+                </ul>
+            </div>
+            <div class="rightItem">
+    <h2>
+        Shell随机文章
+    </h2>
+    <ul>
+        
+        <li><a href="3.htm" tppabs="http://shellbaike.com/cmdline/3">第三章：文件系统中跳转</a></li>
+        
+        <li><a href="6.htm" tppabs="http://shellbaike.com/cmdline/6">第五章：操作文件和目录</a></li>
+        
+        <li><a href="7.htm" tppabs="http://shellbaike.com/cmdline/7">第六章：使用命令</a></li>
+        
+        <li><a href="8.htm" tppabs="http://shellbaike.com/cmdline/8">第七章：重定向</a></li>
+        
+        <li><a href="9.htm" tppabs="http://shellbaike.com/cmdline/9">第八章：从 shell 眼中看世界</a></li>
+        
+        <li><a href="10.htm" tppabs="http://shellbaike.com/cmdline/10">第九章：键盘高级操作技巧</a></li>
+        
+        <li><a href="12.htm" tppabs="http://shellbaike.com/cmdline/12">第十一章：进程</a></li>
+        
+        <li><a href="javascript:if(confirm('http://shellbaike.com/shell/13  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/shell/13'" tppabs="http://shellbaike.com/shell/13">Linux安装软件</a></li>
+        
+        <li><a href="16.htm" tppabs="http://shellbaike.com/cmdline/16">第十三章 : vi 简介</a></li>
+        
+        <li><a href="19.htm" tppabs="http://shellbaike.com/cmdline/19">第十六章 : 存储媒介</a></li>
+        
+    </ul>
+</div>
+            <div class="rightItem">
+    <h2>
+        Linux常用命令
+    </h2>
+    <ul>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/apmd  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/apmd'" tppabs="http://shellbaike.com/cmd/apmd">apmd</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/apropos  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/apropos'" tppabs="http://shellbaike.com/cmd/apropos">apropos</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/aumix  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/aumix'" tppabs="http://shellbaike.com/cmd/aumix">aumix</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/bg  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/bg'" tppabs="http://shellbaike.com/cmd/bg">bg</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/bzip2  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/bzip2'" tppabs="http://shellbaike.com/cmd/bzip2">bzip2</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/cd  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cd'" tppabs="http://shellbaike.com/cmd/cd">cd</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/cfdisk  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/cfdisk'" tppabs="http://shellbaike.com/cmd/cfdisk">cfdisk</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/chgrp  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/chgrp'" tppabs="http://shellbaike.com/cmd/chgrp">chgrp</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/chkconfig  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/chkconfig'" tppabs="http://shellbaike.com/cmd/chkconfig">chkconfig</a></li>
+        
+        <li class="tagItem"><a href="javascript:if(confirm('http://shellbaike.com/cmd/chown  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/chown'" tppabs="http://shellbaike.com/cmd/chown">chown</a></li>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+            <br/>
+<script type="text/javascript">
+    document.write('<a style="display:none!important" id="tanx-a-mm_12741493_8680874_29282972"></a>');
+    tanx_s = document.createElement("script");
+    tanx_s.type = "text/javascript";
+    tanx_s.charset = "gbk";
+    tanx_s.id = "tanx-s-mm_12741493_8680874_29282972";
+    tanx_s.async = true;
+    tanx_s.src = "../../p.tanx.com/ex-i=mm_12741493_8680874_29282972"/*tpa=http://p.tanx.com/ex?i=mm_12741493_8680874_29282972*/;
+    tanx_h = document.getElementsByTagName("head")[0];
+    if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
+</script>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="links">
+    <div class="wrapper">
+        <h3>友情链接</h3>
+        <hr>
+        <ul>
+            <li>
+                <a href="javascript:if(confirm('http://shellbaike.com/cmd/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://shellbaike.com/cmd/'" tppabs="http://shellbaike.com/cmd/" title="Linux命令大全" target="_blank">Linux命令大全</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://zhikanlouzhu.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://zhikanlouzhu.com/'" tppabs="http://zhikanlouzhu.com/" title="只看楼主网 - 最专业的只看楼主精品帖子网站" target="_blank">只看楼主网</a>
+            </li>
+            <li>
+                <a href="javascript:if(confirm('http://luceneapi.com/  \n\n���ļ��޷��� Jeff Chou ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://luceneapi.com/'" tppabs="http://luceneapi.com/" title="Lucene API - 最全的Lucene教程、Lucene入门、Lucene API、Lucene资料网站" target="_blank">Lucene API</a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="footer">
+    <div class="wrapper" style="text-align: center;">
+        <p>&copy; SHELL 百科</p><br/>
+        <p class="info">最全linux命令大全 Shell脚本编程技巧分享</p>
+        <br/>
+        <p>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254040888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254040888%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/jquery.min.js" tppabs="http://shellbaike.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/main.js" tppabs="http://shellbaike.com/static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/prism_pre.js" tppabs="http://shellbaike.com/static/js/prism_pre.js"></script>
+<script type="text/javascript" >
+    $(function(){
+        $(".smartTime").smartTime();
+        $(".mainInfo").dblclick(function(){
+            $("html , body").animate({scrollTop:"0"}, 0);
+        });
+    });
+</script>
+</body>
+</html>
