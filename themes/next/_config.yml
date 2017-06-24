@@ -20,7 +20,7 @@ since: 2017
 authoricon: android
 
 # Footer `powered-by` and `theme-info` copyright
-copyright: false
+copyright: true
 
 
 # Canonical, set a canonical link tag in your hexo, you could use it for your SEO of blog.
@@ -259,8 +259,8 @@ post_wordcount:
 # Declare license on posts
 post_copyright:
   enable: true
-  license: CC BY-NC-SA 3.0
-  license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
+  license: CC BY-NC-SA 4.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 
 
